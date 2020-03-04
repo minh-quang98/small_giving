@@ -26,11 +26,11 @@ class AuthForm extends React.Component {
     const { buttonText } = this.props;
 
     if (!buttonText && this.isLogin) {
-      return 'Login';
+      return 'Đăng nhập';
     }
 
     if (!buttonText && this.isSignup) {
-      return 'Signup';
+      return 'Đăng ký';
     }
 
     return buttonText;
@@ -79,7 +79,7 @@ class AuthForm extends React.Component {
         <FormGroup check>
           <Label check>
             <Input type="checkbox" />{' '}
-            {this.isSignup ? 'Agree the terms and policy' : 'Remember me'}
+            {this.isSignup ? 'Đồng ý với chính sách bảo mật' : 'Nhớ mật khẩu'}
           </Label>
         </FormGroup>
         <hr />
@@ -92,15 +92,15 @@ class AuthForm extends React.Component {
         </Button>
 
         <div className="text-center pt-1">
-          <h6>or</h6>
+          <h6>hoặc</h6>
           <h6>
             {this.isSignup ? (
               <a href="#login" onClick={this.changeAuthState(STATE_LOGIN)}>
-                Login
+                Đăng nhập
               </a>
             ) : (
               <a href="#signup" onClick={this.changeAuthState(STATE_SIGNUP)}>
-                Signup
+                Đăng ký
               </a>
             )}
           </h6>
@@ -128,22 +128,22 @@ AuthForm.propTypes = {
 };
 
 AuthForm.defaultProps = {
-  authState: 'LOGIN',
+  authState: 'Đăng nhập',
   showLogo: true,
   usernameLabel: 'Email',
   usernameInputProps: {
     type: 'email',
-    placeholder: 'your@email.com',
+    placeholder: 'Nhập email',
   },
-  passwordLabel: 'Password',
+  passwordLabel: 'Mật khẩu',
   passwordInputProps: {
     type: 'password',
-    placeholder: 'your password',
+    placeholder: 'Nhập mật khẩu',
   },
-  confirmPasswordLabel: 'Confirm Password',
+  confirmPasswordLabel: 'Xác nhận mật khẩu',
   confirmPasswordInputProps: {
     type: 'password',
-    placeholder: 'confirm your password',
+    placeholder: 'Nhập lại mật khẩu',
   },
   onLogoClick: () => {},
 };
