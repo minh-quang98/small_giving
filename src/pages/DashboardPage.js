@@ -43,6 +43,10 @@ import {
   Row,
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
+import NumberFormat from 'react-number-format';
+import Media from 'reactstrap/es/Media';
+// import { Link } from "react-router-dom";
+import user1Image from 'assets/img/banner.png';
 
 const today = new Date();
 const lastWeek = new Date(
@@ -64,13 +68,41 @@ class DashboardPage extends React.Component {
     return (
       <Page
         className="DashboardPage"
-        title="Dashboard"
-        breadcrumbs={[{ name: 'Dashboard', active: true }]}
+        title="Trang chủ"
+        // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
+        <Row>
+          <Col lg="8" md="12" sm="12" xs="12">
+            <Card>
+              <div>
+                <Media
+                  object
+                  src={user1Image}
+                  className="rounded mr-2 mb-2"
+                  // style={{ width: 100, height: 'auto' }}
+                />
+              </div>
+            </Card>
+          </Col>
 
-
-
-
+          <Col lg="4" md="12" sm="12" xs="12">
+            <Card>
+              <CardBody>
+                <div style={{fontSize: 20, textAlign: "center"}}>
+                   Số dư tài khoản
+                  <br/>
+                  <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                </div>
+              </CardBody>
+              <ListGroup flush>
+                <ListGroupItem>
+                  <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát{' '}
+                  <a href={""}>&nbsp;&nbsp;(Link)&nbsp;&nbsp;</a>
+                </ListGroupItem>
+              </ListGroup>
+            </Card>
+          </Col>
+        </Row>
         <Row>
           <Col md="6" sm="12" xs="12">
             <Card>
@@ -83,7 +115,7 @@ class DashboardPage extends React.Component {
                       image={image}
                       title={title}
                       description={description}
-                      right={right}
+                      // right={right}
                     />
                   ),
                 )}
@@ -100,8 +132,6 @@ class DashboardPage extends React.Component {
                     <MdPersonPin size={25} />,
                     'name',
                     'date',
-                    'participation',
-                    '%',
                   ]}
                   usersData={userProgressTableData}
                 />
