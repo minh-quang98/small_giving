@@ -43,6 +43,10 @@ import {
   Row,
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
+import NGND from "assets/img/NGND.jpg";
+import Media from 'reactstrap/es/Media';
+import NumberFormat from "react-number-format";
+import {Link} from "react-router-dom";
 
 const today = new Date();
 const lastWeek = new Date(
@@ -51,25 +55,9 @@ const lastWeek = new Date(
   today.getDate() - 7,
 );
 
-const CardPage = () => {
+const DonationPage = () => {
   return (
-    <Page title="Quyên góp" breadcrumbs={[{ name: 'Quyên góp', active: true }]}>
-      <Row>
-        <Col lg={3} md={6} sm={6} xs={12}>
-          <NumberWidget
-            title="Số tiền quyên góp"
-            //subtitle="This month"
-            number="20.000.000 VNĐ"
-            color="secondary"
-            progress={{
-              value: 75,
-              //label: 'Last month',
-            }}
-          />
-        </Col>
-
-      </Row> 
-
+    <Page title="Quyên góp">
       <Row>
         <Col lg="8" md="12" sm="12" xs="12">
           <Card>
@@ -79,19 +67,33 @@ const CardPage = () => {
             </CardHeader>
             <CardBody>
               {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
-              
+              <Media
+                object
+                src={NGND}
+                className="rounded mr-2 mb-2"
+                style={{ width: '100%', height: '100%' }}
+              />
             </CardBody>
           </Card>
         </Col>
 
         <Col lg="4" md="12" sm="12" xs="12">
           <Card>
-            <CardHeader>Quyên góp</CardHeader>
+            <CardHeader className="text-center">Quyên góp</CardHeader>
             <CardBody>
               {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
-              
+              <div style={{fontSize: 20, textAlign: "center"}}>
+                Số dư tài khoản
+                <br/>
+                <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+              </div>
             </CardBody>
             <ListGroup flush>
+              <ListGroupItem>
+                <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát&nbsp;&nbsp;
+                {/*<a href={""}>(Link)</a>*/}
+                <Link to={"/cards"}>(Link)</Link>
+              </ListGroupItem>
               <ListGroupItem>
                 <MdInsertChart size={25} color="primary" /> Nạp tiền {' '}
                 {/* <Badge color="secondary">$3000</Badge> */}
@@ -106,20 +108,20 @@ const CardPage = () => {
                 {/* <MdPieChart size={25} color="primary" /> Other operating
                 costs <Badge color="secondary">$2400</Badge> */}
                 <Row>
-        <Col lg={3} md={6} sm={6} xs={12}>
+        <Col lg={12} md={6} sm={6} xs={12}>
           <NumberWidget
             title="Số tiền quyên góp"
             //subtitle="This month"
-            number="20.000.000 VNĐ"
             color="secondary"
             progress={{
               value: 75,
               //label: 'Last month',
             }}
+            number="20.000.000 VNĐ"
           />
         </Col>
 
-      </Row> 
+      </Row>
               </ListGroupItem>
             </ListGroup>
           </Card>
@@ -127,6 +129,7 @@ const CardPage = () => {
       </Row>
       <CardGroup style={{ marginBottom: '1rem' }}>
         <IconWidget
+            className="text-center"
           bgColor="white"
           inverse={false}
           icon={MdThumbUp}
@@ -134,6 +137,7 @@ const CardPage = () => {
           subtitle="50.000 người"
         />
         <IconWidget
+            className="text-center"
           bgColor="white"
           inverse={false}
           icon={MdRateReview}
@@ -141,6 +145,7 @@ const CardPage = () => {
           subtitle="10 ngày"
         />
         <IconWidget
+            className="text-center"
           bgColor="white"
           inverse={false}
           icon={MdShare}
@@ -152,4 +157,4 @@ const CardPage = () => {
   );
 };
 
-export default CardPage;
+export default DonationPage;

@@ -25,38 +25,38 @@ export const productsData = [
     id: 1,
     image: product1Image,
     title: 'Đinh nghĩa',
-    description: 'Ứng dụng từ thiện trực tuyến đa phương thức',
-    right: '$36',
+    description: 'Là ứng dụng từ thiện trực tuyến đa phương thức với sự hợp tác của MIS - Học viện ngân hàng với Công ty TNHH Openway Việt Nam.',
+    
   },
   {
     id: 2,
     image: product2Image,
     title: 'Ý nghĩa ứng dụng',
-    description: 'Cầu nối nhân ái đưa những nhà hảo tâm đến gần hơn với những số phận kém may mắn.',
-    
+    description: 'Với sứ mệnh lan tỏa những yêu thương, Small Giving là cầu nối nhân ái đưa những nhà hảo tâm đến gần hơn với những số phận kém may mắn.',
+
   },
   {
     id: 3,
     image: product3Image,
     title: 'Cách thức hoạt động',
-    description: 'cung cấp đầy đủ thông tin mang tính xác thực cao về các hoàn cảnh cần giúp đỡ',
-    
+    description: 'Cung cấp đầy đủ thông tin mang tính xác thực cao về các hoàn cảnh cần giúp đỡ, nhà hảo tâm có thế tìm hiểu và nạp tiền trực tuyến hoạc kiếm tiền bằng việc làm khảo sát từ nhà tài trợ',
+
   },
   {
     id: 4,
     image: product4Image,
     title: 'Điểm khác biệt',
-    description: 'Bằng cách phân chia nhỏ số tiền của mình, người dùng chỉ cần chạm vào điện thoại',
-    
+    description: 'Bằng cách phân chia nhỏ số tiền của mình, người dùng chỉ cần sử dụng thiết bị di động hoạc máy tính là có thế quyên góp cho nhiều hoàn cảnh khó khăn và điều đặc biệt nhất là bạn có thể đông hành cùng chúng tôi trên chuyến xe từ thiện hoạc theo dỗi quá trình đó trên trang tin tức của hệ thống.',
+
   },
   {
     id: 5,
     image: product5Image,
-    title: 'Small giving',
-    description: 'Vì " cho là nhận" ',
-    
+    title: 'Vì " cho là nhận"',
+    description: 'Đừng chần chừ, hãy chung tay cùng cộng đồng vun đắp những ước mơ nhỏ nhoi. Điều bấy lâu nay ta chưa thể thực hiện. ',
+
   },
-  
+
 ];
 
 export const avatarsData = [
@@ -136,32 +136,32 @@ export const userProgressTableData = [
   {
     avatar: user1Image,
     name: 'Tom',
-    date: '3 month ago',
+    date: '3,000,000 ',
   },
   {
     avatar: user2Image,
     name: 'Jenny',
-    date: '1 year ago',
+    date: '2,500,000',
   },
   {
     avatar: user3Image,
     name: 'Sim',
-    date: '2 hour ago',
+    date: '2,000,000',
   },
   {
     avatar: user4Image,
     name: 'Christine',
-    date: 'a month ago',
+    date: '1,500,000',
   },
   {
     avatar: user5Image,
     name: 'Bread',
-    date: '6 months ago',
+    date: '1,000,000',
   },
   {
     avatar: user6Image,
     name: 'Dan',
-    date: '2 years ago',
+    date: '900,000',
   },
 ];
 

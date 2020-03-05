@@ -46,7 +46,7 @@ import { getColor } from 'utils/colors';
 import NumberFormat from 'react-number-format';
 import Media from 'reactstrap/es/Media';
 import { Link } from "react-router-dom";
-import user1Image from 'assets/img/banner.png';
+import banner from 'assets/img/banner.png';
 
 const today = new Date();
 const lastWeek = new Date(
@@ -55,7 +55,7 @@ const lastWeek = new Date(
   today.getDate() - 7,
 );
 
-class DashboardPage extends React.Component {
+class MainPage extends React.Component {
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
@@ -77,7 +77,7 @@ class DashboardPage extends React.Component {
               <div>
                 <Media
                   object
-                  src={user1Image}
+                  src={banner}
                   className="rounded mr-2 mb-2"
                   style={{ width: '100%', height: '100%' }}
                 />
@@ -110,7 +110,7 @@ class DashboardPage extends React.Component {
               <CardHeader>Về chúng tôi</CardHeader>
               <CardBody>
                 {productsData.map(
-                  ({ id, image, title, description, right }) => (
+                  ({ id, image, title, description,}) => (
                     <ProductMedia
                       key={id}
                       image={image}
@@ -145,4 +145,4 @@ class DashboardPage extends React.Component {
     );
   }
 }
-export default DashboardPage;
+export default MainPage;

@@ -72,9 +72,8 @@ const navContents = [
 ];
 
 const pageContents = [
-  { to: '/login', name: 'Cách nạp tiền', exact: false, Icon: MdAccountCircle },
   {
-    to: '/login-modal',
+    to: '/history',
     name: 'Lịch sử giao dịch',
     exact: false,
     Icon: MdViewCarousel,
@@ -83,9 +82,9 @@ const pageContents = [
 
 const navItems = [
   { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
-  { to: '/cards', name: 'Quyên góp', exact: false, Icon: MdWeb },
-  { to: '/charts', name: 'Tin tức', exact: false, Icon: MdInsertChart },
-  { to: '/widgets', name: 'Liên hệ và góp ý', exact: false, Icon: MdWidgets },
+  { to: '/donation', name: 'Quyên góp', exact: false, Icon: MdWeb },
+  { to: '/news', name: 'Tin tức', exact: false, Icon: MdInsertChart },
+  { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdWidgets },
 ];
 
 const bem = bn.create('sidebar');
@@ -138,7 +137,7 @@ class Sidebar extends React.Component {
                   exact={exact}
                 >
                   <Icon className={bem.e('nav-item-icon')} />
-                  <span className="">{name}</span>
+                  <span style={{fontSize: 13}}>{name}</span>
                 </BSNavLink>
               </NavItem>
             ))}
@@ -257,7 +256,7 @@ class Sidebar extends React.Component {
                     exact={exact}
                   >
                     <Icon className={bem.e('nav-item-icon')} />
-                    <span className="">{name}</span>
+                    <span style={{fontSize: 13}}>{name}</span>
                   </BSNavLink>
                 </NavItem>
               ))}
