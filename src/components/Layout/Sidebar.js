@@ -83,9 +83,9 @@ const pageContents = [
 
 const navItems = [
   { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
-  { to: '/cards', name: 'cards', exact: false, Icon: MdWeb },
-  { to: '/charts', name: 'charts', exact: false, Icon: MdInsertChart },
-  { to: '/widgets', name: 'widgets', exact: false, Icon: MdWidgets },
+  { to: '/cards', name: 'Quyên góp', exact: false, Icon: MdWeb },
+  { to: '/charts', name: 'Tin tức', exact: false, Icon: MdInsertChart },
+  { to: '/widgets', name: 'Liên hệ và góp ý', exact: false, Icon: MdWidgets },
 ];
 
 const bem = bn.create('sidebar');

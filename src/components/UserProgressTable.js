@@ -31,7 +31,6 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
             <td className="align-middle text-center">
               <Progress value={progress} style={{ height: 5 }} />
             </td>
-            <td className="align-middle text-center">{progress}%</td>
           </tr>
         ))}
       </tbody>

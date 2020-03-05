@@ -79,7 +79,7 @@ class DashboardPage extends React.Component {
                   object
                   src={user1Image}
                   className="rounded mr-2 mb-2"
-                  // style={{ width: 100, height: 'auto' }}
+                  style={{ width: '100%', height: '100%' }}
                 />
               </div>
             </Card>
