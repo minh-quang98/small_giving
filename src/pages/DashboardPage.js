@@ -45,7 +45,7 @@ import {
 import { getColor } from 'utils/colors';
 import NumberFormat from 'react-number-format';
 import Media from 'reactstrap/es/Media';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import user1Image from 'assets/img/banner.png';
 
 const today = new Date();
@@ -96,8 +96,9 @@ class DashboardPage extends React.Component {
               </CardBody>
               <ListGroup flush>
                 <ListGroupItem>
-                  <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát{' '}
-                  <a href={""}>&nbsp;&nbsp;(Link)&nbsp;&nbsp;</a>
+                  <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát&nbsp;&nbsp;
+                  {/*<a href={""}>(Link)</a>*/}
+                  <Link to={"/cards"}>(Link)</Link>
                 </ListGroupItem>
               </ListGroup>
             </Card>
@@ -106,7 +107,7 @@ class DashboardPage extends React.Component {
         <Row>
           <Col md="6" sm="12" xs="12">
             <Card>
-              <CardHeader>New Products</CardHeader>
+              <CardHeader>Về chúng tôi</CardHeader>
               <CardBody>
                 {productsData.map(
                   ({ id, image, title, description, right }) => (
@@ -125,7 +126,7 @@ class DashboardPage extends React.Component {
 
           <Col md="6" sm="12" xs="12">
             <Card>
-              <CardHeader>New Users</CardHeader>
+              <CardHeader>Bảng xếp hạng</CardHeader>
               <CardBody>
                 <UserProgressTable
                   headers={[

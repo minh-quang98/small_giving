@@ -81,8 +81,8 @@ class Header extends React.Component {
     return (
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
-          <Button outline onClick={this.handleSidebarControlButton}>
-            <MdClearAll size={25} />
+          <Button style={{color: "#ae1f17"}} outline onClick={this.handleSidebarControlButton}>
+            <MdClearAll size={25} style={{color: "#ae1f17"}} />
           </Button>
         </Nav>
 
@@ -92,7 +92,7 @@ class Header extends React.Component {
               {isNotificationConfirmed ? (
                 <MdNotificationsNone
                   size={25}
-                  className="text-secondary can-click"
+                  style={{color: "#ae1f17"}}
                   onClick={this.toggleNotificationPopover}
                 />
               ) : (
