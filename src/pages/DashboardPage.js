@@ -130,9 +130,10 @@ class DashboardPage extends React.Component {
               <CardBody>
                 <UserProgressTable
                   headers={[
-                    <MdPersonPin size={25} />,
-                    'name',
-                    'date',
+                    //<MdPersonPin size={25} />,
+                    'Huy hiệu',
+                    'Tài khoản',
+                    'Số tiền',
                   ]}
                   usersData={userProgressTableData}
                 />
