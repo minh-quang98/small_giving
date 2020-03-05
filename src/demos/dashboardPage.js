@@ -24,52 +24,46 @@ export const productsData = [
   {
     id: 1,
     image: product1Image,
-    title: 'Admin Template',
-    description: 'Responsive admin template...',
+    title: 'Đinh nghĩa',
+    description: 'Ứng dụng từ thiện trực tuyến đa phương thức',
     right: '$36',
   },
   {
     id: 2,
     image: product2Image,
-    title: 'Schedule App',
-    description: 'Manage your schedule...',
-    right: '$9',
+    title: 'Ý nghĩa ứng dụng',
+    description: 'Cầu nối nhân ái đưa những nhà hảo tâm đến gần hơn với những số phận kém may mắn.',
+    
   },
   {
     id: 3,
     image: product3Image,
-    title: 'Chat App',
-    description: 'Realtime chat application...',
-    right: '$12',
+    title: 'Cách thức hoạt động',
+    description: 'cung cấp đầy đủ thông tin mang tính xác thực cao về các hoàn cảnh cần giúp đỡ',
+    
   },
   {
     id: 4,
     image: product4Image,
-    title: 'Wordpress Business Theme',
-    description: 'Over 100+ templates and pages...',
-    right: '$24',
+    title: 'Điểm khác biệt',
+    description: 'Bằng cách phân chia nhỏ số tiền của mình, người dùng chỉ cần chạm vào điện thoại',
+    
   },
   {
     id: 5,
     image: product5Image,
-    title: 'Camera App',
-    description: 'Over 30+ filter...',
-    right: '$6.99',
+    title: 'Small giving',
+    description: 'Vì " cho là nhận" ',
+    
   },
-  {
-    id: 6,
-    image: product6Image,
-    title: 'Calendar App',
-    description: 'Organize your schedule...',
-    right: '$0.99',
-  },
+  
 ];
 
 export const avatarsData = [
   {
     avatar: user1Image,
     name: 'Tom',
-    date: '3 month ago',
+    date: '3000000',
   },
   {
     avatar: user2Image,

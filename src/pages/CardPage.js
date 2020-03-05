@@ -53,96 +53,73 @@ const lastWeek = new Date(
 
 const CardPage = () => {
   return (
-    <Page title="Cards" breadcrumbs={[{ name: 'cards', active: true }]}>
+    <Page title="Quyên góp" breadcrumbs={[{ name: 'Quyên góp', active: true }]}>
       <Row>
         <Col lg={3} md={6} sm={6} xs={12}>
           <NumberWidget
-            title="Total Profit"
-            subtitle="This month"
-            number="9.8k"
+            title="Số tiền quyên góp"
+            //subtitle="This month"
+            number="20.000.000 VNĐ"
             color="secondary"
             progress={{
               value: 75,
-              label: 'Last month',
+              //label: 'Last month',
             }}
           />
         </Col>
 
-        <Col lg={3} md={6} sm={6} xs={12}>
-          <NumberWidget
-            title="Monthly Visitors"
-            subtitle="This month"
-            number="5,400"
-            color="secondary"
-            progress={{
-              value: 45,
-              label: 'Last month',
-            }}
-          />
-        </Col>
-
-        <Col lg={3} md={6} sm={6} xs={12}>
-          <NumberWidget
-            title="New Users"
-            subtitle="This month"
-            number="3,400"
-            color="secondary"
-            progress={{
-              value: 90,
-              label: 'Last month',
-            }}
-          />
-        </Col>
-
-        <Col lg={3} md={6} sm={6} xs={12}>
-          <NumberWidget
-            title="Bounce Rate"
-            subtitle="This month"
-            number="38%"
-            color="secondary"
-            progress={{
-              value: 60,
-              label: 'Last month',
-            }}
-          />
-        </Col>
-      </Row>
+      </Row> 
 
       <Row>
         <Col lg="8" md="12" sm="12" xs="12">
           <Card>
             <CardHeader>
-              Total Revenue{' '}
-              <small className="text-muted text-capitalize">This year</small>
+              Người già neo đơn{' '}
+              <small className="text-muted text-capitalize">Xem chi tiết</small>
             </CardHeader>
             <CardBody>
-              <Line data={chartjs.line.data} options={chartjs.line.options} />
+              {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
+              
             </CardBody>
           </Card>
         </Col>
 
         <Col lg="4" md="12" sm="12" xs="12">
           <Card>
-            <CardHeader>Total Expense</CardHeader>
+            <CardHeader>Quyên góp</CardHeader>
             <CardBody>
-              <Bar data={chartjs.bar.data} options={chartjs.bar.options} />
+              {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
+              
             </CardBody>
             <ListGroup flush>
               <ListGroupItem>
-                <MdInsertChart size={25} color="primary" /> Cost of sales{' '}
-                <Badge color="secondary">$3000</Badge>
+                <MdInsertChart size={25} color="primary" /> Nạp tiền {' '}
+                {/* <Badge color="secondary">$3000</Badge> */}
               </ListGroupItem>
               <ListGroupItem>
-                <MdBubbleChart size={25} color="primary" /> Management
-                costs <Badge color="secondary">$1200</Badge>
+                <MdBubbleChart size={25} color="primary" /> Quyên góp
               </ListGroupItem>
               <ListGroupItem>
-                <MdShowChart size={25} color="primary" /> Financial costs{' '}
-                <Badge color="secondary">$800</Badge>
+                <MdShowChart size={25} color="primary" />Tham gia góp sức{' '}
               </ListGroupItem>
               <ListGroupItem>
-                <MdPieChart size={25} color="primary" /> Other operating
-                costs <Badge color="secondary">$2400</Badge>
+                {/* <MdPieChart size={25} color="primary" /> Other operating
+                costs <Badge color="secondary">$2400</Badge> */}
+                <Row>
+        <Col lg={3} md={6} sm={6} xs={12}>
+          <NumberWidget
+            title="Số tiền quyên góp"
+            //subtitle="This month"
+            number="20.000.000 VNĐ"
+            color="secondary"
+            progress={{
+              value: 75,
+              //label: 'Last month',
+            }}
+          />
+        </Col>
+
+      </Row> 
               </ListGroupItem>
             </ListGroup>
           </Card>
@@ -153,22 +130,22 @@ const CardPage = () => {
           bgColor="white"
           inverse={false}
           icon={MdThumbUp}
-          title="50+ Likes"
-          subtitle="People you like"
+          title="Số người theo dõi"
+          subtitle="50.000 người"
         />
         <IconWidget
           bgColor="white"
           inverse={false}
           icon={MdRateReview}
-          title="10+ Reviews"
-          subtitle="New Reviews"
+          title="Số ngày còn lại"
+          subtitle="10 ngày"
         />
         <IconWidget
           bgColor="white"
           inverse={false}
           icon={MdShare}
-          title="30+ Shares"
-          subtitle="New Shares"
+          title="Chia sẻ"
+          subtitle="30+ chia sẻ"
         />
       </CardGroup>
     </Page>
