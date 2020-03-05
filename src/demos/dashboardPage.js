@@ -63,7 +63,7 @@ export const avatarsData = [
   {
     avatar: user1Image,
     name: 'Tom',
-    date: '3000000',
+    date: '3 month ago',
   },
   {
     avatar: user2Image,

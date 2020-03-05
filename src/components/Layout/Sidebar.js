@@ -72,7 +72,7 @@ const navContents = [
 ];
 
 const pageContents = [
-  { to: '/login', name: 'Hướng dẫn nạp tiền', exact: false, Icon: MdAccountCircle },
+  { to: '/login', name: 'Cách nạp tiền', exact: false, Icon: MdAccountCircle },
   {
     to: '/login-modal',
     name: 'Lịch sử giao dịch',
