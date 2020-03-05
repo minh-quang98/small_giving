@@ -1,4 +1,4 @@
-import { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
+import AuthForm, { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
 import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
@@ -7,6 +7,8 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
+import { Button, Modal, ModalBody } from 'reactstrap';
+
 
 const AlertPage = React.lazy(() => import('pages/AlertPage'));
 const AuthModalPage = React.lazy(() => import('pages/AuthModalPage'));
@@ -30,57 +32,108 @@ const getBasename = () => {
 };
 
 class App extends React.Component {
+  state = {
+    showLogin: true,
+    setLogin: false,
+    authState: STATE_LOGIN,
+  };
+
+  handleLogin = () => {
+    this.setState({
+      showLogin: !this.state.showLogin,
+    });
+  };
+
+  handleAuthState = authState => {
+    this.setState({
+      authState,
+    });
+  };
 
   render() {
+    const externalCloseBtn = (
+      <button
+        className="close"
+        style={{
+          position: 'absolute',
+          top: '15px',
+          right: '20px',
+          fontSize: '3rem',
+        }}
+        onClick={this.toggle}>
+        &times;
+      </button>
+    );
     return (
-      <BrowserRouter basename={getBasename()}>
-        <GAListener>
-          <Switch>
-            <LayoutRoute
-              exact
-              path="/login"
-              layout={EmptyLayout}
-              component={props => (
-                <AuthPage {...props} authState={STATE_LOGIN} />
-              )}
-            />
-            <LayoutRoute
-              exact
-              path="/signup"
-              layout={EmptyLayout}
-              component={props => (
-                <AuthPage {...props} authState={STATE_SIGNUP} />
-              )}
-            />
-
-            <MainLayout breakpoint={this.props.breakpoint}>
-              <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={DashboardPage} />
-                <Route exact path="/login-modal" component={AuthModalPage} />
-                <Route exact path="/buttons" component={ButtonPage} />
-                <Route exact path="/cards" component={CardPage} />
-                <Route exact path="/widgets" component={WidgetPage} />
-                <Route exact path="/typography" component={TypographyPage} />
-                <Route exact path="/alerts" component={AlertPage} />
-                <Route exact path="/tables" component={TablePage} />
-                <Route exact path="/badges" component={BadgePage} />
-                <Route
+      <div>
+        {this.state.showLogin === true
+          ? <Modal
+            isOpen={this.state.showLogin}
+            toggle={this.handleLogin}
+            size="sm"
+            backdrop="static"
+            backdropClassName="modal-backdrop-light"
+            // external={externalCloseBtn}
+            centered>
+            <ModalBody>
+              <AuthForm
+                authState={this.state.authState}
+                onChangeAuthState={this.handleAuthState}
+                onLogin={() => {
+                  this.setState({ showLogin: false })}}
+              />
+            </ModalBody>
+          </Modal>
+          : <BrowserRouter basename={getBasename()}>
+            <GAListener>
+              <Switch>
+                <LayoutRoute
                   exact
-                  path="/button-groups"
-                  component={ButtonGroupPage}
+                  path="/login"
+                  layout={EmptyLayout}
+                  component={props => (
+                    <AuthPage {...props} authState={STATE_LOGIN}/>
+                  )}
                 />
-                <Route exact path="/dropdowns" component={DropdownPage} />
-                <Route exact path="/progress" component={ProgressPage} />
-                <Route exact path="/modals" component={ModalPage} />
-                <Route exact path="/forms" component={FormPage} />
-                <Route exact path="/input-groups" component={InputGroupPage} />
-                <Route exact path="/charts" component={ChartPage} />
-              </React.Suspense>
-            </MainLayout>
-            <Redirect to="/" />
-          </Switch>
-        </GAListener>
-      </BrowserRouter>
+                <LayoutRoute
+                  exact
+                  path="/signup"
+                  layout={EmptyLayout}
+                  component={props => (
+                    <AuthPage {...props} authState={STATE_SIGNUP}/>
+                  )}
+                />
+
+                <MainLayout breakpoint={this.props.breakpoint}>
+                  <React.Suspense fallback={<PageSpinner/>}>
+                    <Route exact path="/" component={DashboardPage}/>
+                    <Route exact path="/login-modal" component={AuthModalPage}/>
+                    <Route exact path="/buttons" component={ButtonPage}/>
+                    <Route exact path="/cards" component={CardPage}/>
+                    <Route exact path="/widgets" component={WidgetPage}/>
+                    <Route exact path="/typography" component={TypographyPage}/>
+                    <Route exact path="/alerts" component={AlertPage}/>
+                    <Route exact path="/tables" component={TablePage}/>
+                    <Route exact path="/badges" component={BadgePage}/>
+                    <Route
+                      exact
+                      path="/button-groups"
+                      component={ButtonGroupPage}
+                    />
+                    <Route exact path="/dropdowns" component={DropdownPage}/>
+                    <Route exact path="/progress" component={ProgressPage}/>
+                    <Route exact path="/modals" component={ModalPage}/>
+                    <Route exact path="/forms" component={FormPage}/>
+                    <Route exact path="/input-groups" component={InputGroupPage}/>
+                    <Route exact path="/charts" component={ChartPage}/>
+                  </React.Suspense>
+                </MainLayout>
+                <Redirect to="/"/>
+              </Switch>
+            </GAListener>
+          </BrowserRouter>
+        }
+      </div>
     );
   }
 }
