@@ -143,37 +143,31 @@ export const userProgressTableData = [
     avatar: user1Image,
     name: 'Tom',
     date: '3 month ago',
-    progress: 75,
   },
   {
     avatar: user2Image,
     name: 'Jenny',
     date: '1 year ago',
-    progress: 60,
   },
   {
     avatar: user3Image,
     name: 'Sim',
     date: '2 hour ago',
-    progress: 50,
   },
   {
     avatar: user4Image,
     name: 'Christine',
     date: 'a month ago',
-    progress: 40,
   },
   {
     avatar: user5Image,
     name: 'Bread',
     date: '6 months ago',
-    progress: 30,
   },
   {
     avatar: user6Image,
     name: 'Dan',
     date: '2 years ago',
-    progress: 25,
   },
 ];
 

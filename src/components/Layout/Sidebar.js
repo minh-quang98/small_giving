@@ -38,7 +38,8 @@ import {
 import bn from 'utils/bemnames';
 
 const sidebarBackground = {
-  backgroundImage: `url("${sidebarBgImage}")`,
+  // backgroundImage: `url("${sidebarBgImage}")`,
+  backgroundColor: "#8c1b0f",
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 };
@@ -81,7 +82,7 @@ const pageContents = [
 ];
 
 const navItems = [
-  { to: '/', name: 'dashboard', exact: true, Icon: MdDashboard },
+  { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
   { to: '/cards', name: 'cards', exact: false, Icon: MdWeb },
   { to: '/charts', name: 'charts', exact: false, Icon: MdInsertChart },
   { to: '/widgets', name: 'widgets', exact: false, Icon: MdWidgets },
@@ -115,13 +116,13 @@ class Sidebar extends React.Component {
             <SourceLink className="navbar-brand d-flex">
               <img
                 src={logo200Image}
-                width="40"
-                height="30"
-                className="pr-2"
+                width="70"
+                height="60"
+                className="pr-2 "
                 alt=""
               />
-              <span className="text-white">
-                Small Giving <FaGithub />
+              <span className="text-white mt-3">
+                Small Giving
               </span>
             </SourceLink>
           </Navbar>
