@@ -98,7 +98,9 @@ class AuthForm extends React.Component {
         <hr/>
         <Button
           size="lg"
-          className="bg-gradient-theme-left border-0"
+          // className="bg-gradient-theme-left border-0"
+          // style={{backgroundColor: "#ae1f17"}}
+          color={"danger"}
           block
           onClick={() =>
             onLogin()}>

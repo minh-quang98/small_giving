@@ -26,37 +26,36 @@ export const productsData = [
     image: product1Image,
     title: 'Đinh nghĩa',
     description: 'Ứng dụng từ thiện trực tuyến đa phương thức',
-    right: '$36',
   },
   {
     id: 2,
     image: product2Image,
     title: 'Ý nghĩa ứng dụng',
     description: 'Cầu nối nhân ái đưa những nhà hảo tâm đến gần hơn với những số phận kém may mắn.',
-    
+
   },
   {
     id: 3,
     image: product3Image,
     title: 'Cách thức hoạt động',
     description: 'cung cấp đầy đủ thông tin mang tính xác thực cao về các hoàn cảnh cần giúp đỡ',
-    
+
   },
   {
     id: 4,
     image: product4Image,
     title: 'Điểm khác biệt',
     description: 'Bằng cách phân chia nhỏ số tiền của mình, người dùng chỉ cần chạm vào điện thoại',
-    
+
   },
   {
     id: 5,
     image: product5Image,
     title: 'Small giving',
     description: 'Vì " cho là nhận" ',
-    
+
   },
-  
+
 ];
 
 export const avatarsData = [
@@ -136,32 +135,32 @@ export const userProgressTableData = [
   {
     avatar: user1Image,
     name: 'Tom',
-    date: '3 month ago',
+    date: '3,000,000 ',
   },
   {
     avatar: user2Image,
     name: 'Jenny',
-    date: '1 year ago',
+    date: '2,500,000',
   },
   {
     avatar: user3Image,
     name: 'Sim',
-    date: '2 hour ago',
+    date: '2,000,000',
   },
   {
     avatar: user4Image,
     name: 'Christine',
-    date: 'a month ago',
+    date: '1,500,000',
   },
   {
     avatar: user5Image,
     name: 'Bread',
-    date: '6 months ago',
+    date: '1,000,000',
   },
   {
     avatar: user6Image,
     name: 'Dan',
-    date: '2 years ago',
+    date: '900,000',
   },
 ];
 

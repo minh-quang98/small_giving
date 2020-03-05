@@ -15,9 +15,12 @@ import {
   Row,
 } from 'reactstrap';
 
-const FormPage = () => {
+const ContactPage = () => {
   return (
-    <Page title="Forms" breadcrumbs={[{ name: 'Forms', active: true }]}>
+    <Page
+      className="ContactPage"
+      title="Liên hệ và góp ý"
+    >
       <Row>
         <Col xl={6} lg={12} md={12}>
           <Card>
@@ -27,88 +30,88 @@ const FormPage = () => {
                 <FormGroup>
                   <Label for="exampleEmail">Plain Text (Static)</Label>
                   <Input
-                    plaintext
-                    value="Some plain text/ static value"
-                    readOnly
+                      plaintext
+                      value="Some plain text/ static value"
+                      readOnly
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
                   <Input
-                    type="email"
-                    name="email"
-                    placeholder="with a placeholder"
+                      type="email"
+                      name="email"
+                      placeholder="with a placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="examplePassword">Password</Label>
                   <Input
-                    type="password"
-                    name="password"
-                    placeholder="password placeholder"
+                      type="password"
+                      name="password"
+                      placeholder="password placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleUrl">Url</Label>
                   <Input
-                    type="url"
-                    name="url"
-                    id="exampleUrl"
-                    placeholder="url placeholder"
+                      type="url"
+                      name="url"
+                      id="exampleUrl"
+                      placeholder="url placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleNumber">Number</Label>
                   <Input
-                    type="number"
-                    name="number"
-                    id="exampleNumber"
-                    placeholder="number placeholder"
+                      type="number"
+                      name="number"
+                      id="exampleNumber"
+                      placeholder="number placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleDatetime">Datetime</Label>
                   <Input
-                    type="datetime"
-                    name="datetime"
-                    id="exampleDatetime"
-                    placeholder="datetime placeholder"
+                      type="datetime"
+                      name="datetime"
+                      id="exampleDatetime"
+                      placeholder="datetime placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleDate">Date</Label>
                   <Input
-                    type="date"
-                    name="date"
-                    id="exampleDate"
-                    placeholder="date placeholder"
+                      type="date"
+                      name="date"
+                      id="exampleDate"
+                      placeholder="date placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleTime">Time</Label>
                   <Input
-                    type="time"
-                    name="time"
-                    id="exampleTime"
-                    placeholder="time placeholder"
+                      type="time"
+                      name="time"
+                      id="exampleTime"
+                      placeholder="time placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleColor">Color</Label>
                   <Input
-                    type="color"
-                    name="color"
-                    id="exampleColor"
-                    placeholder="color placeholder"
+                      type="color"
+                      name="color"
+                      id="exampleColor"
+                      placeholder="color placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleSearch">Search</Label>
                   <Input
-                    type="search"
-                    name="search"
-                    id="exampleSearch"
-                    placeholder="search placeholder"
+                      type="search"
+                      name="search"
+                      id="exampleSearch"
+                      placeholder="search placeholder"
                   />
                 </FormGroup>
                 <FormGroup>
@@ -170,9 +173,9 @@ const FormPage = () => {
                   </Label>
                   <Col sm={10}>
                     <Input
-                      type="email"
-                      name="email"
-                      placeholder="with a placeholder"
+                        type="email"
+                        name="email"
+                        placeholder="with a placeholder"
                     />
                   </Col>
                 </FormGroup>
@@ -182,9 +185,9 @@ const FormPage = () => {
                   </Label>
                   <Col sm={10}>
                     <Input
-                      type="password"
-                      name="password"
-                      placeholder="password placeholder"
+                        type="password"
+                        name="password"
+                        placeholder="password placeholder"
                     />
                   </Col>
                 </FormGroup>
@@ -327,9 +330,9 @@ const FormPage = () => {
                     Password
                   </Label>
                   <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
+                      type="password"
+                      name="password"
+                      placeholder="Password"
                   />
                 </FormGroup>{' '}
                 <Button>Submit</Button>
@@ -348,17 +351,17 @@ const FormPage = () => {
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>{' '}
                   <Input
-                    type="email"
-                    name="email"
-                    placeholder="something@idk.cool"
+                      type="email"
+                      name="email"
+                      placeholder="something@idk.cool"
                   />
                 </FormGroup>{' '}
                 <FormGroup>
                   <Label for="examplePassword">Password</Label>{' '}
                   <Input
-                    type="password"
-                    name="password"
-                    placeholder="don't tell!"
+                      type="password"
+                      name="password"
+                      placeholder="don't tell!"
                   />
                 </FormGroup>{' '}
                 <Button>Submit</Button>
@@ -422,10 +425,10 @@ const FormPage = () => {
                   </Label>
                   <Col sm={10}>
                     <Input
-                      type="email"
-                      name="email"
-                      placeholder="lg"
-                      bsSize="lg"
+                        type="email"
+                        name="email"
+                        placeholder="lg"
+                        bsSize="lg"
                     />
                   </Col>
                 </FormGroup>
@@ -435,10 +438,10 @@ const FormPage = () => {
                   </Label>
                   <Col sm={10}>
                     <Input
-                      type="email"
-                      name="email"
-                      id="exampleEmail2"
-                      placeholder="default"
+                        type="email"
+                        name="email"
+                        id="exampleEmail2"
+                        placeholder="default"
                     />
                   </Col>
                 </FormGroup>
@@ -451,4 +454,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default ContactPage;

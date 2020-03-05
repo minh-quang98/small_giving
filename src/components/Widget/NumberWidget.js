@@ -21,7 +21,6 @@ const NumberWidget = ({
           </Typography>
           <Typography className="mb-0 text-muted small">{subtitle}</Typography>
         </CardText>
-        <CardTitle className={`text-${color}`}>{number}</CardTitle>
       </div>
       <Progress value={value} color={color} style={{ height: '8px' }} />
       <CardText tag="div" className="d-flex justify-content-between">
@@ -32,6 +31,7 @@ const NumberWidget = ({
           {value}%
         </Typography>
       </CardText>
+      <CardText className={`text-${color}`}>{number}</CardText>
     </Card>
   );
 };
