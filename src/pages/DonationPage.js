@@ -77,6 +77,42 @@ const DonationPage = () => {
           </Card>
         </Col>
 
+        <Col lg="8" md="12" sm="12" xs="12">
+          <Card>
+            <CardHeader>
+              Người già neo đơn{' '}
+              <small className="text-muted text-capitalize">Xem chi tiết</small>
+            </CardHeader>
+            <CardBody>
+              {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
+              <Media
+                  object
+                  src={NGND}
+                  className="rounded mr-2 mb-2"
+                  style={{ width: '100%', height: '100%' }}
+              />
+            </CardBody>
+          </Card>
+        </Col>
+
+        <Col lg="8" md="12" sm="12" xs="12">
+          <Card>
+            <CardHeader>
+              Người già neo đơn{' '}
+              <small className="text-muted text-capitalize">Xem chi tiết</small>
+            </CardHeader>
+            <CardBody>
+              {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
+              <Media
+                  object
+                  src={NGND}
+                  className="rounded mr-2 mb-2"
+                  style={{ width: '100%', height: '100%' }}
+              />
+            </CardBody>
+          </Card>
+        </Col>
+
         <Col lg="4" md="12" sm="12" xs="12">
           <Card>
             <CardHeader className="text-center">Quyên góp</CardHeader>
