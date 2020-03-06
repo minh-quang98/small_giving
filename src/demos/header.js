@@ -8,13 +8,13 @@ export const notificationsData = [
   {
     id: 1,
     avatar: user1Image,
-    message: 'David sent you a message',
+    message: 'Cảm ơn bạn vì nghĩa cử cao đẹp!',
     date: '3 min ago',
   },
   {
     id: 2,
     avatar: user2Image,
-    message: 'Jane mentioned you here',
+    message: 'Ngày 03/3/2020 CLB sẽ đến trại trẻ mồ côi để quyên góp (thông tin chi tiết)',
     date: '1 hour ago',
   },
   {
