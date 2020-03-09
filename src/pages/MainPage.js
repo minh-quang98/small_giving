@@ -101,6 +101,11 @@ class MainPage extends React.Component {
                   <Link to={"/cards"}>(Link)</Link>
                 </ListGroupItem>
               </ListGroup>
+              <ListGroup flush>
+                <ListGroupItem className="text-center">
+                  <Button>Điểm danh</Button>
+                </ListGroupItem>
+              </ListGroup>
             </Card>
           </Col>
         </Row>

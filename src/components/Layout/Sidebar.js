@@ -78,13 +78,20 @@ const pageContents = [
     exact: false,
     Icon: MdViewCarousel,
   },
+  {
+    to: '/guides',
+    name: 'Hướng dẫn nạp tiền',
+    exact: false,
+    Icon: MdViewCarousel,
+  },
+  { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdWidgets },
+
 ];
 
 const navItems = [
   { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
   { to: '/donation', name: 'Quyên góp', exact: false, Icon: MdWeb },
   { to: '/news', name: 'Tin tức', exact: false, Icon: MdInsertChart },
-  { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdWidgets },
 ];
 
 const bem = bn.create('sidebar');
