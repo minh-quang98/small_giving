@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="" />
+    <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ContactPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ContactPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/_variables.scss" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +26,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-reduction" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
@@ -36,11 +42,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583831636936</updated>
-      <workItem from="1583831640853" duration="2186000" />
+      <workItem from="1583831640853" duration="2472000" />
+      <workItem from="1583845448642" duration="6281000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="420" y="114" key="FileChooserDialogImpl" timestamp="1583847924741">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1583847924741" />
   </component>
 </project>

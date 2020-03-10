@@ -101,12 +101,7 @@ class MainPage extends React.Component {
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <div>
-                {/*<Media*/}
-                {/*  object*/}
-                {/*  src={banner}*/}
-                {/*  className="rounded mr-2 mb-2"*/}
-                {/*  style={{ width: '100%', height: '100%' }}*/}
-                {/*/>*/}
+
                 <UncontrolledCarousel items={fakeData} />
               </div>
             </Card>
