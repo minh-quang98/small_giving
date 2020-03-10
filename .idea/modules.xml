@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/react-reduction.iml" filepath="$PROJECT_DIR$/.idea/react-reduction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/small-giving.iml" filepath="$PROJECT_DIR$/.idea/small-giving.iml" />
     </modules>
   </component>
 </project>

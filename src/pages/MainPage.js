@@ -40,7 +40,7 @@ import {
   Col,
   ListGroup,
   ListGroupItem,
-  Row,
+  Row, UncontrolledCarousel,
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
 import NumberFormat from 'react-number-format';
@@ -56,15 +56,41 @@ const lastWeek = new Date(
 );
 
 class MainPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      fakeData : [
+        {
+          src: 'img/Slide/banner.png',
+          // altText: 'Slide 1',
+          // caption: 'Slide 1',
+          // header: 'Slide 1 Header',
+          key: '1'
+        },
+        {
+          src: 'img/Slide/banner2.png',
+          // altText: 'Slide 2',
+          // caption: 'Slide 2',
+          // header: 'Slide 2 Header',
+          key: '2'
+        },
+        {
+          src: 'img/Slide/banner3.png',
+          // altText: 'Slide 3',
+          // caption: 'Slide 3',
+          // header: 'Slide 3 Header',
+          key: '3'
+        }
+      ]
+    }
+  }
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
   }
 
   render() {
-    const primaryColor = getColor('primary');
-    const secondaryColor = getColor('secondary');
-
+    let {fakeData} = this.state
     return (
       <Page
         className="DashboardPage"
@@ -75,12 +101,13 @@ class MainPage extends React.Component {
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <div>
-                <Media
-                  object
-                  src={banner}
-                  className="rounded mr-2 mb-2"
-                  style={{ width: '100%', height: '100%' }}
-                />
+                {/*<Media*/}
+                {/*  object*/}
+                {/*  src={banner}*/}
+                {/*  className="rounded mr-2 mb-2"*/}
+                {/*  style={{ width: '100%', height: '100%' }}*/}
+                {/*/>*/}
+                <UncontrolledCarousel items={fakeData} />
               </div>
             </Card>
           </Col>
