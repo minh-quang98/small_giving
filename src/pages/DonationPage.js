@@ -63,7 +63,11 @@ const DonationPage = () => {
           <Card>
             <CardHeader>
               Người già neo đơn{' '}
-              <small className="text-muted text-capitalize">Xem chi tiết</small>
+              <small className="text-muted text-capitalize">
+                <Link to={""}>
+                  Xem chi tiết
+                </Link>
+              </small>
             </CardHeader>
             <CardBody>
               {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
@@ -77,8 +81,8 @@ const DonationPage = () => {
           </Card>
         </Col>
 
-        <Col lg="4" md="12" sm="12" xs="12">
-          <Card>
+        <Col lg="4" md="12" sm="12" xs="12" className="align-items-center">
+          <Card >
             <CardHeader className="text-center">Quyên góp</CardHeader>
             <CardBody>
               {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
@@ -120,7 +124,6 @@ const DonationPage = () => {
             number="20.000.000 VNĐ"
           />
         </Col>
-
       </Row>
               </ListGroupItem>
             </ListGroup>
@@ -146,6 +149,107 @@ const DonationPage = () => {
         />
         <IconWidget
             className="text-center"
+          bgColor="white"
+          inverse={false}
+          icon={MdShare}
+          title="Chia sẻ"
+          subtitle="30+ chia sẻ"
+        />
+      </CardGroup>
+
+    {/*  ------------------------*/}
+
+      <Row className="mt-5">
+        <Col lg="8" md="12" sm="12" xs="12">
+          <Card>
+            <CardHeader>
+              Người già neo đơn{' '}
+              <small className="text-muted text-capitalize">
+                <Link to={""}>
+                  Xem chi tiết
+                </Link>
+              </small>
+            </CardHeader>
+            <CardBody>
+              {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
+              <Media
+                object
+                src={NGND}
+                className="rounded mr-2 mb-2"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </CardBody>
+          </Card>
+        </Col>
+
+        <Col lg="4" md="12" sm="12" xs="12" className="align-items-center">
+          <Card >
+            <CardHeader className="text-center">Quyên góp</CardHeader>
+            <CardBody>
+              {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
+              <div style={{fontSize: 20, textAlign: "center"}}>
+                Số dư tài khoản
+                <br/>
+                <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+              </div>
+            </CardBody>
+            <ListGroup flush>
+              <ListGroupItem>
+                <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát&nbsp;&nbsp;
+                {/*<a href={""}>(Link)</a>*/}
+                <Link to={"/cards"}>(Link)</Link>
+              </ListGroupItem>
+              <ListGroupItem>
+                <MdInsertChart size={25} color="primary" /> Nạp tiền {' '}
+                {/* <Badge color="secondary">$3000</Badge> */}
+              </ListGroupItem>
+              <ListGroupItem>
+                <MdBubbleChart size={25} color="primary" /> Quyên góp
+              </ListGroupItem>
+              <ListGroupItem>
+                <MdShowChart size={25} color="primary" />Tham gia góp sức{' '}
+              </ListGroupItem>
+              <ListGroupItem>
+                {/* <MdPieChart size={25} color="primary" /> Other operating
+                costs <Badge color="secondary">$2400</Badge> */}
+                <Row>
+                  <Col lg={12} md={6} sm={6} xs={12}>
+                    <NumberWidget
+                      title="Số tiền quyên góp"
+                      //subtitle="This month"
+                      color="secondary"
+                      progress={{
+                        value: 75,
+                        //label: 'Last month',
+                      }}
+                      number="20.000.000 VNĐ"
+                    />
+                  </Col>
+                </Row>
+              </ListGroupItem>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
+      <CardGroup style={{ marginBottom: '1rem' }}>
+        <IconWidget
+          className="text-center"
+          bgColor="white"
+          inverse={false}
+          icon={MdThumbUp}
+          title="Số người theo dõi"
+          subtitle="50.000 người"
+        />
+        <IconWidget
+          className="text-center"
+          bgColor="white"
+          inverse={false}
+          icon={MdRateReview}
+          title="Số ngày còn lại"
+          subtitle="10 ngày"
+        />
+        <IconWidget
+          className="text-center"
           bgColor="white"
           inverse={false}
           icon={MdShare}

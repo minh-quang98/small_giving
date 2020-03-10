@@ -1,7 +1,8 @@
 // colors
 
 .bg-gradient-theme {
-  background: linear-gradient(to bottom, theme-color("primary"), theme-color("secondary"));
+  //background: linear-gradient(to bottom, theme-color("primary"), theme-color("secondary"));
+  background-color: #ae1f17;
 }
 .bg-gradient-theme-top {
   background: linear-gradient(to top, theme-color("primary"), theme-color("secondary"));
