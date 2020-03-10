@@ -103,10 +103,10 @@ const DonationPage = () => {
                 {/* <Badge color="secondary">$3000</Badge> */}
               </ListGroupItem>
               <ListGroupItem>
-                <MdBubbleChart size={25} color="primary" /> Quyên góp
+                <MdBubbleChart size={25} color="primary" />Theo dõi sự kiện
               </ListGroupItem>
               <ListGroupItem>
-                <MdShowChart size={25} color="primary" />Tham gia góp sức{' '}
+                <MdShowChart size={25} color="primary" />Tham gia hoạt động{' '}
               </ListGroupItem>
               <ListGroupItem>
                 {/* <MdPieChart size={25} color="primary" /> Other operating
@@ -136,24 +136,24 @@ const DonationPage = () => {
           bgColor="white"
           inverse={false}
           icon={MdThumbUp}
-          title="Số người theo dõi"
-          subtitle="50.000 người"
+          title="Quyên góp"
+          subtitle="Button quyên góp"
         />
         <IconWidget
             className="text-center"
           bgColor="white"
           inverse={false}
           icon={MdRateReview}
-          title="Số ngày còn lại"
-          subtitle="10 ngày"
+          title="Số người theo dõi"
+          subtitle="50 người"
         />
         <IconWidget
             className="text-center"
           bgColor="white"
           inverse={false}
           icon={MdShare}
-          title="Chia sẻ"
-          subtitle="30+ chia sẻ"
+          title="Số ngày còn lại"
+          subtitle="30 ngày"
         />
       </CardGroup>
 
