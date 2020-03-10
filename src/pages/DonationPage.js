@@ -37,7 +37,7 @@ import {
   CardGroup,
   CardHeader,
   CardTitle,
-  Col,
+  Col, Input,
   ListGroup,
   ListGroupItem,
   Modal,
@@ -200,7 +200,7 @@ class DonationPage extends React.Component {
             <ModalHeader toggle={()=>this.handleCloseModalParent()}>
               Người già neo đơn
             </ModalHeader>
-            <ModalBody className="text-center">
+            <ModalBody className="d-flex flex-column align-items-center">
               <Media
                 object
                 src='img/Slide/money.png'
@@ -209,6 +209,7 @@ class DonationPage extends React.Component {
               />
               <div>Số tiền hiện tại bạn có là:</div>
               <div style={{color: "#ae1f17"}}>2.000.000</div>
+              <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>

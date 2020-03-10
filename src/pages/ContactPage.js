@@ -16,7 +16,8 @@ import {
 } from 'reactstrap';
 
 const ContactPage = () => {
-  return (< Page className="ContactPage"
+  return (
+    <Page className="ContactPage"
                  title="Liên hệ và góp ý">
       <Row>
         <Col xl={6} lg={12} md={12}>
@@ -65,7 +66,8 @@ const ContactPage = () => {
                   </Col>
                 </FormGroup>
                 <FormGroup check row>
-                  <Col sm={{ size: 10, offset: 2 }}> < Button> Gửi </Button>
+                  <Col sm={{ size: 10, offset: 2 }}>
+                    <Button> Gửi </Button>
                   </Col>
                 </FormGroup>
               </Form>
