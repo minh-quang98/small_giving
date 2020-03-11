@@ -1,51 +1,51 @@
 self.__precacheManifest = [
   {
+    "revision": "80d4a4e5af9b6cf3882e4a34c5497542",
+    "url": "https://reduction-admin.github.io/react-reduction/static/media/sidebar-4.80d4a4e5.jpg"
+  },
+  {
     "revision": "b7e645b145954b2acbfc",
     "url": "https://reduction-admin.github.io/react-reduction/static/js/0.3e6756f2.chunk.js"
   },
   {
-    "revision": "e05f94bc3a4bd21ec08b",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/1.4e0f16d9.chunk.js"
+    "revision": "717d1331bb16f39d5cb11825f65ff3c5",
+    "url": "https://reduction-admin.github.io/react-reduction/static/media/banner.717d1331.png"
   },
   {
-    "revision": "bbc105a1e959e515f2a5",
-    "url": "https://reduction-admin.github.io/react-reduction/static/css/main.e4a7e93a.chunk.css"
+    "revision": "6737de866d4c88cadeac",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/main.ddd6730e.chunk.js"
   },
   {
-    "revision": "bbc105a1e959e515f2a5",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/main.6ee2f354.chunk.js"
+    "revision": "ba17e89378c5c9ac22b4",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/runtime~main.b4ea53a5.js"
   },
   {
-    "revision": "ecbdd9949d7627ae512e",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/runtime~main.eeaf6cc4.js"
+    "revision": "3c24c52eddbbbce75ca5",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/4.5189d6e0.chunk.js"
   },
   {
-    "revision": "f4daaafeb8620b5f376e",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/4.90c255b1.chunk.js"
+    "revision": "ff81bf7e86dd78f4b3c3",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/5.a1b1bc83.chunk.js"
   },
   {
-    "revision": "ab6ccce2c31696ede396",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/5.7f1d3351.chunk.js"
+    "revision": "fc9a63166ee28342343b",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/6.3d3a9b1a.chunk.js"
   },
   {
-    "revision": "cdc4b77804dfc4912b57",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/6.fa905850.chunk.js"
+    "revision": "2472023c793eff2141ce",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/7.580453e5.chunk.js"
   },
   {
-    "revision": "bfde3013353c3c9159fe",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/7.4482ef28.chunk.js"
+    "revision": "df57eb9bfc8a2edafba2",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/8.753b83fb.chunk.js"
   },
   {
-    "revision": "ac73623407162f77793c",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/8.de141659.chunk.js"
+    "revision": "ebf3a77f2b3c16fb0261",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/9.20c8d086.chunk.js"
   },
   {
-    "revision": "17ae6d6345a20fbef8d2",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/9.4b629e4d.chunk.js"
-  },
-  {
-    "revision": "a5814850bdfdc66fee52",
-    "url": "https://reduction-admin.github.io/react-reduction/static/js/10.f48cd975.chunk.js"
+    "revision": "1dad4562b94901eb10f9",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/10.496bfdb0.chunk.js"
   },
   {
     "revision": "978e51b554db00a67e2796661b3526fe",
@@ -76,8 +76,8 @@ self.__precacheManifest = [
     "url": "https://reduction-admin.github.io/react-reduction/static/media/background_1920-2.c54eef50.jpg"
   },
   {
-    "revision": "80d4a4e5af9b6cf3882e4a34c5497542",
-    "url": "https://reduction-admin.github.io/react-reduction/static/media/sidebar-4.80d4a4e5.jpg"
+    "revision": "0a7d93503768f1d5deef",
+    "url": "https://reduction-admin.github.io/react-reduction/static/js/1.ccf0ef92.chunk.js"
   },
   {
     "revision": "a9a0ec6482226ea8098fc71a3fababe0",
@@ -144,11 +144,11 @@ self.__precacheManifest = [
     "url": "https://reduction-admin.github.io/react-reduction/static/media/NGND.4653c128.jpg"
   },
   {
-    "revision": "717d1331bb16f39d5cb11825f65ff3c5",
-    "url": "https://reduction-admin.github.io/react-reduction/static/media/banner.717d1331.png"
+    "revision": "6737de866d4c88cadeac",
+    "url": "https://reduction-admin.github.io/react-reduction/static/css/main.4ce29b9b.chunk.css"
   },
   {
-    "revision": "31d23e63bff1b882cc903ec0366b745a",
+    "revision": "b70ae31d3ead5ebcdf24050054e06ed9",
     "url": "https://reduction-admin.github.io/react-reduction/index.html"
   }
 ];
