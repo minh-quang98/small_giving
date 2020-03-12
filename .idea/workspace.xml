@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/News/NGND.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/ProfileLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Pagination.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ConsiderPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/ProfileUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ContactPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ContactPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HistoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HistoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +36,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img/News" />
+    <property name="last_opened_file_path" value="E:/Ecorau/OneBook" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
@@ -48,7 +58,11 @@
       <option name="presentableId" value="Default" />
       <updated>1583831636936</updated>
       <workItem from="1583831640853" duration="2472000" />
-      <workItem from="1583845448642" duration="10689000" />
+      <workItem from="1583845448642" duration="10978000" />
+      <workItem from="1583893363959" duration="5433000" />
+      <workItem from="1583930944228" duration="2122000" />
+      <workItem from="1583980003155" duration="21000" />
+      <workItem from="1583997291146" duration="11396000" />
     </task>
     <servers />
   </component>
@@ -56,9 +70,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="420" y="114" key="FileChooserDialogImpl" timestamp="1583847924741">
+    <state x="393" y="162" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584002909254">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1583847924741" />
+    <state x="393" y="162" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1584002909254" />
+    <state x="420" y="114" key="FileChooserDialogImpl" timestamp="1583999366749">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1583999366749" />
+    <state x="297" y="161" width="672" height="677" key="run.anything.popup" timestamp="1584002556096">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="297" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1584002556096" />
   </component>
 </project>

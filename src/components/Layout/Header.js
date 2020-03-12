@@ -29,6 +29,7 @@ import {
     PopoverBody,
 } from 'reactstrap';
 import bn from 'utils/bemnames';
+import { Link } from 'react-router-dom';
 
 const bem = bn.create('header');
 
@@ -140,6 +141,7 @@ class Header extends React.Component {
                                     <ListGroup flush>
                                         <ListGroupItem tag="button" action className="border-light">
                                             <Button outline color="secondary">
+                                                {/*<Link to={}*/}
                                                 <MdPersonPin/> Thông tin cá nhân
                                             </Button>
                                         </ListGroupItem>

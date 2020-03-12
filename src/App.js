@@ -1,6 +1,6 @@
 import AuthForm, { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
 import GAListener from 'components/GAListener';
-import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
+import { EmptyLayout, LayoutRoute, MainLayout,  } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
 import AuthPage from 'pages/AuthPage';
 import React from 'react';
@@ -8,6 +8,7 @@ import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 import { Button, Modal, ModalBody } from 'reactstrap';
+import ProfileLayout from './components/Layout/ProfileLayout';
 
 
 const DonationPage = React.lazy(() => import('pages/DonationPage'));
@@ -16,6 +17,8 @@ const MainPage = React.lazy(() => import('pages/MainPage'));
 const HistoryPage = React.lazy(() => import('pages/HistoryPage'));
 const GuidePage = React.lazy(() => import('pages/GuidePage'));
 const ContactPage = React.lazy(() => import('pages/ContactPage'));
+const ConsiderPage = React.lazy(() => import('pages/ConsiderPage'));
+const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -23,7 +26,7 @@ const getBasename = () => {
 
 class App extends React.Component {
   state = {
-    showLogin: true,
+    showLogin: false,
     setLogin: false,
     authState: STATE_LOGIN,
   };
@@ -89,8 +92,12 @@ class App extends React.Component {
                     <Route exact path="/guides" component={GuidePage}/>
                     <Route exact path="/history" component={HistoryPage}/>
                     <Route exact path="/news" component={NewsPage}/>
+                    <Route exact path="/consider" component={ConsiderPage}/>
                   </React.Suspense>
                 </MainLayout>
+                <ProfileLayout>
+                  <Route exact path="/profile" component={ProfileUser}/>
+                </ProfileLayout>
                 <Redirect to="/"/>
               </Switch>
             </GAListener>
