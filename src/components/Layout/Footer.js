@@ -9,7 +9,7 @@ const Footer = () => {
     <Navbar>
       <Nav navbar>
         <NavItem>
-          Lab MIS 2020
+
         </NavItem>
       </Nav>
     </Navbar>

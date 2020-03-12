@@ -120,7 +120,7 @@ class MainPage extends React.Component {
                 <ListGroupItem>
                   <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát&nbsp;&nbsp;
                   {/*<a href={""}>(Link)</a>*/}
-                  <Link to={"/cards"}>(Link)</Link>
+                  <Link to={"/consider"}>(Link)</Link>
                 </ListGroupItem>
               </ListGroup>
               <ListGroup flush>

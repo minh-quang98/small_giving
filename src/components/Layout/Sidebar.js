@@ -119,18 +119,18 @@ class Sidebar extends React.Component {
         <div className={bem.e('background')} style={sidebarBackground} />
         <div className={bem.e('content')}>
           <Navbar className="p-1">
-            <SourceLink className="navbar-brand d-flex">
+            <div className="navbar-brand d-flex">
               <img
                 src={logo200Image}
                 width="70"
-                height="60"
+                height="70"
                 className="pr-0 "
                 alt=""
               />
-              <span className="text-white mt-3 ml-0">
+              <span className="text-white mt-4 ml-0">
                 Small Giving
               </span>
-            </SourceLink>
+            </div>
           </Navbar>
           <Nav vertical>
             {navItems.map(({ to, name, exact, Icon }, index) => (
