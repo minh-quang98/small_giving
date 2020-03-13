@@ -1,0 +1,192 @@
+[33mcommit ce9657f06fa65c3185d41526fa09f90dc04e4491[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Thu Mar 12 17:48:51 2020 +0700
+
+    quang update
+
+[33mcommit 3d817d16e12dbfbfcec34b1ce3e5ef11cdc20fbd[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Wed Mar 11 09:31:22 2020 +0700
+
+    update
+
+[33mcommit 2693e80f64ced260eebad26a87262a524a16d657[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Tue Mar 10 23:03:41 2020 +0700
+
+    update newspage
+
+[33mcommit 200273c0cdaf5c9be33b3ca7c8ab90e428b4300a[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Tue Mar 10 21:52:09 2020 +0700
+
+    update donation
+
+[33mcommit 2a6f4cb1e65e31e93260ee6ccf33df08955c32a6[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Tue Mar 10 16:54:55 2020 +0700
+
+    update
+
+[33mcommit 058ebc7fd291ba8c258129ebcc85c36be893efdd[m
+Author: phuonglinh98 <linhloi98.qn@gmail.com>
+Date:   Tue Mar 10 15:57:40 2020 +0700
+
+    update contract
+
+[33mcommit 6bcb1d673bc56e4155d135293609d02f919d0837[m
+Merge: 23d50f5 bdd4f57
+Author: minhquang <barondark998@gmail.com>
+Date:   Tue Mar 10 12:11:57 2020 +0700
+
+    Merge branch 'master' of https://github.com/minh-quang98/small_giving
+
+[33mcommit 23d50f539aec9cb38675c371299ed048317fba4e[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Tue Mar 10 12:11:50 2020 +0700
+
+    update by quang
+
+[33mcommit bdd4f5709e83066d20ae8d6a04e4d1c7ff16f850[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Tue Mar 10 12:10:36 2020 +0700
+
+     text
+
+[33mcommit c6aa3092dc06d70efbac5e3e00d7316e2df293de[m
+Merge: dd99916 42d1881
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Tue Mar 10 10:09:23 2020 +0700
+
+    Merge branch 'master' of https://github.com/minh-quang98/small_giving
+
+[33mcommit dd99916a761384593bf52e267c02c576729d7f60[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Tue Mar 10 10:09:05 2020 +0700
+
+    tai ve
+
+[33mcommit 42d18819b4b9b714f25cbe896bc01d277d9dfa29[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Mon Mar 9 23:20:08 2020 +0700
+
+    update
+
+[33mcommit 80daa7f3372b8ec863811cc176861cf3cbf943e2[m
+Merge: 651efc1 1e60711
+Author: minhquang <barondark998@gmail.com>
+Date:   Fri Mar 6 10:39:25 2020 +0700
+
+    Merge branch 'master' of https://github.com/minh-quang98/small_giving
+
+[33mcommit 651efc183143206ea0d1ebe710685a59b1338525[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Fri Mar 6 10:39:09 2020 +0700
+
+    update
+
+[33mcommit 1e60711bd9dd60f5616423a4acbc3dd080de0fd8[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Fri Mar 6 09:57:24 2020 +0700
+
+     logo
+
+[33mcommit a565dcfa6c47f7472c51515e63b77c776edf760e[m
+Merge: 4cec2cc 296f167
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Fri Mar 6 00:00:30 2020 +0700
+
+     ve chung toi
+
+[33mcommit 4cec2cccd05e55acdf5d3abe5b50db2c24cb9fb3[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Thu Mar 5 23:14:02 2020 +0700
+
+     hello
+
+[33mcommit 296f1672c5f5d57408877cefbc0c25ea8ae55094[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Thu Mar 5 23:00:01 2020 +0700
+
+    update big ui
+
+[33mcommit b682f7a860177167e4fdc256c50fda3f91ea6034[m
+Merge: 90b6472 3b55ffa
+Author: minhquang <barondark998@gmail.com>
+Date:   Thu Mar 5 16:22:36 2020 +0700
+
+    Merge branch 'master' of https://github.com/minh-quang98/small_giving
+
+[33mcommit 90b64727a2f6abb6803753421cd5b1bffa80198f[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Thu Mar 5 16:22:27 2020 +0700
+
+    login + signup
+
+[33mcommit 3b55ffafbb98cf98828e9dc9124835723dee658c[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Thu Mar 5 16:08:42 2020 +0700
+
+    dich tv
+
+[33mcommit 1cc56f1bb9626de18bd70ff7b9ce64795cae0390[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Thu Mar 5 15:15:09 2020 +0700
+
+    lam quyen gop
+
+[33mcommit e989c5c23b3361e68a9e84f4d5e526cea14be7f2[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Thu Mar 5 11:34:07 2020 +0700
+
+    update sidebar + header + dashboard
+
+[33mcommit afb7e70b08989d3a621452485778a992efb42820[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Thu Mar 5 10:23:59 2020 +0700
+
+     dich tab3
+
+[33mcommit 4584b228d9f09d43a4a90de6417770ca0398065a[m
+Merge: 9f81ff5 6e616f2
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Thu Mar 5 08:54:17 2020 +0700
+
+    Merge branch 'master' of https://github.com/minh-quang98/small_giving
+
+[33mcommit 9f81ff590a735e2bd71eefeb208a6da247d258df[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Thu Mar 5 08:54:05 2020 +0700
+
+    update'
+
+[33mcommit 6e616f294c2e212359a74e9b29cdc14a7155cd65[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Thu Mar 5 01:01:13 2020 +0700
+
+    update UI
+
+[33mcommit 7ed2ea0ad63d1f7be6109f27873c4dd4f30859da[m
+Merge: 427c9dd 1875535
+Author: minhquang <barondark998@gmail.com>
+Date:   Wed Mar 4 23:13:52 2020 +0700
+
+    Merge branch 'master' of https://github.com/minh-quang98/small_giving
+
+[33mcommit 427c9ddb81401c3fcbda890fbc2974a52860720a[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Wed Mar 4 23:13:42 2020 +0700
+
+    phuong ham
+
+[33mcommit 18755353ce94ffdb72ca7b461ed07a2fbba33593[m
+Author: phuong1603 <vu63375@gmail.com>
+Date:   Wed Mar 4 22:37:40 2020 +0700
+
+    dich file
+
+[33mcommit 777c274e22436ab06610e0f4d6c522fdcf874f5d[m
+Author: minhquang <barondark998@gmail.com>
+Date:   Wed Mar 4 21:27:43 2020 +0700
+
+    create project
