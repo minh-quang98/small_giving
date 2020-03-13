@@ -1,31 +1,12 @@
-import { AnnouncementCard, TodosCard } from 'components/Card';
-import HorizontalAvatarList from 'components/HorizontalAvatarList';
-import MapWithBubbles from 'components/MapWithBubbles';
 import Page from 'components/Page';
-import ProductMedia from 'components/ProductMedia';
-import SupportTicket from 'components/SupportTicket';
-import UserProgressTable from 'components/UserProgressTable';
 import { IconWidget, NumberWidget } from 'components/Widget';
-import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
-import {
-  avatarsData,
-  chartjs,
-  productsData,
-  supportTicketsData,
-  todosData,
-  userProgressTableData,
-} from 'demos/dashboardPage';
+
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
 import {
   MdBubbleChart,
   MdInsertChart,
-  MdPersonPin,
-  MdPieChart,
-  MdRateReview,
-  MdShare,
+  MdAlarm,
   MdShowChart,
-  MdThumbUp,
 } from 'react-icons/md';
 import InfiniteCalendar from 'react-infinite-calendar';
 import {
@@ -83,13 +64,13 @@ class DonationPage extends React.Component {
 
   handleOpenModal() {
     this.setState({
-      modal: true
+      modal: true,
     });
   }
 
   handleCloseModal() {
     this.setState({
-      modal: false
+      modal: false,
     });
   }
 
@@ -99,9 +80,9 @@ class DonationPage extends React.Component {
         <Row>
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
-              <CardHeader>
+              <CardHeader className="d-flex justify-content-between">
                 Người già neo đơn{' '}
-                <small className="text-muted text-capitalize">
+                <small className="text-muted text-capitalize mt-1">
                   <Link to={''}>
                     Xem chi tiết
                   </Link>
@@ -169,12 +150,13 @@ class DonationPage extends React.Component {
             {/*<CardTitle className="text-center">Quyên góp</CardTitle>*/}
             <Button
               className="mt-2"
-              onClick={()=>this.handleOpenModalParent()}
+              onClick={() => this.handleOpenModalParent()}
             >
               Quyên góp
             </Button>
           </Card>
           <IconWidget
+
             className="text-center"
             bgColor="white"
             inverse={false}
@@ -182,10 +164,10 @@ class DonationPage extends React.Component {
             subtitle="50 người"
           />
           <IconWidget
-            className="text-center"
+            icon={MdAlarm}
             bgColor="white"
             inverse={false}
-            title="Số ngày còn lại"
+            title="Số ngày còn lại:"
             subtitle="30 ngày"
           />
         </CardGroup>
@@ -265,7 +247,7 @@ class DonationPage extends React.Component {
             {/*<CardTitle className="text-center">Quyên góp</CardTitle>*/}
             <Button
               className="mt-2"
-              onClick={()=>this.handleOpenModalParent()}
+              onClick={() => this.handleOpenModalParent()}
             >
               Quyên góp
             </Button>
@@ -291,9 +273,9 @@ class DonationPage extends React.Component {
         <Col md="12" sm="12" xs="12">
           <Modal
             isOpen={this.state.modalParent}
-            toggle={()=>this.handleCloseModalParent()}
+            toggle={() => this.handleCloseModalParent()}
             className={this.props.className}>
-            <ModalHeader toggle={()=>this.handleCloseModalParent()}>
+            <ModalHeader toggle={() => this.handleCloseModalParent()}>
               Người già neo đơn
             </ModalHeader>
             <ModalBody className="d-flex flex-column align-items-center">
@@ -304,7 +286,7 @@ class DonationPage extends React.Component {
                 style={{ width: '10%', height: '10%' }}
               />
               <div>Số tiền hiện tại bạn có là:</div>
-              <div style={{color: "#ae1f17"}}>2.000.000</div>
+              <div style={{ color: '#ae1f17' }}>2.000.000</div>
               <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
               <Modal
                 isOpen={this.state.modal}
@@ -312,12 +294,12 @@ class DonationPage extends React.Component {
                 <ModalHeader>Xác nhận quyên góp</ModalHeader>
                 <ModalBody>Bạn xác nhận quyên góp chứ?</ModalBody>
                 <ModalFooter>
-                  <Button color="primary" onClick={()=>this.handleCloseModal()}>
+                  <Button color="primary" onClick={() => this.handleCloseModal()}>
                     Xác nhận
                   </Button>{' '}
                   <Button
                     color="primary"
-                    onClick={()=>this.handleCloseModal()}>
+                    onClick={() => this.handleCloseModal()}>
                     Không
                   </Button>
                 </ModalFooter>
@@ -326,12 +308,12 @@ class DonationPage extends React.Component {
             <ModalFooter>
               <Button
                 color="secondary"
-                onClick={()=>this.handleOpenModal()}>
+                onClick={() => this.handleOpenModal()}>
                 Quên góp
               </Button>{' '}
               <Button
                 color="primary"
-                onClick={()=>this.handleCloseModalParent()}>
+                onClick={() => this.handleCloseModalParent()}>
                 Nạp tiền
               </Button>
             </ModalFooter>
