@@ -92,7 +92,7 @@ class ProfileLayout extends React.Component {
       <main className="cr-app bg-light">
         <Sidebar />
         <Content fluid onClick={this.handleContentClick}>
-          <Header />
+          {/*<Header />*/}
           {children}
           <Footer />
         </Content>
