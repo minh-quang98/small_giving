@@ -19,6 +19,7 @@ const GuidePage = React.lazy(() => import('pages/GuidePage'));
 const ContactPage = React.lazy(() => import('pages/ContactPage'));
 const ConsiderPage = React.lazy(() => import('pages/ConsiderPage'));
 const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
+const DonationDetail = React.lazy(() => import('pages/DonationDetailPage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -93,6 +94,7 @@ class App extends React.Component {
                     <Route exact path="/history" component={HistoryPage}/>
                     <Route exact path="/news" component={NewsPage}/>
                     <Route exact path="/consider" component={ConsiderPage}/>
+                    <Route exact path="/donation-detail" component={DonationDetail}/>
                   </React.Suspense>
                 </MainLayout>
                 <ProfileLayout>

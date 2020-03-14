@@ -8,7 +8,6 @@ import {
   MdAlarm,
   MdShowChart,
 } from 'react-icons/md';
-import InfiniteCalendar from 'react-infinite-calendar';
 import {
   Badge,
   Button,
@@ -83,7 +82,7 @@ class DonationPage extends React.Component {
               <CardHeader className="d-flex justify-content-between">
                 Người già neo đơn{' '}
                 <small className="text-muted text-capitalize mt-1">
-                  <Link to={''}>
+                  <Link to={'/donation-detail'}>
                     Xem chi tiết
                   </Link>
                 </small>
@@ -180,7 +179,7 @@ class DonationPage extends React.Component {
               <CardHeader>
                 Người già neo đơn{' '}
                 <small className="text-muted text-capitalize">
-                  <Link to={''}>
+                  <Link to={'/donation-page'}>
                     Xem chi tiết
                   </Link>
                 </small>
