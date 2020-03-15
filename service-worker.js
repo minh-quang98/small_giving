@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://reduction-admin.github.io/react-reduction/precache-manifest.ed27db377b2a8734f3510ddad243525f.js"
+  "%20ction-admin.github.io/react-reduction/precache-manifest.e01d15b0dbe0b49f6c87c881a32fe621.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("https://reduction-admin.github.io/react-reduction/index.html", {
+workbox.routing.registerNavigationRoute("%20ction-admin.github.io/react-reduction/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
