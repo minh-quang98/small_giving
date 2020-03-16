@@ -4,6 +4,7 @@ class ConsiderPage extends Component {
   render() {
     return (
       <div>
+
         </div>
     );
   }
