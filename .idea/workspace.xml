@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/GuidePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/GuidePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/Ecorau/OneBook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
@@ -54,7 +55,12 @@
       <workItem from="1584076865978" duration="5750000" />
       <workItem from="1584090150284" duration="1881000" />
       <workItem from="1584153326820" duration="101000" />
-      <workItem from="1584174738411" duration="7788000" />
+      <workItem from="1584174738411" duration="7983000" />
+      <workItem from="1584257821760" duration="3143000" />
+      <workItem from="1584276222833" duration="4226000" />
+      <workItem from="1584286849574" duration="296000" />
+      <workItem from="1584287588191" duration="703000" />
+      <workItem from="1584290788593" duration="756000" />
     </task>
     <servers />
   </component>
@@ -66,10 +72,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="393" y="162" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1584002909254" />
-    <state x="420" y="114" key="FileChooserDialogImpl" timestamp="1584174993527">
+    <state x="420" y="114" key="FileChooserDialogImpl" timestamp="1584290338523">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584174993527" />
+    <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584290338523" />
     <state x="297" y="161" width="672" height="677" key="run.anything.popup" timestamp="1584002556096">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
