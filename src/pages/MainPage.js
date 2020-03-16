@@ -101,7 +101,6 @@ class MainPage extends React.Component {
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <div>
-
                 <UncontrolledCarousel items={fakeData} />
               </div>
             </Card>
@@ -118,7 +117,7 @@ class MainPage extends React.Component {
               </CardBody>
               <ListGroup flush>
                 <ListGroupItem>
-                  <MdInsertChart size={25} color="primary" /> Làm phiếu khảo sát&nbsp;&nbsp;
+                  <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
                   {/*<a href={""}>(Link)</a>*/}
                   <Link to={"/consider"}>(Link)</Link>
                 </ListGroupItem>

@@ -27,7 +27,7 @@ const getBasename = () => {
 
 class App extends React.Component {
   state = {
-    showLogin: true,
+    showLogin: false,
     setLogin: false,
     authState: STATE_LOGIN,
   };
