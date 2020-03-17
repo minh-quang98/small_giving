@@ -30,7 +30,8 @@
     "react-sizeme": "^2.5.2",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.5",
-    "victory": "^32.0.0"
+    "victory": "^32.0.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "gh-pages": "^1.2.0",

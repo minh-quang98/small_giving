@@ -1,5 +1,6 @@
 import Page from 'components/Page';
 import { IconWidget, NumberWidget } from 'components/Widget';
+import WebFont from "webfontloader"
 
 import React from 'react';
 import {
@@ -26,6 +27,7 @@ import {
   ModalFooter,
   ModalHeader,
   Row,
+  Label
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
 import NGND from 'assets/img/NGND.jpg';
@@ -34,6 +36,11 @@ import Media from 'reactstrap/es/Media';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 
+WebFont.load({
+  google: {
+    families: ['Open Sans: 400, 700', 'sans-serif']
+  }
+});
 
 const today = new Date();
 const lastWeek = new Date(
@@ -68,6 +75,7 @@ class DonationPage extends React.Component {
       ]
     };
   }
+
 
   handleOpenModalParent() {
     this.setState({
@@ -134,15 +142,21 @@ class DonationPage extends React.Component {
                   </CardBody>
                   <ListGroup flush>
                     <ListGroupItem>
-                      <MdInsertChart size={25} color="primary"/> Làm phiếu khảo sát&nbsp;&nbsp;
+                      <MdInsertChart size={25} style={{color: "#ae1f17"}}/> Làm phiếu khảo sát&nbsp;&nbsp;
                       {/*<a href={""}>(Link)</a>*/}
-                      <Link to={'/cards'}>(Link)</Link>
+                      <Link to={'/consider'}>(Link)</Link>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <MdBubbleChart size={25} color="primary"/>Theo dõi sự kiện
+                      <Label check>
+                        <MdBubbleChart size={25} style={{color: "#ae1f17"}}/>Theo dõi sự kiện
+                        <Input type="checkbox" className={"ml-3"}/>
+                      </Label>
                     </ListGroupItem>
                     <ListGroupItem>
-                      <MdShowChart size={25} color="primary"/>Tham gia hoạt động{' '}
+                      <Label check >
+                        <MdShowChart size={25} style={{color: "#ae1f17"}}/>Tham gia hoạt động
+                        <Input type="checkbox" className={"ml-3"}/>
+                      </Label>
                     </ListGroupItem>
                     <ListGroupItem>
                       {/* <MdPieChart size={25} color="primary" /> Other operating

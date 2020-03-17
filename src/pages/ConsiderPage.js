@@ -15,182 +15,94 @@ import {
   Label,
   Row,
 } from 'reactstrap';
+import NumberFormat from 'react-number-format';
 
 class ConsiderPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fakeData: [
+              {
+                title: "Công ty trách nhiệm hữu hạn openways Việt Nam",
+                name: "Nhu cầu làm thêm của sinh viên",
+                link: "LINK",
+                number: 1000,
+                money: 500000
+              },
+              {
+                title: "Công ty trách nhiệm ACB",
+                name: "Nhu cầu làm thêm của sinh viên",
+                link: "LINK",
+                number: 1000,
+                money: 500000
+              },
+              {
+                title: "Công ty trách nhiệm ACB",
+                name: "Nhu cầu làm thêm của sinh viên",
+                link: "LINK",
+                number: 1000,
+                money: 500000
+              },
+              {
+                title: "Công ty trách nhiệm ACB",
+                name: "Nhu cầu làm thêm của sinh viên",
+                link: "LINK",
+                number: 1000,
+                money: 500000
+              },
+            ]
+        }
+    }
   render() {
     return (
-      <Page className="ConsiderPage" title="KHẢO SÁT">
+      <Page className="ConsiderPage" title="LÀM KHẢO SÁT">
           <Row>
-              <Col xl={6}
-                   lg={12}
-                   md={12}>
-                  <Card>
-                      <CardHeader className="text-center"> Tên công ty: ABC </CardHeader>
-                      <CardBody>
-                          <Form>
-                              <FormGroup>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Tên khảo sát
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          Nhu cầu làm thêm của sinh viên HVNH
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Link KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          LINK
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số lượt còn lại
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          100 lượt
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số tiền làm KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          500.000 VNĐ / 1000 lượt
-                                      </td>
-                                  </Table>
-                              </FormGroup>
-                          </Form>
-                      </CardBody>
+              <Col xl={12} lg={12} md={12}>
+                {this.state.fakeData.map((item, index) => (
+                  <Card className="mt-5">
+                    <CardHeader className="text-center"> <b>{item.title}</b> </CardHeader>
+                    <CardBody>
+                      <Form>
+                        <FormGroup>
+                          <Table bordered >
+                            <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
+                              Tên khảo sát
+                            </th>
+                            <td className="text-center" style={{ width: '80%' }}>
+                              {item.name}
+                            </td>
+                          </Table>
+                          <Table bordered>
+                            <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
+                              Link khảo sát
+                            </th>
+                            <td className="text-center" style={{ width: '80%' }}>
+                              {item.link}
+                            </td>
+                          </Table>
+                          <Table bordered>
+                            <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
+                              Số lượt còn lại
+                            </th>
+                            <td className="text-center" style={{ width: '80%' }}>
+                              {item.number}
+                            </td>
+                          </Table>
+                          <Table bordered>
+                            <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
+                              Số tiền khảo sát
+                              <br/>
+                              (VNĐ / lượt)
+                            </th>
+                            <td className="text-center" style={{ width: '80%' }}>
+                              <NumberFormat value={item.money} displayType={'text'} thousandSeparator={true}/>
+                            </td>
+                          </Table>
+                        </FormGroup>
+                      </Form>
+                    </CardBody>
                   </Card>
-
-                  <Card>
-                      <CardHeader className="text-center"> Tên công ty: CCA </CardHeader>
-                      <CardBody>
-                          <Form>
-                              <FormGroup>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Tên khảo sát
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          Nhu cầu làm thêm của sinh viên HVNH
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Link KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          LINK
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số lượt còn lại
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          100 lượt
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số tiền làm KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          500.000 VNĐ / 1000 lượt
-                                      </td>
-                                  </Table>
-                              </FormGroup>
-                          </Form>
-                      </CardBody>
-                  </Card>
-              </Col>
-              <Col xl={6} lg={12} md={12}>
-                  <Card>
-                      <CardHeader className="text-center"> Tên công ty: BBA </CardHeader>
-                      <CardBody>
-                          <Form>
-                              <FormGroup>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Tên khảo sát
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          Nhu cầu làm thêm của sinh viên HVNH
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Link KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          LINK
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số lượt còn lại
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          100 lượt
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số tiền làm KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          500.000 VNĐ / 1000 lượt
-                                      </td>
-                                  </Table>
-                              </FormGroup>
-                          </Form>
-                      </CardBody>
-                  </Card>
-                  <Card>
-                      <CardHeader className="text-center">
-                          Tên công ty: BAC
-                      </CardHeader>
-                      <CardBody>
-                          <Form>
-                              <FormGroup>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Tên khảo sát
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          Nhu cầu làm thêm của sinh viên HVNH
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Link KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}> LINK</td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số lượt còn lại
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          100 lượt
-                                      </td>
-                                  </Table>
-                                  <Table bordered>
-                                      <th className="text-center" style={{ backgroundColor: '#ae1f17', color: 'white' }}>
-                                          Số tiền làm KS
-                                      </th>
-                                      <td className="text-center" style={{ width: '80%' }}>
-                                          500.000 VNĐ / 1000 lượt
-                                      </td>
-                                  </Table>
-                              </FormGroup>
-                          </Form>
-                      </CardBody>
-                  </Card>
+                ))}
               </Col>
           </Row>
       </Page>

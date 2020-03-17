@@ -26,7 +26,7 @@ export const productsData = [
     image: product1Image,
     title: 'Định nghĩa',
     description: 'Là ứng dụng từ thiện trực tuyến đa phương thức với sự hợp tác của MIS - Học viện ngân hàng và Công ty TNHH Openway Việt Nam.',
-    
+
   },
   {
     id: 2,

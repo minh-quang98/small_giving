@@ -5,8 +5,6 @@ import Page from 'components/Page';
 import ProductMedia from 'components/ProductMedia';
 import SupportTicket from 'components/SupportTicket';
 import UserProgressTable from 'components/UserProgressTable';
-import { IconWidget, NumberWidget } from 'components/Widget';
-import { getStackLineChart, stackLineChartOptions } from 'demos/chartjs';
 import {
   avatarsData,
   chartjs,
@@ -14,7 +12,7 @@ import {
   supportTicketsData,
   todosData,
   userProgressTableData,
-} from 'demos/dashboardPage';
+} from '../demo/dashboardPage';
 import React from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import {

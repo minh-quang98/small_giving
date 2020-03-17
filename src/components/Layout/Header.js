@@ -2,7 +2,7 @@ import Avatar from 'components/Avatar';
 import {UserCard} from 'components/Card';
 import Notifications from 'components/Notifications';
 import SearchInput from 'components/SearchInput';
-import {notificationsData} from 'demos/header';
+import {notificationsData} from 'demo/header';
 import withBadge from 'hocs/withBadge';
 import React from 'react';
 import {
@@ -134,21 +134,18 @@ class Header extends React.Component {
                             <PopoverBody className="p-0 border">
                                 <UserCard
                                     title="Phượng"
-                                    subtitle="phuong@doham.com"
+                                    subtitle="vuphuong@gmail.com"
                                     text="0359163555"
                                     className="border-light"
                                 >
                                     <ListGroup flush>
                                         <ListGroupItem tag="button" action className="border-light">
-                                            <Button outline color="secondary">
-                                                {/*<Link to={}*/}
-                                                <MdPersonPin/> Thông tin cá nhân
-                                            </Button>
+                                            <Link to={'/profile'} onClick={()=>{this.toggleUserCardPopover()}} style={{color: "black"}}>
+                                                <MdPersonPin /> Thông tin người dùng
+                                            </Link>
                                         </ListGroupItem>
                                         <ListGroupItem tag="button" action className="border-light">
-                                            <Button>
-                                                <MdExitToApp/> Đăng xuất
-                                            </Button>
+                                            <MdExitToApp /> Đăng xuất
                                         </ListGroupItem>
                                     </ListGroup>
                                 </UserCard>
