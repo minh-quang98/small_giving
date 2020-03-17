@@ -6,6 +6,7 @@ import {
 
 import Page from 'components/Page';
 import moment from 'moment';
+import NEBN from "assets/img/news-banner.png";
 
 class NewsPage extends React.Component{
   constructor(props) {
@@ -68,6 +69,14 @@ class NewsPage extends React.Component{
     return (
       <Page title="Tin tức" >
         <Row>
+          <Col xl={12} lg={12} md={12}>
+            <Media
+              object
+              src={NEBN}
+              className="rounded mr-2 mb-2"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Col>
           {this.state.fakeDate.map((item, index) => (
             <Col lg="6" md="12" sm="12" xs="12">
               <Card>
