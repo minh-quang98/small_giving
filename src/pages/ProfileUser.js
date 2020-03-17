@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import  Page from 'components/Page';
+
 
 class ProfileUser extends Component {
   render() {
     return (
-      <div>
+      <Page title="Thông tin cá nhân"> 
 
-      </div>
+      </Page>
     );
   }
 }
