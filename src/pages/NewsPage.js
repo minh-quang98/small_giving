@@ -36,6 +36,16 @@ class NewsPage extends React.Component{
             "                      Mẹ đợi con nhé...",
 
         },
+        {
+          title: "Trẻ em bệnh tật",
+          date: moment("10/03/2020").format("DD-MM-YYYY"),
+          img: 'img/News/TMC.png',
+          detail: "Từ bé mọi người hay nhầm con là người Trung Quốc nhưng con cảm giác mình không thuộc về\n" +
+            "                      nơi đó. Con hỏi bố mẹ nuôi về gốc gác bản thân. Thật bất ngờ khi họ tiết lộ, đã xin con ở Việt Nam.\n" +
+            "                      Con tự hào vì điều đó. Giờ đây, con đang đặt chân lên quê hương mình, bắt đầu hành trình tìm mẹ.\n" +
+            "                      Mẹ đợi con nhé...",
+
+        },
       ]
     }
   }
@@ -67,7 +77,7 @@ class NewsPage extends React.Component{
   render () {
     // let {fakeData, activeIndex} = this.state
     return (
-      <Page title="Tin tức" >
+        <Page title="Tin tức" >
         <Row>
           <Col xl={12} lg={12} md={12}>
             <Media
