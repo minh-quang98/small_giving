@@ -12,7 +12,7 @@ import {
   FormText,
   Input,
   Label,
-  Row,
+  Row, Table,
 } from 'reactstrap';
 
 const ContactPage = () => {
@@ -25,15 +25,31 @@ const ContactPage = () => {
             <CardHeader> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
             <CardBody>
               <Form>
-                <FormGroup>
-                  <Label for="exampleEmail"> Số điện thoại: 0999999999 </Label>
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleEmail"> Họ tên: Trần Thị B </Label>
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleEmail"> Chức vụ: Tình nguyện viên tư vấn </Label>
-                </FormGroup>
+                <Table hover responsive>
+                  <tbody>
+                  <tr>
+                    <th className="text-center">Số điện thoại</th>
+                    <td className="text-center">0999999999</td>
+                  </tr>
+                  <tr>
+                    <th className="text-center">Họ tên</th>
+                    <td className="text-center">Trần Thị B</td>
+                  </tr>
+                  <tr>
+                    <th className="text-center">Chức vụ</th>
+                    <td className="text-center">Tình nguyện viên tư vấn</td>
+                  </tr>
+                  </tbody>
+                </Table>
+                {/*<FormGroup>*/}
+                {/*  <Label for="exampleEmail"> Số điện thoại: 0999999999 </Label>*/}
+                {/*</FormGroup>*/}
+                {/*<FormGroup>*/}
+                {/*  <Label for="exampleEmail"> Họ tên: Trần Thị B </Label>*/}
+                {/*</FormGroup>*/}
+                {/*<FormGroup>*/}
+                {/*  <Label for="exampleEmail"> Chức vụ: Tình nguyện viên tư vấn </Label>*/}
+                {/*</FormGroup>*/}
               </Form>
             </CardBody>
           </Card>
@@ -75,26 +91,7 @@ const ContactPage = () => {
           </Card>
         </Col>
       </Row>
-      <Row>
-        <Col xl={6} lg={12} md={12}>
-        </Col>
-        <Col xl={6} lg={12} md={12}>
-        </Col>
-      </Row>
-      <Row>
-        <Col xl={6} lg={12} md={12}>
-        </Col>
 
-        <Col xl={6} lg={12} md={12}>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col xl={6} lg={12} md={12}>
-        </Col>
-        <Col xl={6} lg={12} md={12}>
-        </Col>
-      </Row>
     </Page>
   );
 };

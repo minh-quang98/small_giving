@@ -2,12 +2,13 @@
   "name": "small-giving",
   "version": "1.1.0",
   "private": false,
-  "homepage": "https://reduction-admin.github.io/react-reduction",
+  "homepage": ".",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "chart.js": "2.7.2",
     "classnames": "^2.2.6",
     "d3-geo": "^1.11.3",
+    "express": "^4.17.1",
     "faker": "^4.1.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
@@ -28,6 +29,7 @@
     "react-simple-maps": "^0.12.1",
     "react-sizeme": "^2.5.2",
     "reactstrap": "^7.1.0",
+    "redux": "^4.0.5",
     "victory": "^32.0.0"
   },
   "devDependencies": {
