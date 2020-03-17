@@ -4,27 +4,12 @@ import SourceLink from 'components/SourceLink';
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import {
-  MdAccountCircle,
-  MdArrowDropDownCircle,
-  MdBorderAll,
-  MdBrush,
-  MdChromeReaderMode,
   MdDashboard,
-  MdExtension,
-  MdGroupWork,
-  MdInsertChart,
-  MdKeyboardArrowDown,
-  MdNotificationsActive,
-  MdPages,
-  MdRadioButtonChecked,
-  MdSend,
-  MdStar,
-  MdTextFields,
+  MdLibraryBooks,
   MdViewCarousel,
-  MdViewDay,
-  MdViewList,
   MdWeb,
-  MdWidgets,
+  MdDvr,
+  MdQuestionAnswer
 } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import {
@@ -44,32 +29,6 @@ const sidebarBackground = {
   backgroundRepeat: 'no-repeat',
 };
 
-const navComponents = [
-  { to: '/buttons', name: 'buttons', exact: false, Icon: MdRadioButtonChecked },
-  {
-    to: '/button-groups',
-    name: 'button groups',
-    exact: false,
-    Icon: MdGroupWork,
-  },
-  { to: '/forms', name: 'forms', exact: false, Icon: MdChromeReaderMode },
-  { to: '/input-groups', name: 'input groups', exact: false, Icon: MdViewList },
-  {
-    to: '/dropdowns',
-    name: 'dropdowns',
-    exact: false,
-    Icon: MdArrowDropDownCircle,
-  },
-  { to: '/badges', name: 'badges', exact: false, Icon: MdStar },
-  { to: '/alerts', name: 'alerts', exact: false, Icon: MdNotificationsActive },
-  { to: '/progress', name: 'progress', exact: false, Icon: MdBrush },
-  { to: '/modals', name: 'modals', exact: false, Icon: MdViewDay },
-];
-
-const navContents = [
-  { to: '/typography', name: 'typography', exact: false, Icon: MdTextFields },
-  { to: '/tables', name: 'tables', exact: false, Icon: MdBorderAll },
-];
 
 const pageContents = [
   {
@@ -82,16 +41,16 @@ const pageContents = [
     to: '/guides',
     name: 'Hướng dẫn nạp tiền',
     exact: false,
-    Icon: MdViewCarousel,
+    Icon: MdDvr,
   },
-  { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdWidgets },
+  { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdQuestionAnswer },
 
 ];
 
 const navItems = [
   { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
   { to: '/donation', name: 'Quyên góp', exact: false, Icon: MdWeb },
-  { to: '/news', name: 'Tin tức', exact: false, Icon: MdInsertChart },
+  { to: '/news', name: 'Tin tức', exact: false, Icon: MdLibraryBooks },
 ];
 
 const bem = bn.create('sidebar');
