@@ -15,7 +15,7 @@ import Pagination from 'react-bootstrap/Pagination'
 
 
 function createData(stt, ngayThang, tenChuongtrinh, soTien) {
-  return {stt, ngayThang, tenChuongtrinh, soTien};
+  return { stt, ngayThang, tenChuongtrinh, soTien };
 }
 
 class HistoryPage extends React.Component {
@@ -45,39 +45,91 @@ class HistoryPage extends React.Component {
   };
 
   render() {
-    let {listdata, page, totalItem, pageSize} = this.state
+    let { listdata, page, totalItem, pageSize } = this.state
     return (
       <Page title="Lịch sử giao dịch">
         <Row>
-          <Col xl={12} lg={12} md={12}>
-            <Card>
-                <Table bordered responsive>
-                  <thead>
+          <Col>
+          <Table>
+          <thead>
+                  <tr>
+                    <th className="text-center">Tổng chi quyên góp</th>
+                    <th className="text-center">Tổng thu từ khảo sát</th>
+                    <th className="text-center">Tổng dư còn lại</th>
+                  </tr>
+          </thead>
+          <thead>
+                  <tr>
+                    <th className="text-center">10.00.000 VNĐ</th>
+                    <th className="text-center">300.000 VNĐ</th>
+                    <th className="text-center">2.000.000 VNĐ</th>
+                  </tr>
+          </thead>
+          </Table>
+          </Col>
+        </Row>
+        <Row>
+          <Col xl={6} lg={12} md={12}>
+            <Card style={{marginTop: 10}}>
+              <Table bordered responsive>
+                <thead>
                   <tr>
                     <th className="text-center">STT</th>
                     <th className="text-center">Ngày tháng</th>
                     <th className="text-center">Tên chương trình</th>
-                    <th className="text-center">Số tiền</th>
+                    <th className="text-center">Số tiền chi quyên góp</th>
                   </tr>
-                  </thead>
-                  {listdata.map((item, index) => (
-                    <tbody>
+                </thead>
+                {listdata.map((item, index) => (
+                  <tbody>
                     <tr>
                       <th scope="row" className="text-center">{item.stt}</th>
                       <td className="text-center">{moment(item.ngayThang).format("DD/MM/YYYY")}</td>
                       <td>{item.tenChuongtrinh}</td>
                       <td className="text-right"><NumberFormat value={item.soTien} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></td>
                     </tr>
-                    </tbody>
-                  ))}
-                  <div className="pagination-right">
-                    <Pagination>
-                      <Pagination.Prev />
-                      <Pagination.Item>{totalItem}</Pagination.Item>
-                      <Pagination.Next />
-                    </Pagination>
-                  </div>
-                </Table>
+                  </tbody>
+                ))}
+                <div className="pagination-right">
+                  <Pagination>
+                    <Pagination.Prev />
+                    <Pagination.Item>{totalItem}</Pagination.Item>
+                    <Pagination.Next />
+                  </Pagination>
+                </div>
+              </Table>
+            </Card>
+          </Col>
+
+          <Col xl={6} lg={12} md={12}>
+            <Card style={{marginTop: 10}}>
+              <Table bordered responsive>
+                <thead>
+                  <tr>
+                    <th className="text-center">STT</th>
+                    <th className="text-center">Ngày tháng</th>
+                    <th className="text-center">tên Khảo sát</th>
+                    <th className="text-center">Số tiền thu từ khảo sát</th>
+                  </tr>
+                </thead>
+                {listdata.map((item, index) => (
+                  <tbody>
+                    <tr>
+                      <th scope="row" className="text-center">{item.stt}</th>
+                      <td className="text-center">{moment(item.ngayThang).format("DD/MM/YYYY")}</td>
+                      <td>{item.tenChuongtrinh}</td>
+                      <td className="text-right"><NumberFormat value={item.soTien} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></td>
+                    </tr>
+                  </tbody>
+                ))}
+                <div className="pagination-right">
+                  <Pagination>
+                    <Pagination.Prev />
+                    <Pagination.Item>{totalItem}</Pagination.Item>
+                    <Pagination.Next />
+                  </Pagination>
+                </div>
+              </Table>
             </Card>
           </Col>
         </Row>
