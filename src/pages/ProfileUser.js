@@ -4,7 +4,7 @@ import { Card, CardHeader, Table, Input, Col, Row, Button } from 'reactstrap';
 import {TextField, CardContent, Grid, CircularProgress } from '@material-ui/core'
 import Dropzone from 'react-dropzone';
 import moment from 'moment';
-import ModalChangePassword from '../components/Modal/ModalChangePassword';
+// import ModalChangePassword from '../components/Modal/ModalChangePassword';
 
 class ProfileUser extends Component {
   constructor(props) {
@@ -64,12 +64,7 @@ class ProfileUser extends Component {
       <Page title="Thông tin cá nhân">
         <Row>
           <Col xl={3} lg={12} md={12}>
-
-          </Col>
-          <Col xl={9} lg={12} md={12}>
-            <Card variant="outlined" className='p-2 mb-5'>
-              <CardContent>
-                <div className='text-center mb-4' style={{height: 120}}>
+            <div className='text-center mb-4' style={{height: 120}}>
                   <span
                     className='img-thumbnail'
                     style={{
@@ -86,20 +81,25 @@ class ProfileUser extends Component {
                       className='mh-100 mw-100'
                     />
                   </span>
-                  {this.state.onEdit ?
-                    <Dropzone onDrop={acceptedFiles => console.log("img>>>", acceptedFiles)}>
-                      {({getRootProps, getInputProps}) => (
-                        <span title='Thay đổi logo' className='change-avt-1'>
+              {this.state.onEdit ?
+                <Dropzone onDrop={acceptedFiles => console.log("img>>>", acceptedFiles)}>
+                  {({getRootProps, getInputProps}) => (
+                    <span title='Thay đổi logo' className='change-avt-1'>
                           <span {...getRootProps()}>
                             <input {...getInputProps()} />
                           </span>
                         </span>
-                      )}
-                    </Dropzone>
-                    : <></>
-                  }
+                  )}
+                </Dropzone>
+                : <></>
+              }
 
-                </div>
+            </div>
+          </Col>
+          <Col xl={9} lg={12} md={12}>
+            <Card variant="outlined" className='p-2 mb-5'>
+              <CardContent>
+
                 <div className='row kt-margin-b-20 mb-4 mt-4 font-14'>
                   <div
                     className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
@@ -304,8 +304,8 @@ class ProfileUser extends Component {
             </Card>
           </Col>
         </Row>
-        <ModalChangePassword show={this.state.showModalChangePassword}
-                             onHideModal={this.onCloseModalForgotPassword}/>
+        {/*<ModalChangePassword show={this.state.showModalChangePassword}*/}
+        {/*                     onHideModal={this.onCloseModalForgotPassword}/>*/}
       </Page>
     );
   }
