@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import Page from 'components/Page';
 import { Card, CardHeader, Table, Input, Col, Row, Button } from 'reactstrap';
 import {TextField, CardContent, Grid, CircularProgress } from '@material-ui/core'
+import Media from 'reactstrap/es/Media';
 import Dropzone from 'react-dropzone';
 import moment from 'moment';
+import GUBN from 'assets/img/banner.png';
+import thongtin from 'assets/img/thongtin.png'
 // import ModalChangePassword from '../components/Modal/ModalChangePassword';
 
 class ProfileUser extends Component {
@@ -62,14 +65,24 @@ class ProfileUser extends Component {
   render() {
     return (
       <Page title="Thông tin cá nhân">
+         <Row>
+        <Col xl={12} lg={12} md={12}>
+          <Media
+            object
+            src={GUBN}
+            className="rounded mr-2 mb-2"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </Col>
+      </Row>
         <Row>
           <Col xl={3} lg={12} md={12}>
             <div className='text-center mb-4' style={{height: 120}}>
                   <span
                     className='img-thumbnail'
                     style={{
-                      width: 130,
-                      height: 130,
+                      width: 250,
+                      height: 240,
                       overflow: 'hidden',
                       display: 'inline-block',
                       padding: 2
@@ -77,8 +90,8 @@ class ProfileUser extends Component {
                   >
                     <img
                       // src={`https://www.uhy.vn/sites/default/files/uhyco.ltd_.jpg`}
-                      src={"https://www.w3schools.com/howto/img_avatar.png"}
-                      className='mh-100 mw-100'
+                      src={thongtin}
+                      style={{width:'100%',height:'100%'}}
                     />
                   </span>
               {this.state.onEdit ?

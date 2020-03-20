@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Col, Row,
+  Col, Row,Media
 } from 'reactstrap';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -21,6 +21,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Page from 'components/Page';
 import moment from 'moment';
 import NEBN from "assets/img/news-banner.png";
+import NGND from 'assets/img/NGND.jpg';
 
 class NewsPage extends React.Component {
   constructor(props) {
@@ -119,10 +120,13 @@ class NewsPage extends React.Component {
                 title="Shrimp and Chorizo Paella"
                 subheader="September 14, 2016"
               />
-              <CardMedia
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
-              />
+              <Media
+                  object
+                  src={NGND}
+                  className="rounded mr-2 mb-2"
+                  style={{ width: '100%', height: '100%' }}
+                />
+
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
                   This impressive paella is a perfect party dish and a fun meal to cook together with your
