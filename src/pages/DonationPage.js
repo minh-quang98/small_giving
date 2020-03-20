@@ -107,7 +107,7 @@ class DonationPage extends React.Component {
         {this.state.fakeData.map((item, index) => (
           <div>
             <Row>
-              <Col lg="8" md="12" sm="12" xs="12">
+              <Col lg="6" md="12" sm="12" xs="12">
                 <Card>
                   <CardHeader className="d-flex justify-content-between">
                     {item.title}{' '}

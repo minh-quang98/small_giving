@@ -42,7 +42,7 @@ const GuidePage = () => {
         </Col>
         <Col xl={9} lg={9} md={12}>
           <Card className="p-2">
-            <Table hover bordered responsive>
+            <Table hover bordered responsive style={{marginTop: 15}}>
                 <tbody>
                   <tr>
                     <th className="text-center" style={{color: "#ae1f17"}}>Chủ thẻ</th>
@@ -69,7 +69,7 @@ const GuidePage = () => {
             />
             <CardBody>
               <CardTitle style={{color: "#ae1f17", fontSize: "24px", textAlign: "center"}}><b>Hướng dẫn nạp tiền</b></CardTitle>
-              <Table striped responsive>
+              <Table striped responsive >
                 <tbody>
                 <tr>
                   <td className="text-center">Bước 1: </td>

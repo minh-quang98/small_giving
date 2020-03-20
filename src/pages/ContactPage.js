@@ -22,10 +22,10 @@ const ContactPage = () => {
       <Row>
         <Col xl={6} lg={12} md={12}>
           <Card>
-            <CardHeader> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
+            <CardHeader style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
             <CardBody>
               <Form>
-                <Table hover responsive>
+                <Table hover responsive style={{marginTop: 25}}>
                   <tbody>
                   <tr>
                     <th className="text-center">Số điện thoại</th>
@@ -56,8 +56,8 @@ const ContactPage = () => {
         </Col>
         <Col xl={6} lg={12} md={12}>
           <Card>
-            <CardHeader> Rất mong nhận được sự góp ý của bạn </CardHeader>
-            <CardBody>
+            <CardHeader style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}> Rất mong nhận được sự góp ý của bạn </CardHeader>
+            <CardBody style={{marginTop: 25}}>
               <Form>
                 <FormGroup row>
                   <Label for="exampleEmail" sm={2}> Email </Label>
@@ -82,8 +82,8 @@ const ContactPage = () => {
                   </Col>
                 </FormGroup>
                 <FormGroup check row>
-                  <Col sm={{ size: 10, offset: 2 }}>
-                    <Button> Gửi </Button>
+                  <Col sm={{ size: 100, offset: 2 }} style={{textAlign:"right",marginRight:15}}>
+                    <Button > Gửi </Button>
                   </Col>
                 </FormGroup>
               </Form>
