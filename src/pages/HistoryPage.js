@@ -4,6 +4,7 @@ import {
   Card,
   CardBody,
   CardHeader,
+  CardTitle,
   Col,
   Row,
   Table,
@@ -71,6 +72,7 @@ class HistoryPage extends React.Component {
         <Row>
           <Col xl={6} lg={12} md={12}>
             <Card style={{marginTop: 10}}>
+            <CardTitle style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}><b>Giao dịch cho quyên góp</b></CardTitle>
               <Table bordered responsive>
                 <thead>
                   <tr>
@@ -103,6 +105,7 @@ class HistoryPage extends React.Component {
 
           <Col xl={6} lg={12} md={12}>
             <Card style={{marginTop: 10}}>
+            <CardTitle style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}><b>Giao dịch làm khảo sát</b></CardTitle>
               <Table bordered responsive>
                 <thead>
                   <tr>
