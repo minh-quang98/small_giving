@@ -40,11 +40,9 @@ import {
   ListGroupItem,
   Row, UncontrolledCarousel,
 } from 'reactstrap';
-import { getColor } from 'utils/colors';
 import NumberFormat from 'react-number-format';
-import Media from 'reactstrap/es/Media';
 import { Link } from "react-router-dom";
-import banner from 'assets/img/banner.png';
+// import {getRank} from "../service/bangXepHang"
 
 const today = new Date();
 const lastWeek = new Date(
@@ -79,13 +77,28 @@ class MainPage extends React.Component {
           // header: 'Slide 3 Header',
           key: '3'
         }
-      ]
+      ],
+      data: []
     }
   }
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
+    // this.getRankInfo()
   }
+
+  // getRankInfo () {
+  //   getRank(res => {
+  //     if(res.success === true) {
+  //       console.log("thành công>>>>>", res)
+  //       this.setState({
+  //         data: res
+  //       })
+  //     } else {
+  //       console.log("thất bại>>>>>", res);
+  //     }
+  //   })
+  // }
 
   render() {
     let {fakeData} = this.state
