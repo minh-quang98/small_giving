@@ -106,11 +106,11 @@ class DonationPage extends React.Component {
       <Page title="Quyên góp">
         {this.state.fakeData.map((item, index) => (
           <div>
-            <Row>
-              <Col lg="6" md="12" sm="12" xs="12">
+            <Row className="mt-3"> 
+              <Col lg="4" md="12" sm="12" xs="12">
                 <Card>
                   <CardHeader className="d-flex justify-content-between">
-                    {item.title}{' '}
+                    <b>{item.title}{' '}</b>
                     <small className="text-muted text-capitalize mt-1">
                       <Link to={'/donation-detail'}>
                         Xem chi tiết
@@ -125,72 +125,18 @@ class DonationPage extends React.Component {
                       className="rounded mr-2 mb-2"
                       style={{ width: '100%', height: '100%' }}
                     />
-                  </CardBody>
-                </Card>
-              </Col>
-
-              <Col lg="4" md="12" sm="12" xs="12" className="align-items-center">
-                <Card>
-                  <CardHeader className="text-center">Quyên góp</CardHeader>
-                  <CardBody>
-                    {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
-                    <div style={{ fontSize: 20, textAlign: 'center' }}>
-                      Số dư tài khoản
-                      <br/>
-                      <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
-                    </div>
-                  </CardBody>
-                  <ListGroup flush>
-                    <ListGroupItem>
-                      <MdInsertChart size={25} style={{color: "#ae1f17"}}/> Làm phiếu khảo sát&nbsp;&nbsp;
-                      {/*<a href={""}>(Link)</a>*/}
-                      <Link to={'/consider'}>(Link)</Link>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Label check>
-                        <MdBubbleChart size={25} style={{color: "#ae1f17"}}/>Theo dõi sự kiện
-                        <Input type="checkbox" className={"ml-3"}/>
-                      </Label>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      <Label check >
-                        <MdShowChart size={25} style={{color: "#ae1f17"}}/>Tham gia hoạt động
-                        <Input type="checkbox" className={"ml-3"}/>
-                      </Label>
-                    </ListGroupItem>
-                    <ListGroupItem>
-                      {/* <MdPieChart size={25} color="primary" /> Other operating
-                costs <Badge color="secondary">$2400</Badge> */}
-                      <Row>
-                        <Col lg={12} md={6} sm={6} xs={12}>
-                          <NumberWidget
-                            title="Số tiền quyên góp"
-                            //subtitle="This month"
-                            color="secondary"
-                            progress={{
-                              value: item.percent,
-                              //label: 'Last month',
-                            }}
-                            number={item.money}
-                          />
-                        </Col>
-                      </Row>
-                    </ListGroupItem>
-                  </ListGroup>
-                </Card>
-              </Col>
-            </Row>
-            <CardGroup style={{ marginBottom: '1rem' }}>
-              <Card body>
-                {/*<CardTitle className="text-center">Quyên góp</CardTitle>*/}
-                <Button
-                  className="mt-2"
-                  onClick={() => this.handleOpenModalParent()}
-                >
-                  Quyên góp
+                    <Button
+                    className="mt-2"
+                    onClick={() => this.handleOpenModalParent()}
+                  >
+                    Quyên góp
                 </Button>
-              </Card>
-              <IconWidget
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col lg="4" md="12" sm="12" xs="12">
+                <Card>
+                <IconWidget
                 icon={MdFace}
                 bgColor="white"
                 inverse={false}
@@ -198,13 +144,66 @@ class DonationPage extends React.Component {
                 subtitle={item.numberPeople}
               />
               <IconWidget
+                className="mt-1"
                 icon={MdAlarm}
                 bgColor="white"
                 inverse={false}
                 title="Số ngày còn lại:"
                 subtitle={item.time}
               />
-            </CardGroup>
+              <NumberWidget
+                            className="mt-1"
+                            title="Số tiền quyên góp"
+                            //subtitle="10.000.000"
+                            color="secondary"
+                            progress={{
+                              value: item.percent,
+                              //label: 'Last month',
+                            }}
+                            number={item.money}
+                          />
+                </Card>
+              </Col>
+              <Col lg="4" md="12" sm="12" xs="12">
+                <Card>
+                  {/* <CardHeader className="text-center">Quyên góp</CardHeader> */}
+                  <CardBody>
+                    {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
+                    <div style={{ fontSize: 20, textAlign: 'center' }}>
+                      Số dư tài khoản
+                      <br />
+                      <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                    </div>
+                  </CardBody>
+                  <ListGroup flush>
+                    <ListGroupItem>
+                      <MdInsertChart size={25} style={{ color: "#ae1f17" }} /> Làm phiếu khảo sát&nbsp;&nbsp;
+                      {/*<a href={""}>(Link)</a>*/}
+                      <Link to={'/consider'}>(Link)</Link>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <Label check>
+                        <MdBubbleChart size={25} style={{ color: "#ae1f17" }} />Theo dõi sự kiện
+                        <Input type="checkbox" className={"ml-3"} />
+                      </Label>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <Label check >
+                        <MdShowChart size={25} style={{ color: "#ae1f17" }} />Tham gia hoạt động
+                        <Input type="checkbox" className={"ml-3"} />
+                      </Label>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      {/* <MdPieChart size={25} color="primary" /> Other operating
+                costs <Badge color="secondary">$2400</Badge> */}
+                      
+                    </ListGroupItem>
+                  </ListGroup>
+
+                </Card>
+              </Col>
+            </Row>
+            
           </div>
         ))}
 
@@ -228,7 +227,7 @@ class DonationPage extends React.Component {
               />
               <div>Số tiền hiện tại bạn có là:</div>
               <div style={{ color: '#ae1f17' }}>2.000.000</div>
-              <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
+              <Input className="w-50" type="text" placeholder="Nhập số tiền" />
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>
