@@ -28,45 +28,19 @@ const getBasename = () => {
 
 class App extends React.Component {
   state = {
-    showLogin: false,
+
     setLogin: false,
-    authState: STATE_LOGIN,
+
   };
 
-  handleLogin = () => {
-    this.setState({
-      showLogin: !this.state.showLogin,
-    });
-  };
 
-  handleAuthState = authState => {
-    this.setState({
-      authState,
-    });
-  };
+
+
 
   render() {
     return (
       <div>
-        {this.state.showLogin === true
-          ? <Modal
-            isOpen={this.state.showLogin}
-            toggle={this.handleLogin}
-            size="sm"
-            backdrop="static"
-            backdropClassName="modal-backdrop-light"
-            // external={externalCloseBtn}
-            centered>
-            <ModalBody>
-              <AuthForm
-                authState={this.state.authState}
-                onChangeAuthState={this.handleAuthState}
-                onLogin={() => {
-                  this.setState({ showLogin: false })}}
-              />
-            </ModalBody>
-          </Modal>
-          : <BrowserRouter basename={getBasename()}>
+          <BrowserRouter basename={getBasename()}>
             <GAListener>
               <Switch>
                 <LayoutRoute
