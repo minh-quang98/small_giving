@@ -3,11 +3,8 @@ import { Modal, ModalBody } from 'reactstrap';
 import AuthForm, { STATE_LOGIN } from '../AuthForm';
 
 class ModalLoginPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
+  state = {
+    authState: STATE_LOGIN,
   }
 
   handleLogin = () => {
@@ -18,7 +15,7 @@ class ModalLoginPage extends Component {
 
   handleAuthState = authState => {
     this.setState({
-      authState: STATE_LOGIN,
+      authState
     });
   };
 
