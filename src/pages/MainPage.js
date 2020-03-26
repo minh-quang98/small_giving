@@ -42,7 +42,7 @@ import {
 } from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
-// import {getRank} from "../service/bangXepHang"
+// import bangXepHangApi from "../service/bangXepHang";
 
 const today = new Date();
 const lastWeek = new Date(
@@ -58,23 +58,14 @@ class MainPage extends React.Component {
       fakeData : [
         {
           src: 'img/Slide/banner.png',
-          // altText: 'Slide 1',
-          // caption: 'Slide 1',
-          // header: 'Slide 1 Header',
           key: '1'
         },
         {
           src: 'img/Slide/banner2.png',
-          // altText: 'Slide 2',
-          // caption: 'Slide 2',
-          // header: 'Slide 2 Header',
           key: '2'
         },
         {
           src: 'img/Slide/banner3.png',
-          // altText: 'Slide 3',
-          // caption: 'Slide 3',
-          // header: 'Slide 3 Header',
           key: '3'
         }
       ],
@@ -84,21 +75,51 @@ class MainPage extends React.Component {
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
-    // this.getRankInfo()
+    this.getRankInfo()
   }
 
-  // getRankInfo () {
-  //   getRank(res => {
-  //     if(res.success === true) {
-  //       console.log("thành công>>>>>", res)
-  //       this.setState({
-  //         data: res
-  //       })
-  //     } else {
-  //       console.log("thất bại>>>>>", res);
-  //     }
-  //   })
-  // }
+  getRankInfo = async () => {
+    fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if(data.success === true) {
+          console.log("thành công>>>>>", data)
+          this.setState({
+            data: data
+          })
+        } else {
+          console.log("thất bại>>>>>", data);
+        }
+      });
+    // bangXepHangApi.getRank(res => {
+    //   if(res.success === true) {
+    //     console.log("thành công>>>>>", res)
+    //     this.setState({
+    //       data: res
+    //     })
+    //   } else {
+    //     console.log("thất bại>>>>>", res);
+    //   }
+    // })
+
+    // return fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php',{
+    //   method: 'GET',
+    //   headers: {
+    //     "Content-Type": "application/json; charset=UTF-8",
+    //     "Accept-Language": "vi"
+    //   }
+    // })
+    //   .then (responsive => responsive.json())
+    //   .then (res => {
+    //     console.log("api>>>>", res);
+    //     if (res.status === "success") {
+    //       console.log("thành công");
+    //     } else {
+    //       console.log("thất bại");
+    //     }
+    //   })
+  }
 
   render() {
     let {fakeData} = this.state
