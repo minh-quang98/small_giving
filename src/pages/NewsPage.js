@@ -30,41 +30,22 @@ class NewsPage extends React.Component {
       expanded: false,
       detailNew1: false,
       detailNew2: false,
-      fakeDate: [
-        {
-          title: "Sự kiện người già neo đơn",
-          date: moment("12/22/2020").format("DD-MM-YYYY"),
-          img: 'img/News/NGND.jpg',
-          detail: "Đó là tựa đề một bài viết được đăng trên trang thông tin điện tử của báo New York Times\n" +
-            "                      số ra gần đây. Tác giả bài viết này cho biết ngay cả khi sự bùng nổ của các vụ tự tử ở Hàn Quốc\n" +
-            "                      ngày càng gia tăng, trường hợp tự tử của một cụ bà 78 tuổi đã tạo ra một cú sốc cho những ai nghe\n" +
-            "                      thấy. Sự việc này đã thu hút rất nhiều quan tâm của dư luận cũng như đã tạo ra nhiều cuộc tranh\n" +
-            "                      cãi trên các phương tiện truyền thông",
-
-        },
-        {
-          title: "Trẻ em mồ côi",
-          date: moment("10/03/2020").format("DD-MM-YYYY"),
-          img: 'img/News/TMC.png',
-          detail: "Từ bé mọi người hay nhầm con là người Trung Quốc nhưng con cảm giác mình không thuộc về\n" +
-            "                      nơi đó. Con hỏi bố mẹ nuôi về gốc gác bản thân. Thật bất ngờ khi họ tiết lộ, đã xin con ở Việt Nam.\n" +
-            "                      Con tự hào vì điều đó. Giờ đây, con đang đặt chân lên quê hương mình, bắt đầu hành trình tìm mẹ.\n" +
-            "                      Mẹ đợi con nhé...",
-
-        },
-        {
-          title: "Trẻ em bệnh tật",
-          date: moment("10/03/2020").format("DD-MM-YYYY"),
-          img: 'img/News/TMC.png',
-          detail: "Từ bé mọi người hay nhầm con là người Trung Quốc nhưng con cảm giác mình không thuộc về\n" +
-            "                      nơi đó. Con hỏi bố mẹ nuôi về gốc gác bản thân. Thật bất ngờ khi họ tiết lộ, đã xin con ở Việt Nam.\n" +
-            "                      Con tự hào vì điều đó. Giờ đây, con đang đặt chân lên quê hương mình, bắt đầu hành trình tìm mẹ.\n" +
-            "                      Mẹ đợi con nhé...",
-
-        },
-      ]
+      data: []
     }
   }
+  componentDidMount() {
+    this.getNew()
+  }
+  getNew = async () => {
+    fetch('https://misappmobile.000webhostapp.com/Tinhoatdong/tinhoatdong.php')
+      .then((response) => response.json())
+      .then((data) => {
+          this.setState({
+            data: data
+          },()=>console.log("kiemtradulieu",this.state.data)
+          )
+        });
+      }
   handleExpandClick = () => {
     this.setState({
       expanded: true
@@ -117,7 +98,7 @@ class NewsPage extends React.Component {
                     <MoreVertIcon />
                   </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
+                title={this.state.data.TenTin}
                 subheader="September 14, 2016"
               />
               <Media
