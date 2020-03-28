@@ -21,16 +21,13 @@ const UserProgressTable = ({ headers, usersData, ...restProps }) => {
         </tr>
       </thead>
       <tbody>
-        {usersData.map(({ avatar, name, date, progress }, index) => (
+        {usersData.map(({ avatar, TenNguoiDung, SoTien }, index) => (
           <tr key={index}>
             <td className="align-middle text-center">
               <AvatarWithBadge src={avatar} />
             </td>
-            <td className="align-middle text-center">{name}</td>
-            <td className="align-middle text-center">{date}</td>
-            <td className="align-middle text-center">
-              <Progress value={progress} style={{ height: 5 }} />
-            </td>
+            <td className="align-middle text-center">{TenNguoiDung}</td>
+            <td className="align-middle text-center">{SoTien}</td>
           </tr>
         ))}
       </tbody>

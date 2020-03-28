@@ -82,16 +82,10 @@ class MainPage extends React.Component {
     fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        if(data.success === true) {
-          console.log("thành công>>>>>", data)
           this.setState({
             data: data
           })
-        } else {
-          console.log("thất bại>>>>>", data);
-        }
-      });
+        });
     // bangXepHangApi.getRank(res => {
     //   if(res.success === true) {
     //     console.log("thành công>>>>>", res)
@@ -193,7 +187,7 @@ class MainPage extends React.Component {
                     'Tài khoản',
                     'Số tiền',
                   ]}
-                  usersData={userProgressTableData}
+                  usersData={this.state.data}
                 />
               </CardBody>
             </Card>
