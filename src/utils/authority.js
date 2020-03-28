@@ -32,8 +32,8 @@ export function setAuthority(authority) {
 }
 
 export function getAccessToken() {
-  return Cookies.get('ob_cl_token');
-  // return localStorage.getItem('access-token');
+  // return Cookies.get('ob_cl_token');
+  return localStorage.getItem('access-token');
 }
 
 export function setAccessToken(token) {

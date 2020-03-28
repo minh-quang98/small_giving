@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AuthForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserProgressTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserProgressTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-reduction" />
+    <property name="last_opened_file_path" value="E:/Ecorau/OneBook" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
@@ -78,7 +78,15 @@
       <workItem from="1584764339136" duration="1351000" />
       <workItem from="1584780088514" duration="8724000" />
       <workItem from="1584805317197" duration="71000" />
-      <workItem from="1584880259376" duration="5866000" />
+      <workItem from="1584880259376" duration="7086000" />
+      <workItem from="1584922142781" duration="366000" />
+      <workItem from="1585054517970" duration="8688000" />
+      <workItem from="1585191631398" duration="3347000" />
+      <workItem from="1585229558185" duration="4126000" />
+      <workItem from="1585233706136" duration="811000" />
+      <workItem from="1585272410333" duration="1964000" />
+      <workItem from="1585324065251" duration="1727000" />
+      <workItem from="1585363045208" duration="913000" />
     </task>
     <servers />
   </component>
@@ -91,10 +99,10 @@
     </state>
     <state x="393" y="153" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1584626974557" />
     <state x="393" y="162" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1584411303324" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1584880692570">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1585367600202">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1584880692570" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1585367600202" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state x="297" y="161" width="672" height="677" key="run.anything.popup" timestamp="1584002556096">
       <screen x="0" y="0" width="1280" height="720" />
