@@ -112,7 +112,7 @@ class MainPage extends React.Component {
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <div>
-                <UncontrolledCarousel items={fakeData} />
+                <UncontrolledCarousel items={fakeData}/>
               </div>
             </Card>
           </Col>
