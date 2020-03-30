@@ -56,6 +56,13 @@ class Header extends React.Component {
     showModal: false,
   };
 
+  handleLogin = () => {
+    this.setState({
+      login: true,
+      showModal: false,
+    })
+  }
+
   handleCloseModal = () => {
     this.setState({
       showModal: false,
@@ -105,8 +112,8 @@ class Header extends React.Component {
 
           <Nav navbar className={bem.e('nav-right')}>
             {this.state.login
-              ? <div>
-                <NavItem className="d-inline-flex">
+              ? <div className="d-flex justify-content-between">
+                <NavItem className="mr-2">
                   <NavLink id="Popover1" className="position-relative">
                     {isNotificationConfirmed ? (
                       <MdNotificationsNone
@@ -189,7 +196,7 @@ class Header extends React.Component {
             }
           </Nav>
         </Navbar>
-          <ModalLoginPage show={this.state.showModal} onHide={this.handleCloseModal}/>
+          <ModalLoginPage show={this.state.showModal} onHide={this.handleCloseModal} onLogin={this.handleLogin}/>
       </div>
     );
   }

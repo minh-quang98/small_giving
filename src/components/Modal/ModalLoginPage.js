@@ -14,6 +14,7 @@ class ModalLoginPage extends Component {
     super(props);
     this.state = {
       phone: '',
+      email: "",
       password: '',
       showLogin: '',
       modeLogin: true,
@@ -32,6 +33,23 @@ class ModalLoginPage extends Component {
     });
   }
 
+  handleLogin () {
+    let config = {
+      body: JSON.stringify({
+        Email: this.state.email,
+        MatKhau: this.state.password
+      })
+    }
+    fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
+  }
+
   render() {
     return (
       <div>
@@ -39,7 +57,7 @@ class ModalLoginPage extends Component {
           ?
           <Modal
             isOpen={this.props.show}
-            size="sm"
+            // size="sm"
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -66,7 +84,7 @@ class ModalLoginPage extends Component {
             <ModalFooter className="d-flex flex-column">
               <div>
                 <Button color="primary" className="mr-1">Quên mật khẩu</Button>
-                <Button>Đăng nhập</Button>
+                <Button onClick={this.props.onLogin}>Đăng nhập</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">
