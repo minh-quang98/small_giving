@@ -3,11 +3,8 @@ import {
   Modal, ModalBody, ModalHeader, ModalFooter,
   FormGroup, Label, Input, Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { CardContent } from '@material-ui/core';
 import { Col, Row } from 'react-bootstrap';
-
-// import AuthForm, { STATE_LOGIN } from '../AuthForm';
+import Cookies from 'js-cookie';
 
 class ModalLoginPage extends Component {
   constructor(props) {
@@ -33,6 +30,13 @@ class ModalLoginPage extends Component {
     });
   }
 
+  handleCancel() {
+    this.setState({
+      modeLogin: true,
+    })
+    this.props.onHide()
+  }
+
   handleLogin () {
     let config = {
       body: JSON.stringify({
@@ -43,10 +47,9 @@ class ModalLoginPage extends Component {
     fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
       .then((response) => response.json())
       .then((data) => {
-        this.setState({
-            data: data,
-          }, () => console.log('kiemtradulieu', this.state.data),
-        );
+        Cookies.set('small-giving', data)
+        this.props.onLogin()
+        window.location.reload()
       });
   }
 
@@ -136,7 +139,7 @@ class ModalLoginPage extends Component {
             </ModalBody>
             <ModalFooter className="d-flex flex-column align-content-between">
               <div>
-                <Button color="primary" className="mr-4" onClick={this.props.onHide}>Hủy bỏ</Button>
+                <Button color="primary" className="mr-4" onClick={()=>this.handleCancel()}>Hủy bỏ</Button>
                 <Button>Đăng ký</Button>
               </div>
               <div className="mt-2">Hoặc</div>

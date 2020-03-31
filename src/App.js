@@ -20,7 +20,6 @@ const ContactPage = React.lazy(() => import('pages/ContactPage'));
 const ConsiderPage = React.lazy(() => import('pages/ConsiderPage'));
 const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
 const DonationDetail = React.lazy(() => import('pages/DonationDetailPage'));
-const Test = React.lazy(() => import('pages/Test'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -43,23 +42,6 @@ class App extends React.Component {
           <BrowserRouter basename={getBasename()}>
             <GAListener>
               <Switch>
-                <LayoutRoute
-                  exact
-                  path="/login"
-                  layout={EmptyLayout}
-                  component={props => (
-                    <AuthPage {...props} authState={STATE_LOGIN}/>
-                  )}
-                />
-                <LayoutRoute
-                  exact
-                  path="/signup"
-                  layout={EmptyLayout}
-                  component={props => (
-                    <AuthPage {...props} authState={STATE_SIGNUP}/>
-                  )}
-                />
-
                 <MainLayout breakpoint={this.props.breakpoint}>
                   <React.Suspense fallback={<PageSpinner/>}>
                     <Route exact path="/" component={MainPage}/>
@@ -71,7 +53,6 @@ class App extends React.Component {
                     <Route exact path="/consider" component={ConsiderPage}/>
                     <Route exact path="/donation-detail" component={DonationDetail}/>
                     <Route exact path="/profile" component={ProfileUser}/>
-                    <Route exact path="/test" component={Test}/>
                   </React.Suspense>
                 </MainLayout>
                 <Redirect to="/"/>

@@ -63,6 +63,12 @@ class Header extends React.Component {
     })
   }
 
+  handleLogout () {
+    this.setState({
+      login: false
+    })
+  }
+
   handleCloseModal = () => {
     this.setState({
       showModal: false,
@@ -113,7 +119,7 @@ class Header extends React.Component {
           <Nav navbar className={bem.e('nav-right')}>
             {this.state.login
               ? <div className="d-flex justify-content-between">
-                <NavItem className="mr-2">
+                <NavItem className="mr-2 mt-2">
                   <NavLink id="Popover1" className="position-relative">
                     {isNotificationConfirmed ? (
                       <MdNotificationsNone
@@ -165,14 +171,14 @@ class Header extends React.Component {
                       >
                         <ListGroup flush>
                           <ListGroupItem tag="button" action className="border-light">
-                            <Link to={'/profile'} onClick={() => {
-                              this.toggleUserCardPopover();
-                            }} style={{ color: 'black' }}>
+                            <Link to={'/profile'}  style={{ color: 'black' }}>
                               <MdPersonPin/> Thông tin người dùng
                             </Link>
                           </ListGroupItem>
-                          <ListGroupItem tag="button" action className="border-light">
-                            <MdExitToApp/> Đăng xuất
+                          <ListGroupItem tag="button" action className="border-light" >
+                            <div onClick={()=> this.handleLogout()}>
+                              <MdExitToApp/> Đăng xuất
+                            </div>
                           </ListGroupItem>
                         </ListGroup>
                       </UserCard>

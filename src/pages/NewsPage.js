@@ -90,7 +90,7 @@ class NewsPage extends React.Component {
         <Row>
           {this.state.data.map((Item, index) => {
             return (
-              <Col md="6" sm="12" xs="12">
+              <Col md="9" sm="12" xs="12">
                 <Card>
                   <CardHeader
                     avatar={
