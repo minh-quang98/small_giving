@@ -12,7 +12,9 @@ class ModalLoginPage extends Component {
     this.state = {
       phone: '',
       email: '',
+      name: "",
       password: '',
+      rePassword: '',
       showLogin: '',
       modeLogin: true,
     };
@@ -21,18 +23,30 @@ class ModalLoginPage extends Component {
   handleChangeSignUp() {
     this.setState({
       modeLogin: false,
+      email: '',
+      password: '',
     });
   }
 
   handleChangeLogIn() {
     this.setState({
       modeLogin: true,
+      phone: '',
+      email: '',
+      name: "",
+      password: '',
+      rePassword: '',
     });
   }
 
   handleCancel() {
     this.setState({
       modeLogin: true,
+      phone: '',
+      email: '',
+      name: "",
+      password: '',
+      rePassword: '',
     });
     this.props.onHide();
   }
@@ -48,9 +62,37 @@ class ModalLoginPage extends Component {
     fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
       .then((response) => response.json())
       .then((data) => {
-        Cookies.set('small-giving', data.token, { expires: 1 });
-        this.props.onLogin();
-        window.location.reload();
+        if (data.token === "ERROR") {
+          console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email");
+        } else {
+          Cookies.set('small-giving', data.token, { expires: 1 });
+          this.props.onLogin();
+          window.location.reload();
+        }
+      });
+  }
+
+  handleSignUp () {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        Email: this.state.email,
+        SDT: this.state.phone,
+        TenNguoiDung: this.state.name,
+        MatKhau: this.state.password,
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/Dangky/nhapsodienthoai.php?fbclid=IwAR1wSS0-kHCHfobShiqGu97VELS2XN_k1Mw4nhwfDzF2vPE5QBkFcfi9RwE', config)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message === "Dang ki thanh cong") {
+          console.log("Đăng ký thành công");
+          this.setState({
+            modeLogin: true,
+          })
+        } else {
+          console.log("Tài khoản đã tồn tại");
+        }
       });
   }
 
@@ -94,7 +136,6 @@ class ModalLoginPage extends Component {
                     this.setState({
                       password: val.target.value
                     })
-                    // console.log("matkhau>>>", val.target.value)
                   }}
                 />
               </FormGroup>
@@ -129,34 +170,76 @@ class ModalLoginPage extends Component {
               ký</ModalHeader>
             <ModalBody>
               <FormGroup>
-                <Label>Số điện thoại:</Label>
-                <Input placeholder="Nhập số điện thoại"/>
+                <TextField
+                  style={{width: "100%"}}
+                  label="Số điện thoại"
+                  variant="outlined"
+                  onChange={(val)=> {
+                    this.setState({
+                      phone: val.target.value
+                    })
+                  }}
+                />
               </FormGroup>
 
               <FormGroup>
-                <Label>Email:</Label>
-                <Input placeholder="Nhập Email"/>
+                <TextField
+                  style={{width: "100%"}}
+                  label="Email"
+                  variant="outlined"
+                  onChange={(val)=> {
+                    this.setState({
+                      email: val.target.value
+                    })
+                  }}
+                />
               </FormGroup>
 
               <FormGroup>
-                <Label>Họ và tên:</Label>
-                <Input placeholder="Nhập tên"/>
+                <TextField
+                  style={{width: "100%"}}
+                  label="Họ và tên"
+                  variant="outlined"
+                  onChange={(val)=> {
+                    this.setState({
+                      name: val.target.value
+                    })
+                  }}
+                />
               </FormGroup>
 
               <FormGroup>
-                <Label>Mật khẩu:</Label>
-                <Input type="password" placeholder="Nhập mật khẩu"/>
+                <TextField
+                  style={{width: "100%"}}
+                  label="Mật khẩu"
+                  variant="outlined"
+                  type="password"
+                  onChange={(val) => {
+                    this.setState({
+                      password: val.target.value
+                    })
+                  }}
+                />
               </FormGroup>
 
               <FormGroup>
-                <Label>Nhập lại mật khẩu:</Label>
-                <Input placeholder="Nhập lại mật khẩu"/>
+                <TextField
+                  style={{width: "100%"}}
+                  label="Nhập lại mật khẩu"
+                  variant="outlined"
+                  type="password"
+                  onChange={(val) => {
+                    this.setState({
+                      rePassword: val.target.value
+                    })
+                  }}
+                />
               </FormGroup>
             </ModalBody>
             <ModalFooter className="d-flex flex-column align-content-between">
               <div>
                 <Button color="primary" className="mr-4" onClick={() => this.handleCancel()}>Hủy bỏ</Button>
-                <Button>Đăng ký</Button>
+                <Button onClick={() => this.handleSignUp()}>Đăng ký</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">
