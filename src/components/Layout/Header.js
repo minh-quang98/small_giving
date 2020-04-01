@@ -31,6 +31,8 @@ import {
 import bn from 'utils/bemnames';
 import { Link } from 'react-router-dom';
 import ModalLoginPage from '../Modal/ModalLoginPage';
+import Cookies from 'js-cookie';
+
 
 const bem = bn.create('header');
 
@@ -54,19 +56,19 @@ class Header extends React.Component {
     isOpenUserCardPopover: false,
     login: false,
     showModal: false,
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : ""
   };
 
   handleLogin = () => {
     this.setState({
-      login: true,
+      // login: true,
       showModal: false,
     })
   }
 
   handleLogout () {
-    this.setState({
-      login: false
-    })
+    Cookies.remove('small-giving')
+    window.location.reload()
   }
 
   handleCloseModal = () => {
@@ -117,7 +119,7 @@ class Header extends React.Component {
           </Nav>
 
           <Nav navbar className={bem.e('nav-right')}>
-            {this.state.login
+            {this.state.token !== ""
               ? <div className="d-flex justify-content-between">
                 <NavItem className="mr-2 mt-2">
                   <NavLink id="Popover1" className="position-relative">

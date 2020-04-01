@@ -42,7 +42,8 @@ import {
 } from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
-// import bangXepHangApi from "../service/bangXepHang";
+import Cookies from 'js-cookie';
+
 
 const today = new Date();
 const lastWeek = new Date(
@@ -69,7 +70,7 @@ class MainPage extends React.Component {
           key: '3'
         }
       ],
-      data: []
+      data: [],
     }
   }
   componentDidMount() {
@@ -176,22 +177,22 @@ class MainPage extends React.Component {
             </Card>
           </Col>
 
-          <Col md="6" sm="12" xs="12">
-            <Card>
-              <CardHeader>Bảng xếp hạng</CardHeader>
-              <CardBody>
-                <UserProgressTable
-                  headers={[
-                    //<MdPersonPin size={25} />,
-                    'Huy hiệu',
-                    'Tài khoản',
-                    'Số tiền',
-                  ]}
-                  usersData={this.state.data}
-                />
-              </CardBody>
-            </Card>
-          </Col>
+          {/*<Col md="6" sm="12" xs="12">*/}
+          {/*  <Card>*/}
+          {/*    <CardHeader>Bảng xếp hạng</CardHeader>*/}
+          {/*    <CardBody>*/}
+          {/*      <UserProgressTable*/}
+          {/*        headers={[*/}
+          {/*          //<MdPersonPin size={25} />,*/}
+          {/*          'Huy hiệu',*/}
+          {/*          'Tài khoản',*/}
+          {/*          'Số tiền',*/}
+          {/*        ]}*/}
+          {/*        usersData={this.state.data}*/}
+          {/*      />*/}
+          {/*    </CardBody>*/}
+          {/*  </Card>*/}
+          {/*</Col>*/}
         </Row>
       </Page>
     );
