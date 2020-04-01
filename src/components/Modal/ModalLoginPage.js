@@ -103,7 +103,8 @@ class ModalLoginPage extends Component {
           ?
           <Modal
             isOpen={this.props.show}
-            size="sm"
+            // size="sm"
+            style={{width: "25%"}}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -148,7 +149,7 @@ class ModalLoginPage extends Component {
             </ModalBody>
             <ModalFooter className="d-flex flex-column">
               <div>
-                <Button color="primary" className="mr-1">Quên mật khẩu</Button>
+                <Button outline color="primary" className="mr-1">Quên mật khẩu?</Button>
                 <Button onClick={()=>this.handleLogin()}>Đăng nhập</Button>
               </div>
               <div className="mt-2">Hoặc</div>
@@ -161,7 +162,8 @@ class ModalLoginPage extends Component {
           </Modal>
           : <Modal
             isOpen={this.props.show}
-            size="sm"
+            // size="sm"
+            style={{width: "25%"}}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -238,7 +240,7 @@ class ModalLoginPage extends Component {
             </ModalBody>
             <ModalFooter className="d-flex flex-column align-content-between">
               <div>
-                <Button color="primary" className="mr-4" onClick={() => this.handleCancel()}>Hủy bỏ</Button>
+                <Button outline color="primary" className="mr-4" onClick={() => this.handleCancel()}>Hủy bỏ</Button>
                 <Button onClick={() => this.handleSignUp()}>Đăng ký</Button>
               </div>
               <div className="mt-2">Hoặc</div>
