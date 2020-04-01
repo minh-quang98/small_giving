@@ -3,7 +3,7 @@ import {
   Modal, ModalBody, ModalHeader, ModalFooter,
   FormGroup, Label, Input, Button,
 } from 'reactstrap';
-import { Col, Row } from 'react-bootstrap';
+import TextField from '@material-ui/core/TextField';
 import Cookies from 'js-cookie';
 
 class ModalLoginPage extends Component {
@@ -11,7 +11,7 @@ class ModalLoginPage extends Component {
     super(props);
     this.state = {
       phone: '',
-      email: "",
+      email: '',
       password: '',
       showLogin: '',
       modeLogin: true,
@@ -33,23 +33,24 @@ class ModalLoginPage extends Component {
   handleCancel() {
     this.setState({
       modeLogin: true,
-    })
-    this.props.onHide()
+    });
+    this.props.onHide();
   }
 
-  handleLogin () {
+  handleLogin() {
     let config = {
+      method: "POST",
       body: JSON.stringify({
         Email: this.state.email,
-        MatKhau: this.state.password
-      })
-    }
+        MatKhau: this.state.password,
+      }),
+    };
     fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
       .then((response) => response.json())
       .then((data) => {
-        Cookies.set('small-giving', data)
-        this.props.onLogin()
-        window.location.reload()
+        Cookies.set('small-giving', data.token, { expires: 1 });
+        this.props.onLogin();
+        window.location.reload();
       });
   }
 
@@ -60,7 +61,7 @@ class ModalLoginPage extends Component {
           ?
           <Modal
             isOpen={this.props.show}
-            // size="sm"
+            size="sm"
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -70,24 +71,44 @@ class ModalLoginPage extends Component {
             </ModalHeader>
             <ModalBody>
               <FormGroup>
-                <Label>Số điện thoại:</Label>
-                <Input placeholder="Nhập số điện thoại"/>
+                {/*<Label>Email:</Label>*/}
+                <TextField
+                  style={{width: "100%"}}
+                  label="Email"
+                  variant="outlined"
+                  onChange={(val)=> {
+                    this.setState({
+                      email: val.target.value
+                    })
+                  }}
+                />
               </FormGroup>
               <FormGroup>
-                <Label>Mật khẩu:</Label>
-                <Input type="password" placeholder="Nhập mật khẩu"/>
+                {/*<Label>Mật khẩu:</Label>*/}
+                <TextField
+                  style={{width: "100%"}}
+                  label="Mật khẩu"
+                  variant="outlined"
+                  type="password"
+                  onChange={(val) => {
+                    this.setState({
+                      password: val.target.value
+                    })
+                    // console.log("matkhau>>>", val.target.value)
+                  }}
+                />
               </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="checkbox"/>{' '}
-                  Nhớ mật khẩu
-                </Label>
-              </FormGroup>
+              {/*<FormGroup check>*/}
+              {/*  <Label check>*/}
+              {/*    <Input type="checkbox"/>{' '}*/}
+              {/*    Nhớ mật khẩu*/}
+              {/*  </Label>*/}
+              {/*</FormGroup>*/}
             </ModalBody>
             <ModalFooter className="d-flex flex-column">
               <div>
                 <Button color="primary" className="mr-1">Quên mật khẩu</Button>
-                <Button onClick={this.props.onLogin}>Đăng nhập</Button>
+                <Button onClick={()=>this.handleLogin()}>Đăng nhập</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">
@@ -99,7 +120,7 @@ class ModalLoginPage extends Component {
           </Modal>
           : <Modal
             isOpen={this.props.show}
-            // size="sm"
+            size="sm"
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -107,39 +128,34 @@ class ModalLoginPage extends Component {
             <ModalHeader style={{ backgroundColor: '#ae1f17', color: 'white' }} toggle={this.props.onHide}>Đăng
               ký</ModalHeader>
             <ModalBody>
-              <Row>
-                <Col>
-                  <FormGroup>
-                    <Label>Số điện thoại:</Label>
-                    <Input placeholder="Nhập số điện thoại"/>
-                  </FormGroup>
-                  <FormGroup>
-                    <Label>Mật khẩu:</Label>
-                    <Input type="password" placeholder="Nhập mật khẩu"/>
-                  </FormGroup>
-                </Col>
-                <Col>
-                  <FormGroup>
-                    <Label>Email:</Label>
-                    <Input placeholder="Nhập Email"/>
-                  </FormGroup>
+              <FormGroup>
+                <Label>Số điện thoại:</Label>
+                <Input placeholder="Nhập số điện thoại"/>
+              </FormGroup>
 
-                  <FormGroup>
-                    <Label>Nhập lại mật khẩu:</Label>
-                    <Input placeholder="Nhập lại mật khẩu"/>
-                  </FormGroup>
-                </Col>
-              </Row>
-              <FormGroup check>
-                <Label check>
-                  <Input type="checkbox"/>{' '}
-                  Đồng ý với các điều khoản
-                </Label>
+              <FormGroup>
+                <Label>Email:</Label>
+                <Input placeholder="Nhập Email"/>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Họ và tên:</Label>
+                <Input placeholder="Nhập tên"/>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Mật khẩu:</Label>
+                <Input type="password" placeholder="Nhập mật khẩu"/>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>Nhập lại mật khẩu:</Label>
+                <Input placeholder="Nhập lại mật khẩu"/>
               </FormGroup>
             </ModalBody>
             <ModalFooter className="d-flex flex-column align-content-between">
               <div>
-                <Button color="primary" className="mr-4" onClick={()=>this.handleCancel()}>Hủy bỏ</Button>
+                <Button color="primary" className="mr-4" onClick={() => this.handleCancel()}>Hủy bỏ</Button>
                 <Button>Đăng ký</Button>
               </div>
               <div className="mt-2">Hoặc</div>
