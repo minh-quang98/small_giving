@@ -48,7 +48,7 @@ class ModalLoginPage extends Component {
     fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
       .then((response) => response.json())
       .then((data) => {
-        Cookies.set('small-giving', data.token);
+        Cookies.set('small-giving', data.token, { expires: 1 });
         this.props.onLogin();
         window.location.reload();
       });
