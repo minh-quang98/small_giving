@@ -64,15 +64,18 @@ class Header extends React.Component {
 
   componentDidMount() {
     console.log("data>>>", this.state.user);
-    // this.getUser()
+    this.getUser()
   }
 
   getUser = () => {
-    // if (this.state.token !== "") {
+    if (this.state.token !== "") {
       let config = {
-        method: "GET"
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZE5ndW9pRHVuZyI6IjQ3IiwiRW1haWwiOiJxdWFuZzEyM0BhYmMuY29tIiwiVGVuTmd1b2lEdW5nIjoicXVhbmcifQ.lOFMQOoIzK09E5TrEDqXoYJ1B64dop28PFZM6H-LK74`, config)
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
         .then((response) => response.json())
         .then((data)=> {
           console.log("data>>>>", data)
@@ -80,7 +83,7 @@ class Header extends React.Component {
             user: data
           }, ()=>console.log("data>>", data))
         })
-    // }
+    }
   }
 
   handleLogin = () => {
