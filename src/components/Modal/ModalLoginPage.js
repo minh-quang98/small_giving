@@ -59,15 +59,22 @@ class ModalLoginPage extends Component {
         MatKhau: this.state.password,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
+    fetch(`https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php`, config)
       .then((response) => response.json())
       .then((data) => {
         if (data.token === "ERROR") {
-          console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email");
+          console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email", config);
         } else {
           Cookies.set('small-giving', data.token, { expires: 1 });
           this.props.onLogin();
           window.location.reload();
+          // fetch(`https://misappmobile.000webhostapp.com/checktoken.php?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZE5ndW9pRHVuZyI6IjQ3IiwiRW1haWwiOiJxdWFuZzEyM0BhYmMuY29tIiwiVGVuTmd1b2lEdW5nIjoicXVhbmcifQ.lOFMQOoIzK09E5TrEDqXoYJ1B64dop28PFZM6H-LK74`)
+          //   .then((response) => response.json())
+          //   .then((res) => {
+          //     Cookies.set('idNguoiDung', data.idNguoiDung, { expires: 1 });
+          //     Cookies.set('Email', data.Email, { expires: 1 });
+          //     Cookies.set('TenNguoiDung', data.TenNguoiDung, { expires: 1 });
+          //   })
         }
       });
   }
@@ -86,7 +93,7 @@ class ModalLoginPage extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Dang ki thanh cong") {
-          console.log("Đăng ký thành công");
+          console.log("Đăng ký thành công", config);
           this.setState({
             modeLogin: true,
           })

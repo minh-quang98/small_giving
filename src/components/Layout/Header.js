@@ -32,6 +32,8 @@ import bn from 'utils/bemnames';
 import { Link } from 'react-router-dom';
 import ModalLoginPage from '../Modal/ModalLoginPage';
 import Cookies from 'js-cookie';
+import { log } from 'd3-geo/src/math';
+import { withMobileDialog } from '@material-ui/core';
 
 
 const bem = bn.create('header');
@@ -56,8 +58,30 @@ class Header extends React.Component {
     isOpenUserCardPopover: false,
     login: false,
     showModal: false,
-    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : ""
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+    user: []
   };
+
+  componentDidMount() {
+    console.log("data>>>", this.state.user);
+    // this.getUser()
+  }
+
+  getUser = () => {
+    // if (this.state.token !== "") {
+      let config = {
+        method: "GET"
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZE5ndW9pRHVuZyI6IjQ3IiwiRW1haWwiOiJxdWFuZzEyM0BhYmMuY29tIiwiVGVuTmd1b2lEdW5nIjoicXVhbmcifQ.lOFMQOoIzK09E5TrEDqXoYJ1B64dop28PFZM6H-LK74`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          console.log("data>>>>", data)
+          this.setState({
+            user: data
+          }, ()=>console.log("data>>", data))
+        })
+    // }
+  }
 
   handleLogin = () => {
     this.setState({
@@ -166,9 +190,9 @@ class Header extends React.Component {
                   >
                     <PopoverBody className="p-0 border">
                       <UserCard
-                        title="Phượng"
-                        subtitle="vuphuong@gmail.com"
-                        text="0359163555"
+                        title={this.state.user.TenNguoiDung}
+                        subtitle={this.state.user.Email}
+                        // text="0359163555"
                         className="border-light"
                       >
                         <ListGroup flush>
@@ -204,7 +228,12 @@ class Header extends React.Component {
             }
           </Nav>
         </Navbar>
-          <ModalLoginPage show={this.state.showModal} onHide={this.handleCloseModal} onLogin={this.handleLogin}/>
+          <ModalLoginPage
+            show={this.state.showModal}
+            onHide={this.handleCloseModal}
+            onLogin={this.handleLogin}
+            // onGetUser={this.getUser}
+          />
       </div>
     );
   }

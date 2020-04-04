@@ -87,33 +87,6 @@ class MainPage extends React.Component {
             data: data
           })
         });
-    // bangXepHangApi.getRank(res => {
-    //   if(res.success === true) {
-    //     console.log("thành công>>>>>", res)
-    //     this.setState({
-    //       data: res
-    //     })
-    //   } else {
-    //     console.log("thất bại>>>>>", res);
-    //   }
-    // })
-
-    // return fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php',{
-    //   method: 'GET',
-    //   headers: {
-    //     "Content-Type": "application/json; charset=UTF-8",
-    //     "Accept-Language": "vi"
-    //   }
-    // })
-    //   .then (responsive => responsive.json())
-    //   .then (res => {
-    //     console.log("api>>>>", res);
-    //     if (res.status === "success") {
-    //       console.log("thành công");
-    //     } else {
-    //       console.log("thất bại");
-    //     }
-    //   })
   }
 
   render() {
@@ -177,22 +150,22 @@ class MainPage extends React.Component {
             </Card>
           </Col>
 
-          {/*<Col md="6" sm="12" xs="12">*/}
-          {/*  <Card>*/}
-          {/*    <CardHeader>Bảng xếp hạng</CardHeader>*/}
-          {/*    <CardBody>*/}
-          {/*      <UserProgressTable*/}
-          {/*        headers={[*/}
-          {/*          //<MdPersonPin size={25} />,*/}
-          {/*          'Huy hiệu',*/}
-          {/*          'Tài khoản',*/}
-          {/*          'Số tiền',*/}
-          {/*        ]}*/}
-          {/*        usersData={this.state.data}*/}
-          {/*      />*/}
-          {/*    </CardBody>*/}
-          {/*  </Card>*/}
-          {/*</Col>*/}
+          <Col md="6" sm="12" xs="12">
+            <Card>
+              <CardHeader>Bảng xếp hạng</CardHeader>
+              <CardBody>
+                <UserProgressTable
+                  headers={[
+                    //<MdPersonPin size={25} />,
+                    'Huy hiệu',
+                    'Tài khoản',
+                    'Số tiền',
+                  ]}
+                  usersData={this.state.data}
+                />
+              </CardBody>
+            </Card>
+          </Col>
         </Row>
       </Page>
     );
