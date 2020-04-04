@@ -71,6 +71,7 @@ class MainPage extends React.Component {
         }
       ],
       data: [],
+      token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
     }
   }
   componentDidMount() {
@@ -87,33 +88,6 @@ class MainPage extends React.Component {
             data: data
           })
         });
-    // bangXepHangApi.getRank(res => {
-    //   if(res.success === true) {
-    //     console.log("thành công>>>>>", res)
-    //     this.setState({
-    //       data: res
-    //     })
-    //   } else {
-    //     console.log("thất bại>>>>>", res);
-    //   }
-    // })
-
-    // return fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php',{
-    //   method: 'GET',
-    //   headers: {
-    //     "Content-Type": "application/json; charset=UTF-8",
-    //     "Accept-Language": "vi"
-    //   }
-    // })
-    //   .then (responsive => responsive.json())
-    //   .then (res => {
-    //     console.log("api>>>>", res);
-    //     if (res.status === "success") {
-    //       console.log("thành công");
-    //     } else {
-    //       console.log("thất bại");
-    //     }
-    //   })
   }
 
   render() {
@@ -136,24 +110,30 @@ class MainPage extends React.Component {
           <Col lg="4" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
-                <div style={{fontSize: 20, textAlign: "center"}}>
+                <div style={{fontSize: 24, textAlign: "center", color: '#8e8e8e'}}>
                    Số dư tài khoản
                   <br/>
-                  <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                  {this.state.token === ""
+                    ? <div style={{fontSize: 20, color: "#ae1f17", }}>
+                      Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
+                    </div>
+                    : <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                  }
                 </div>
               </CardBody>
-              <ListGroup flush>
-                <ListGroupItem>
-                  <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
-                  {/*<a href={""}>(Link)</a>*/}
-                  <Link to={"/consider"}>(Link)</Link>
-                </ListGroupItem>
-              </ListGroup>
-              <ListGroup flush>
-                <ListGroupItem className="text-center">
-                  <Button>Điểm danh</Button>
-                </ListGroupItem>
-              </ListGroup>
+              {this.state.token === ""
+                ? <div></div>
+                : <ListGroup flush>
+                  <ListGroupItem>
+                    <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
+                    {/*<a href={""}>(Link)</a>*/}
+                    <Link to={"/consider"}>(Link)</Link>
+                  </ListGroupItem>
+                  <ListGroupItem className="text-center">
+                    <Button>Điểm danh</Button>
+                  </ListGroupItem>
+                </ListGroup>
+              }
             </Card>
           </Col>
         </Row>
@@ -177,22 +157,22 @@ class MainPage extends React.Component {
             </Card>
           </Col>
 
-          {/*<Col md="6" sm="12" xs="12">*/}
-          {/*  <Card>*/}
-          {/*    <CardHeader>Bảng xếp hạng</CardHeader>*/}
-          {/*    <CardBody>*/}
-          {/*      <UserProgressTable*/}
-          {/*        headers={[*/}
-          {/*          //<MdPersonPin size={25} />,*/}
-          {/*          'Huy hiệu',*/}
-          {/*          'Tài khoản',*/}
-          {/*          'Số tiền',*/}
-          {/*        ]}*/}
-          {/*        usersData={this.state.data}*/}
-          {/*      />*/}
-          {/*    </CardBody>*/}
-          {/*  </Card>*/}
-          {/*</Col>*/}
+          <Col md="6" sm="12" xs="12">
+            <Card>
+              <CardHeader>Bảng xếp hạng</CardHeader>
+              <CardBody>
+                <UserProgressTable
+                  headers={[
+                    //<MdPersonPin size={25} />,
+                    'Huy hiệu',
+                    'Tài khoản',
+                    'Số tiền',
+                  ]}
+                  usersData={this.state.data}
+                />
+              </CardBody>
+            </Card>
+          </Col>
         </Row>
       </Page>
     );
