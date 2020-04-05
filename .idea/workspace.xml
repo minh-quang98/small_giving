@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProfileUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfileUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/Ecorau/OneBook" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
@@ -100,7 +102,8 @@
       <workItem from="1585900355188" duration="793000" />
       <workItem from="1585918169822" duration="4573000" />
       <workItem from="1585968454732" duration="4921000" />
-      <workItem from="1585987885018" duration="4678000" />
+      <workItem from="1585987885018" duration="6039000" />
+      <workItem from="1586056246609" duration="4286000" />
     </task>
     <servers />
   </component>
@@ -117,10 +120,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="370" y="86" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1585640212154" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1585921464538">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1586014598468">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1585921464538" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1586014598468" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state x="297" y="152" width="672" height="640" key="run.anything.popup" timestamp="1585640689733">
       <screen x="0" y="0" width="1280" height="680" />

@@ -63,7 +63,6 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    console.log("data>>>", this.state.user);
     this.getUser()
   }
 
@@ -78,7 +77,6 @@ class Header extends React.Component {
       fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
         .then((response) => response.json())
         .then((data)=> {
-          console.log("data>>>>", data)
           this.setState({
             user: data
           }, ()=>console.log("data>>", data))

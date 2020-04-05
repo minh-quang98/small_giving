@@ -7,8 +7,7 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
-import { Button, Modal, ModalBody } from 'reactstrap';
-import ProfileLayout from './components/Layout/ProfileLayout';
+import Cookies from 'js-cookie';
 
 
 const DonationPage = React.lazy(() => import('pages/DonationPage'));
@@ -27,14 +26,8 @@ const getBasename = () => {
 
 class App extends React.Component {
   state = {
-
-    setLogin: false,
-
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
   };
-
-
-
-
 
   render() {
     return (
@@ -52,7 +45,10 @@ class App extends React.Component {
                     <Route exact path="/news" component={NewsPage}/>
                     <Route exact path="/consider" component={ConsiderPage}/>
                     <Route exact path="/donation-detail" component={DonationDetail}/>
-                    <Route exact path="/profile" component={ProfileUser}/>
+                    {this.state.token !== ""
+                      ? <Route exact path="/profile" component={ProfileUser}/>
+                      : <Redirect to="/"/>
+                    }
                   </React.Suspense>
                 </MainLayout>
                 <Redirect to="/"/>
