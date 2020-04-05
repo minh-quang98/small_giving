@@ -7,6 +7,7 @@ import Dropzone from 'react-dropzone';
 import moment from 'moment';
 import GUBN from 'assets/img/banner.png';
 import thongtin from 'assets/img/thongtin.png'
+import Cookies from 'js-cookie';
 // import ModalChangePassword from '../components/Modal/ModalChangePassword';
 
 class ProfileUser extends Component {
@@ -14,21 +15,53 @@ class ProfileUser extends Component {
     super(props);
     this.state ={
       onEdit: false,
-      fullName: "Vũ Thị Phượng",
+      fullName: "",
       fullNameError: false,
       btnSaveStatus: true,
-      sex: "FEMALE",
-      dateBirdth: "03/16/1998",
+      sex: "",
+      dateBirdth: "",
       dateBirdthError: false,
-      phone: "0359163555",
-      email: "phuong@gmail.com",
+      phone: "",
+      email: "",
       password: "********",
-      showModalChangePassword: false
+      showModalChangePassword: false,
+      idNguoiDung: "",
+      token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+      profile: []
     }
   }
 
   componentDidMount() {
-    console.log("test>>>>>", this.state.fullName);
+    this.getUser()
+
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            idNguoiDung: data.idNguoiDung
+          }, ()=>this.getProfile())
+        })
+    }
+  }
+
+  getProfile = () => {
+    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          profile: data
+        }, () => console.log("datapro>>>>", data))
+      })
   }
 
   handleCancel() {
@@ -39,11 +72,8 @@ class ProfileUser extends Component {
     } else {
       this.setState({onEdit: false}, () => {
         this.setState({
-          // fullName: this.state.data ? this.state.data.fullName : "",
           fullName: this.state.fullName ,
-          // sex: this.state.data ? this.state.data.sex : "",
           sex: this.state.sex ,
-          // dateBirdth: this.state.data ? this.state.data.dateBirdth : "",
           dateBirdth: this.state.dateBirdth ,
 
           fullNameError: false,
@@ -111,209 +141,209 @@ class ProfileUser extends Component {
           </Col>
           <Col xl={9} lg={12} md={12}>
             <Card variant="outlined" className='p-2 mb-5'>
-              <CardContent>
-
-                <div className='row kt-margin-b-20 mb-4 mt-4 font-14'>
-                  <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
-                    {this.state.onEdit === true
-                      ? <label className="text-black-50 m-1">Tên tài khoản
-                        <span className={'color-red d-inline'}>*</span></label>
-                      : <label className="text-black-50">Tên tài khoản</label>
-                    }
-                  </div>
-                  <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
-                    {this.state.onEdit ?
-                      <TextField
-                        fullWidth
-                        variant={"outlined"}
-                        InputProps={{style: {height: 28}}}
-                        value={this.state.fullName}
-                        onChange={(val) => {
-                          if (this.state.fullName.length < 50) this.setState({
-                            fullName: val.target.value,
-                            inEditing: true
-                          }, () => {
-                            this.state.fullName.length != 0 ? this.setState({fullNameError: false, btnSaveStatus:true}) : this.setState({fullNameError: true, btnSaveStatus:false})
-                          })
-                        }}
-                        maxLength={50}
-                        error={this.state.fullNameError}
-                        helperText={this.state.fullNameError && 'Vui lòng nhập tên người đại diện !!'}
-                      />
-
-                      : this.state.fullName ? this.state.fullName : ''
-                    }
-                  </div>
-                  <div className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
-                    <label className="text-black-50">Mật khẩu</label>
-                  </div>
-                  <div className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
-                      {this.state.password ? this.state.password : ''}
-
-                  </div>
-                  <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
-                    {this.state.onEdit === true
-                      ? <label className="text-black-50 m-1">Giới tính
-                        <span className={'color-red d-inline'}>*</span></label>
-                      : <label className="text-black-50">Giới tính</label>
-                    }
-                  </div>
-                  <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
-                    {this.state.onEdit ?
-                      <div className='d-flex col-12'>
-                        <div className="form-check col-6 ">
-                          <input className="form-check-input" type="radio" value="FEMALE"
-                                 onClick={(val) => {
-                                   this.setState({
-                                     sex: val.target.value,
-                                     inEditing: true
-                                   })
-                                 }}
-                                 checked={this.state.sex === 'FEMALE'}
-                          />
-                          <label className="form-check-label"
-                                 htmlFor="exampleRadios1">
-                            Nữ
-                          </label>
-                        </div>
-                        <div className="form-check col-6">
-                          <input className="form-check-input" type="radio" value="MALE"
-                                 onClick={(val) => {
-                                   this.setState({
-                                     sex: val.target.value,
-                                     inEditing: true
-                                   })
-                                 }}
-                                 checked={this.state.sex === 'MALE'}
-                          />
-                          <label className="form-check-label"
-                                 htmlFor="exampleRadios1">
-                            Nam
-                          </label>
-                        </div>
+              {this.state.profile.map((item, index) => {
+                return (
+                  <CardContent>
+                    <div className='row kt-margin-b-20 mb-4 mt-4 font-14'>
+                      <div
+                        className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.onEdit === true
+                          ? <label className="text-black-50 m-1">Tên tài khoản
+                            <span className={'color-red d-inline'}>*</span></label>
+                          : <label className="text-black-50">Tên tài khoản</label>
+                        }
                       </div>
-                      : this.state.sex ? this.state.sex == 'MALE' ? 'Nam' : 'Nữ' : ''
-                    }
-                  </div>
-                  <div
-                    className="pl-0 pb-2 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
-                    {this.state.onEdit === true
-                      ? <label className="text-black-50 m-1">Ngày sinh
-                        <span className={'color-red d-inline'}>*</span></label>
-                      : <label className="text-black-50">Ngày sinh</label>
-                    }
-                  </div>
-                  <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
-                    {this.state.onEdit ?
-                      <TextField
-                          type="date"
-                          variant="outlined"
-                          size="small"
-                          fullWidth
-                          required
-                          inputProps={{style: {paddingLeft: 6}}}
-                          InputProps={{style: {height: 28, margin: 0, fontSize: 14}}}
-                          InputLabelProps={{
+                      <div
+                        className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.onEdit ?
+                          <TextField
+                            fullWidth
+                            variant={"outlined"}
+                            InputProps={{style: {height: 28}}}
+                            value={this.state.fullName}
+                            onChange={(val) => {
+                              if (this.state.fullName.length < 50) this.setState({
+                                fullName: val.target.value,
+                                inEditing: true
+                              }, () => {
+                                this.state.fullName.length != 0 ? this.setState({fullNameError: false, btnSaveStatus:true}) : this.setState({fullNameError: true, btnSaveStatus:false})
+                              })
+                            }}
+                            maxLength={50}
+                            error={this.state.fullNameError}
+                            helperText={this.state.fullNameError && 'Vui lòng nhập tên  '}
+                          />
+
+                          : item.TenNguoiDung ? item.TenNguoiDung : ''
+                        }
+                      </div>
+                      <div className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                        <label className="text-black-50">Mật khẩu</label>
+                      </div>
+                      <div className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.password ? this.state.password : ''}
+
+                      </div>
+                      <div
+                        className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.onEdit === true
+                          ? <label className="text-black-50 m-1">Giới tính
+                            <span className={'color-red d-inline'}>*</span></label>
+                          : <label className="text-black-50">Giới tính</label>
+                        }
+                      </div>
+                      <div
+                        className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.onEdit ?
+                          <div className='d-flex col-12'>
+                            <div className="form-check col-6 ">
+                              <input className="form-check-input" type="radio" value="FEMALE"
+                                     onClick={(val) => {
+                                       this.setState({
+                                         sex: val.target.value,
+                                         inEditing: true
+                                       })
+                                     }}
+                                     checked={this.state.sex === 'FEMALE'}
+                              />
+                              <label className="form-check-label"
+                                     htmlFor="exampleRadios1">
+                                Nữ
+                              </label>
+                            </div>
+                            <div className="form-check col-6">
+                              <input className="form-check-input" type="radio" value="MALE"
+                                     onClick={(val) => {
+                                       this.setState({
+                                         sex: val.target.value,
+                                         inEditing: true
+                                       })
+                                     }}
+                                     checked={this.state.sex === 'MALE'}
+                              />
+                              <label className="form-check-label"
+                                     htmlFor="exampleRadios1">
+                                Nam
+                              </label>
+                            </div>
+                          </div>
+                          : this.state.sex ? this.state.sex == 'MALE' ? 'Nam' : 'Nữ' : ''
+                        }
+                      </div>
+                      <div
+                        className="pl-0 pb-2 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.onEdit === true
+                          ? <label className="text-black-50 m-1">Ngày sinh
+                            <span className={'color-red d-inline'}>*</span></label>
+                          : <label className="text-black-50">Ngày sinh</label>
+                        }
+                      </div>
+                      <div
+                        className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                        {this.state.onEdit ?
+                          <TextField
+                            type="date"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            required
+                            inputProps={{style: {paddingLeft: 6}}}
+                            InputProps={{style: {height: 28, margin: 0, fontSize: 14}}}
+                            InputLabelProps={{
                               shrink: true,
-                          }}
-                          value={this.state.dateBirdth}
-                          onChange={(val) => {
+                            }}
+                            value={this.state.dateBirdth}
+                            onChange={(val) => {
                               this.setState({
                                 dateBirdth: val.target.value,
-                                  inEditing: true
+                                inEditing: true
                               })
                               // console.log("dateIss>>>>>>", val)
-                          }}
-                          helperText={this.state.dateBirdthError}
-                          error={this.state.dateBirdthError && 'Vui lòng chọn ngày cấp !!'}
-                      />
+                            }}
+                            helperText={this.state.dateBirdthError}
+                            error={this.state.dateBirdthError && 'Vui lòng chọn ngày cấp !!'}
+                          />
 
-                      : this.state.dateBirdth ? moment(this.state.dateBirdth).format("DD-MM-YYYY") : ''
-                    }
-                  </div>
+                          : item.NgaySinh ? moment(item.NgaySinh).format("DD-MM-YYYY") : ''
+                        }
+                      </div>
 
-                  <div
-                    className="pl-0 pb-1 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
-                    {/*<label className="text-black-50">Số điện thoại</label>*/}
-                    {this.state.onEdit === true
-                      ? <label className="text-black-50 m-1">Số điện thoại</label>
-                      : <label className="text-black-50">Số điện thoại</label>
+                      <div
+                        className="pl-0 pb-1 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
+                        {this.state.onEdit === true
+                          ? <label className="text-black-50 m-1">Số điện thoại</label>
+                          : <label className="text-black-50">Số điện thoại</label>
+                        }
+                      </div>
+                      <div
+                        className="pl-0 pb-1 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
+                        {this.state.onEdit === true
+                          ? <p className="mt-1">{this.state.phone ? this.state.phone : ''}</p>
+                          : <span>{item.SDT ? item.SDT : ''}</span>}
+                      </div>
+                      <div
+                        className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
+                        {this.state.onEdit === true
+                          ? <label className="text-black-50 m-1">Email</label>
+                          : <label className="text-black-50">Email</label>
+                        }
+                      </div>
+                      <div
+                        className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
+                        {this.state.onEdit === true
+                          ? <p className="mt-1">{this.state.email ? this.state.email : ''}</p>
+                          : <span>{item.Email ? item.Email : ''}</span>}
+                      </div>
+                    </div>
+                    {this.state.onEdit ? <Grid container spacing={2} justify={"flex-center"}>
+                        <Grid item xs={12} sm={12} md={12} className='text-center'>
+                          {this.state.loading &&
+                          <Button variant="outlined" color="primary"
+                                  className='mr-3'
+                                  style={{textTransform: 'initial'}}
+                          >
+                            <CircularProgress size={20} variant="determinate"
+                                              value={this.state.progress}/>
+                          </Button>}
+                          {!this.state.loading &&
+                          <Button disabled={!this.state.btnSaveStatus} variant="contained" color="primary"
+                                  className='mr-3'
+                                  style={{textTransform: 'initial'}}
+                            // onClick={() => this.handleSave()}
+                          >
+                            Lưu
+                          </Button>}
+                          <Button variant="outlined" style={{textTransform: 'initial'}}
+                                  onClick={() => this.handleCancel()}
+                          >
+                            Hủy
+                          </Button>
+                        </Grid>
+                      </Grid>
+                      : <Grid container spacing={3} justify={"flex-center"}>
+                        <Grid item xs={12} sm={12} md={12} className='text-center'
+                              style={{textTransform: 'initial'}}
+                        >
+                          <Button variant="contained"
+                                  className='rounded mr-md-3 mr-sm-3 mr-lg-3 mb-1' color='primary'
+                                  style={{textTransform: 'initial'}}
+                                  onClick={() => this.setState({onEdit: !this.state.onEdit})}
+                          >
+                            Chỉnh sửa thông tin
+                          </Button>
+                          <Button variant="outlined" className='rounded mb-1'
+                                  style={{textTransform: 'initial'}}
+                                  onClick={() => this.handleShowModalForgotPassword()}
+                          >
+                            <a className='ml-3 mr-3'>Đổi mật khẩu</a>
+                          </Button>
+                        </Grid>
+                      </Grid>
                     }
-                  </div>
-                  <div
-                    className="pl-0 pb-1 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
-                    {this.state.onEdit === true
-                      ? <p className="mt-1">{this.state.phone ? this.state.phone : ''}</p>
-                      : <span>{this.state.phone ? this.state.phone : ''}</span>}
-                    {/*<span>{data.phone ? data.phone : ''}</span>*/}
-                  </div>
-                  <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
-                    {/*<label className="text-black-50">Email </label>*/}
-                    {this.state.onEdit === true
-                      ? <label className="text-black-50 m-1">Email</label>
-                      : <label className="text-black-50">Email</label>
-                    }
-                  </div>
-                  <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
-                    {this.state.onEdit === true
-                      ? <p className="mt-1">{this.state.email ? this.state.email : ''}</p>
-                      : <span>{this.state.email ? this.state.email : ''}</span>}
-                  </div>
-                </div>
-                {this.state.onEdit ? <Grid container spacing={2} justify={"flex-center"}>
-                    <Grid item xs={12} sm={12} md={12} className='text-center'>
-                      {this.state.loading &&
-                      <Button variant="outlined" color="primary"
-                              className='mr-3'
-                              style={{textTransform: 'initial'}}
-                      >
-                        <CircularProgress size={20} variant="determinate"
-                                          value={this.state.progress}/>
-                      </Button>}
-                      {!this.state.loading &&
-                      <Button disabled={!this.state.btnSaveStatus} variant="contained" color="primary"
-                              className='mr-3'
-                              style={{textTransform: 'initial'}}
-                              // onClick={() => this.handleSave()}
-                      >
-                        Lưu
-                      </Button>}
-                      <Button variant="outlined" style={{textTransform: 'initial'}}
-                              onClick={() => this.handleCancel()}
-                      >
-                        Hủy
-                      </Button>
-                    </Grid>
-                  </Grid>
-                  : <Grid container spacing={3} justify={"flex-center"}>
-                    <Grid item xs={12} sm={12} md={12} className='text-center'
-                          style={{textTransform: 'initial'}}
-                    >
-                      <Button variant="contained"
-                              className='rounded mr-md-3 mr-sm-3 mr-lg-3 mb-1' color='primary'
-                              style={{textTransform: 'initial'}}
-                              onClick={() => this.setState({onEdit: !this.state.onEdit})}
-                      >
-                        Chỉnh sửa thông tin
-                      </Button>
-                      <Button variant="outlined" className='rounded mb-1'
-                              style={{textTransform: 'initial'}}
-                              onClick={() => this.handleShowModalForgotPassword()}
-                      >
-                        <a className='ml-3 mr-3'>Đổi mật khẩu</a>
-                      </Button>
-                    </Grid>
-                  </Grid>
-                }
+                  </CardContent>
+                )
+              })}
 
-              </CardContent>
             </Card>
           </Col>
         </Row>
