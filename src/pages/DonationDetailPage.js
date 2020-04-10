@@ -99,7 +99,7 @@ class DonationDetailPage extends Component {
                 <div style={{ fontSize: 20, textAlign: 'center' }}>
                   Số dư tài khoản
                   <br/>
-                  <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                  <NumberFormat value={0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
                 </div>
               </CardBody>
               <ListGroup flush>
@@ -169,8 +169,8 @@ class DonationDetailPage extends Component {
                 className="rounded mr-2 mb-2 "
                 style={{ width: '10%', height: '10%' }}
               />
-              <div>Số tiền hiện tại bạn có là:</div>
-              <div style={{ color: '#ae1f17' }}>2.000.000</div>
+              <div>Số tiền hiện tại bạn không đủ để quyên góp vui lòng nạp tiền hoạc làm khảo sát:</div>
+              <div style={{ color: '#ae1f17' }}>0</div>
               <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
               <Modal
                 isOpen={this.state.modal}

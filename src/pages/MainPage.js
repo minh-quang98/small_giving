@@ -117,7 +117,7 @@ class MainPage extends React.Component {
                     ? <div style={{fontSize: 20, color: "#ae1f17", }}>
                       Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                     </div>
-                    : <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                    : <NumberFormat value={0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
                   }
                 </div>
               </CardBody>
