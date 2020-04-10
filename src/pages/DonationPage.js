@@ -77,7 +77,7 @@ class DonationPage extends React.Component {
       ],
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
-      STK: ""
+      STK: []
     };
   }
 
@@ -114,7 +114,7 @@ class DonationPage extends React.Component {
         console.log("dataSTK>>>", data)
         this.setState({
           STK: data
-        }, () => console.log("datapro>>>>", data))
+        }, () => console.log("dataDona>>>>",this.state.STK))
       })
   }
 

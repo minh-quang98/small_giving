@@ -105,12 +105,24 @@ class ModalLoginPage extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Dang ki thanh cong") {
-          console.log("Đăng ký thành công", config);
+          this.props.enqueueSnackbar('Đăng ký thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
           this.setState({
             modeLogin: true,
           })
         } else {
-          console.log("Tài khoản đã tồn tại");
+          this.props.enqueueSnackbar('Tài khoản đã tồn tại !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
         }
       });
   }
