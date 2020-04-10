@@ -3,8 +3,9 @@ import {
   Modal, ModalBody, ModalHeader, ModalFooter,
   FormGroup, Label, Input, Button,
 } from 'reactstrap';
-import TextField from '@material-ui/core/TextField';
+import {TextField, Snackbar } from '@material-ui/core';
 import Cookies from 'js-cookie';
+import { withSnackbar } from 'notistack';
 
 class ModalLoginPage extends Component {
   constructor(props) {
@@ -17,8 +18,10 @@ class ModalLoginPage extends Component {
       rePassword: '',
       showLogin: '',
       modeLogin: true,
+      loading: false
     };
   }
+
 
   handleChangeSignUp() {
     this.setState({
@@ -63,18 +66,27 @@ class ModalLoginPage extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.token === "ERROR") {
-          console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email", config);
+          this.props.enqueueSnackbar('Sai tên đăng nhập hoặc mật khẩu !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
         } else {
-          Cookies.set('small-giving', data.token, { expires: 1 });
-          this.props.onLogin();
-          window.location.reload();
-          // fetch(`https://misappmobile.000webhostapp.com/checktoken.php?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZE5ndW9pRHVuZyI6IjQ3IiwiRW1haWwiOiJxdWFuZzEyM0BhYmMuY29tIiwiVGVuTmd1b2lEdW5nIjoicXVhbmcifQ.lOFMQOoIzK09E5TrEDqXoYJ1B64dop28PFZM6H-LK74`)
-          //   .then((response) => response.json())
-          //   .then((res) => {
-          //     Cookies.set('idNguoiDung', data.idNguoiDung, { expires: 1 });
-          //     Cookies.set('Email', data.Email, { expires: 1 });
-          //     Cookies.set('TenNguoiDung', data.TenNguoiDung, { expires: 1 });
-          //   })
+          this.props.enqueueSnackbar('Đăng nhập thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          setTimeout(() => {
+            Cookies.set('small-giving', data.token, { expires: 1 });
+            this.props.onLogin();
+            window.location.reload();
+          }, 1000)
+
         }
       });
   }
@@ -106,6 +118,7 @@ class ModalLoginPage extends Component {
   render() {
     return (
       <div>
+
         {this.state.modeLogin
           ?
           <Modal
@@ -264,4 +277,4 @@ class ModalLoginPage extends Component {
   }
 }
 
-export default ModalLoginPage;
+export default withSnackbar(ModalLoginPage);

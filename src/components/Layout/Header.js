@@ -32,9 +32,7 @@ import bn from 'utils/bemnames';
 import { Link } from 'react-router-dom';
 import ModalLoginPage from '../Modal/ModalLoginPage';
 import Cookies from 'js-cookie';
-import { log } from 'd3-geo/src/math';
-import { withMobileDialog } from '@material-ui/core';
-
+import { withSnackbar } from 'notistack';
 
 const bem = bn.create('header');
 
@@ -92,8 +90,19 @@ class Header extends React.Component {
   }
 
   handleLogout () {
-    Cookies.remove('small-giving')
-    window.location.reload()
+    this.toggleUserCardPopover()
+    this.props.enqueueSnackbar('Đăng xuất thành công !', {
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right"
+      },
+      variant: 'success',
+    });
+    setTimeout(() => {
+      Cookies.remove('small-giving')
+      window.location.reload()
+    }, 1000)
+
   }
 
   handleCloseModal = () => {
@@ -240,4 +249,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withSnackbar(Header);
