@@ -55,9 +55,13 @@ class ProfileUser extends Component {
   }
 
   getProfile = () => {
-    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung)
+    let config = {
+      method: "GET"
+    }
+    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
       .then((res) => res.json())
       .then((data) => {
+        console.log("datapro>", this.state.idNguoiDung);
         this.setState({
           profile: data
         }, () => console.log("datapro>>>>", data))

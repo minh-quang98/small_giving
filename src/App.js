@@ -39,12 +39,24 @@ class App extends React.Component {
                   <React.Suspense fallback={<PageSpinner/>}>
                     <Route exact path="/" component={MainPage}/>
                     <Route exact path="/donation" component={DonationPage}/>
-                    <Route exact path="/contact" component={ContactPage}/>
-                    <Route exact path="/guides" component={GuidePage}/>
-                    <Route exact path="/history" component={HistoryPage}/>
                     <Route exact path="/news" component={NewsPage}/>
-                    <Route exact path="/consider" component={ConsiderPage}/>
                     <Route exact path="/donation-detail" component={DonationDetail}/>
+                    {this.state.token !== ""
+                      ? <Route exact path="/consider" component={ConsiderPage}/>
+                      : <Redirect to="/"/>
+                    }
+                    {this.state.token !== ""
+                      ? <Route exact path="/guides" component={GuidePage}/>
+                      : <Redirect to="/"/>
+                    }
+                    {this.state.token !== ""
+                      ? <Route exact path="/history" component={HistoryPage}/>
+                      : <Redirect to="/"/>
+                    }
+                    {this.state.token !== ""
+                      ? <Route exact path="/contact" component={ContactPage}/>
+                      : <Redirect to="/"/>
+                    }
                     {this.state.token !== ""
                       ? <Route exact path="/profile" component={ProfileUser}/>
                       : <Redirect to="/"/>

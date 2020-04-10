@@ -76,7 +76,46 @@ class DonationPage extends React.Component {
         },
       ],
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
+      idNguoiDung: "",
+      STK: ""
     };
+  }
+
+  componentDidMount() {
+    this.getUser()
+
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            idNguoiDung: data.idNguoiDung
+          }, ()=>this.getSTK())
+        })
+    }
+  }
+
+  getSTK = () => {
+    let config = {
+      method: "GET"
+    }
+    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("dataSTK>>>", data)
+        this.setState({
+          STK: data
+        }, () => console.log("datapro>>>>", data))
+      })
   }
 
 
