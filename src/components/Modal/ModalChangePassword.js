@@ -1,6 +1,6 @@
 import React from 'react';
 // import {withSnackbar} from "notistack";
-// import "./Modal.css"
+import "./Modal.css"
 // import Cookies from "js-cookie";
 import {
   Modal,
@@ -87,31 +87,17 @@ class ModalChangePassword extends React.Component {
     }
   }
 
-//     changePassword = () => {
-//         let payload = {
-//             newPassword: this.state.newpassword,
-//             oldPassword: this.state.oldpassword,
-//         }
-//         Authentication.changePassword(payload, res => {
-//             if (res.success) {
-//                 this.props.enqueueSnackbar('Thay đổi mật khẩu thành công !', {
-//                     variant: 'success',
-//                 });
-//                 this.props.onHideModal();
-//             } else {
-//                 this.setState({
-//                     errOldPass: true,
-//                 });
-//                 this.props.enqueueSnackbar('Nhập sai mật khẩu cũ !', {
-//                     anchorOrigin: {
-//                         vertical: "top",
-//                         horizontal: "right"
-//                     },
-//                     variant: 'error',
-//                 });
-//             }
-//         })
-//     }
+    changePassword = () => {
+        let config = {
+          method: "PUT",
+          body: JSON.stringify({
+            newPassword: this.state.newpassword,
+            oldPassword: this.state.oldpassword,
+          }),
+        // fetch(``)
+        }
+
+    }
 
 
   render() {
