@@ -8,7 +8,7 @@ import moment from 'moment';
 import GUBN from 'assets/img/banner.png';
 import thongtin from 'assets/img/thongtin.png'
 import Cookies from 'js-cookie';
-// import ModalChangePassword from '../components/Modal/ModalChangePassword';
+import ModalChangePassword from '../components/Modal/ModalChangePassword';
 
 class ProfileUser extends Component {
   constructor(props) {
@@ -27,7 +27,8 @@ class ProfileUser extends Component {
       showModalChangePassword: false,
       idNguoiDung: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
-      profile: []
+      profile: [],
+      showModal: false
     }
   }
 
@@ -89,11 +90,11 @@ class ProfileUser extends Component {
   }
 
   handleShowModalForgotPassword = () => {
-    this.setState({showModalChangePassword: true});
+    this.setState({showModal: true});
   };
 
   onCloseModalForgotPassword = () => {
-    this.setState({showModalChangePassword: false});
+    this.setState({showModal: false});
   }
 
   render() {
@@ -351,8 +352,8 @@ class ProfileUser extends Component {
             </Card>
           </Col>
         </Row>
-        {/*<ModalChangePassword show={this.state.showModalChangePassword}*/}
-        {/*                     onHideModal={this.onCloseModalForgotPassword}/>*/}
+        <ModalChangePassword show={this.state.showModal}
+                             onHideModal={this.onCloseModalForgotPassword}/>
       </Page>
     );
   }
