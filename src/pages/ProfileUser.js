@@ -8,6 +8,8 @@ import moment from 'moment';
 import GUBN from 'assets/img/banner.png';
 import thongtin from 'assets/img/thongtin.png'
 import Cookies from 'js-cookie';
+import NumberFormat from 'react-number-format';
+
 import ModalChangePassword from '../components/Modal/ModalChangePassword';
 
 class ProfileUser extends Component {
@@ -18,7 +20,9 @@ class ProfileUser extends Component {
       fullName: "",
       fullNameError: false,
       btnSaveStatus: true,
-      sex: "",
+      STK: "",
+      STKErr: false,
+      SoDuTK: "",
       dateBirdth: "",
       dateBirdthError: false,
       phone: "",
@@ -27,7 +31,7 @@ class ProfileUser extends Component {
       showModalChangePassword: false,
       idNguoiDung: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
-      profile: [],
+      profile: {},
       showModal: false
     }
   }
@@ -59,34 +63,45 @@ class ProfileUser extends Component {
     let config = {
       method: "GET"
     }
-    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
+    fetch(`http://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
       .then((res) => res.json())
       .then((data) => {
         console.log("datapro>", this.state.idNguoiDung);
         this.setState({
-          profile: data
-        }, () => console.log("datapro>>>>", data))
+          profile: data,
+          fullname: data.TenNguoiDung,
+          dateBirdth: data.NgaySinh,
+          STK: data.STK
+        }, () => console.log("data>>>", this.state.dateBirdth))
       })
   }
 
-  handleCancel() {
-    if (this.state.inEditing) {
-      this.setState({
-        confirmCancel: true
+  updateProfile = () => {
+    let config = {
+      method: "PUT",
+      body: JSON.stringify({
+        idNguoiDung: this.state.idNguoiDung,
+        TenNguoiDung: this.state.fullName,
+        NgaySinh: this.state.dateBirdth,
+        STK: this.state.STK
       })
-    } else {
+    }
+  }
+
+  handleCancel() {
       this.setState({onEdit: false}, () => {
         this.setState({
           fullName: this.state.fullName ,
           sex: this.state.sex ,
           dateBirdth: this.state.dateBirdth ,
+          STK: this.state.STK,
 
           fullNameError: false,
           sexError: false,
           dateBirdthError: false,
+          STKErr: false
         })
       })
-    }
   }
 
   handleShowModalForgotPassword = () => {
@@ -98,18 +113,19 @@ class ProfileUser extends Component {
   }
 
   render() {
+    let {profile} = this.state
     return (
       <Page title="Thông tin cá nhân">
-         <Row>
-        <Col xl={12} lg={12} md={12}>
-          <Media
-            object
-            src={GUBN}
-            className="rounded mr-2 mb-2"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </Col>
-      </Row>
+      {/*   <Row>*/}
+      {/*  <Col xl={12} lg={12} md={12}>*/}
+      {/*    <Media*/}
+      {/*      object*/}
+      {/*      src={GUBN}*/}
+      {/*      className="rounded mr-2 mb-2"*/}
+      {/*      style={{ width: '100%', height: '100%' }}*/}
+      {/*    />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
         <Row>
           <Col xl={3} lg={12} md={12}>
             <div className='text-center mb-4' style={{height: 120}}>
@@ -146,8 +162,7 @@ class ProfileUser extends Component {
           </Col>
           <Col xl={9} lg={12} md={12}>
             <Card variant="outlined" className='p-2 mb-5'>
-              {this.state.profile.map((item, index) => {
-                return (
+
                   <CardContent>
                     <div className='row kt-margin-b-20 mb-4 mt-4 font-14'>
                       <div
@@ -165,7 +180,7 @@ class ProfileUser extends Component {
                             fullWidth
                             variant={"outlined"}
                             InputProps={{style: {height: 28}}}
-                            value={this.state.fullName}
+                            value={this.state.fullname}
                             onChange={(val) => {
                               if (this.state.fullName.length < 50) this.setState({
                                 fullName: val.target.value,
@@ -179,7 +194,7 @@ class ProfileUser extends Component {
                             helperText={this.state.fullNameError && 'Vui lòng nhập tên  '}
                           />
 
-                          : item.TenNguoiDung ? item.TenNguoiDung : ''
+                          : profile.TenNguoiDung ? profile.TenNguoiDung : ''
                         }
                       </div>
                       <div className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
@@ -192,47 +207,33 @@ class ProfileUser extends Component {
                       <div
                         className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
                         {this.state.onEdit === true
-                          ? <label className="text-black-50 m-1">Giới tính
+                          ? <label className="text-black-50 m-1">Số tài khoản
                             <span className={'color-red d-inline'}>*</span></label>
-                          : <label className="text-black-50">Giới tính</label>
+                          : <label className="text-black-50">Số tài khoản</label>
                         }
                       </div>
                       <div
                         className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
                         {this.state.onEdit ?
-                          <div className='d-flex col-12'>
-                            <div className="form-check col-6 ">
-                              <input className="form-check-input" type="radio" value="FEMALE"
-                                     onClick={(val) => {
-                                       this.setState({
-                                         sex: val.target.value,
-                                         inEditing: true
-                                       })
-                                     }}
-                                     checked={this.state.sex === 'FEMALE'}
-                              />
-                              <label className="form-check-label"
-                                     htmlFor="exampleRadios1">
-                                Nữ
-                              </label>
-                            </div>
-                            <div className="form-check col-6">
-                              <input className="form-check-input" type="radio" value="MALE"
-                                     onClick={(val) => {
-                                       this.setState({
-                                         sex: val.target.value,
-                                         inEditing: true
-                                       })
-                                     }}
-                                     checked={this.state.sex === 'MALE'}
-                              />
-                              <label className="form-check-label"
-                                     htmlFor="exampleRadios1">
-                                Nam
-                              </label>
-                            </div>
-                          </div>
-                          : this.state.sex ? this.state.sex == 'MALE' ? 'Nam' : 'Nữ' : ''
+                          <TextField
+                            fullWidth
+                            variant={"outlined"}
+                            InputProps={{style: {height: 28}}}
+                            value={this.state.STK}
+                            onChange={(val) => {
+                              this.setState({
+                                STK: val.target.value,
+                                inEditing: true
+                              }, () => {
+                                this.state.STK.length != 0 ? this.setState({STKErr: false, btnSaveStatus:true}) : this.setState({STKErr: true, btnSaveStatus:false})
+                              })
+                            }}
+                            maxLength={50}
+                            error={this.state.STKErr}
+                            helperText={this.state.STKErr && 'Vui lòng nhập số tài khoản  '}
+                          />
+
+                          : profile.STK ? profile.STK : ''
                         }
                       </div>
                       <div
@@ -269,7 +270,7 @@ class ProfileUser extends Component {
                             error={this.state.dateBirdthError && 'Vui lòng chọn ngày cấp !!'}
                           />
 
-                          : item.NgaySinh ? moment(item.NgaySinh).format("DD-MM-YYYY") : ''
+                          : profile.NgaySinh ? moment(profile.NgaySinh).format("DD-MM-YYYY") : ''
                         }
                       </div>
 
@@ -283,8 +284,8 @@ class ProfileUser extends Component {
                       <div
                         className="pl-0 pb-1 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
                         {this.state.onEdit === true
-                          ? <p className="mt-1">{this.state.phone ? this.state.phone : ''}</p>
-                          : <span>{item.SDT ? item.SDT : ''}</span>}
+                          ? <p className="mt-1">{profile.SDT ? profile.SDT : ''}</p>
+                          : <span>{profile.SDT ? profile.SDT : ''}</span>}
                       </div>
                       <div
                         className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
@@ -296,8 +297,22 @@ class ProfileUser extends Component {
                       <div
                         className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
                         {this.state.onEdit === true
-                          ? <p className="mt-1">{this.state.email ? this.state.email : ''}</p>
-                          : <span>{item.Email ? item.Email : ''}</span>}
+                          ? <p className="mt-1">{profile.Email ? profile.Email : ''}</p>
+                          : <span>{profile.Email ? profile.Email : ''}</span>}
+                      </div>
+
+                      <div
+                        className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
+                        {this.state.onEdit === true
+                          ? <label className="text-black-50 m-1">Số dư tài khoản</label>
+                          : <label className="text-black-50">Số dư tài khoản</label>
+                        }
+                      </div>
+                      <div
+                        className=" pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
+                        {this.state.onEdit === true
+                          ? <p className="mt-1">{profile.SoDuTK === "null" ? profile.SoDuTK : 0}</p>
+                          : <span><NumberFormat value={profile.SoDuTK === "null" ? profile.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></span>}
                       </div>
                     </div>
                     {this.state.onEdit ? <Grid container spacing={2} justify={"flex-center"}>
@@ -346,9 +361,6 @@ class ProfileUser extends Component {
                       </Grid>
                     }
                   </CardContent>
-                )
-              })}
-
             </Card>
           </Col>
         </Row>

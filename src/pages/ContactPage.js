@@ -14,8 +14,29 @@ import {
   Label,
   Row, Table,
 } from 'reactstrap';
+import { TextField } from '@material-ui/core';
 
 class ContactPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+      noiDung: ''
+    }
+  }
+
+  themGopY () {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        NoiDung: this.state.noiDung
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/Gopy/gopyweb.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data)
+      })
+  }
 
   render() {
     return (
@@ -62,30 +83,24 @@ class ContactPage extends React.Component {
               <CardBody style={{marginTop: 25}}>
                 <Form>
                   <FormGroup row>
-                    <Label for="exampleEmail" sm={2}> Email </Label>
-                    <Col sm={10}>
-                      <Input type="email" name="email" placeholder="Nhập email"/>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Label for="examplePassword" sm={2}> SĐT </Label>
-                    <Col sm={10}>
-                      <Input type="password"
-                             name="password"
-                             placeholder="Nhập SĐT"/>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
                     <Label for="exampleSelectMulti" sm={2}> Nội dung </Label>
                     <Col sm={10}>
-                      <Input type="textarea"
-                             name="text"
-                             multiple/>
+                      <TextField
+                        style={{width: "100%"}}
+                        multiline
+                        rowsMax={4}
+                        variant="outlined"
+                        onChange={(val)=> {
+                          this.setState({
+                            noiDung: val.target.value
+                          })
+                        }}
+                      />
                     </Col>
                   </FormGroup>
                   <FormGroup check row>
                     <Col sm={{ size: 100, offset: 2 }} style={{textAlign:"right",marginRight:15}}>
-                      <Button > Gửi </Button>
+                      <Button onClick={()=>this.themGopY}> Gửi </Button>
                     </Col>
                   </FormGroup>
                 </Form>

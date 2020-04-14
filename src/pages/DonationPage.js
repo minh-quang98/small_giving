@@ -78,7 +78,7 @@ class DonationPage extends React.Component {
       listData: [],
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
-      STK: []
+      STK: ""
     };
   }
 
@@ -100,9 +100,22 @@ class DonationPage extends React.Component {
         .then((data)=> {
           this.setState({
             idNguoiDung: data.idNguoiDung
-          })
+          }, () => this.getProfile())
         })
     }
+  }
+
+  getProfile = () => {
+    let config = {
+      method: "GET"
+    }
+    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          STK: data
+        }, () => console.log("sodutk>>>>", this.state.STK))
+      })
   }
 
   getDonation () {
@@ -300,9 +313,13 @@ class DonationPage extends React.Component {
                 Quên góp
               </Button>{' '}
               <Button
+                outline
                 color="primary"
                 onClick={() => this.handleCloseModalParent()}>
-                Nạp tiền
+                <Link to={"/guides"}>
+                  Nạp tiền
+                </Link>
+
               </Button>
             </ModalFooter>
           </Modal>
