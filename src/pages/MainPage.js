@@ -85,11 +85,11 @@ class MainPage extends React.Component {
     fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
-<<<<<<< HEAD
-        console.log("dâta>>>>", data);
-=======
-        if(data.message !== "No post found") {
->>>>>>> f06ae620ee6ee6481e81860992c959e5ff16c573
+// <<<<<<< HEAD
+//         console.log("dâta>>>>", data);
+// =======
+     if(data.message !== "No post found") {
+// >>>>>>> f06ae620ee6ee6481e81860992c959e5ff16c573
           this.setState({
             data: data
           })
