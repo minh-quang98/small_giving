@@ -44,7 +44,7 @@ class NewsPage extends React.Component {
       .then((data) => {
         this.setState({
             data: data,
-          }, () => console.log('kiemtradulieu', this.state.data),
+          }
         );
       });
   };

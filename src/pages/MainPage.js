@@ -71,6 +71,7 @@ class MainPage extends React.Component {
         }
       ],
       data: [],
+      messageErr: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
     }
   }
@@ -84,10 +85,20 @@ class MainPage extends React.Component {
     fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
+<<<<<<< HEAD
         console.log("dâta>>>>", data);
+=======
+        if(data.message !== "No post found") {
+>>>>>>> f06ae620ee6ee6481e81860992c959e5ff16c573
           this.setState({
             data: data
           })
+        } else {
+          this.setState({
+            messageErr: data.message
+          })
+        }
+
         });
   }
 
@@ -162,15 +173,19 @@ class MainPage extends React.Component {
             <Card>
               <CardHeader>Bảng xếp hạng</CardHeader>
               <CardBody>
-                <UserProgressTable
-                  headers={[
-                    //<MdPersonPin size={25} />,
-                    'Huy hiệu',
-                    'Tài khoản',
-                    'Số tiền',
-                  ]}
-                  usersData={this.state.data}
-                />
+                {this.state.messageErr === ""
+                  ? <UserProgressTable
+                    headers={[
+                      //<MdPersonPin size={25} />,
+                      'Huy hiệu',
+                      'Tài khoản',
+                      'Số tiền',
+                    ]}
+                    usersData={this.state.data}
+                  />
+                  : <div className="text-center">Không có dữ liệu</div>
+                }
+
               </CardBody>
             </Card>
           </Col>

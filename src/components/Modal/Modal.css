@@ -1,0 +1,76 @@
+
+.root {
+  float: right;
+  margin: 6px 0 0;
+}
+
+.link {
+  display: inline-block;
+  padding: 3px 8px;
+  text-decoration: none;
+  font-size: 1.125em; /* ~18px */
+}
+
+.link,
+.link:active,
+.link:visited {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.highlight {
+  margin-right: 8px;
+  margin-left: 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+.highlight:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.spacer {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.inputPassword {
+  /*height: 35px;*/
+  /*!*background-color: blue;*!*/
+  border-radius: 5px;
+  border-width: 1px ;
+  border-style: solid;
+}
+.background-btn{
+  background-color: #2DA5FF;
+}
+.border-input-error{
+  border-color: red!important;
+  border-radius: 5px;
+  border-width: 1px ;
+  border-style: solid;
+}
+.font-err{
+  color: red;
+  font-size: xx-small;
+  width: auto !important;
+}
+.width-btn{
+  width: 100px!important;
+}
+.modal-body{
+
+}
+.modal-assign-order .modal-content .modal-body{
+  overflow: visible !important;
+}
+
+.modal-content .modal-body{
+  overflow: visible !important;
+}
+.modal-add-new-Sup{
+  max-width:700px!important;
+}
