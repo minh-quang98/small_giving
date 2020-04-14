@@ -84,6 +84,7 @@ class MainPage extends React.Component {
     fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
+        console.log("dâta>>>>", data);
           this.setState({
             data: data
           })
