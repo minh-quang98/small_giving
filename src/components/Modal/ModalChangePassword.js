@@ -87,17 +87,17 @@ class ModalChangePassword extends React.Component {
     }
   }
 
-    changePassword = () => {
-        let config = {
-          method: "PUT",
-          body: JSON.stringify({
-            newPassword: this.state.newpassword,
-            oldPassword: this.state.oldpassword,
-          }),
-        // fetch(``)
-        }
+      changePassword = () => {
+          let config = {
+            method: "PUT",
+            body: JSON.stringify({
+              newPassword: this.state.newpassword,
+              oldPassword: this.state.oldpassword,
+            }),
+          // fetch(``)
+          }
 
-    }
+      }
 
 
   render() {
