@@ -38,7 +38,13 @@ const pageContents = [
     name: 'Lịch sử giao dịch',
     exact: false,
     Icon: MdViewCarousel,
-  },
+  }
+];
+
+const navItems = [
+  { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
+  { to: '/donation', name: 'Quyên góp', exact: false, Icon: MdWeb },
+  { to: '/news', name: 'Tin tức', exact: false, Icon: MdLibraryBooks },
   {
     to: '/guides',
     name: 'Hướng dẫn nạp tiền',
@@ -46,13 +52,6 @@ const pageContents = [
     Icon: MdDvr,
   },
   { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdQuestionAnswer },
-
-];
-
-const navItems = [
-  { to: '/', name: 'Trang chủ', exact: true, Icon: MdDashboard },
-  { to: '/donation', name: 'Quyên góp', exact: false, Icon: MdWeb },
-  { to: '/news', name: 'Tin tức', exact: false, Icon: MdLibraryBooks },
 ];
 
 const bem = bn.create('sidebar');
