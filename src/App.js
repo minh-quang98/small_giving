@@ -45,18 +45,14 @@ class App extends React.Component {
                       ? <Route exact path="/consider" component={ConsiderPage}/>
                       : <Redirect to="/"/>
                     }
-                    {this.state.token !== ""
-                      ? <Route exact path="/guides" component={GuidePage}/>
-                      : <Redirect to="/"/>
-                    }
+                    <Route exact path="/guides" component={GuidePage}/>
+
                     {this.state.token !== ""
                       ? <Route exact path="/history" component={HistoryPage}/>
                       : <Redirect to="/"/>
                     }
-                    {this.state.token !== ""
-                      ? <Route exact path="/contact" component={ContactPage}/>
-                      : <Redirect to="/"/>
-                    }
+                    <Route exact path="/contact" component={ContactPage}/>
+
                     {this.state.token !== ""
                       ? <Route exact path="/profile" component={ProfileUser}/>
                       : <Redirect to="/"/>
