@@ -5,6 +5,8 @@ import "./Modal.css"
 import {
   Modal,
 } from 'react-bootstrap';
+import Cookies from 'js-cookie';
+import { withSnackbar } from 'notistack';
 
 // import Authentication from "../../services/auth";
 
@@ -19,6 +21,7 @@ class ModalChangePassword extends React.Component {
       errOldPass: false,
       errNewPass: false,
       errRePass: false,
+      token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
     };
   }
 
@@ -39,6 +42,7 @@ class ModalChangePassword extends React.Component {
         oldpassword: '',
         newpassword: '',
         repassword: '',
+        idNguoiDung: '',
         errOldPass: false,
         errNewPass: false,
         errRePass: false,
@@ -47,25 +51,25 @@ class ModalChangePassword extends React.Component {
   }
 
   onSubmit = () => {
-    if (this.state.oldpassword.length < 6) {
+    if (this.state.oldpassword.length === 0) {
       this.setState({
         errOldPass: true,
       })
-      this.props.enqueueSnackbar('Mật khẩu không được nhỏ hơn 6 kí tự !', {
+      this.props.enqueueSnackbar('Mật khẩu không được bỏ trống !', {
         variant: 'error',
       });
-    } else if (this.state.newpassword.length < 6) {
+    } else if (this.state.newpassword.length === 0) {
       this.setState({
         errNewPass: true,
       })
-      this.props.enqueueSnackbar('Mật khẩu không được nhỏ hơn 6 kí tự !', {
+      this.props.enqueueSnackbar('Mật khẩu không được bỏ trống !', {
         variant: 'error',
       });
-    } else if (this.state.repassword.length < 6) {
+    } else if (this.state.repassword.length === 0) {
       this.setState({
         errRePass: true,
       })
-      this.props.enqueueSnackbar('Mật khẩu không được nhỏ hơn 6 kí tự !', {
+      this.props.enqueueSnackbar('Mật khẩu không được bỏ trống!', {
         variant: 'error',
       });
     } else if (this.state.newpassword != this.state.repassword) {
@@ -83,20 +87,60 @@ class ModalChangePassword extends React.Component {
         variant: 'error',
       });
     } else {
-      // this.changePassword()
+      this.getUser()
+    }
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            idNguoiDung: data.idNguoiDung
+          }, ()=>this.changePassword())
+        })
     }
   }
 
       changePassword = () => {
           let config = {
-            method: "PUT",
+            method: "POST",
             body: JSON.stringify({
-              newPassword: this.state.newpassword,
-              oldPassword: this.state.oldpassword,
+              idNguoiDung: this.state.idNguoiDung,
+              MatKhau: this.state.oldpassword,
+              NewPass: this.state.newpassword,
             }),
-          // fetch(``)
           }
-
+        console.log("config", config);
+          fetch(`https://misappmobile.000webhostapp.com/Doimatkhau/doipass.php`, config)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message === "Success") {
+                this.props.enqueueSnackbar('Đổi mật khẩu thành công !', {
+                  anchorOrigin: {
+                    vertical: "top",
+                    horizontal: "right"
+                  },
+                  variant: 'success',
+                });
+                this.props.onHideModal()
+              } else {
+                this.props.enqueueSnackbar('Không tồn tại !', {
+                  anchorOrigin: {
+                    vertical: "top",
+                    horizontal: "right"
+                  },
+                  variant: 'error',
+                });
+              }
+            })
       }
 
 
@@ -211,4 +255,4 @@ class ModalChangePassword extends React.Component {
 }
 
 
-export default ModalChangePassword;
+export default withSnackbar(ModalChangePassword);

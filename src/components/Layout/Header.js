@@ -207,9 +207,11 @@ class Header extends React.Component {
                       >
                         <ListGroup flush>
                           <ListGroupItem tag="button" action className="border-light">
-                            <Link to={'/profile'}  style={{ color: 'black' }}>
-                              <MdPersonPin/> Thông tin người dùng
-                            </Link>
+                            <div onClick={() => this.toggleUserCardPopover()}>
+                              <Link to={'/profile'}  style={{ color: 'black' }}>
+                                <MdPersonPin/> Thông tin người dùng
+                              </Link>
+                            </div>
                           </ListGroupItem>
                           <ListGroupItem tag="button" action className="border-light" >
                             <div onClick={()=> this.handleLogout()}>
