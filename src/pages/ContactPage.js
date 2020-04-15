@@ -15,6 +15,9 @@ import {
   Row, Table,
 } from 'reactstrap';
 import { TextField } from '@material-ui/core';
+import { withSnackbar } from 'notistack';
+import Cookies from 'js-cookie';
+
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -34,7 +37,27 @@ class ContactPage extends React.Component {
     fetch(`https://misappmobile.000webhostapp.com/Gopy/gopyweb.php`, config)
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data)
+        if (data.message === "Success") {
+          this.props.enqueueSnackbar('Gửi góp ý thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          setTimeout(() => {
+            Cookies.set('small-giving', data.token, { expires: 1 });
+            window.location.reload();
+          }, 1000)
+        } else {
+          this.props.enqueueSnackbar('Không được để trống nội dung !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
       })
   }
 
@@ -100,7 +123,7 @@ class ContactPage extends React.Component {
                   </FormGroup>
                   <FormGroup check row>
                     <Col sm={{ size: 100, offset: 2 }} style={{textAlign:"right",marginRight:15}}>
-                      <Button onClick={()=>this.themGopY}> Gửi </Button>
+                      <Button onClick={()=>this.themGopY()}> Gửi </Button>
                     </Col>
                   </FormGroup>
                 </Form>
@@ -114,4 +137,4 @@ class ContactPage extends React.Component {
   }
 }
 
-export default ContactPage;
+export default withSnackbar(ContactPage);
