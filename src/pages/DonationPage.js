@@ -78,7 +78,8 @@ class DonationPage extends React.Component {
       listData: [],
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
-      STK: ""
+      SoDuTK: "",
+      idHoatDong: ""
     };
   }
 
@@ -109,12 +110,12 @@ class DonationPage extends React.Component {
     let config = {
       method: "GET"
     }
-    fetch(`https://misappmobile.000webhostapp.com/Thongtin/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
+    fetch(`http://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          STK: data
-        }, () => console.log("sodutk>>>>", this.state.STK))
+          SoDuTK: data.SoDuTK
+        }, () => console.log("stk>>", data))
       })
   }
 
@@ -124,7 +125,7 @@ class DonationPage extends React.Component {
       .then((data) => {
         this.setState({
           listData: data
-        }, () => console.log("data>>", data))
+        })
       })
   }
 
@@ -164,7 +165,13 @@ class DonationPage extends React.Component {
                   <CardHeader className="d-flex justify-content-between">
                     <b>{item.TenHoatDong}{' '}</b>
                     <small className="text-muted text-capitalize mt-1">
-                      <Link to={'/donation-detail'}>
+                      <Link to={{
+                        pathname: '/donation-detail',
+                        search: `?idHoatDong=${item.idHoatDong}`,
+                        state: {
+                          idHoatDong: item.idHoatDong
+                        }
+                      }}>
                         Xem chi tiết
                       </Link>
                     </small>
@@ -210,7 +217,7 @@ class DonationPage extends React.Component {
                     //subtitle="10.000.000"
                     color="secondary"
                     progress={{
-                      value: item.percent,
+                      value: item.SoDuTK / item.ChiDK * 100,
                       //label: 'Last month',
                     }}
                     number={item.ChiDK}
@@ -229,7 +236,7 @@ class DonationPage extends React.Component {
                         ? <div style={{fontSize: 20, color: "#ae1f17"}}>
                           Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                         </div>
-                        : <NumberFormat value={item.SoDuTK} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
                       }
 
                     </div>
@@ -284,7 +291,7 @@ class DonationPage extends React.Component {
                 style={{ width: '10%', height: '10%' }}
               />
               <div>Số tiền hiện tại bạn có là:</div>
-              <div style={{ color: '#ae1f17' }}>2.000.000</div>
+              <div style={{ color: '#ae1f17' }}><NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></div>
               <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
               <Modal
                 isOpen={this.state.modal}

@@ -72,7 +72,7 @@ class ProfileUser extends Component {
           fullname: data.TenNguoiDung,
           dateBirdth: data.NgaySinh,
           STK: data.STK
-        }, () => console.log("data>>>", this.state.dateBirdth))
+        })
       })
   }
 
@@ -86,6 +86,7 @@ class ProfileUser extends Component {
         STK: this.state.STK
       })
     }
+    // fetch(``)
   }
 
   handleCancel() {
@@ -258,10 +259,10 @@ class ProfileUser extends Component {
                             InputLabelProps={{
                               shrink: true,
                             }}
-                            value={this.state.dateBirdth}
+                            value={moment(this.state.dateBirdth).format("YYYY-MM-DD")}
                             onChange={(val) => {
                               this.setState({
-                                dateBirdth: val.target.value,
+                                dateBirdth: moment(val.target.value).format("DD-MM-YYYY"),
                                 inEditing: true
                               })
                               // console.log("dateIss>>>>>>", val)
