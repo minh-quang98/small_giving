@@ -73,12 +73,15 @@ class MainPage extends React.Component {
       data: [],
       messageErr: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
+      idNguoiDung: "",
+      SoDuTK: ""
     }
   }
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
     this.getRankInfo()
+    this.getUser()
   }
 
   getRankInfo = async () => {
@@ -96,6 +99,34 @@ class MainPage extends React.Component {
         }
 
         });
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            idNguoiDung: data.idNguoiDung
+          }, () => this.getProfile())
+        })
+    }
+  }
+
+  getProfile = () => {
+    fetch(`http://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php?idNguoiDung=` + this.state.idNguoiDung)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          SoDuTK: data.SoDuTK
+        }, () => console.log("stk>>", data))
+      })
   }
 
   render() {
@@ -125,7 +156,7 @@ class MainPage extends React.Component {
                     ? <div style={{fontSize: 20, color: "#ae1f17", }}>
                       Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                     </div>
-                    : <NumberFormat value={4000000000} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
                   }
                 </div>
               </CardBody>
