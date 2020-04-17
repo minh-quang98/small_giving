@@ -57,24 +57,6 @@ class DonationPage extends React.Component {
     this.state = {
       modalParent: false,
       modal: false,
-      fakeData: [
-        {
-          title: 'Người già neo đơn',
-          money: '2.000.000',
-          numberPeople: '50 người',
-          time: '30 giờ',
-          img: NGND,
-          percent: 75,
-        },
-        {
-          title: 'Trẻ mồ côi',
-          money: '3.000.000',
-          numberPeople: '35 người',
-          time: '50 giờ',
-          img: TMC,
-          percent: 45,
-        },
-      ],
       listData: [],
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
