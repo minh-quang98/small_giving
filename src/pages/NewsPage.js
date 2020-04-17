@@ -31,6 +31,7 @@ class NewsPage extends React.Component {
       detailNew1: false,
       detailNew2: false,
       data: [],
+      chooseId: ""
     };
   }
 
@@ -125,15 +126,25 @@ class NewsPage extends React.Component {
                     {
                       this.state.expanded ?
                         <IconButton
-
-                          onClick={() => this.handleExpandClickClose()}
+                          onClick={() => {
+                            this.handleExpandClickClose()}
+                          }
                           aria-expanded={this.state.expanded}
                           aria-label="Thu gọn"
                         >
                           <ExpandMoreIcon/>
                         </IconButton>
                         : <IconButton
-                          onClick={() => this.handleExpandClick()}
+                          onClick={() => {
+                            this.setState({
+                              chooseId: Item.idTin
+                            }, () => {
+                              if (this.state.chooseId === Item.idTin) {
+                                this.handleExpandClick()
+                              }
+                            })
+                            }
+                          }
                           aria-expanded={this.state.expanded}
                           aria-label="Xem thêm"
                         >

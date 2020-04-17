@@ -94,7 +94,7 @@ class DonationDetailPage extends Component {
       .then((data) => {
         this.setState({
           SoDuTK: data.SoDuTK
-        }, () => console.log("stk>>", data))
+        })
       })
   }
 
