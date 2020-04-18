@@ -90,9 +90,12 @@ class DonationPage extends React.Component {
 
   getProfile = () => {
     let config = {
-      method: "GET"
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiDung: this.state.idNguoiDung
+      })
     }
-    fetch(`http://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
+    fetch(`https://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
