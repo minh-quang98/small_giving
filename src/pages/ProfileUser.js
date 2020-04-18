@@ -62,12 +62,15 @@ class ProfileUser extends Component {
 
   getProfile = () => {
     let config = {
-      method: "GET"
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiDung: this.state.idNguoiDung
+      })
     }
-    fetch(`http://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php?idNguoiDung=` + this.state.idNguoiDung, config)
+    fetch(`https://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
-        console.log("datapro>", this.state.idNguoiDung);
+        console.log("datapro>>",data)
         this.setState({
           profile: data,
           fullname: data.TenNguoiDung,
@@ -207,7 +210,7 @@ class ProfileUser extends Component {
                             fullWidth
                             variant={"outlined"}
                             InputProps={{style: {height: 28}}}
-                            value={this.state.fullname}
+                            value={this.state.fullName}
                             onChange={(val) => {
                               if (this.state.fullName.length < 50) this.setState({
                                 fullName: val.target.value,
@@ -339,7 +342,7 @@ class ProfileUser extends Component {
                         className=" pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
                         {this.state.onEdit === true
                           ? <p className="mt-1">{profile.SoDuTK === "null" ? profile.SoDuTK : 0}</p>
-                          : <span><NumberFormat value={profile.SoDuTK === "null" ? profile.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></span>}
+                          : <span><NumberFormat value={profile.SoDuTK !== "null" ? profile.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></span>}
                       </div>
                     </div>
                     {this.state.onEdit ? <Grid container spacing={2} justify={"flex-center"}>
