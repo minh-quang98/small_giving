@@ -91,6 +91,52 @@ class ModalLoginPage extends Component {
       });
   }
 
+  checkSignUp () {
+    if (this.state.email === "") {
+      this.props.enqueueSnackbar('Không được để trống Email', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.phone === "") {
+      this.props.enqueueSnackbar('Không được để trống số điện thoại', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.name === "") {
+      this.props.enqueueSnackbar('Không được để trống tên', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.password === "") {
+      this.props.enqueueSnackbar('Không được để trống mật khẩu !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.password !== this.state.repassword) {
+      this.props.enqueueSnackbar('Nhập lại mật khẩu phải giống mật khẩu !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else {
+      this.handleSignUp()
+    }
+  }
+
   handleSignUp () {
     let config = {
       method: "POST",
@@ -273,7 +319,7 @@ class ModalLoginPage extends Component {
             <ModalFooter className="d-flex flex-column align-content-between">
               <div>
                 <Button outline color="primary" className="mr-4" onClick={() => this.handleCancel()}>Hủy bỏ</Button>
-                <Button onClick={() => this.handleSignUp()}>Đăng ký</Button>
+                <Button onClick={() => this.checkSignUp()}>Đăng ký</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">

@@ -120,7 +120,13 @@ class MainPage extends React.Component {
   }
 
   getProfile = () => {
-    fetch(`http://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php?idNguoiDung=` + this.state.idNguoiDung)
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiDung: this.state.idNguoiDung
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
