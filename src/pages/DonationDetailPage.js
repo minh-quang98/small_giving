@@ -28,9 +28,10 @@ import NGND from 'assets/img/NGND.jpg';
 class DonationDetailPage extends Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       modalParent: false,
       modal: false,
+      data: [],
     }
   }
 
@@ -59,8 +60,9 @@ class DonationDetailPage extends Component {
   }
 
   render() {
+    // const item = this.props.item;
     return (
-      <Page title="Người gia neo đơn">
+      <Page title="Người già neo đơn">
         <Row>
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
@@ -79,10 +81,10 @@ class DonationDetailPage extends Component {
                   nơi nương tựa tại Làng Tre. Các cụ - mỗi người một hoàn cảnh, một câu chuyện khác nhau nhưng lại đều
                   xuất thân từ những gia đình quá khó khăn, con cái người mất người còn hoặc không đủ khả năng nuôi
                   dưỡng nên đành đến nương náu tại Trung tâm.
-                  <br/>
+                  <br />
                   Khi gặp Đoàn đến thăm - các cụ mừng khôn xiết, như là gặp được những đứa con của mình, với tuổi già
                   bóng xế, họ cần lắm một sự an ủi yêu thương, nương tựa cho quãng đời ngắn ngủi còn lại.
-                  <br/>
+                  <br />
                   Ở đây lúc nào cũng rộn rã tiếng xe lăn, tiếng bước chân tập tễnh, tiếng phát ra từ chiếc radio cũ kỹ,
                   các cụ sum vầy bên nhau nói chuyện, kể cho nhau quãng đời “sóng gió” đã trải qua. Tuổi già với họ luôn
                   nặng tâm sự, nhưng ai cũng thấy may mắn khi có chỗ nương thân cuối đời
@@ -98,26 +100,26 @@ class DonationDetailPage extends Component {
                 {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
                 <div style={{ fontSize: 20, textAlign: 'center' }}>
                   Số dư tài khoản
-                  <br/>
-                  <NumberFormat value={0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                  <br />
+                  <NumberFormat value={0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                 </div>
               </CardBody>
               <ListGroup flush>
                 <ListGroupItem>
-                  <MdInsertChart size={25} style={{color: "#ae1f17"}}/> Làm phiếu khảo sát&nbsp;&nbsp;
+                  <MdInsertChart size={25} style={{ color: "#ae1f17" }} /> Làm phiếu khảo sát&nbsp;&nbsp;
                   {/*<a href={""}>(Link)</a>*/}
                   <Link to={'/consider'}>(Link)</Link>
                 </ListGroupItem>
                 <ListGroupItem>
                   <Label check>
-                    <MdBubbleChart size={25} style={{color: "#ae1f17"}}/>Theo dõi sự kiện
-                    <Input type="checkbox" className={"ml-3"}/>
+                    <MdBubbleChart size={25} style={{ color: "#ae1f17" }} />Theo dõi sự kiện
+                    <Input type="checkbox" className={"ml-3"} />
                   </Label>
                 </ListGroupItem>
                 <ListGroupItem>
                   <Label check >
-                    <MdShowChart size={25} style={{color: "#ae1f17"}}/>Tham gia hoạt động
-                    <Input type="checkbox" className={"ml-3"}/>
+                    <MdShowChart size={25} style={{ color: "#ae1f17" }} />Tham gia hoạt động
+                    <Input type="checkbox" className={"ml-3"} />
                   </Label>
                 </ListGroupItem>
                 <ListGroupItem>
@@ -171,7 +173,7 @@ class DonationDetailPage extends Component {
               />
               <div>Số tiền hiện tại bạn không đủ để quyên góp vui lòng nạp tiền hoạc làm khảo sát:</div>
               <div style={{ color: '#ae1f17' }}>0</div>
-              <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
+              <Input className="w-50" type="text" placeholder="Nhập số tiền" />
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>

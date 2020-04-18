@@ -9,6 +9,7 @@ import GUBN from 'assets/img/banner.png';
 import thongtin from 'assets/img/thongtin.png'
 import Cookies from 'js-cookie';
 import NumberFormat from 'react-number-format';
+import { withSnackbar } from 'notistack';
 
 import ModalChangePassword from '../components/Modal/ModalChangePassword';
 
@@ -78,7 +79,7 @@ class ProfileUser extends Component {
 
   updateProfile = () => {
     let config = {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify({
         idNguoiDung: this.state.idNguoiDung,
         TenNguoiDung: this.state.fullName,
@@ -86,7 +87,32 @@ class ProfileUser extends Component {
         STK: this.state.STK
       })
     }
-    // fetch(``)
+    fetch(`https://misappmobile.000webhostapp.com/Doithongtin/update.php`, config)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message !== "Success") {
+          this.props.enqueueSnackbar('Sai tên đăng nhập hoặc mật khẩu !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else {
+          this.props.enqueueSnackbar('Đăng nhập thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          setTimeout(() => {
+            Cookies.set('small-giving', data.token, { expires: 1 });
+            window.location.reload();
+          }, 1000)
+
+        }
+      });
   }
 
   handleCancel() {
@@ -330,7 +356,7 @@ class ProfileUser extends Component {
                           <Button disabled={!this.state.btnSaveStatus} variant="contained" color="primary"
                                   className='mr-3'
                                   style={{textTransform: 'initial'}}
-                            // onClick={() => this.handleSave()}
+                            onClick={() => this.updateProfile()}
                           >
                             Lưu
                           </Button>}
@@ -372,4 +398,4 @@ class ProfileUser extends Component {
   }
 }
 
-export default ProfileUser;
+export default withSnackbar(ProfileUser);
