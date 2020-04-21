@@ -36,6 +36,9 @@ import Media from 'reactstrap/es/Media';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { withSnackbar } from 'notistack';
+import { TextField } from '@material-ui/core';
+import { log } from 'd3-geo/src/math';
 
 
 WebFont.load({
@@ -61,7 +64,8 @@ class DonationPage extends React.Component {
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
       SoDuTK: "",
-      idHoatDong: ""
+      idHoatDong: "",
+      money: ""
     };
   }
 
@@ -110,13 +114,73 @@ class DonationPage extends React.Component {
       .then((data) => {
         this.setState({
           listData: data
-        })
+        }, () => console.log("data>>>", data))
+      })
+  }
+
+  handleDoanation() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.state.idHoatDong,
+        idNguoiDung: this.state.idNguoiDung,
+        SoTien: this.state.money
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/Quyengop/themquyengop.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Quyên góp thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          this.handleCloseModal();
+          this.handleCloseModalParent();
+          window.location.reload();
+        } else if (data.message === "false") {
+          this.props.enqueueSnackbar('Quyên góp thất bại !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else if (data.message === "Hoat dong khong ton tai") {
+          this.props.enqueueSnackbar('Hoạt động không tồn tại vui lòng thử hoạt động khác !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else if (data.message === "Khong ton tai") {
+          this.props.enqueueSnackbar('Tài khoản không tồn tại vui lòng đăng nhập!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else if (data.message === "Khong duoc de mot trong cac truong trong\n") {
+          this.props.enqueueSnackbar('Không được để trông ô nhập tiền!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
       })
   }
 
 
-  handleOpenModalParent() {
+  handleOpenModalParent(idHoatDong) {
     this.setState({
+      idHoatDong: idHoatDong,
       modalParent: true,
     });
   }
@@ -172,7 +236,7 @@ class DonationPage extends React.Component {
                     <Button
                       disabled={this.state.token === "" ? true : false}
                       className="mt-2"
-                      onClick={() => this.handleOpenModalParent()}
+                      onClick={() => this.handleOpenModalParent(item.idHoatDong)}
                     >
                       Quyên góp
                     </Button>
@@ -266,7 +330,7 @@ class DonationPage extends React.Component {
             toggle={() => this.handleCloseModalParent()}
             className={this.props.className}>
             <ModalHeader toggle={() => this.handleCloseModalParent()}>
-              Người già neo đơn
+              Quyên góp tiền
             </ModalHeader>
             <ModalBody className="d-flex flex-column align-items-center">
               <Media
@@ -277,7 +341,16 @@ class DonationPage extends React.Component {
               />
               <div>Số tiền hiện tại bạn có là:</div>
               <div style={{ color: '#ae1f17' }}><NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></div>
-              <Input className="w-50" type="text" placeholder="Nhập số tiền" />
+              <TextField
+                style={{ width: "100%" }}
+                variant="outlined"
+                type="number"
+                onChange={(val) => {
+                  this.setState({
+                    money: val.target.value
+                  })
+                }}
+              />
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>
@@ -285,8 +358,7 @@ class DonationPage extends React.Component {
                 <ModalBody>Bạn xác nhận quyên góp chứ?</ModalBody>
                 <ModalFooter>
                   <Button color="secondary" onClick={() => {
-                    this.handleCloseModal();
-                    this.handleCloseModalParent();
+                    this.handleDoanation()
                   }}>
                     Xác nhận
                   </Button>{' '}
@@ -321,4 +393,4 @@ class DonationPage extends React.Component {
   }
 };
 
-export default DonationPage;
+export default withSnackbar(DonationPage);
