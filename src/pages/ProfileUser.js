@@ -73,7 +73,7 @@ class ProfileUser extends Component {
         console.log("datapro>>",data)
         this.setState({
           profile: data,
-          fullname: data.TenNguoiDung,
+          fullName: data.TenNguoiDung,
           dateBirdth: data.NgaySinh,
           STK: data.STK
         })
@@ -110,7 +110,6 @@ class ProfileUser extends Component {
             variant: 'success',
           });
           setTimeout(() => {
-            Cookies.set('small-giving', data.token, { expires: 1 });
             window.location.reload();
           }, 1000)
 

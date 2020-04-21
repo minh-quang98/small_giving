@@ -127,54 +127,73 @@ class DonationPage extends React.Component {
         SoTien: this.state.money
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/Quyengop/themquyengop.php`, config)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Quyên góp thành công !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          this.handleCloseModal();
-          this.handleCloseModalParent();
-          window.location.reload();
-        } else if (data.message === "false") {
-          this.props.enqueueSnackbar('Quyên góp thất bại !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        } else if (data.message === "Hoat dong khong ton tai") {
-          this.props.enqueueSnackbar('Hoạt động không tồn tại vui lòng thử hoạt động khác !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        } else if (data.message === "Khong ton tai") {
-          this.props.enqueueSnackbar('Tài khoản không tồn tại vui lòng đăng nhập!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        } else if (data.message === "Khong duoc de mot trong cac truong trong\n") {
-          this.props.enqueueSnackbar('Không được để trông ô nhập tiền!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        }
-      })
+    if (this.state.money - 1000 < 0) {
+      this.props.enqueueSnackbar('Vui lòng nhập số tiền lớn hơn 1000VNĐ!', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.SoDuTK - this.state.money < 0) {
+      this.props.enqueueSnackbar('Số dư trong tài khoản không đủ! Vui lòng nạp thêm tiền', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else {
+      fetch(`https://misappmobile.000webhostapp.com/Quyengop/themquyengop.php`, config)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Quyên góp thành công !', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            this.handleCloseModal();
+            this.handleCloseModalParent();
+            window.location.reload();
+          } else if (data.message === "false") {
+            this.props.enqueueSnackbar('Quyên góp thất bại !', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          } else if (data.message === "Hoat dong khong ton tai") {
+            this.props.enqueueSnackbar('Hoạt động không tồn tại vui lòng thử hoạt động khác !', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          } else if (data.message === "Khong ton tai") {
+            this.props.enqueueSnackbar('Tài khoản không tồn tại vui lòng đăng nhập!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          } else if (data.message === "Khong duoc de mot trong cac truong trong\n") {
+            this.props.enqueueSnackbar('Không được để trông ô nhập tiền!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        })
+    }
+
   }
 
 
