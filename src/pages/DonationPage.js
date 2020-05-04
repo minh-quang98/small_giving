@@ -393,7 +393,7 @@ class DonationPage extends React.Component {
               <Button
                 color="secondary"
                 onClick={() => this.handleOpenModal()}>
-                Quên góp
+                Quyên góp
               </Button>{' '}
               <Button
                 outline

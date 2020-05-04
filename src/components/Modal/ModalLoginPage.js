@@ -124,7 +124,8 @@ class ModalLoginPage extends Component {
         },
         variant: 'error',
       });
-    } else if (this.state.password !== this.state.repassword) {
+    } else if (this.state.rePassword !== this.state.password) {
+      console.log("check>>>>>", this.state.repassword, this.state.password);
       this.props.enqueueSnackbar('Nhập lại mật khẩu phải giống mật khẩu !', {
         anchorOrigin: {
           vertical: "top",

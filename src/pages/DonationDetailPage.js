@@ -261,7 +261,7 @@ class DonationDetailPage extends Component {
               <Button
                 color="secondary"
                 onClick={() => this.handleOpenModal()}>
-                Quên góp
+                Quyên góp
               </Button>{' '}
               <Button
                 outline

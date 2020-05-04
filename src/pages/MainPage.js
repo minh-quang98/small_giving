@@ -1,48 +1,30 @@
-import { AnnouncementCard, TodosCard } from 'components/Card';
-import HorizontalAvatarList from 'components/HorizontalAvatarList';
-import MapWithBubbles from 'components/MapWithBubbles';
 import Page from 'components/Page';
 import ProductMedia from 'components/ProductMedia';
-import SupportTicket from 'components/SupportTicket';
 import UserProgressTable from 'components/UserProgressTable';
 import {
-  avatarsData,
-  chartjs,
   productsData,
-  supportTicketsData,
-  todosData,
-  userProgressTableData,
 } from '../demo/dashboardPage';
 import React from 'react';
-import { Bar, Line } from 'react-chartjs-2';
 import {
-  MdBubbleChart,
   MdInsertChart,
-  MdPersonPin,
-  MdPieChart,
-  MdRateReview,
-  MdShare,
-  MdShowChart,
-  MdThumbUp,
 } from 'react-icons/md';
-import InfiniteCalendar from 'react-infinite-calendar';
 import {
-  Badge,
   Button,
   Card,
   CardBody,
-  CardDeck,
-  CardGroup,
   CardHeader,
-  CardTitle,
   Col,
   ListGroup,
   ListGroupItem,
-  Row, UncontrolledCarousel,
+  Row, Table, UncontrolledCarousel,
 } from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
+import Media from 'reactstrap/es/Media';
+import Vang from '../assets/img/logo/HHV.png';
+import Bac from '../assets/img/logo/HHB.png';
+import Dong from '../assets/img/logo/HHD.png';
 
 
 const today = new Date();
@@ -68,6 +50,17 @@ class MainPage extends React.Component {
         {
           src: 'img/Slide/banner3.png',
           key: '3'
+        }
+      ],
+      headers: [
+        {
+          name: "Huy hiệu",
+        },
+        {
+          name: "Tên người dùng"
+        },
+        {
+          name: "Số tiền"
         }
       ],
       data: [],
@@ -99,6 +92,17 @@ class MainPage extends React.Component {
         }
 
         });
+  }
+
+  HuyHieu(item) {
+    switch (item) {
+      case "0":
+        return 'img/logo/HHV.png';
+      case "1":
+        return 'img/logo/HHB.png';
+      case "2":
+        return 'img/logo/HHD.png';
+    }
   }
 
   getUser = () => {
@@ -207,15 +211,35 @@ class MainPage extends React.Component {
               <CardHeader>Bảng xếp hạng</CardHeader>
               <CardBody>
                 {this.state.messageErr === ""
-                  ? <UserProgressTable
-                    headers={[
-                      //<MdPersonPin size={25} />,
-                      'Huy hiệu',
-                      'Tài khoản',
-                      'Số tiền',
-                    ]}
-                    usersData={this.state.data}
-                  />
+                  ? <Table responsive hover>
+                    <thead>
+                    <tr className="text-capitalize align-middle text-center">
+                      <th>Huy Hiệu</th>
+                      <th>Tên Người Dùng</th>
+                      <th>Số Tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.state.data.map((item, index) => (
+                      <tr key={index}>
+                        <td className="align-middle text-center">
+                          {index > 2
+                            ? index + 1
+                            : <Media
+                              object
+                              src={this.HuyHieu(index)}
+                              className="rounded mr-2 mb-2"
+                              style={{ width: 50, height: 50 }}
+                            />
+                          }
+
+                        </td>
+                        <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                        <td className="align-middle text-center">{item.SoTien}</td>
+                      </tr>
+                    ))}
+                    </tbody>
+                  </Table>
                   : <div className="text-center">Không có dữ liệu</div>
                 }
 

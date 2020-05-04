@@ -1,9 +1,8 @@
-import product1Image from 'assets/img/products/product_640-1.jpg';
-import product2Image from 'assets/img/products/product_640-2.jpg';
-import product3Image from 'assets/img/products/product_640-3.jpg';
-import product4Image from 'assets/img/products/product_640-4.jpg';
-import product5Image from 'assets/img/products/product_640-5.jpg';
-import product6Image from 'assets/img/products/product_640-6.jpg';
+import product1Image from 'assets/img/products/product_640-1.png';
+import product2Image from 'assets/img/products/product_640-2.png';
+import product3Image from 'assets/img/products/product_640-3.png';
+import product4Image from 'assets/img/products/product_640-4.png';
+import product5Image from 'assets/img/products/product_640-5.png';
 
 import user1Image from 'assets/img/users/100_1.jpg';
 import user2Image from 'assets/img/users/100_2.jpg';
