@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfileUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfileUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,16 +16,15 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ecorau/OneBook" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
-    <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/node_modules/stylelint" />
+    <property name="node.js.selected.package.stylelint" value="E:\WebSM\small-giving\node_modules\stylelint" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="E:\webstorm\WebStorm 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
@@ -37,6 +34,34 @@
       <recent name="E:\WebSM\small-giving\src\assets\img" />
       <recent name="E:\WebSM\small-giving\public\img\News" />
     </key>
+  </component>
+  <component name="RunManager" selected="npm.deploy">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -124,12 +149,22 @@
       <workItem from="1587305675104" duration="3003000" />
       <workItem from="1587351172063" duration="7361000" />
       <workItem from="1587394557737" duration="2126000" />
-      <workItem from="1587436365193" duration="2149000" />
+      <workItem from="1587436365193" duration="2849000" />
+      <workItem from="1587441755764" duration="3202000" />
+      <workItem from="1587528712762" duration="43000" />
+      <workItem from="1587528812648" duration="598000" />
+      <workItem from="1587541584839" duration="608000" />
+      <workItem from="1587640868451" duration="1155000" />
+      <workItem from="1588256635145" duration="3396000" />
+      <workItem from="1588297394993" duration="600000" />
+      <workItem from="1588471312365" duration="13000" />
+      <workItem from="1588511867531" duration="831000" />
+      <workItem from="1588558045482" duration="149000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="94" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587220421477">
@@ -145,11 +180,27 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="370" y="86" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1585640212154" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1587114392468">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1588558193119">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1587114392468" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1588558193119" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
+    <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1257" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1588263821745" />
+    <state width="1257" height="163" key="GridCell.Tab.0.center" timestamp="1588263821745">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1257" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1588263821745" />
+    <state width="1257" height="163" key="GridCell.Tab.0.left" timestamp="1588263821745">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1257" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1588263821745" />
+    <state width="1257" height="163" key="GridCell.Tab.0.right" timestamp="1588263821745">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1257" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1588263821745" />
     <state x="297" y="152" width="672" height="640" key="run.anything.popup" timestamp="1585640689733">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
