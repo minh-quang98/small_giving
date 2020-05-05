@@ -49,6 +49,7 @@ class NewsPage extends React.Component {
         );
       });
   };
+
   handleExpandClick = () => {
     this.setState({
       expanded: true,
