@@ -9,9 +9,9 @@ import {
   MdViewCarousel,
   MdWeb,
   MdDvr,
-  MdQuestionAnswer
+  MdQuestionAnswer,
 } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   // UncontrolledTooltip,
   Collapse,
@@ -22,11 +22,12 @@ import {
 } from 'reactstrap';
 import bn from 'utils/bemnames';
 import Cookies from 'js-cookie';
+import Button from '@material-ui/core/Button';
 
 
 const sidebarBackground = {
   // backgroundImage: `url("${sidebarBgImage}")`,
-  backgroundColor: "#8c1b0f",
+  backgroundColor: '#8c1b0f',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 };
@@ -38,7 +39,7 @@ const pageContents = [
     name: 'Lịch sử giao dịch',
     exact: false,
     Icon: MdViewCarousel,
-  }
+  },
 ];
 
 const navItems = [
@@ -61,7 +62,8 @@ class Sidebar extends React.Component {
     isOpenComponents: true,
     isOpenContents: true,
     isOpenPages: true,
-    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
+    admin: false,
   };
 
   handleClick = name => () => {
@@ -76,8 +78,9 @@ class Sidebar extends React.Component {
 
   render() {
     return (
+
       <aside className={bem.b()} data-image={sidebarBgImage}>
-        <div className={bem.e('background')} style={sidebarBackground} />
+        <div className={bem.e('background')} style={sidebarBackground}/>
         <div className={bem.e('content')}>
           <Navbar className="p-1">
             <div className="navbar-brand d-flex">
@@ -104,30 +107,40 @@ class Sidebar extends React.Component {
                   activeClassName="active"
                   exact={exact}
                 >
-                  <Icon className={bem.e('nav-item-icon')} />
-                  <span style={{fontSize: 13}}>{name}</span>
+                  <Icon className={bem.e('nav-item-icon')}/>
+                  <span style={{ fontSize: 13 }}>{name}</span>
                 </BSNavLink>
               </NavItem>
             ))}
-            {this.state.token === ""
+            {this.state.token === ''
               ? <div></div>
-              : <Collapse isOpen={this.state.isOpenPages}>
-                {pageContents.map(({ to, name, exact, Icon }, index) => (
-                  <NavItem key={index} className={bem.e('nav-item')}>
-                    <BSNavLink
-                      id={`navItem-${name}-${index}`}
-                      className="text-uppercase"
-                      tag={NavLink}
-                      to={to}
-                      activeClassName="active"
-                      exact={exact}
-                    >
-                      <Icon className={bem.e('nav-item-icon')} />
-                      <span style={{fontSize: 13}}>{name}</span>
-                    </BSNavLink>
-                  </NavItem>
-                ))}
-              </Collapse>
+              : <div>
+                <Collapse isOpen={this.state.isOpenPages}>
+                  {pageContents.map(({ to, name, exact, Icon }, index) => (
+                    <NavItem key={index} className={bem.e('nav-item')}>
+                      <BSNavLink
+                        id={`navItem-${name}-${index}`}
+                        className="text-uppercase"
+                        tag={NavLink}
+                        to={to}
+                        activeClassName="active"
+                        exact={exact}
+                      >
+                        <Icon className={bem.e('nav-item-icon')}/>
+                        <span style={{ fontSize: 13 }}>{name}</span>
+                      </BSNavLink>
+                    </NavItem>
+                  ))}
+                </Collapse>
+                <Button className="ml-5" style={{backgroundColor: "#8e8e8e"}}>
+                  <Link to={{
+                  pathname: '/admin/trangchu'
+                }}
+                        style={{color: "white"}}
+                  >
+                  Admin Page
+                </Link></Button>
+              </div>
             }
 
           </Nav>
