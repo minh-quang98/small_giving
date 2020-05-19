@@ -37,8 +37,8 @@ const lastWeek = new Date(
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-      fakeData : [
+    this.state = {
+      fakeData: [
         {
           src: 'img/Slide/banner.png',
           key: '1'
@@ -78,10 +78,10 @@ class MainPage extends React.Component {
   }
 
   getRankInfo = async () => {
-    fetch('https://misappmobile.000webhostapp.com/Bangxephang/bangxephang.php')
+    fetch('http://smallgiving.cf/mobileapp/Bangxephang/bãngephang.php')
       .then((response) => response.json())
       .then((data) => {
-     if(data.message !== "No post found") {
+        if (data.message !== "No post found") {
           this.setState({
             data: data
           })
@@ -91,7 +91,7 @@ class MainPage extends React.Component {
           })
         }
 
-        });
+      });
   }
 
   HuyHieu(item) {
@@ -115,7 +115,7 @@ class MainPage extends React.Component {
       }
       fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             idNguoiDung: data.idNguoiDung
           }, () => this.getProfile())
@@ -140,18 +140,18 @@ class MainPage extends React.Component {
   }
 
   render() {
-    let {fakeData} = this.state
+    let { fakeData } = this.state
     return (
       <Page
         className="DashboardPage"
         title="Trang chủ"
-        // breadcrumbs={[{ name: 'Dashboard', active: true }]}
+      // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
         <Row>
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <div>
-                <UncontrolledCarousel items={fakeData}/>
+                <UncontrolledCarousel items={fakeData} />
               </div>
             </Card>
           </Col>
@@ -159,14 +159,14 @@ class MainPage extends React.Component {
           <Col lg="4" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
-                <div style={{fontSize: 24, textAlign: "center", color: '#8e8e8e'}}>
-                   Số dư tài khoản
-                  <br/>
+                <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>
+                  Số dư tài khoản
+                  <br />
                   {this.state.token === ""
-                    ? <div style={{fontSize: 20, color: "#ae1f17", }}>
+                    ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
                       Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                     </div>
-                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                   }
                 </div>
               </CardBody>
@@ -192,13 +192,13 @@ class MainPage extends React.Component {
               <CardHeader>Về chúng tôi</CardHeader>
               <CardBody>
                 {productsData.map(
-                  ({ id, image, title, description,}) => (
+                  ({ id, image, title, description, }) => (
                     <ProductMedia
                       key={id}
                       image={image}
                       title={title}
                       description={description}
-                      // right={right}
+                    // right={right}
                     />
                   ),
                 )}
@@ -213,31 +213,31 @@ class MainPage extends React.Component {
                 {this.state.messageErr === ""
                   ? <Table responsive hover>
                     <thead>
-                    <tr className="text-capitalize align-middle text-center">
-                      <th>Huy Hiệu</th>
-                      <th>Tên Người Dùng</th>
-                      <th>Số Tiền</th>
-                    </tr>
+                      <tr className="text-capitalize align-middle text-center">
+                        <th>Huy Hiệu</th>
+                        <th>Tên Người Dùng</th>
+                        <th>Số Tiền</th>
+                      </tr>
                     </thead>
                     <tbody>
-                    {this.state.data.map((item, index) => (
-                      <tr key={index}>
-                        <td className="align-middle text-center">
-                          {index > 2
-                            ? index + 1
-                            : <Media
-                              object
-                              src={this.HuyHieu(index)}
-                              className="rounded mr-2 mb-2"
-                              style={{ width: 50, height: 50 }}
-                            />
-                          }
+                      {this.state.data.map((item, index) => (
+                        <tr key={index}>
+                          <td className="align-middle text-center">
+                            {index > 2
+                              ? index + 1
+                              : <Media
+                                object
+                                src={this.HuyHieu(index)}
+                                className="rounded mr-2 mb-2"
+                                style={{ width: 50, height: 50 }}
+                              />
+                            }
 
-                        </td>
-                        <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                        <td className="align-middle text-center">{item.SoTien}</td>
-                      </tr>
-                    ))}
+                          </td>
+                          <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                          <td className="align-middle text-center">{item.SoTien}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </Table>
                   : <div className="text-center">Không có dữ liệu</div>

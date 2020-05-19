@@ -40,12 +40,12 @@ class NewsPage extends React.Component {
   }
 
   getNew = async () => {
-    fetch('https://misappmobile.000webhostapp.com/Tinhoatdong/tinhoatdong.php')
+    fetch('http://smallgiving.cf/mobileapp/Tinhoatdong/tinhoatdong.php')
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-            data: data,
-          }
+          data: data,
+        }
         );
       });
   };
@@ -96,13 +96,13 @@ class NewsPage extends React.Component {
                 <Card>
                   <CardHeader
                     avatar={
-                      <Avatar style={{backgroundColor: "#ae1f17"}} aria-label="recipe">
+                      <Avatar style={{ backgroundColor: "#ae1f17" }} aria-label="recipe">
                         SG
                       </Avatar>
                     }
                     action={
                       <IconButton aria-label="settings">
-                        <MoreVertIcon/>
+                        <MoreVertIcon />
                       </IconButton>
                     }
                     title={Item.TenTin}
@@ -119,21 +119,22 @@ class NewsPage extends React.Component {
                   />
                   <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
-                      <FavoriteIcon/>
+                      <FavoriteIcon />
                     </IconButton>
                     <IconButton aria-label="share">
-                      <ShareIcon/>
+                      <ShareIcon />
                     </IconButton>
                     {
                       this.state.expanded ?
                         <IconButton
                           onClick={() => {
-                            this.handleExpandClickClose()}
+                            this.handleExpandClickClose()
+                          }
                           }
                           aria-expanded={this.state.expanded}
                           aria-label="Thu gọn"
                         >
-                          <ExpandMoreIcon/>
+                          <ExpandMoreIcon />
                         </IconButton>
                         : <IconButton
                           onClick={() => {
@@ -144,12 +145,12 @@ class NewsPage extends React.Component {
                                 this.handleExpandClick()
                               }
                             })
-                            }
+                          }
                           }
                           aria-expanded={this.state.expanded}
                           aria-label="Xem thêm"
                         >
-                          <ExpandMoreIcon/>
+                          <ExpandMoreIcon />
                         </IconButton>
                     }
 
