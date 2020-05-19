@@ -34,7 +34,7 @@ class ContactPage extends React.Component {
         NoiDung: this.state.noiDung
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/Gopy/gopyweb.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Gopy/gopyinsert.php`, config)
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Success") {

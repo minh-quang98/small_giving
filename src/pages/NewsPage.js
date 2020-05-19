@@ -40,7 +40,7 @@ class NewsPage extends React.Component {
   }
 
   getNew = async () => {
-    fetch('https://misappmobile.000webhostapp.com/Tinhoatdong/tinhoatdong.php')
+    fetch('http://smallgiving.cf/mobileapp/Tinhoatdong/tinhoatdong.php')
       .then((response) => response.json())
       .then((data) => {
         this.setState({

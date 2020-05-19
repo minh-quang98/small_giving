@@ -58,7 +58,7 @@ class DonationDetailPage extends Component {
         idHoatDong: this.state.idHoatDong
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/Hoatdong/webtinhoatdong.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thontin/webtinhoatdong.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -75,7 +75,7 @@ class DonationDetailPage extends Component {
           token: this.state.token
         })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
         .then((data)=> {
           this.setState({
@@ -92,7 +92,7 @@ class DonationDetailPage extends Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({

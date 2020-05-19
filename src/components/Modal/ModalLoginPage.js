@@ -62,7 +62,7 @@ class ModalLoginPage extends Component {
         MatKhau: this.state.password,
       }),
     };
-    fetch(`https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Dangnhap/dangnhap.php`, config)
       .then((response) => response.json())
       .then((data) => {
         if (data.token === "ERROR") {
@@ -148,7 +148,7 @@ class ModalLoginPage extends Component {
         MatKhau: this.state.password,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/Dangky/nhapsodienthoai.php?fbclid=IwAR1wSS0-kHCHfobShiqGu97VELS2XN_k1Mw4nhwfDzF2vPE5QBkFcfi9RwE', config)
+    fetch('http://smallgiving.cf/mobileapp/Dangky/nhapsodienthoai.php', config)
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Dang ki thanh cong") {

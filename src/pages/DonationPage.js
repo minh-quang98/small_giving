@@ -82,7 +82,7 @@ class DonationPage extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
         .then((data)=> {
           this.setState({
@@ -99,7 +99,7 @@ class DonationPage extends React.Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -109,7 +109,7 @@ class DonationPage extends React.Component {
   }
 
   getDonation () {
-    fetch(`https://misappmobile.000webhostapp.com/Hoatdong/hoatdong.php`)
+    fetch(`http://smallgiving.cf/mobileapp/Hoatdong/hoatdong.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -144,7 +144,7 @@ class DonationPage extends React.Component {
         variant: 'error',
       });
     } else {
-      fetch(`https://misappmobile.000webhostapp.com/Quyengop/themquyengop.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/Quyengop/themquyengop.php`, config)
         .then((res) => res.json())
         .then((data) => {
           if (data.message === "success") {
