@@ -1,24 +1,25 @@
 import AuthForm, { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
-import GAListener from 'components/GAListener';
+// import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout,  } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
 import AuthPage from 'pages/AuthPage';
 import React from 'react';
 import componentQueries from 'react-component-queries';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import './styles/reduction.scss';
 import Cookies from 'js-cookie';
 
+import Home from "./pages/MainPage"
+import DonationPage from "./pages/DonationPage"
+import NewsPage from "./pages/NewsPage"
+import DonationDetail from "./pages/DonationDetailPage"
+import ConsiderPage from "./pages/ConsiderPage"
+import GuidePage from "./pages/GuidePage"
+import HistoryPage from "./pages/HistoryPage"
+import ContactPage from "./pages/ContactPage"
+import ProfileUser from "./pages/ProfileUser"
+import Admin from "./pages/admin"
 
-const DonationPage = React.lazy(() => import('pages/DonationPage'));
-const NewsPage = React.lazy(() => import('pages/NewsPage'));
-const MainPage = React.lazy(() => import('pages/MainPage'));
-const HistoryPage = React.lazy(() => import('pages/HistoryPage'));
-const GuidePage = React.lazy(() => import('pages/GuidePage'));
-const ContactPage = React.lazy(() => import('pages/ContactPage'));
-const ConsiderPage = React.lazy(() => import('pages/ConsiderPage'));
-const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
-const DonationDetail = React.lazy(() => import('pages/DonationDetailPage'));
 
 const getBasename = () => {
   return `/${process.env.PUBLIC_URL.split('/').pop()}`;
@@ -31,40 +32,42 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-          <BrowserRouter basename={getBasename()}>
-            <GAListener>
-              <Switch>
-                <MainLayout breakpoint={this.props.breakpoint}>
-                  <React.Suspense fallback={<PageSpinner/>}>
-                    <Route exact path="/" component={MainPage}/>
-                    <Route exact path="/donation" component={DonationPage}/>
-                    <Route exact path="/news" component={NewsPage}/>
-                    <Route exact path="/donation-detail" component={DonationDetail}/>
+      <MainLayout breakpoint={this.props.breakpoint}>
+      {/*<div>*/}
+          {/*<BrowserRouter basename={getBasename()}>*/}
+            {/*<GAListener>*/}
+            {/*  <Switch>*/}
+            {/*    <MainLayout breakpoint={this.props.breakpoint}>*/}
+            {/*      <React.Suspense fallback={<PageSpinner/>}>*/}
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/donation" component={DonationPage}/>
+                    <Route path="/news" component={NewsPage}/>
+                    <Route path="/donation-detail" component={DonationDetail}/>
                     {this.state.token !== ""
                       ? <Route exact path="/consider" component={ConsiderPage}/>
                       : <Redirect to="/"/>
                     }
-                    <Route exact path="/guides" component={GuidePage}/>
+                    <Route path="/guides" component={GuidePage}/>
 
                     {this.state.token !== ""
-                      ? <Route exact path="/history" component={HistoryPage}/>
+                      ? <Route path="/history" component={HistoryPage}/>
                       : <Redirect to="/"/>
                     }
-                    <Route exact path="/contact" component={ContactPage}/>
+                    <Route path="/contact" component={ContactPage}/>
 
                     {this.state.token !== ""
-                      ? <Route exact path="/profile" component={ProfileUser}/>
+                      ? <Route path="/profile" component={ProfileUser}/>
                       : <Redirect to="/"/>
                     }
-                  </React.Suspense>
-                </MainLayout>
-                <Redirect to="/"/>
-              </Switch>
-            </GAListener>
-          </BrowserRouter>
-        }
-      </div>
+                    <Route path="/admin" component={Admin}/>
+                  {/*</React.Suspense>*/}
+                {/*</MainLayout>*/}
+              {/*</Switch>*/}
+            {/*</GAListener>*/}
+          {/*</BrowserRouter>*/}
+
+      {/*</div>*/}
+      </MainLayout>
     );
   }
 }
@@ -93,4 +96,5 @@ const query = ({ width }) => {
   return { breakpoint: 'xs' };
 };
 
-export default componentQueries(query)(App);
+// export default componentQueries(query)(App);
+export default withRouter(App);

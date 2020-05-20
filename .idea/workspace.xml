@@ -2,14 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/demo/admin/cardPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/demo/admin/chartjs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/demo/admin/dashboardPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/demo/admin/header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/demo/admin/widgetPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/admin/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/admin/bemnames.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/admin/colors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/admin/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/admin/demos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/admin/propTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserProgressTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserProgressTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo/dashboardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo/dashboardPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DonationDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationDetailPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ContactPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ContactPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewsPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +40,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ecorau/OneBook" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="E:\WebSM\small-giving\node_modules\stylelint" />
@@ -37,6 +49,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WebSM\small-giving\src\utils\admin" />
+      <recent name="E:\WebSM\small-giving\src\demo\admin" />
       <recent name="E:\WebSM\small-giving\src\components\Modal" />
       <recent name="E:\WebSM\small-giving\src\assets\img" />
       <recent name="E:\WebSM\small-giving\public\img\News" />
@@ -168,7 +182,22 @@
       <workItem from="1588511867531" duration="831000" />
       <workItem from="1588558045482" duration="149000" />
       <workItem from="1588570683270" duration="1341000" />
-      <workItem from="1588597664591" duration="6706000" />
+      <workItem from="1588597664591" duration="7356000" />
+      <workItem from="1588642511772" duration="2182000" />
+      <workItem from="1588728458896" duration="2517000" />
+      <workItem from="1588988610519" duration="1562000" />
+      <workItem from="1589080905761" duration="1179000" />
+      <workItem from="1589178915111" duration="20000" />
+      <workItem from="1589267370920" duration="1962000" />
+      <workItem from="1589293098303" duration="2386000" />
+      <workItem from="1589335230347" duration="5566000" />
+      <workItem from="1589464161290" duration="3766000" />
+      <workItem from="1589509790582" duration="24000" />
+      <workItem from="1589510627143" duration="4392000" />
+      <workItem from="1589552535307" duration="2063000" />
+      <workItem from="1589594495407" duration="6074000" />
+      <workItem from="1589725530378" duration="600000" />
+      <workItem from="1589783648459" duration="6305000" />
     </task>
     <servers />
   </component>
@@ -180,19 +209,23 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="94" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1587220421477" />
-    <state x="393" y="153" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584626974557">
+    <state x="393" y="153" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589294154258">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="393" y="153" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1584626974557" />
+    <state x="393" y="153" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1589294154258" />
     <state x="393" y="162" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1584411303324" />
     <state x="370" y="86" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585640212154">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="370" y="86" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1585640212154" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1588558193119">
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1589338785360">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1588558193119" />
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589338785360" />
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1589786070544">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1589786070544" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
       <screen x="0" y="0" width="1280" height="680" />
@@ -210,15 +243,15 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1257" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1588263821745" />
-    <state x="297" y="152" width="672" height="640" key="run.anything.popup" timestamp="1585640689733">
+    <state x="297" y="152" width="672" height="640" key="run.anything.popup" timestamp="1588989716505">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="152" width="672" height="640" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1585640689733" />
+    <state x="297" y="152" width="672" height="640" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1588989716505" />
     <state x="297" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1584002556096" />
-    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1586788369590">
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1589338802024">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1586788369590" />
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1589338802024" />
     <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1584523967495" />
   </component>
 </project>

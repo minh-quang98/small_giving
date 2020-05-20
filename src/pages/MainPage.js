@@ -78,7 +78,7 @@ class MainPage extends React.Component {
   }
 
   getRankInfo = async () => {
-    fetch('http://smallgiving.cf/mobileapp/Bangxephang/bãngephang.php')
+    fetch('http://smallgiving.cf/mobileapp/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
         if (data.message !== "No post found") {
@@ -101,7 +101,7 @@ class MainPage extends React.Component {
       case "1":
         return 'img/logo/HHB.png';
       case "2":
-        return 'img/logo/HHD.png';
+        return 'img/logo/HHD  .png';
     }
   }
 
@@ -223,16 +223,7 @@ class MainPage extends React.Component {
                       {this.state.data.map((item, index) => (
                         <tr key={index}>
                           <td className="align-middle text-center">
-                            {index > 2
-                              ? index + 1
-                              : <Media
-                                object
-                                src={this.HuyHieu(index)}
-                                className="rounded mr-2 mb-2"
-                                style={{ width: 50, height: 50 }}
-                              />
-                            }
-
+                            {index + 1}
                           </td>
                           <td className="align-middle text-center">{item.TenNguoiDung}</td>
                           <td className="align-middle text-center">{item.SoTien}</td>

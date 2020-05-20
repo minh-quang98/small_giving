@@ -46,7 +46,6 @@ class ContactPage extends React.Component {
             variant: 'success',
           });
           setTimeout(() => {
-            Cookies.set('small-giving', data.token, { expires: 1 });
             window.location.reload();
           }, 1000)
         } else {
