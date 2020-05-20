@@ -50,18 +50,22 @@ const hoatdong = [
   { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
-  { to: '/bcnaptien', name: 'Giao dịch nạp tiền', exact: false, Icon: MdAttachMoney },
-  { to: '/bctaitro', name: 'Giao dịch thực hiện điểm danh', exact: false, Icon: MdTextFields },
-  { to: '/bctaitro2', name: 'Giao dịch thực hiện khảo sát', exact: false, Icon: FaRegMoneyBillAlt },
+  { to: '/bcnaptiennd', name: 'GD nạp nhà hảo tâm', exact: false, Icon: MdAttachMoney },
+  { to: '/bcnaptienks', name: 'GD nạp tài khoản khảo sát', exact: false, Icon: MdAttachMoney },
+  { to: '/bcnaptiendd', name: 'GD nạp quỹ điểm danh', exact: false, Icon: MdAttachMoney },
+  { to: '/bctaitro', name: 'GD thực hiện điểm danh', exact: false, Icon: MdAttachMoney },
+  { to: '/bctaitro2', name: 'GD thực hiện khảo sát', exact: false, Icon: MdAttachMoney },
 
-  { to: '/bcquyengop', name: 'Giao dịch quyên góp', exact: false, Icon: FaRegMoneyBillAlt },
+  { to: '/bcquyengop', name: 'GD quyên góp', exact: false, Icon: MdAttachMoney },
 ];
 const taitro = [
   { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
   { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
-  { to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney },
+  { to: '/naptiennd', name: 'Nạp tiền nhà hảo tâm', exact: false, Icon: GiReceiveMoney },
+  { to: '/naptienks', name: 'Nạp tiền tài khoản khảo sát', exact: false, Icon: GiReceiveMoney },
+  { to: '/naptiendd', name: 'Nạp tiền quỹ điểm danh', exact: false, Icon: GiReceiveMoney },
   { to: '/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
 ];
 

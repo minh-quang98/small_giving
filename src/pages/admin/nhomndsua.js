@@ -36,7 +36,7 @@ class Nhomndsua extends React.Component {
         idNhom: this.props.chooseId,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/select.php', config)
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -50,6 +50,7 @@ class Nhomndsua extends React.Component {
       });
   }
   getdataupdate() {
+
     let config2 = {
       method: "POST",
       body: JSON.stringify({
@@ -57,7 +58,7 @@ class Nhomndsua extends React.Component {
         TenNhom: this.state.name,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/update.php', config2)
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/update.php', config2)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
@@ -73,8 +74,10 @@ class Nhomndsua extends React.Component {
         } else {
 
 
+
         }
       });
+
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -167,6 +170,7 @@ class Nhomndsua extends React.Component {
                 >
                   Cập nhật
                   </Button>
+
               </Container>
 
             </div>

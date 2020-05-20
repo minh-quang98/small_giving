@@ -1,14 +1,25 @@
 import Page from 'components/admin/Page';
 import React from 'react';
-import Naptienthem from 'pages/admin/naptienthem';
+import Naptienthem from 'pages/admin/naptienndthem';
 import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 const tableTypes = ['hover'];
 
+const dataError = [
+  {
+    e1: "",
+    e2: "",
+    e3: "Chưa có dữ liệu",
+    e4: "",
+    e5: "",
+  }
+]
 class naptien extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      dataError: [],
+      dataerror: false,
       showModalThem: false,
     };
   }
@@ -27,15 +38,22 @@ class naptien extends React.Component {
   }
 
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownaptien.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownaptiennd.php')
       .then(response => response.json())
       .then(data => {
-        this.setState(
-          {
-            data: data,
-          },
-          () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+            () => console.log('kiemtradulieu', this.state.data),
+          );
+
+        }
+
       });
   };
   toggle = modalType => () => {
@@ -53,10 +71,10 @@ class naptien extends React.Component {
     return (
       <Page
         className="naptien"
-        title="Nạp tiền"
+        title="Nạp tiền nhà hảo tâm"
         breadcrumbs={[
           { name: 'quản trị giao dịch' },
-          { name: 'nạp tiền', active: true },
+          { name: 'nạp tiền nhà hảo tâm', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -81,23 +99,36 @@ class naptien extends React.Component {
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
-                        <th>Mã giao dịch</th>
-                        <th>Tài khoản nạp</th>
+                        <th>ID</th>
+                        <th>Tài khoản nhà hảo tâm</th>
                         <th>Thời gian</th>
-                        <th>Số tiền</th>
+                        <th>Số tiền nạp</th>
+                        <th>CTV thưc hiện</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.data.map(Item => {
-                        return (
-                          <tr>
-                            <td>{Item.idGiaoDich}</td>
-                            <td>{Item.TenNguoiDung}</td>
-                            <td>{Item.ThoiGian}</td>
-                            <td>{Item.SoTien}</td>
-                          </tr>
-                        );
-                      })}
+                      {this.state.dataerror ?
+                        this.state.dataError.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.e1}</td>
+                              <td>{Item.e2}</td>
+                              <td>{Item.e3}</td>
+                              <td>{Item.e4}</td>
+                              <td>{Item.e5}</td>
+                            </tr>
+                          );
+                        }) : this.state.data.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.idGiaoDich}</td>
+                              <td>{Item.TenNguoiDung}</td>
+                              <td>{Item.ThoiGian}</td>
+                              <td>{Item.SoTien}</td>
+                              <td>{Item.CTV}</td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </CardBody>

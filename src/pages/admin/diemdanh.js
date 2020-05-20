@@ -7,15 +7,36 @@ import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
+const dataError = [
+  {
+    e1: "",
+    e2: "Chưa có dữ liệu",
+    e3: "",
+    e4: "",
+    e5: "",
+    e6: "",
+  }
+]
 class diemdanh extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      dataError: [],
+      dataerror: false,
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
+      idDiemDanh: "",
     };
+  }
+  componentDidUpdate(preProps, preState, future) {
+    const { idDiemDanh } = this.state;
+    if (preState.idDiemDanh != idDiemDanh) {
+      this.handleShowModalSua(idDiemDanh);
+      // this.handleShowModalXem(idHoatDong);
+    }
+
   }
   handleShowModalThem = () => {
     this.setState({
@@ -55,16 +76,23 @@ class diemdanh extends React.Component {
 
   getdata = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/showdiemdanh.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/showdiemdanh.php',
     )
       .then(response => response.json())
       .then(data => {
-        this.setState(
-          {
-            data: data,
-          },
-          () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+            () => console.log('kiemtradulieu', this.state.data),
+          );
+
+        }
+
       });
   };
   render() {
@@ -114,41 +142,58 @@ class diemdanh extends React.Component {
                     <thead>
                       <tr className="table-danger">
                         <th>ID</th>
-                        <th>Tên tài khoản</th>
-                        <th>Số dư</th>
+                        <th>Tên quỹ điểm danh</th>
+
                         <th>Số người tham gia</th>
-                        <th>Sô tiền</th>
-                        <th>Tác vụ</th>
+                        <th>Sô tiền mỗi lượt</th>
+                        <th>CTV tạo quỹ</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.data.map(Item => {
-                        return (
-                          <tr>
-                            <td>{Item.idDiemDanh}</td>
-                            <td>{Item.TenTK}</td>
-                            <td>{Item.SoDuTK}</td>
-                            <td>{Item.SoNguoiTG}</td>
-                            <td>{Item.SoTienML}</td>
-                            <td>
-                              <FaEdit
-                                className="can-click "
-                                size="1.5em"
-                                onClick={() =>
-                                  this.handleShowModalSua(Item.idDiemDanh)
-                                }
-                              />
-                              <MdDelete
-                                className="can-click"
-                                size="1.5em"
-                                onClick={() =>
-                                  this.handleShowModalSua(Item.idDiemDanh)
-                                }
-                              />
-                            </td>
-                          </tr>
-                        );
-                      })}
+                      {this.state.dataerror ?
+                        this.state.dataError.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.e1}</td>
+                              <td>{Item.e2}</td>
+
+                              <td>{Item.e3}</td>
+                              <td>{Item.e4}</td>
+                              <td>{Item.e5}</td>
+                              <td>
+                                {Item.e6}
+                              </td>
+                            </tr>
+                          );
+                        }) : this.state.data.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.idDiemDanh}</td>
+                              <td>{Item.TenDiemDanh}</td>
+
+                              <td>{Item.SoNguoiTG}</td>
+                              <td>{Item.SoTienML}</td>
+                              <td>{Item.TenNguoiDung}</td>
+                              <td>
+                                <FaEdit
+                                  className="can-click "
+                                  size="1.5em"
+                                  onClick={() =>
+                                    this.handleShowModalSua(Item.idDiemDanh)
+                                  }
+                                />
+                                <MdDelete
+                                  className="can-click"
+                                  size="1.5em"
+                                  onClick={() =>
+                                    this.handleShowModalSua(Item.idDiemDanh)
+                                  }
+                                />
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </CardBody>
