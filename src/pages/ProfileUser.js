@@ -50,7 +50,7 @@ class ProfileUser extends Component {
           token: this.state.token
         })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
         .then((data)=> {
           this.setState({
@@ -67,7 +67,7 @@ class ProfileUser extends Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/ThongtinForWeb/thongtin.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         console.log("datapro>>",data)
@@ -90,7 +90,7 @@ class ProfileUser extends Component {
         STK: this.state.STK
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/Doithongtin/update.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Doithongtin/update.php`, config)
       .then((response) => response.json())
       .then((data) => {
         if (data.message !== "Success") {
