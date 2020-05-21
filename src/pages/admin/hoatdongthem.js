@@ -16,7 +16,7 @@ import {
 } from 'reactstrap';
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
-
+import Cookies from 'js-cookie';
 const initialState = {
   id: '',
   name: '',
@@ -26,15 +26,92 @@ const initialState = {
   content: '',
   address: '',
   total: '',
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
 
   totalError: '',
   nameError: '',
   imageError: '',
   contentError: '',
+  dataselect: [],
 };
 
 class Hoatdongthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    //this.getdatainsert();
+    this.getnth();
+  }
+  getnth = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+
+  getdatainsert() {
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        TenNguoiDung: this.state.id,
+        idCTV: this.state.user.idNguoiDung,
+        TenHoatDong: this.state.name,
+        NoiDung: this.state.content,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        DiaChi: this.state.address,
+        Anh: this.state.image,
+        ChiDK: this.state.total,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Thành công!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          window.location.reload();
+        } else {
+          //notifydefeat('this is a notify');
+
+
+        }
+      });
+    //this.setState(initialState);
+    //}
+
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -100,14 +177,23 @@ class Hoatdongthem extends React.Component {
                   <Col xl={6} lg={12} md={12}>
                     <Form>
                       <FormGroup>
-                        <Label for="exampleText"> Mã họat động</Label>
+                        <Label for="exampleText"> Người thụ hưởng</Label>
                         <Input
-                          disabled="true"
-                          type="text"
+
+                          type="select"
                           name="id"
                           value={this.state.id}
+                          onChange={val => {
+                            this.setState({
+                              id: val.target.value,
+                            });
 
-                        />
+                          }}
+
+                        ><option></option>{this.state.dataselect.map(Item => {
+                          return <option>{Item.TenNguoiDung}</option>;
+                        })}
+                        </Input>
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleDate">Ngày bắt đầu</Label>
@@ -179,7 +265,7 @@ class Hoatdongthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleNumber">
                           {' '}
-                          Tổng tiền dự kiến <span className="red-text">*</span>
+                          Kinh phí dự kiến <span className="red-text">*</span>
                         </Label>
                         <div className="error-text">
                           {this.state.totalError}
@@ -244,9 +330,14 @@ class Hoatdongthem extends React.Component {
 
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger"
+                  type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Đăng tải
                 </Button>
+
               </Container>
             </div>
           </Form>

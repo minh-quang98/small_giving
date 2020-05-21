@@ -21,13 +21,94 @@ const initialState = {
   name: '',
   money: '',
   moneyError: '',
+  dataselect: [],
 };
 
 class Diemdanhsua extends React.Component {
   state = initialState;
-  componentDidMount = () => {
-    console.log('check>>>', this.props.chooseId);
+  componentWillReceiveProps = () => {
+    console.log("check>>>", this.props.chooseId);
+    this.getdatashow();
+    //this.getdataupdate();
+
+  }
+  componentDidMount() {
+    this.getnhataitro();
+  }
+  getnhataitro = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
   };
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idDiemDanh: this.props.chooseId,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/select.php', config)
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            id: datashow.idDiemDanh,
+            name: datashow.TenDiemDanh,
+            patron: datashow.TenNguoiDung,
+            startdate: datashow.ThoiGianBD,
+            enddate: datashow.ThoiGianKT,
+            eachturn: datashow.SoTienML
+
+          },
+          () => console.log('kiemtradulieu>>', this.state.datashow),
+        );
+      });
+  }
+  getdataupdate() {
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idDiemDanh: this.state.id,
+          TenDiemDanh: this.state.name,
+
+          TenNguoiDung: this.state.patron,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          SoTienML: this.state.eachturn,
+
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            window.location.reload();
+
+          } else {
+
+
+
+          }
+        });
+      this.setState(initialState);
+    }
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -51,12 +132,12 @@ class Diemdanhsua extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    // this.setState(initialState);
+    //}
   };
   render() {
     return (
@@ -67,82 +148,121 @@ class Diemdanhsua extends React.Component {
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
             <Row>
-              <Col xl={12} lg={12} md={12}>
-                <Card>
-                  <CardBody className="pd-rancach">
-                    <Form>
-                      <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText"> Mã tài khoản</Label>
-                          </Col>
-                          <Col md={8}>
-                            <Input
-                              disabled="true"
-                              type="text"
-                              name="id"
-                              value={this.props.chooseId}
-                            />
-                          </Col>
-                        </Row>
-                      </FormGroup>
-                      <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText">
-                              Tên tài khoản<span className="red-text">*</span>
-                            </Label>
-                          </Col>
-                          <Col md={8}>
-                            <Input
-                              type="text"
-                              name="name"
-                              value={this.state.name}
-                              onChange={val => {
-                                this.setState({
-                                  name: val.target.value,
-                                });
-                              }}
-                            />
-                          </Col>
-                        </Row>
-                      </FormGroup>
-                      <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText">
-                              Số tiền cho mỗi lượt
-                              <span className="red-text">*</span>
-                            </Label>
-                          </Col>
-                          <Col md={8}>
-                            <div className="error-text">
-                              {this.state.moneyError}
-                            </div>
-                            <Input
-                              type="number"
-                              name="money"
-                              value={this.state.money}
-                              onChange={val => {
-                                this.setState({
-                                  money: val.target.value,
-                                });
-                              }}
-                            />
-                          </Col>
-                        </Row>
-                      </FormGroup>
-                    </Form>
-                  </CardBody>
-                </Card>
+              <Col xl={6} lg={12} md={12}>
+                <Form>
+                  <FormGroup>
+                    <Label for="exampleText">Mã điểm danh</Label>
+                    <Input
+                      disabled="true"
+                      type="text"
+                      name="id"
+                      value={this.state.id}
+                      onChange={this.handleChange}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="exampleDate">Thời gian bắt đầu</Label>
+
+                    <Input
+                      type="date"
+                      name="startdate"
+                      value={this.state.startdate}
+                      onChange={val => {
+                        this.setState({
+                          startdate: val.target.value,
+                        });
+                      }}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label for="exampleEmail"> Thuộc nhà tài trợ</Label>
+                    <Input
+                      type="select"
+                      name="patron"
+                      value={this.state.patron}
+                      onChange={val => {
+                        this.setState({
+                          patron: val.target.value,
+                        });
+                      }}
+                    >{this.state.dataselect.map(Item => {
+                      return <option>{Item.TenNguoiDung}</option>;
+                    })}
+                    </Input>
+                  </FormGroup>
+
+                </Form>
+              </Col>
+
+              <Col xl={6} lg={12} md={12}>
+                <Form>
+                  <FormGroup>
+                    <Label for="exampleText">
+                      Tên điểm danh <span className="red-text">*</span>
+                    </Label>
+                    <div className="error-text">{this.state.nameError}</div>
+                    <Input
+                      type="text"
+                      name="name"
+                      value={this.state.name}
+                      onChange={val => {
+                        this.setState({
+                          name: val.target.value,
+                        });
+                      }}
+                    />
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label for="exampleDate">Thời gian kết thúc</Label>
+                    <Input
+                      type="date"
+                      name="enddate"
+                      value={this.state.enddate}
+                      onChange={val => {
+                        this.setState({
+                          enddate: val.target.value,
+                        });
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="exampleNumber">
+                      Số tiền cho mỗi lượt điểm danh{' '}
+                      <span className="red-text">*</span>
+                    </Label>
+                    <div className="error-text">
+                      {this.state.eachturnError}
+                    </div>
+                    <Input
+                      type="number"
+                      name="eachturn"
+                      value={this.state.eachturn}
+                      onChange={val => {
+                        this.setState({
+                          eachturn: val.target.value,
+                        });
+                      }}
+                    />
+                  </FormGroup>
+
+
+                </Form>
+
+
               </Col>
             </Row>
 
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdataupdate()}
+                >
                   Cập nhật
                 </Button>
+
               </Container>
             </div>
           </Form>

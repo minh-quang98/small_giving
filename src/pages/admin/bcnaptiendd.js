@@ -17,21 +17,17 @@ const initialState = {
     startdate: '',
     enddate: '',
     name: '',
-    name2: '',
     data: [],
     dataError: [],
     tong: [],
     tongError: [],
     datashow: [],
-    datashow2: [],
     dataerror: false,
-
 };
 const dataError = [
     {
         id: "",
-        TenKhaoSat: " Chưa có dữ liệu",
-        TenNguoiDung: "",
+        TenDiemDanh: " Chưa có dữ liệu",
         SoTien: "",
     }
 ]
@@ -41,14 +37,14 @@ const tongError = [
         tong: " 0",
     }
 ]
-class bctaitro extends React.Component {
+
+class bcnaptien extends React.Component {
     state = initialState;
     componentDidMount() {
         this.getdata();
-        this.getdata2();
     }
     getdata = async () => {
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
+        fetch('http://smallgiving.cf/mobileapp/trangquantri/showdiemdanh.php')
             .then(response => response.json())
             .then(datashow => {
                 this.setState(
@@ -59,18 +55,7 @@ class bctaitro extends React.Component {
                 );
             });
     };
-    getdata2 = async () => {
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
-            .then(response => response.json())
-            .then(datashow2 => {
-                this.setState(
-                    {
-                        datashow2: datashow2,
-                    },
-                    () => console.log('kiemtradulieu', this.state.datashow),
-                );
-            });
-    };
+
     getdatabaocao() {
         const isValid = this.validate();
         if (isValid) {
@@ -79,39 +64,38 @@ class bctaitro extends React.Component {
                 body: JSON.stringify({
                     ThoiGian1: this.state.startdate,
                     ThoiGian2: this.state.enddate,
-                    TenNguoiDung: this.state.name2,
-                    TenKhaoSat: this.state.name
+                    TenDiemDanh: this.state.name,
                 }),
             };
-            fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/thuchienks.php', config)
+            fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/naptiendd.php', config)
                 .then(response => response.json())
-                .then(data => {
-                    if (data.message === "No post found") {
+                .then(dataJson => {
+                    console.log(dataJson);
+                    if (dataJson.message === "No post found") {
                         this.setState({ dataerror: true, dataError: dataError });
-                    } else {
+                    }
+                    else {
                         this.setState(
                             {
                                 dataerror: false,
-                                data: data,
+                                data: dataJson,
                             }, () => this.getdatatong(),
                         );
-
                     }
-
                 });
         }
     }
+
     getdatatong() {
         let config2 = {
             method: "POST",
             body: JSON.stringify({
                 ThoiGian1: this.state.startdate,
                 ThoiGian2: this.state.enddate,
-                TenKhaoSat: this.state.name,
-                TenNguoiDung: this.state.name2
+                TenDiemDanh: this.state.name,
             }),
         };
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/tongthuchienks.php', config2)
+        fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/tongnaptiendd.php', config2)
             .then(response => response.json())
             .then(tong => {
                 this.setState(
@@ -158,15 +142,14 @@ class bctaitro extends React.Component {
         //this.setState(initialState);
         //}
     };
-
     render() {
         return (
             <Page
-                className="bctaitro"
-                title="Nguồn tài trợ"
+                className="bcnaptien"
+                title="Tổng tiền nạp"
                 breadcrumbs={[
                     { name: 'báo cáo' },
-                    { name: 'giao dịch thực hiện khảo sát', active: true },
+                    { name: 'giao dịch nạp tiền quỹ điểm danh', active: true },
                 ]}
             >
                 {tableTypes.map((tableType, index) => (
@@ -179,12 +162,12 @@ class bctaitro extends React.Component {
                                             <Col xl={6} lg={12} md={12}>
                                                 <Form>
                                                     <Row>
-                                                        <Col md={4}>
+                                                        <Col md={3}>
                                                             <Label for="exampleDate">
                                                                 Từ ngày <span className="red-text">*</span>
                                                             </Label>
                                                         </Col>
-                                                        <Col md={8}>
+                                                        <Col md={9}>
                                                             <div className="error-text">
                                                                 {this.state.startdateError}
                                                             </div>
@@ -204,12 +187,12 @@ class bctaitro extends React.Component {
                                                 </Form>
                                                 <Form>
                                                     <Row>
-                                                        <Col md={4}>
+                                                        <Col md={3}>
                                                             <Label for="exampleDate">
-                                                                Tài khoản khảo sát
+                                                                Quỹ điểm danh
                                                             </Label>
                                                         </Col>
-                                                        <Col md={8}>
+                                                        <Col md={9}>
 
                                                             <Input
                                                                 type="select"
@@ -221,9 +204,9 @@ class bctaitro extends React.Component {
                                                                     })
                                                                 }}
                                                             ><option></option>
-                                                                {this.state.datashow2.map((Item, index) => (
+                                                                {this.state.datashow.map((Item, index) => (
 
-                                                                    <option>{Item.TenKhaoSat}</option>
+                                                                    <option>{Item.TenDiemDanh}</option>
                                                                 )
                                                                 )}
                                                             </Input>
@@ -234,12 +217,12 @@ class bctaitro extends React.Component {
                                             <Col xl={6} lg={12} md={12}>
                                                 <Form>
                                                     <Row>
-                                                        <Col md={4}>
+                                                        <Col md={3}>
                                                             <Label for="exampleDate">
                                                                 Đến ngày <span className="red-text">*</span>
                                                             </Label>
                                                         </Col>
-                                                        <Col md={8}>
+                                                        <Col md={9}>
                                                             <div className="error-text">
                                                                 {this.state.enddateError}
                                                             </div>
@@ -257,56 +240,27 @@ class bctaitro extends React.Component {
                                                         </Col>
                                                     </Row>
                                                 </Form>
-                                                <Form>
-                                                    <Row>
-                                                        <Col md={4}>
-                                                            <Label for="exampleDate">
-                                                                Nhà hảo tâm
-                                                            </Label>
-                                                        </Col>
-                                                        <Col md={8}>
-
-                                                            <Input
-                                                                type="select"
-                                                                name="name2"
-                                                                value={this.state.name2}
-                                                                onChange={(val) => {
-                                                                    this.setState({
-                                                                        name2: val.target.value
-                                                                    })
-                                                                }}
-                                                            ><option></option>
-                                                                {this.state.datashow.map((Item, index) => (
-
-                                                                    <option>{Item.TenNguoiDung}</option>
-                                                                )
-                                                                )}
-                                                            </Input>
-                                                        </Col>
-                                                    </Row>
-                                                </Form>
                                             </Col>
                                         </Row>
                                         <Table
                                             {...{ [tableType || 'hover']: true }}
-                                            id="table-to-xls-3"
+                                            id="table-to-xls-1"
                                         >
                                             <thead>
                                                 <tr className="table-danger">
                                                     <th>ID</th>
-                                                    <th>Bài khảo sát</th>
-                                                    <th>Nhà hảo tâm</th>
-                                                    <th>Số tiền</th>
+                                                    <th>Quỹ điểm danh</th>
+                                                    <th>Số tiền nạp</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+
                                                 {this.state.dataerror ?
                                                     this.state.dataError.map(Item => {
                                                         return (
                                                             <tr>
                                                                 <td>{Item.id}</td>
-                                                                <td>{Item.TenKhaoSat}</td>
-                                                                <td>{Item.TenNguoiDung}</td>
+                                                                <td>{Item.TenDiemDanh}</td>
                                                                 <td>{Item.SoTien}</td>
                                                             </tr>
                                                         );
@@ -314,12 +268,12 @@ class bctaitro extends React.Component {
                                                         return (
                                                             <tr>
                                                                 <td>{Item.idGiaoDich}</td>
-                                                                <td>{Item.TenKhaoSat}</td>
-                                                                <td>{Item.TenNguoiDung}</td>
+                                                                <td>{Item.TenDiemDanh}</td>
                                                                 <td>{Item.SoTien}</td>
                                                             </tr>
                                                         );
-                                                    })}
+                                                    })
+                                                }
 
                                             </tbody>
                                             <Row>
@@ -336,9 +290,11 @@ class bctaitro extends React.Component {
                                                             return (
                                                                 <div className="sum">{Item.tong}</div>
                                                             );
-                                                        })}
+                                                        })
+                                                    }
                                                 </Col>
                                             </Row>
+
                                         </Table>
                                         <Table {...{ [tableType || 'hover']: true }}>
 
@@ -362,7 +318,7 @@ class bctaitro extends React.Component {
                                                         color="danger"
                                                         size="lg"
                                                         className="btn btn-excel-report"
-                                                        table="table-to-xls-3"
+                                                        table="table-to-xls-1"
                                                         filename="excelfile"
                                                         sheet="sheet 1"
                                                         buttonText="Xuất Excel"
@@ -380,4 +336,4 @@ class bctaitro extends React.Component {
         );
     }
 }
-export default bctaitro;
+export default bcnaptien;

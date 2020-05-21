@@ -16,7 +16,7 @@ import {
 } from 'reactstrap';
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
-
+import Cookies from 'js-cookie';
 
 const initialState = {
   id: '',
@@ -27,15 +27,87 @@ const initialState = {
   patron: '',
   eachturn: '',
   total: '',
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
 
   nameError: '',
   urlError: '',
   eachturnError: '',
   totalError: '',
+  dataselect: [],
 };
 
 class Khaosatthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    //this.getdatainsert();
+    this.getnhataitro();
+  }
+  getnhataitro = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+  getdatainsert() {
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idCTV: this.state.user.idNguoiDung,
+        TenKhaoSat: this.state.name,
+        TenNguoiDung: this.state.patron,
+        Link: this.state.url,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        SoTienML: this.state.eachturn,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Thành công!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          window.location.reload();
+
+        } else {
+          //notifydefeat('this is a notify');
+        }
+      });
+    //this.setState(initialState);
+    //}
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -124,7 +196,7 @@ class Khaosatthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleEmail"> Thuộc nhà tài trợ</Label>
                         <Input
-                          type="email"
+                          type="select"
                           name="patron"
                           value={this.state.patron}
                           onChange={val => {
@@ -132,27 +204,12 @@ class Khaosatthem extends React.Component {
                               patron: val.target.value,
                             });
                           }}
-                        />
+                        ><option></option>{this.state.dataselect.map(Item => {
+                          return <option>{Item.TenNguoiDung}</option>;
+                        })}
+                        </Input>
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleNumber">
-                          Số tiền cho mỗi lượt khảo sát{' '}
-                          <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.eachturnError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="eachturn"
-                          value={this.state.eachturn}
-                          onChange={val => {
-                            this.setState({
-                              eachturn: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
                     </Form>
                   </Col>
 
@@ -189,6 +246,32 @@ class Khaosatthem extends React.Component {
                         />
                       </FormGroup>
                       <FormGroup>
+                        <Label for="exampleNumber">
+                          Số tiền cho mỗi lượt khảo sát{' '}
+                          <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.eachturnError}
+                        </div>
+                        <Input
+                          type="number"
+                          name="eachturn"
+                          value={this.state.eachturn}
+                          onChange={val => {
+                            this.setState({
+                              eachturn: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+
+                    </Form>
+
+                  </Col>
+                  <Col>
+                    <Form>
+                      <FormGroup>
                         <Label for="exampleUrl">
                           Link khảo sát <span className="red-text">*</span>
                         </Label>
@@ -204,34 +287,22 @@ class Khaosatthem extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleNumber">
-                          Tổng tiền khảo sát <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.totalError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="total"
-                          value={this.state.total}
-                          onChange={val => {
-                            this.setState({
-                              total: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
                     </Form>
                   </Col>
+
                 </Row>
               </CardBody>
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit" pill
+                  className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Đăng tải
                 </Button>
+
               </Container>
             </div>
           </Form>

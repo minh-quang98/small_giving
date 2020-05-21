@@ -3,7 +3,7 @@ import {
   Modal, ModalBody, ModalHeader, ModalFooter,
   FormGroup, Label, Input, Button,
 } from 'reactstrap';
-import {TextField, Snackbar } from '@material-ui/core';
+import { TextField, Snackbar } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import { withSnackbar } from 'notistack';
 
@@ -91,7 +91,7 @@ class ModalLoginPage extends Component {
       });
   }
 
-  checkSignUp () {
+  checkSignUp() {
     if (this.state.email === "") {
       this.props.enqueueSnackbar('Không được để trống Email', {
         anchorOrigin: {
@@ -138,7 +138,7 @@ class ModalLoginPage extends Component {
     }
   }
 
-  handleSignUp () {
+  handleSignUp() {
     let config = {
       method: "POST",
       body: JSON.stringify({
@@ -183,7 +183,7 @@ class ModalLoginPage extends Component {
           <Modal
             isOpen={this.props.show}
             // size="sm"
-            style={{width: "25%"}}
+            style={{ width: "25%" }}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -195,10 +195,10 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 {/*<Label>Email:</Label>*/}
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Email"
                   variant="outlined"
-                  onChange={(val)=> {
+                  onChange={(val) => {
                     this.setState({
                       email: val.target.value
                     })
@@ -208,7 +208,7 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 {/*<Label>Mật khẩu:</Label>*/}
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Mật khẩu"
                   variant="outlined"
                   type="password"
@@ -229,7 +229,7 @@ class ModalLoginPage extends Component {
             <ModalFooter className="d-flex flex-column">
               <div>
                 <Button outline color="primary" className="mr-1">Quên mật khẩu?</Button>
-                <Button onClick={()=>this.handleLogin()}>Đăng nhập</Button>
+                <Button onClick={() => this.handleLogin()}>Đăng nhập</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">
@@ -242,7 +242,7 @@ class ModalLoginPage extends Component {
           : <Modal
             isOpen={this.props.show}
             // size="sm"
-            style={{width: "25%"}}
+            style={{ width: "25%" }}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -252,10 +252,10 @@ class ModalLoginPage extends Component {
             <ModalBody>
               <FormGroup>
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Số điện thoại"
                   variant="outlined"
-                  onChange={(val)=> {
+                  onChange={(val) => {
                     this.setState({
                       phone: val.target.value
                     })
@@ -265,10 +265,10 @@ class ModalLoginPage extends Component {
 
               <FormGroup>
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Email"
                   variant="outlined"
-                  onChange={(val)=> {
+                  onChange={(val) => {
                     this.setState({
                       email: val.target.value
                     })
@@ -278,10 +278,10 @@ class ModalLoginPage extends Component {
 
               <FormGroup>
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Họ và tên"
                   variant="outlined"
-                  onChange={(val)=> {
+                  onChange={(val) => {
                     this.setState({
                       name: val.target.value
                     })
@@ -291,7 +291,7 @@ class ModalLoginPage extends Component {
 
               <FormGroup>
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Mật khẩu"
                   variant="outlined"
                   type="password"
@@ -305,7 +305,7 @@ class ModalLoginPage extends Component {
 
               <FormGroup>
                 <TextField
-                  style={{width: "100%"}}
+                  style={{ width: "100%" }}
                   label="Nhập lại mật khẩu"
                   variant="outlined"
                   type="password"
