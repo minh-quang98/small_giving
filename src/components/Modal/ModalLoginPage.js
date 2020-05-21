@@ -65,7 +65,7 @@ class ModalLoginPage extends Component {
     fetch(`http://smallgiving.cf/mobileapp/Dangnhap/dangnhap.php`, config)
       .then((response) => response.json())
       .then((data) => {
-        if (data.token === "ERROR") {
+        if (data.token === "error") {
           this.props.enqueueSnackbar('Sai tên đăng nhập hoặc mật khẩu !', {
             anchorOrigin: {
               vertical: "top",

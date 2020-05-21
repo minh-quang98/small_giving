@@ -64,7 +64,30 @@ class Sidebar extends React.Component {
     isOpenPages: true,
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
     admin: false,
+    idNhom: ""
   };
+
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            idNhom: data.idNhom
+          })
+        })
+    }
+  }
 
   handleClick = name => () => {
     this.setState(prevState => {
@@ -132,15 +155,22 @@ class Sidebar extends React.Component {
                     </NavItem>
                   ))}
                 </Collapse>
-                <Button className="ml-5" style={{backgroundColor: "#8e8e8e"}}>
-                  <Link to={{
+
+              </div>
+            }
+            {this.state.token === "" && this.state.idNhom >  4
+              ? <div/>
+              :  <Button
+                className="ml-3 mr-3"
+                style={{backgroundColor: "#8e8e8e"}}
+              >
+                <Link to={{
                   pathname: '/admin/trangchu'
                 }}
-                        style={{color: "white"}}
-                  >
+                      style={{color: "white"}}
+                >
                   Admin Page
                 </Link></Button>
-              </div>
             }
 
           </Nav>
