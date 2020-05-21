@@ -16,7 +16,7 @@ import {
 } from 'reactstrap';
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
-
+import Cookies from 'js-cookie';
 const initialState = {
   id: '',
   name: '',
@@ -25,14 +25,92 @@ const initialState = {
   content: '',
   title: '',
   receiver: '',
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
 
   idhoatdongError: '',
   nameError: '',
   contentError: '',
+  dataselect: [],
 };
 
 class Tintucthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    //this.getdatainsert();
+    this.gethd();
+  }
+  gethd = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+  getdatainsert() {
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idCTV: this.state.user.idNguoiDung,
+        TenTin: this.state.name,
+        TenHoatDong: this.state.idhoatdong,
+        NoiDung: this.state.content,
+        Anh: this.state.image,
+        TieuDeThongBao: this.state.title,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Thành công!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          window.location.reload();
+
+        } else {
+          this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+          this.setState(initialState);
+        }
+      });
+    //this.setState(initialState);
+    //}
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -128,11 +206,9 @@ class Tintucthem extends React.Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleSelect">
-                          Thuộc hoạt động <span className="red-text">*</span>
+                          Thuộc hoạt động
                         </Label>
-                        <div className="error-text">
-                          {this.state.idhoatdongError}
-                        </div>
+
                         <Input
                           type="select"
                           name="idhoatdong"
@@ -142,7 +218,11 @@ class Tintucthem extends React.Component {
                               idhoatdong: val.target.value,
                             });
                           }}
-                        />
+                        ><option></option>
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenHoatDong}</option>;
+                          })}
+                        </Input>
                       </FormGroup>
                     </Form>
                   </Col>
@@ -216,9 +296,13 @@ class Tintucthem extends React.Component {
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Đăng tải
                 </Button>
+
               </Container>
             </div>
           </Form>

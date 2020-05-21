@@ -8,22 +8,44 @@ import { Card, CardBody, Col, Row, Table, Badge, Button } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
+const dataError = [
+  {
+    e1: "",
+    e2: "",
+    e3: "",
+    e4: "Chưa có dữ liệu",
+    e5: "",
+    e6: "",
+    e7: "",
+    e8: "",
+
+  }
+]
 class hoatdong extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      dataerror: false,
+      dataError: [],
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
       showModalXem: false,
       idHoatDong: "",
+      idHD: "",
     };
   }
   componentDidUpdate(preProps, preState, future) {
     const { idHoatDong } = this.state;
     if (preState.idHoatDong != idHoatDong) {
       this.handleShowModalSua(idHoatDong);
+      // this.handleShowModalXem(idHoatDong);
+    }
+    const { idHD } = this.state;
+    if (preState.idHD != idHD) {
+      //this.handleShowModalSua(idHoatDong);
+      this.handleShowModalXem(idHD);
     }
   }
   handleShowModalThem = () => {
@@ -61,7 +83,7 @@ class hoatdong extends React.Component {
   handleShowModalXem = (id) => {
     this.setState({
       showModalXem: true,
-      idHoatDong: id,
+      idHD: id,
     });
   };
   handleCloseModalXem = () => {
@@ -75,16 +97,23 @@ class hoatdong extends React.Component {
 
   getdata = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/showhoatdong.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php',
     )
       .then(response => response.json())
       .then(data => {
-        this.setState(
-          {
-            data: data,
-          },
-          () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+            () => console.log('kiemtradulieu', this.state.data),
+          );
+
+        }
+
       });
   };
   render() {
@@ -127,7 +156,7 @@ class hoatdong extends React.Component {
                     onHide={() => this.handleCloseModalXem()}
                     size="lg"
                     className={this.props.className}
-                    chooseId={this.state.idHoatDong}
+                    chooseId={this.state.idHD}
                   />
 
                   <Badge
@@ -145,47 +174,64 @@ class hoatdong extends React.Component {
                         <th> Tên hoạt động</th>
                         <th> Bắt đầu</th>
                         <th> Kết thúc</th>
-                        <th> Đã quyên góp</th>
                         <th> Lượt quyên góp</th>
+                        <th> CTV đăng tải</th>
                         <th> Xem đăng kí</th>
-                        <th> Tác vụ</th>
+                        <th> </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.data.map(Item => {
-                        return (
-                          <tr>
-                            <td>{Item.idHoatDong}</td>
-                            <td>{Item.TenHoatDong}</td>
-                            <td>{Item.ThoiGianBD}</td>
-                            <td>{Item.ThoiGianKT}</td>
-                            <td>{Item.SoDuTK}</td>
-                            <td>{Item.SoNguoi}</td>
-                            <td>
-                              <Button
-                                color="link"
-                                className="can-click"
-                                onClick={() => this.handleShowModalXem(Item.idHoatDong)}
-                              >
-                                Xem
-                              </Button>
-                            </td>
-                            <td>
-                              <FaEdit
-                                className="can-click "
-                                size="1.5em"
+                      {this.state.dataerror ?
+                        this.state.dataError.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.e1}</td>
+                              <td>{Item.e2}</td>
+                              <td>{Item.e3}</td>
+                              <td>{Item.e4}</td>
 
-                                onClick={() => this.handleShowModalSua(Item.idHoatDong)}
-                              />
-                              <MdDelete
-                                className="can-click"
-                                size="1.5em"
-                                onClick={() => this.handleShowModalXoa(Item.idHoatDong)}
-                              />
-                            </td>
-                          </tr>
-                        );
-                      })}
+                              <td>{Item.e5}</td>
+                              <td>{Item.e6}</td>
+                              <td>
+                                {Item.e7}
+                              </td>
+                              <td>
+                                {Item.e8}
+
+                              </td>
+                            </tr>
+                          );
+                        }) : this.state.data.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.idHoatDong}</td>
+                              <td>{Item.TenHoatDong}</td>
+                              <td>{Item.ThoiGianBD}</td>
+                              <td>{Item.ThoiGianKT}</td>
+
+                              <td>{Item.SoNguoiTG}</td>
+                              <td>{Item.TenNguoiDung}</td>
+                              <td>
+                                <Button
+                                  color="link"
+                                  className="can-click"
+                                  onClick={() => this.handleShowModalXem(Item.idHoatDong)}
+                                >
+                                  Xem
+                              </Button>
+                              </td>
+                              <td>
+                                <FaEdit
+                                  className="can-click "
+                                  size="1.5em"
+
+                                  onClick={() => this.handleShowModalSua(Item.idHoatDong)}
+                                />
+
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </CardBody>

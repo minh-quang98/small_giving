@@ -16,9 +16,112 @@ const tableTypes = ['hover'];
 const initialState = {
   startdate: '',
   enddate: '',
+  name: '',
+  name2: '',
+  data: [],
+  dataError: [],
+  tong: [],
+  tongError: [],
+  datashow: [],
+  datashow2: [],
+  dataerror: false,
 };
+const dataError = [
+  {
+    id: "",
+    TenHoatDong: " Chưa có dữ liệu",
+    TenNguoiDung: "",
+    SoTien: "",
+  }
+]
+const tongError = [
+  {
+    id: "1",
+    tong: " 0",
+  }
+]
 class bcquyengop extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getdata();
+    this.getdata2();
+  }
+  getdata = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            datashow: datashow,
+          },
+          () => console.log('kiemtradulieu', this.state.datashow),
+        );
+      });
+  };
+  getdata2 = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
+      .then(response => response.json())
+      .then(datashow2 => {
+        this.setState(
+          {
+            datashow2: datashow2,
+          },
+          () => console.log('kiemtradulieu', this.state.datashow),
+        );
+      });
+  };
+  getdatabaocao() {
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          ThoiGian1: this.state.startdate,
+          ThoiGian2: this.state.enddate,
+          TenNguoiDung: this.state.name2,
+          TenHoatDong: this.state.name
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/quyengop.php', config)
+        .then(response => response.json())
+        .then(data => {
+          if (data.message === "No post found") {
+            this.setState({ dataerror: true, dataError: dataError });
+          } else {
+            this.setState(
+              {
+                dataerror: false,
+                data: data,
+              }, () => this.getdatatong(),
+            );
+
+
+          }
+        });
+
+    }
+  }
+  getdatatong() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        ThoiGian1: this.state.startdate,
+        ThoiGian2: this.state.enddate,
+        TenNguoiDung: this.state.name2,
+        TenHoatDong: this.state.name
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/tongquyengop.php', config2)
+      .then(response => response.json())
+      .then(tong => {
+        this.setState(
+          {
+            tong: tong,
+          }, () => console.log('kiemtradulieu', this.state.tong),
+        );
+      });
+
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -48,12 +151,12 @@ class bcquyengop extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      //this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
   render() {
     return (
@@ -75,12 +178,12 @@ class bcquyengop extends React.Component {
                       <Col xl={6} lg={12} md={12}>
                         <Form>
                           <Row>
-                            <Col md={3}>
+                            <Col md={4}>
                               <Label for="exampleDate">
                                 Từ ngày <span className="red-text">*</span>
                               </Label>
                             </Col>
-                            <Col md={9}>
+                            <Col md={8}>
                               <div className="error-text">
                                 {this.state.startdateError}
                               </div>
@@ -88,8 +191,42 @@ class bcquyengop extends React.Component {
                                 type="date"
                                 name="startdate"
                                 value={this.state.startdate}
-                                onChange={this.handleChange}
+                                onChange={(val) => {
+                                  this.setState({
+                                    startdate: val.target.value,
+                                    startdateError: "",
+                                  })
+                                }}
                               />
+                            </Col>
+                          </Row>
+                        </Form>
+                        <Form>
+                          <Row>
+                            <Col md={4}>
+                              <Label for="exampleDate">
+                                Hoạt động thiện nguyện
+                              </Label>
+                            </Col>
+                            <Col md={8}>
+
+                              <Input
+                                type="select"
+                                name="name"
+                                value={this.state.name}
+                                onChange={(val) => {
+                                  this.setState({
+                                    name: val.target.value
+                                  })
+                                }}
+                              ><option></option>
+                                {this.state.datashow2.map((Item, index) => (
+
+                                  <option>{Item.TenHoatDong}</option>
+                                )
+                                )}
+
+                              </Input>
                             </Col>
                           </Row>
                         </Form>
@@ -97,12 +234,12 @@ class bcquyengop extends React.Component {
                       <Col xl={6} lg={12} md={12}>
                         <Form>
                           <Row>
-                            <Col md={3}>
+                            <Col md={4}>
                               <Label for="exampleDate">
                                 Đến ngày <span className="red-text">*</span>
                               </Label>
                             </Col>
-                            <Col md={9}>
+                            <Col md={8}>
                               <div className="error-text">
                                 {this.state.enddateError}
                               </div>
@@ -110,8 +247,42 @@ class bcquyengop extends React.Component {
                                 type="date"
                                 name="enddate"
                                 value={this.state.enddate}
-                                onChange={this.handleChange}
+                                onChange={(val) => {
+                                  this.setState({
+                                    enddate: val.target.value,
+                                    enddateError: "",
+                                  })
+                                }}
                               />
+                            </Col>
+                          </Row>
+                        </Form>
+                        <Form>
+                          <Row>
+                            <Col md={4}>
+                              <Label for="exampleDate">
+                                Nhà hảo tâm
+                              </Label>
+                            </Col>
+                            <Col md={8}>
+
+                              <Input
+                                type="select"
+                                name="name2"
+                                value={this.state.name2}
+                                onChange={(val) => {
+                                  this.setState({
+                                    name2: val.target.value
+                                  })
+                                }}
+                              >
+                                <option></option>
+                                {this.state.datashow.map((Item, index) => (
+
+                                  <option>{Item.TenNguoiDung}</option>
+                                )
+                                )}
+                              </Input>
                             </Col>
                           </Row>
                         </Form>
@@ -123,66 +294,54 @@ class bcquyengop extends React.Component {
                     >
                       <thead>
                         <tr className="table-danger">
-                          <th>STT</th>
+                          <th>ID</th>
                           <th>Tên hoạt động</th>
-                          <th> Nhà hảo tâm</th>
+                          <th>Nhà hảo tâm</th>
                           <th>Số tiền quyên góp</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>120000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>100000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>50000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                          <td>60000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>60000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">6</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>7000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">7</th>
-                          <td>Wendy</td>
-                          <td>the Magic</td>
-                          <td>200000</td>
-                        </tr>
+                        {this.state.dataerror ?
+                          this.state.dataError.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.id}</td>
+                                <td>{Item.TenHoatDong}</td>
+                                <td>{Item.TenNguoiDung}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          }) : this.state.data.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.idGiaoDich}</td>
+                                <td>{Item.TenHoatDong}</td>
+                                <td>{Item.TenNguoiDung}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          })}
                       </tbody>
-                    </Table>
-                    <Table {...{ [tableType || 'hover']: true }}>
                       <Row>
-                        <Col md={9} className="sum-left">
+                        <Col md={6} className="sum-left">
                           <div className="sum"> Tổng tiền</div>
                         </Col>
-                        <Col md={3} className="sum-right">
-                          <div className="sum"> 14500000</div>
+                        <Col md={6} className="sum-right">
+                          {this.state.dataerror ?
+                            this.state.tongError.map(Item => {
+                              return (
+                                <div className="sum">{Item.tong}</div>
+                              );
+                            }) : this.state.tong.map(Item => {
+                              return (
+                                <div className="sum">{Item.tong}</div>
+                              );
+                            })}
                         </Col>
                       </Row>
+                    </Table>
+                    <Table {...{ [tableType || 'hover']: true }}>
+
                     </Table>
                     <div className="button-bottom">
                       <Row>
@@ -192,6 +351,7 @@ class bcquyengop extends React.Component {
                             type="submit"
                             color="danger"
                             size="lg"
+                            onClick={() => this.getdatabaocao()}
                           >
                             Báo cáo
                           </Button>

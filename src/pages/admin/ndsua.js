@@ -26,11 +26,11 @@ const initialState = {
   stk: "",
   dateofbirth: "",
   password: "",
-  idnhom: "",
+  tennhom: "",
 
   emailError: "",
   phoneError: "",
-  idnhomError: "",
+  tennhomError: "",
   passwordError: "",
   dataselect: [],
 
@@ -38,11 +38,15 @@ const initialState = {
 
 class Nguoidungsua extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getdataselect();
+  }
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
+
+
     this.getdatashow();
-    this.getdataselect();
-    this.getdataupdate();
+    //this.getdataupdate();
   }
   getdatashow() {
     let config = {
@@ -51,7 +55,7 @@ class Nguoidungsua extends React.Component {
         idNguoiDung: this.props.chooseId,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/select.php', config)
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nguoidung/testselect.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -63,14 +67,14 @@ class Nguoidungsua extends React.Component {
             stk: datashow.STK,
             dateofbirth: datashow.NgaySinh,
             password: datashow.MatKhau,
-            idnhom: datashow.idNhom,
+            tennhom: datashow.TenNhom,
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
         );
       });
   }
   getdataselect = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
       .then((response) => response.json())
       .then((dataselect) => {
         this.setState({
@@ -81,44 +85,43 @@ class Nguoidungsua extends React.Component {
       });
   };
   getdataupdate() {
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idNguoiDung: this.state.id,
-        TenNguoiDung: this.state.name,
-        Email: this.state.email,
-        SDT: this.state.phone,
-        STK: this.state.stk,
-        NgaySinh: this.state.dateofbirth,
-        MatKhau: this.state.password,
-        idNhom: this.state.idNhom,
-      }),
-    };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Thành công!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idNguoiDung: this.state.id,
+          TenNguoiDung: this.state.name,
+          Email: this.state.email,
+          SDT: this.state.phone,
+          STK: this.state.stk,
+          NgaySinh: this.state.dateofbirth,
+          MatKhau: this.state.password,
+          TenNhom: this.state.tennhom,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nguoidung/testupdate.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            window.location.reload();
 
-        } else {
+          } else {
 
-          this.props.enqueueSnackbar('Đã có vấn đề xảy ra!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
 
-        }
-      });
+
+          }
+        });
+      this.setState(initialState);
+    }
+
   }
 
 
@@ -141,52 +144,52 @@ class Nguoidungsua extends React.Component {
         variant: 'error',
       });
     } else
-    if (!this.state.idnhom) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    } else
-    if (!this.state.email) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    } else
-    if (!this.state.password) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    } else {
-      this.props.enqueueSnackbar('Thành công!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
-    }
+      if (!this.state.idnhom) {
+        this.props.enqueueSnackbar('Không được bỏ trống!', {
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "right"
+          },
+          variant: 'error',
+        });
+      } else
+        if (!this.state.email) {
+          this.props.enqueueSnackbar('Không được bỏ trống!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else
+          if (!this.state.password) {
+            this.props.enqueueSnackbar('Không được bỏ trống!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          } else {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+          }
 
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    // this.setState(initialState);
+    //}
   };
 
   render() {
@@ -218,21 +221,22 @@ class Nguoidungsua extends React.Component {
                         <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
 
                         <div className="error-text">
-                          {this.state.idnhomError}
+                          {this.state.tennhomError}
                         </div>
                         <Input
                           type="select"
-                          name="idnhom"
+                          name="tennhom"
 
-                          value={this.state.idnhom}
+                          value={this.state.tennhom}
                           onChange={(val) => {
                             this.setState({
-                              idnhom: val.target.value
+                              tennhom: val.target.value
                             })
                           }}
                         >{this.state.dataselect.map((Item, index) => {
                           return (
-                            <option>{Item.idNhom}</option>
+
+                            <option>{Item.TenNhom}</option>
                           );
                         })}
                         </Input>
@@ -347,6 +351,7 @@ class Nguoidungsua extends React.Component {
                 >
                   Cập nhật
                 </Button>
+
               </Container>
             </div>
           </Form>

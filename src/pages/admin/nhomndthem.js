@@ -35,7 +35,7 @@ class Nhomndthem extends React.Component {
         TenNhom: this.state.name,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/insert.php', config)
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/insert.php', config)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
@@ -56,7 +56,7 @@ class Nhomndthem extends React.Component {
             },
             variant: 'error',
           });
-
+          this.setState(initialState);
 
         }
       });
@@ -133,7 +133,8 @@ class Nhomndthem extends React.Component {
                         value={this.state.name}
                         onChange={(val) => {
                           this.setState({
-                            name: val.target.value
+                            name: val.target.value,
+                            nameError: ""
                           })
                         }}
                       />

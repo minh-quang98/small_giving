@@ -64,7 +64,7 @@ class nhomnd extends React.Component {
   }
 
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -117,7 +117,7 @@ class nhomnd extends React.Component {
 
                         <th>Mã nhóm</th>
                         <th>Tên nhóm</th>
-                        <th>Tác vụ</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -136,8 +136,7 @@ class nhomnd extends React.Component {
                                 className={this.props.className}
                                 chooseId={this.state.idNhom}
                               />
-                              <MdDelete className="can-click" size="1.5em"
-                                onClick={() => this.handleShowModalXoa(Item.idNhom)} />
+
                               <Nhomndxoa
                                 show={this.state.showModalXoa}
                                 onHide={this.handleCloseModalXoa}

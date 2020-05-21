@@ -16,9 +16,96 @@ const tableTypes = ['hover'];
 const initialState = {
   startdate: '',
   enddate: '',
+  name: '',
+  data: [],
+  dataError: [],
+  datashow: [],
+  tong: [],
+  tongError: [],
+  dataerror: false,
 };
+const dataError = [
+  {
+    id: "",
+    TenNguoiDung: " Chưa có dữ liệu",
+    SoTien: "",
+  }
+]
+const tongError = [
+  {
+    id: "1",
+    tong: " 0",
+  }
+]
 class bcnaptien extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getdata();
+  }
+  getdata = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            datashow: datashow,
+          },
+          () => console.log('kiemtradulieu', this.state.datashow),
+        );
+      });
+  };
+  getdatabaocao() {
+
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          ThoiGian1: this.state.startdate,
+          ThoiGian2: this.state.enddate,
+          TenNguoiDung: this.state.name,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/naptiennht.php', config)
+        .then(response => response.json())
+        .then(data => {
+          if (data.message === "No post found") {
+            this.setState({ dataerror: true, dataError: dataError });
+          } else {
+            this.setState(
+
+              {
+                dataerror: false,
+                data: data,
+              }, () => this.getdatatong(),
+            );
+          }
+        });
+    }
+  }
+  getdatatong() {
+
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        ThoiGian1: this.state.startdate,
+        ThoiGian2: this.state.enddate,
+        TenNguoiDung: this.state.name
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/tongnaptiennht.php', config2)
+      .then(response => response.json())
+      .then(tong => {
+        //console.log(this.state);
+        this.setState(
+          {
+            tong: tong,
+          }, () => console.log('kiemtradulieu', this.state.tong),
+        );
+
+
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -48,12 +135,14 @@ class bcnaptien extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      //this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
+
+
   };
   render() {
     return (
@@ -62,7 +151,7 @@ class bcnaptien extends React.Component {
         title="Tổng tiền nạp"
         breadcrumbs={[
           { name: 'báo cáo' },
-          { name: 'giao dịch nạp tiền', active: true },
+          { name: 'giao dịch nạp tiền nhà hảo tâm', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -88,8 +177,43 @@ class bcnaptien extends React.Component {
                                 type="date"
                                 name="startdate"
                                 value={this.state.startdate}
-                                onChange={this.handleChange}
+                                onChange={(val) => {
+                                  this.setState({
+                                    startdate: val.target.value,
+                                    startdateError: "",
+
+                                  })
+                                }}
                               />
+                            </Col>
+                          </Row>
+                        </Form>
+                        <Form>
+                          <Row>
+                            <Col md={3}>
+                              <Label for="exampleDate">
+                                Nhà hảo tâm
+                              </Label>
+                            </Col>
+                            <Col md={9}>
+
+                              <Input
+                                type="select"
+                                name="name"
+                                value={this.state.name}
+                                onChange={(val) => {
+                                  this.setState({
+                                    name: val.target.value
+                                  })
+                                }}
+
+                              ><option></option>
+                                {this.state.datashow.map((Item, index) => (
+
+                                  <option>{Item.TenNguoiDung}</option>
+                                )
+                                )}
+                              </Input>
                             </Col>
                           </Row>
                         </Form>
@@ -110,7 +234,12 @@ class bcnaptien extends React.Component {
                                 type="date"
                                 name="enddate"
                                 value={this.state.enddate}
-                                onChange={this.handleChange}
+                                onChange={(val) => {
+                                  this.setState({
+                                    enddate: val.target.value,
+                                    enddateError: "",
+                                  })
+                                }}
                               />
                             </Col>
                           </Row>
@@ -123,59 +252,52 @@ class bcnaptien extends React.Component {
                     >
                       <thead>
                         <tr className="table-danger">
-                          <th>STT</th>
+                          <th>ID</th>
                           <th>Nhà hảo tâm</th>
                           <th>Số tiền nạp</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>120000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>100000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>50000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>Thornton</td>
-                          <td>60000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Mark</td>
-                          <td>60000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">6</th>
-                          <td>Larry</td>
-                          <td>7000</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">7</th>
-                          <td>Wendy</td>
-                          <td>200000</td>
-                        </tr>
+                        {this.state.dataerror ?
+                          this.state.dataError.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.id}</td>
+                                <td>{Item.TenNguoiDung}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          }) : this.state.data.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.idGiaoDich}</td>
+                                <td>{Item.TenNguoiDung}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          })}
                       </tbody>
-
-                    </Table>
-                    <Table {...{ [tableType || 'hover']: true }}>
                       <Row>
                         <Col md={6} className="sum-left">
                           <div className="sum"> Tổng tiền</div>
                         </Col>
                         <Col md={6} className="sum-right">
-                          <div className="sum"> 14500000</div>
+                          {this.state.dataerror ?
+                            this.state.tongError.map(Item => {
+                              return (
+                                <div className="sum">{Item.tong}</div>
+                              );
+                            }) : this.state.tong.map(Item => {
+                              return (
+                                <div className="sum">{Item.tong}</div>
+                              );
+                            })}
                         </Col>
                       </Row>
+
+                    </Table>
+                    <Table {...{ [tableType || 'hover']: true }}>
+
                     </Table>
                     <div className="button-bottom">
                       <Row>
@@ -185,6 +307,7 @@ class bcnaptien extends React.Component {
                             type="submit"
                             color="danger"
                             size="lg"
+                            onClick={() => this.getdatabaocao()}
                           >
                             Báo cáo
                           </Button>

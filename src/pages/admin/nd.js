@@ -21,9 +21,9 @@ class nd extends React.Component {
   }
   componentDidUpdate(preProps, preState, future) {
     const { idNguoiDung } = this.state;
-    // if (preState.idNguoiDung != idNguoiDung) {
-    //   this.handleShowModalSua(idNguoiDung);
-    // }
+    if (preState.idNguoiDung != idNguoiDung) {
+      this.handleShowModalSua(idNguoiDung);
+    }
   }
   handleShowModalThem = () => {
     this.setState({
@@ -62,7 +62,7 @@ class nd extends React.Component {
     this.getdata();
   }
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -108,9 +108,8 @@ class nd extends React.Component {
                         <th>SĐT</th>
                         <th>Email</th>
                         <th>Mật khẩu</th>
-                        <th> Số dư TK</th>
-                        <th> Huy hiệu</th>
-                        <th>Tác vụ</th>
+                        <th>Huy hiệu</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -121,34 +120,26 @@ class nd extends React.Component {
                           <td>{Item.SDT}</td>
                           <td>{Item.Email}</td>
                           <td>{Item.MatKhau}</td>
-                          <td>{Item.SoDuTK}</td>
                           <td>{Item.HuyHieu}</td>
                           <td>
-                            <div>
-                              <FaEdit className="can-click" size="1.5em"
-                                      onClick={() => this.handleShowModalSua(Item.idNguoiDung)}
-                              />
-                              <Nguoidungsua
-                                show={this.state.showModalSua}
-                                onHide={() => this.handleCloseModalSua()}
-                                size="lg"
-                                className={this.props.className}
-                                chooseId={this.state.idNguoiDung}
-                              />
-                            </div>
-                            <div>
-                              <MdDelete className="can-click" size="1.5em"
-                                        onClick={() => this.handleShowModalXoa(Item.idNguoiDung)}
-                              />
-                              <Nguoidungxoa
-                                show={this.state.showModalXoa}
-                                onHide={() => this.handleCloseModalXoa()}
-                                size="lg"
-                                className={this.props.className}
-                                chooseId={this.state.idNguoiDung}
-                              />
-                            </div>
+                            <FaEdit className="can-click" size="1.5em"
+                              onClick={() => this.handleShowModalSua(Item.idNguoiDung)}
+                            />
+                            <Nguoidungsua
+                              show={this.state.showModalSua}
+                              onHide={() => this.handleCloseModalSua()}
+                              size="lg"
+                              className={this.props.className}
+                              chooseId={this.state.idNguoiDung}
+                            />
 
+                            <Nguoidungxoa
+                              show={this.state.showModalXoa}
+                              onHide={() => this.handleCloseModalXoa()}
+                              size="lg"
+                              className={this.props.className}
+                              chooseId={this.state.idNguoiDung}
+                            />
 
                           </td>
                         </tr>
@@ -166,3 +157,4 @@ class nd extends React.Component {
   }
 }
 export default nd;
+
