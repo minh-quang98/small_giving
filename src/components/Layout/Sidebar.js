@@ -58,39 +58,39 @@ const navItems = [
 ];
 
 const taikhoan = [
-  { to: '/nhomnd', name: 'Nhóm người dùng', exact: false, Icon: TiGroup, },
-  { to: '/nd', name: 'Người dùng', exact: false, Icon: FaUserAlt },
+  { to: '/admin/nhomnd', name: 'Nhóm người dùng', exact: false, Icon: TiGroup, },
+  { to: '/admin/nd', name: 'Người dùng', exact: false, Icon: FaUserAlt },
 
 
 ];
 
 const hoatdong = [
-  { to: '/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
-  { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
+  { to: '/admin/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
+  { to: '/admin/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
-  { to: '/bcnaptiennd', name: 'GD nạp nhà hảo tâm', exact: false, Icon: MdAttachMoney },
-  { to: '/bcnaptienks', name: 'GD nạp tài khoản khảo sát', exact: false, Icon: MdAttachMoney },
-  { to: '/bcnaptiendd', name: 'GD nạp quỹ điểm danh', exact: false, Icon: MdAttachMoney },
-  { to: '/bctaitro', name: 'GD thực hiện điểm danh', exact: false, Icon: MdAttachMoney },
-  { to: '/bctaitro2', name: 'GD thực hiện khảo sát', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bcnaptiennd', name: 'GD nạp nhà hảo tâm', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bcnaptienks', name: 'GD nạp tài khoản khảo sát', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bcnaptiendd', name: 'GD nạp quỹ điểm danh', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bctaitro', name: 'GD thực hiện điểm danh', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bctaitro2', name: 'GD thực hiện khảo sát', exact: false, Icon: MdAttachMoney },
 
-  { to: '/bcquyengop', name: 'GD quyên góp', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bcquyengop', name: 'GD quyên góp', exact: false, Icon: MdAttachMoney },
 ];
 const taitro = [
-  { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
-  { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
+  { to: '/admin/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
+  { to: '/admin/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
-  { to: '/naptiennd', name: 'Nạp tiền nhà hảo tâm', exact: false, Icon: GiReceiveMoney },
-  { to: '/naptienks', name: 'Nạp tiền tài khoản khảo sát', exact: false, Icon: GiReceiveMoney },
-  { to: '/naptiendd', name: 'Nạp tiền quỹ điểm danh', exact: false, Icon: GiReceiveMoney },
-  { to: '/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
+  { to: '/admin/naptiennd', name: 'Nạp tiền nhà hảo tâm', exact: false, Icon: GiReceiveMoney },
+  { to: '/admin/naptienks', name: 'Nạp tiền tài khoản khảo sát', exact: false, Icon: GiReceiveMoney },
+  { to: '/admin/naptiendd', name: 'Nạp tiền quỹ điểm danh', exact: false, Icon: GiReceiveMoney },
+  { to: '/admin/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
 ];
 
 const navItems1 = [
   {
-    to: '/phanquyen',
+    to: '/admin/phanquyen',
     name: 'phân quyền',
     exact: false,
     Icon: MdSecurity,
@@ -99,7 +99,7 @@ const navItems1 = [
 ];
 
 const navItems2 = [
-  { to: '/gopy', name: 'Quản trị góp ý', exact: false, Icon: MdBrush },
+  { to: '/admin/gopy', name: 'Quản trị góp ý', exact: false, Icon: MdBrush },
 ];
 
 
@@ -458,7 +458,20 @@ class Sidebar extends React.Component {
                   </NavItem>
                 ))}
               </Collapse>
-
+              <Button
+                className="ml-3 mr-3"
+                style={{backgroundColor: "#8e8e8e"}}
+                onClick={() => {this.setState({
+                  admin: false
+                })}}
+              >
+                <Link to={{
+                  pathname: '/'
+                }}
+                      style={{color: "white"}}
+                >
+                 Public Page
+                </Link></Button>
             </Nav>
           </div>
         }
