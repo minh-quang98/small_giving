@@ -2,14 +2,14 @@ import logo200Image from 'assets/img/logo/logo_200.png';
 import sidebarBgImage from 'assets/img/sidebar/sidebar-4.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaClipboardList, FaGithub, FaRegNewspaper, FaTable, FaUserAlt } from 'react-icons/fa';
 import {
   MdDashboard,
   MdLibraryBooks,
   MdViewCarousel,
   MdWeb,
   MdDvr,
-  MdQuestionAnswer,
+  MdQuestionAnswer, MdAttachMoney, MdSecurity, MdBrush, MdAccountCircle, MdKeyboardArrowDown, MdWork,
 } from 'react-icons/md';
 import { Link, NavLink } from 'react-router-dom';
 import {
@@ -23,6 +23,8 @@ import {
 import bn from 'utils/bemnames';
 import Cookies from 'js-cookie';
 import Button from '@material-ui/core/Button';
+import { TiGroup, TiThListOutline } from 'react-icons/ti';
+import { GiMoneyStack, GiPayMoney, GiReceiveMoney } from 'react-icons/gi';
 
 
 const sidebarBackground = {
@@ -55,6 +57,52 @@ const navItems = [
   { to: '/contact', name: 'Liên hệ và góp ý', exact: false, Icon: MdQuestionAnswer },
 ];
 
+const taikhoan = [
+  { to: '/nhomnd', name: 'Nhóm người dùng', exact: false, Icon: TiGroup, },
+  { to: '/nd', name: 'Người dùng', exact: false, Icon: FaUserAlt },
+
+
+];
+
+const hoatdong = [
+  { to: '/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
+  { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
+];
+const baocao = [
+  { to: '/bcnaptiennd', name: 'GD nạp nhà hảo tâm', exact: false, Icon: MdAttachMoney },
+  { to: '/bcnaptienks', name: 'GD nạp tài khoản khảo sát', exact: false, Icon: MdAttachMoney },
+  { to: '/bcnaptiendd', name: 'GD nạp quỹ điểm danh', exact: false, Icon: MdAttachMoney },
+  { to: '/bctaitro', name: 'GD thực hiện điểm danh', exact: false, Icon: MdAttachMoney },
+  { to: '/bctaitro2', name: 'GD thực hiện khảo sát', exact: false, Icon: MdAttachMoney },
+
+  { to: '/bcquyengop', name: 'GD quyên góp', exact: false, Icon: MdAttachMoney },
+];
+const taitro = [
+  { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
+  { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
+];
+const luongtien = [
+  { to: '/naptiennd', name: 'Nạp tiền nhà hảo tâm', exact: false, Icon: GiReceiveMoney },
+  { to: '/naptienks', name: 'Nạp tiền tài khoản khảo sát', exact: false, Icon: GiReceiveMoney },
+  { to: '/naptiendd', name: 'Nạp tiền quỹ điểm danh', exact: false, Icon: GiReceiveMoney },
+  { to: '/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
+];
+
+const navItems1 = [
+  {
+    to: '/phanquyen',
+    name: 'phân quyền',
+    exact: false,
+    Icon: MdSecurity,
+  },
+
+];
+
+const navItems2 = [
+  { to: '/gopy', name: 'Quản trị góp ý', exact: false, Icon: MdBrush },
+];
+
+
 const bem = bn.create('sidebar');
 
 class Sidebar extends React.Component {
@@ -84,7 +132,7 @@ class Sidebar extends React.Component {
         .then((data)=> {
           this.setState({
             idNhom: data.idNhom
-          })
+          }, () => console.log("idNhom>>>>>>", this.state.idNhom))
         })
     }
   }
@@ -104,77 +152,317 @@ class Sidebar extends React.Component {
 
       <aside className={bem.b()} data-image={sidebarBgImage}>
         <div className={bem.e('background')} style={sidebarBackground}/>
-        <div className={bem.e('content')}>
-          <Navbar className="p-1">
-            <div className="navbar-brand d-flex">
-              <img
-                src={logo200Image}
-                width="70"
-                height="70"
-                className="pr-0 "
-                alt=""
-              />
-              <span className="text-white mt-4 ml-0">
+        {!this.state.admin
+          ? <div className={bem.e('content')}>
+            <Navbar className="p-1">
+              <div className="navbar-brand d-flex">
+                <img
+                  src={logo200Image}
+                  width="70"
+                  height="70"
+                  className="pr-0 "
+                  alt=""
+                />
+                <span className="text-white mt-4 ml-0">
                 Small Giving
               </span>
-            </div>
-          </Navbar>
-          <Nav vertical>
-            {navItems.map(({ to, name, exact, Icon }, index) => (
-              <NavItem key={index} className={bem.e('nav-item')}>
-                <BSNavLink
-                  id={`navItem-${name}-${index}`}
-                  className="text-uppercase"
-                  tag={NavLink}
-                  to={to}
-                  activeClassName="active"
-                  exact={exact}
-                >
-                  <Icon className={bem.e('nav-item-icon')}/>
-                  <span style={{ fontSize: 13 }}>{name}</span>
+              </div>
+            </Navbar>
+            <Nav vertical>
+              {navItems.map(({ to, name, exact, Icon }, index) => (
+                <NavItem key={index} className={bem.e('nav-item')}>
+                  <BSNavLink
+                    id={`navItem-${name}-${index}`}
+                    className="text-uppercase"
+                    tag={NavLink}
+                    to={to}
+                    activeClassName="active"
+                    exact={exact}
+                  >
+                    <Icon className={bem.e('nav-item-icon')}/>
+                    <span style={{ fontSize: 13 }}>{name}</span>
+                  </BSNavLink>
+                </NavItem>
+              ))}
+              {this.state.token === ''
+                ? <div></div>
+                : <div>
+                  <Collapse isOpen={this.state.isOpenPages}>
+                    {pageContents.map(({ to, name, exact, Icon }, index) => (
+                      <NavItem key={index} className={bem.e('nav-item')}>
+                        <BSNavLink
+                          id={`navItem-${name}-${index}`}
+                          className="text-uppercase"
+                          tag={NavLink}
+                          to={to}
+                          activeClassName="active"
+                          exact={exact}
+                        >
+                          <Icon className={bem.e('nav-item-icon')}/>
+                          <span style={{ fontSize: 13 }}>{name}</span>
+                        </BSNavLink>
+                      </NavItem>
+                    ))}
+                  </Collapse>
+                  {this.state.idNhom > 3
+                    ? <div/>
+                    :  <Button
+                      className="ml-3 mr-3"
+                      style={{backgroundColor: "#8e8e8e"}}
+                      onClick={() => {this.setState({
+                        admin: true
+                      })}}
+                    >
+                      <Link to={{
+                        pathname: '/admin/trangchu'
+                      }}
+                            style={{color: "white"}}
+                      >
+                        Admin Page
+                      </Link></Button>
+                  }
+
+                </div>
+              }
+
+            </Nav>
+          </div>
+          : <div className={bem.e('content')}>
+            <Navbar>
+              <SourceLink className="navbar-brand d-flex">
+                <img
+                  src={logo200Image}
+                  width="50"
+                  height="40"
+                  className="pr-2"
+                  alt=""
+                />
+                <span className="text-white">
+                Small Giving
+              </span>
+              </SourceLink>
+            </Navbar>
+            <Nav vertical>
+              <NavItem
+                className={bem.e('nav-item')}
+                onClick={this.handleClick('taikhoan')}
+              >
+                <BSNavLink className={bem.e('nav-item-collapse')}>
+                  <div className="text-uppercase">
+                    <MdAccountCircle className={bem.e('nav-item-icon')} />
+                    <span className="">Quản trị tài khoản</span>
+                  </div>
+                  <MdKeyboardArrowDown
+                    className={bem.e('nav-item-icon')}
+                    style={{
+                      padding: 0,
+                      transform: this.state.isOpentaikhoan
+                        ? 'rotate(0deg)'
+                        : 'rotate(-90deg)',
+                      transitionDuration: '0.3s',
+                      transitionProperty: 'transform',
+                    }}
+                  />
                 </BSNavLink>
               </NavItem>
-            ))}
-            {this.state.token === ''
-              ? <div></div>
-              : <div>
-                <Collapse isOpen={this.state.isOpenPages}>
-                  {pageContents.map(({ to, name, exact, Icon }, index) => (
-                    <NavItem key={index} className={bem.e('nav-item')}>
-                      <BSNavLink
-                        id={`navItem-${name}-${index}`}
-                        className="text-uppercase"
-                        tag={NavLink}
-                        to={to}
-                        activeClassName="active"
-                        exact={exact}
-                      >
-                        <Icon className={bem.e('nav-item-icon')}/>
-                        <span style={{ fontSize: 13 }}>{name}</span>
-                      </BSNavLink>
-                    </NavItem>
-                  ))}
-                </Collapse>
+              <Collapse isOpen={this.state.isOpentaikhoan}>
+                {taikhoan.map(({ to, name, exact, Icon }, index) => (
+                  <NavItem key={index} className={bem.e('nav-item')}>
+                    <BSNavLink
+                      id={`navItem-${name}-${index}`}
+                      className="pd-30"
+                      tag={NavLink}
+                      to={to}
+                      activeClassName="active"
+                      exact={exact}
+                    >
+                      <Icon className={bem.e('nav-item-icon')} />
+                      <span className="">{name}</span>
+                    </BSNavLink>
+                  </NavItem>
+                ))}
+              </Collapse>
 
-              </div>
-            }
-            {this.state.token === "" && this.state.idNhom >  4
-              ? <div/>
-              :  <Button
-                className="ml-3 mr-3"
-                style={{backgroundColor: "#8e8e8e"}}
+              <NavItem
+                className={bem.e('nav-item')}
+                onClick={this.handleClick('hoatdong')}
               >
-                <Link to={{
-                  pathname: '/admin/trangchu'
-                }}
-                      style={{color: "white"}}
-                >
-                  Admin Page
-                </Link></Button>
-            }
+                <BSNavLink className={bem.e('nav-item-collapse')}>
+                  <div className="text-uppercase">
+                    <MdWork className={bem.e('nav-item-icon')} />
+                    <span className="">Quản trị hoạt động thiện nguyện</span>
+                  </div>
+                  <MdKeyboardArrowDown
+                    className={bem.e('nav-item-icon')}
+                    style={{
+                      padding: 0,
+                      transform: this.state.isOpenhoatdong
+                        ? 'rotate(0deg)'
+                        : 'rotate(-90deg)',
+                      transitionDuration: '0.3s',
+                      transitionProperty: 'transform',
+                    }}
+                  />
+                </BSNavLink>
+              </NavItem>
+              <Collapse isOpen={this.state.isOpenhoatdong}>
+                {hoatdong.map(({ to, name, exact, Icon }, index) => (
+                  <NavItem key={index} className={bem.e('nav-item')}>
+                    <BSNavLink
+                      id={`navItem-${name}-${index}`}
+                      className="pd-30"
+                      tag={NavLink}
+                      to={to}
+                      activeClassName="active"
+                      exact={exact}
+                    >
+                      <Icon className={bem.e('nav-item-icon')} />
+                      <span className="">{name}</span>
+                    </BSNavLink>
+                  </NavItem>
+                ))}
+              </Collapse>
 
-          </Nav>
-        </div>
+              <NavItem
+                className={bem.e('nav-item')}
+                onClick={this.handleClick('taitro')}
+              >
+                <BSNavLink className={bem.e('nav-item-collapse')}>
+                  <div className="text-uppercase">
+                    <FaTable className={bem.e('nav-item-icon')} />
+                    <span className="">quản trị hoạt động tài trợ</span>
+                  </div>
+                  <MdKeyboardArrowDown
+                    className={bem.e('nav-item-icon')}
+                    style={{
+                      padding: 0,
+                      transform: this.state.isOpentaitro
+                        ? 'rotate(0deg)'
+                        : 'rotate(-90deg)',
+                      transitionDuration: '0.3s',
+                      transitionProperty: 'transform',
+                    }}
+                  />
+                </BSNavLink>
+              </NavItem>
+              <Collapse isOpen={this.state.isOpentaitro}>
+                {taitro.map(({ to, name, exact, Icon }, index) => (
+                  <NavItem key={index} className={bem.e('nav-item')}>
+                    <BSNavLink
+                      id={`navItem-${name}-${index}`}
+                      className="pd-30"
+                      tag={NavLink}
+                      to={to}
+                      activeClassName="active"
+                      exact={exact}
+                    >
+                      <Icon className={bem.e('nav-item-icon')} />
+                      <span className="">{name}</span>
+                    </BSNavLink>
+                  </NavItem>
+                ))}
+              </Collapse>
+
+              <NavItem
+                className={bem.e('nav-item')}
+                onClick={this.handleClick('luongtien')}
+              >
+                <BSNavLink className={bem.e('nav-item-collapse')}>
+                  <div className="text-uppercase">
+                    <GiMoneyStack className={bem.e('nav-item-icon')} />
+                    <span className="">Quản trị giao dịch</span>
+                  </div>
+                  <MdKeyboardArrowDown
+                    className={bem.e('nav-item-icon')}
+                    style={{
+                      padding: 0,
+                      transform: this.state.isOpenluongtien
+                        ? 'rotate(0deg)'
+                        : 'rotate(-90deg)',
+                      transitionDuration: '0.3s',
+                      transitionProperty: 'transform',
+                    }}
+                  />
+                </BSNavLink>
+              </NavItem>
+              <Collapse isOpen={this.state.isOpenluongtien}>
+                {luongtien.map(({ to, name, exact, Icon }, index) => (
+                  <NavItem key={index} className={bem.e('nav-item')}>
+                    <BSNavLink
+                      id={`navItem-${name}-${index}`}
+                      className="pd-30"
+                      tag={NavLink}
+                      to={to}
+                      activeClassName="active"
+                      exact={exact}
+                    >
+                      <Icon className={bem.e('nav-item-icon')} />
+                      <span className="">{name}</span>
+                    </BSNavLink>
+                  </NavItem>
+                ))}
+              </Collapse>
+
+              {navItems2.map(({ to, name, exact, Icon }, index) => (
+                <NavItem key={index} className={bem.e('nav-item')}>
+                  <BSNavLink
+                    id={`navItem-${name}-${index}`}
+                    className="text-uppercase"
+                    tag={NavLink}
+                    to={to}
+                    activeClassName="active"
+                    exact={exact}
+                  >
+                    <Icon className={bem.e('nav-item-icon')} />
+                    <span className="">{name}</span>
+                  </BSNavLink>
+                </NavItem>
+              ))}
+
+              <NavItem
+                className={bem.e('nav-item')}
+                onClick={this.handleClick('baocao')}
+              >
+                <BSNavLink className={bem.e('nav-item-collapse')}>
+                  <div className="text-uppercase">
+                    <FaTable className={bem.e('nav-item-icon')} />
+                    <span className="">báo cáo</span>
+                  </div>
+                  <MdKeyboardArrowDown
+                    className={bem.e('nav-item-icon')}
+                    style={{
+                      padding: 0,
+                      transform: this.state.isOpenbaocao
+                        ? 'rotate(0deg)'
+                        : 'rotate(-90deg)',
+                      transitionDuration: '0.3s',
+                      transitionProperty: 'transform',
+                    }}
+                  />
+                </BSNavLink>
+              </NavItem>
+              <Collapse isOpen={this.state.isOpenbaocao}>
+                {baocao.map(({ to, name, exact, Icon }, index) => (
+                  <NavItem key={index} className={bem.e('nav-item')}>
+                    <BSNavLink
+                      id={`navItem-${name}-${index}`}
+                      className="pd-30"
+                      tag={NavLink}
+                      to={to}
+                      activeClassName="active"
+                      exact={exact}
+                    >
+                      <Icon className={bem.e('nav-item-icon')} />
+                      <span className="">{name}</span>
+                    </BSNavLink>
+                  </NavItem>
+                ))}
+              </Collapse>
+
+            </Nav>
+          </div>
+        }
+
       </aside>
     );
   }

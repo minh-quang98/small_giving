@@ -4,7 +4,6 @@
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ecorau/OneBook" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="E:\WebSM\small-giving\node_modules\stylelint" />
@@ -188,6 +187,7 @@
       <workItem from="1589940548471" duration="5364000" />
       <workItem from="1589989612436" duration="835000" />
       <workItem from="1590046198205" duration="81000" />
+      <workItem from="1590054591199" duration="3581000" />
     </task>
     <servers />
   </component>
@@ -212,10 +212,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589338785360" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1590046277859">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1590059097475">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1590046277859" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1590059097475" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
       <screen x="0" y="0" width="1280" height="680" />
