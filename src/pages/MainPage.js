@@ -25,6 +25,7 @@ import Media from 'reactstrap/es/Media';
 import Vang from '../assets/img/logo/HHV.png';
 import Bac from '../assets/img/logo/HHB.png';
 import Dong from '../assets/img/logo/HHD.png';
+import { withSnackbar } from 'notistack';
 
 
 const today = new Date();
@@ -67,7 +68,8 @@ class MainPage extends React.Component {
       messageErr: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
-      SoDuTK: ""
+      SoDuTK: "",
+      checkIn: false
     }
   }
   componentDidMount() {
@@ -94,16 +96,6 @@ class MainPage extends React.Component {
       });
   }
 
-  HuyHieu(item) {
-    switch (item) {
-      case "0":
-        return 'img/logo/HHV.png';
-      case "1":
-        return 'img/logo/HHB.png';
-      case "2":
-        return 'img/logo/HHD  .png';
-    }
-  }
 
   getUser = () => {
     if (this.state.token !== "") {
@@ -136,6 +128,44 @@ class MainPage extends React.Component {
         this.setState({
           SoDuTK: data.SoDuTK
         }, () => console.log("stk>>", data))
+      })
+  }
+
+  handleCheckIn = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNhaHaoTam: this.state.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/Diemdanh/diemdanh.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Success") {
+          this.props.enqueueSnackbar('Điểm danh thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else if (data.message === "Ban da diem danh roi") {
+          this.props.enqueueSnackbar('Bạn đã điểm danh rồi', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else {
+          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
       })
   }
 
@@ -179,7 +209,7 @@ class MainPage extends React.Component {
                     <Link to={"/consider"}>(Link)</Link>
                   </ListGroupItem>
                   <ListGroupItem className="text-center">
-                    <Button>Điểm danh</Button>
+                    <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
                   </ListGroupItem>
                 </ListGroup>
               }
@@ -242,4 +272,4 @@ class MainPage extends React.Component {
     );
   }
 }
-export default MainPage;
+export default withSnackbar(MainPage);
