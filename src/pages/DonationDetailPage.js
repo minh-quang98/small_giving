@@ -30,20 +30,20 @@ import Cookies from 'js-cookie';
 class DonationDetailPage extends Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       modalParent: false,
       modal: false,
       idHoatDong: "",
       dataHoatDong: [],
       SoDiTK: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
-      idNguoiDung:""
+      idNguoiDung: ""
     }
   }
 
   componentWillMount() {
     let params = Convert.urlParams(this.props.location.search);
-    this.setState({idHoatDong: params.idHoatDong})
+    this.setState({ idHoatDong: params.idHoatDong })
   }
 
   componentDidMount() {
@@ -51,7 +51,7 @@ class DonationDetailPage extends Component {
     this.getUser();
   }
 
-  getInfo () {
+  getInfo() {
     let config = {
       method: "POST",
       body: JSON.stringify({
@@ -77,7 +77,7 @@ class DonationDetailPage extends Component {
       }
       fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             idNguoiDung: data.idNguoiDung
           }, () => this.getProfile())
@@ -126,6 +126,7 @@ class DonationDetailPage extends Component {
   }
 
   render() {
+    // const item = this.props.item;
     return (
       <Page title="Người gia neo đơn">
         {this.state.dataHoatDong.map((item, index) => {
@@ -158,33 +159,33 @@ class DonationDetailPage extends Component {
                     {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
                     <div style={{ fontSize: 20, textAlign: 'center' }}>
                       Số dư tài khoản
-                      <br/>
+                      <br />
                       {this.state.token === ""
-                          ? <div style={{fontSize: 20, color: "#ae1f17"}}>
-                            Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
+                        ? <div style={{ fontSize: 20, color: "#ae1f17" }}>
+                          Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                           </div>
-                          : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                       }
                     </div>
                   </CardBody>
                   {this.state.token === ""
                     ? <div></div>
-                    :<ListGroup flush>
+                    : <ListGroup flush>
                       <ListGroupItem>
-                        <MdInsertChart size={25} style={{color: "#ae1f17"}}/> Làm phiếu khảo sát&nbsp;&nbsp;
+                        <MdInsertChart size={25} style={{ color: "#ae1f17" }} /> Làm phiếu khảo sát&nbsp;&nbsp;
                         {/*<a href={""}>(Link)</a>*/}
                         <Link to={'/consider'}>(Link)</Link>
                       </ListGroupItem>
                       <ListGroupItem>
                         <Label check>
-                          <MdBubbleChart size={25} style={{color: "#ae1f17"}}/>Theo dõi sự kiện
-                          <Input type="checkbox" className={"ml-3"}/>
+                          <MdBubbleChart size={25} style={{ color: "#ae1f17" }} />Theo dõi sự kiện
+                          <Input type="checkbox" className={"ml-3"} />
                         </Label>
                       </ListGroupItem>
                       <ListGroupItem>
                         <Label check >
-                          <MdShowChart size={25} style={{color: "#ae1f17"}}/>Tham gia hoạt động
-                          <Input type="checkbox" className={"ml-3"}/>
+                          <MdShowChart size={25} style={{ color: "#ae1f17" }} />Tham gia hoạt động
+                          <Input type="checkbox" className={"ml-3"} />
                         </Label>
                       </ListGroupItem>
                       <ListGroupItem>
@@ -192,8 +193,8 @@ class DonationDetailPage extends Component {
                           <Col lg={12} md={6} sm={6} xs={12}>
                             <div style={{ fontSize: 20, textAlign: 'center' }}>
                               Số tiền quyên góp dự kiến
-                              <br/>
-                              <NumberFormat value={item.ChiDK} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                              <br />
+                              <NumberFormat value={item.ChiDK} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                             </div>
                           </Col>
                         </Row>
@@ -236,7 +237,7 @@ class DonationDetailPage extends Component {
               />
               <div>Số tiền hiện tại bạn có là:</div>
               <div style={{ color: '#ae1f17' }}>{this.state.SoDuTK !== null ? this.state.SoDuTK : 0}</div>
-              <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
+              <Input className="w-50" type="text" placeholder="Nhập số tiền" />
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>

@@ -25,6 +25,7 @@ import Media from 'reactstrap/es/Media';
 import Vang from '../assets/img/logo/HHV.png';
 import Bac from '../assets/img/logo/HHB.png';
 import Dong from '../assets/img/logo/HHD.png';
+import { withSnackbar } from 'notistack';
 
 
 const today = new Date();
@@ -37,8 +38,8 @@ const lastWeek = new Date(
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-      fakeData : [
+    this.state = {
+      fakeData: [
         {
           src: 'img/Slide/banner.png',
           key: '1'
@@ -67,7 +68,8 @@ class MainPage extends React.Component {
       messageErr: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
-      SoDuTK: ""
+      SoDuTK: "",
+      checkIn: false
     }
   }
   componentDidMount() {
@@ -81,7 +83,7 @@ class MainPage extends React.Component {
     fetch('http://smallgiving.cf/mobileapp/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
-        if(data.message !== "No post found") {
+        if (data.message !== "No post found") {
           this.setState({
             data: data
           })
@@ -91,19 +93,9 @@ class MainPage extends React.Component {
           })
         }
 
-        });
+      });
   }
 
-  HuyHieu(item) {
-    switch (item) {
-      case "0":
-        return 'img/logo/HHV.png';
-      case "1":
-        return 'img/logo/HHB.png';
-      case "2":
-        return 'img/logo/HHD  .png';
-    }
-  }
 
   getUser = () => {
     if (this.state.token !== "") {
@@ -115,7 +107,7 @@ class MainPage extends React.Component {
       }
       fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             idNguoiDung: data.idNguoiDung
           }, () => this.getProfile())
@@ -139,19 +131,57 @@ class MainPage extends React.Component {
       })
   }
 
+  handleCheckIn = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNhaHaoTam: this.state.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/Diemdanh/diemdanh.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Success") {
+          this.props.enqueueSnackbar('Điểm danh thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else if (data.message === "Ban da diem danh roi") {
+          this.props.enqueueSnackbar('Bạn đã điểm danh rồi', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        } else {
+          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
+      })
+  }
+
   render() {
-    let {fakeData} = this.state
+    let { fakeData } = this.state
     return (
       <Page
         className="DashboardPage"
         title="Trang chủ"
-        // breadcrumbs={[{ name: 'Dashboard', active: true }]}
+      // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
         <Row>
           <Col lg="8" md="12" sm="12" xs="12">
             <Card>
               <div>
-                <UncontrolledCarousel items={fakeData}/>
+                <UncontrolledCarousel items={fakeData} />
               </div>
             </Card>
           </Col>
@@ -159,14 +189,14 @@ class MainPage extends React.Component {
           <Col lg="4" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
-                <div style={{fontSize: 24, textAlign: "center", color: '#8e8e8e'}}>
-                   Số dư tài khoản
-                  <br/>
+                <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>
+                  Số dư tài khoản
+                  <br />
                   {this.state.token === ""
-                    ? <div style={{fontSize: 20, color: "#ae1f17", }}>
+                    ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
                       Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                     </div>
-                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                   }
                 </div>
               </CardBody>
@@ -179,7 +209,7 @@ class MainPage extends React.Component {
                     <Link to={"/consider"}>(Link)</Link>
                   </ListGroupItem>
                   <ListGroupItem className="text-center">
-                    <Button>Điểm danh</Button>
+                    <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
                   </ListGroupItem>
                 </ListGroup>
               }
@@ -192,13 +222,13 @@ class MainPage extends React.Component {
               <CardHeader>Về chúng tôi</CardHeader>
               <CardBody>
                 {productsData.map(
-                  ({ id, image, title, description,}) => (
+                  ({ id, image, title, description, }) => (
                     <ProductMedia
                       key={id}
                       image={image}
                       title={title}
                       description={description}
-                      // right={right}
+                    // right={right}
                     />
                   ),
                 )}
@@ -213,22 +243,22 @@ class MainPage extends React.Component {
                 {this.state.messageErr === ""
                   ? <Table responsive hover>
                     <thead>
-                    <tr className="text-capitalize align-middle text-center">
-                      <th>Huy Hiệu</th>
-                      <th>Tên Người Dùng</th>
-                      <th>Số Tiền</th>
-                    </tr>
+                      <tr className="text-capitalize align-middle text-center">
+                        <th>Huy Hiệu</th>
+                        <th>Tên Người Dùng</th>
+                        <th>Số Tiền</th>
+                      </tr>
                     </thead>
                     <tbody>
-                    {this.state.data.map((item, index) => (
-                      <tr key={index}>
-                        <td className="align-middle text-center">
-                          {index + 1}
-                        </td>
-                        <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                        <td className="align-middle text-center">{item.SoTien}</td>
-                      </tr>
-                    ))}
+                      {this.state.data.map((item, index) => (
+                        <tr key={index}>
+                          <td className="align-middle text-center">
+                            {index + 1}
+                          </td>
+                          <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                          <td className="align-middle text-center">{item.SoTien}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </Table>
                   : <div className="text-center">Không có dữ liệu</div>
@@ -242,4 +272,4 @@ class MainPage extends React.Component {
     );
   }
 }
-export default MainPage;
+export default withSnackbar(MainPage);

@@ -84,7 +84,7 @@ class DonationPage extends React.Component {
       }
       fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             idNguoiDung: data.idNguoiDung
           }, () => this.getProfile())
@@ -108,17 +108,17 @@ class DonationPage extends React.Component {
       })
   }
 
-  getDonation () {
+  getDonation() {
     fetch(`http://smallgiving.cf/mobileapp/Hoatdong/hoatdong.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
           listData: data
-        }, ()=> console.log("data>>>", data))
+        }, () => console.log("data>>>", data))
       })
   }
 
-  handleDoanation () {
+  handleDoanation() {
     let config = {
       method: "POST",
       body: JSON.stringify({
@@ -297,14 +297,14 @@ class DonationPage extends React.Component {
                   {/* <CardHeader className="text-center">Quyên góp</CardHeader> */}
                   <CardBody>
                     {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
-                    <div style={{ fontSize: 24, textAlign: 'center', color: '#8e8e8e'}}>
+                    <div style={{ fontSize: 24, textAlign: 'center', color: '#8e8e8e' }}>
                       Số dư tài khoản
-                      <br/>
+                      <br />
                       {this.state.token === ""
-                        ? <div style={{fontSize: 20, color: "#ae1f17"}}>
+                        ? <div style={{ fontSize: 20, color: "#ae1f17" }}>
                           Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                         </div>
-                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                       }
 
                     </div>
@@ -313,20 +313,20 @@ class DonationPage extends React.Component {
                     ? <div></div>
                     : <ListGroup flush>
                       <ListGroupItem>
-                        <MdInsertChart size={25} style={{ color: '#ae1f17' }}/> Làm phiếu khảo sát&nbsp;&nbsp;
+                        <MdInsertChart size={25} style={{ color: '#ae1f17' }} /> Làm phiếu khảo sát&nbsp;&nbsp;
                         {/*<a href={""}>(Link)</a>*/}
                         <Link to={'/consider'}>(Link)</Link>
                       </ListGroupItem>
                       <ListGroupItem>
                         <Label check>
-                          <MdBubbleChart size={25} style={{ color: '#ae1f17' }}/>Theo dõi sự kiện
-                          <Input type="checkbox" className={'ml-3'}/>
+                          <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện
+                          <Input type="checkbox" className={'ml-3'} />
                         </Label>
                       </ListGroupItem>
                       <ListGroupItem>
                         <Label check>
-                          <MdShowChart size={25} style={{ color: '#ae1f17' }}/>Tham gia hoạt động
-                          <Input type="checkbox" className={'ml-3'}/>
+                          <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động
+                          <Input type="checkbox" className={'ml-3'} />
                         </Label>
                       </ListGroupItem>
                       <ListGroupItem>
@@ -359,9 +359,9 @@ class DonationPage extends React.Component {
                 style={{ width: '10%', height: '10%' }}
               />
               <div>Số tiền hiện tại bạn có là:</div>
-              <div style={{ color: '#ae1f17' }}><NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></div>
+              <div style={{ color: '#ae1f17' }}><NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></div>
               <TextField
-                style={{width: "100%"}}
+                style={{ width: "100%" }}
                 variant="outlined"
                 type="number"
                 onChange={(val) => {
