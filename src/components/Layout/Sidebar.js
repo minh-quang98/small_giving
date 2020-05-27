@@ -132,7 +132,7 @@ class Sidebar extends React.Component {
         .then((data)=> {
           this.setState({
             idNhom: data.idNhom
-          }, () => console.log("idNhom>>>>>>", this.state.idNhom))
+          }, () => console.log("idNhom>>>>>>", data))
         })
     }
   }
