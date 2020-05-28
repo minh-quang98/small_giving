@@ -92,6 +92,35 @@ class Khaosatthem extends React.Component {
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
+          this.setState({
+            userway4: data
+          }, () => this.creatAccountWay4())
+
+        } else {
+
+        }
+      });
+    //this.setState(initialState);
+    //}
+  }
+  creatAccountWay4() {
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ShortName: this.state.name,
+        IdentityCardNumber: this.state.id,
+        ClientNumber: this.state.id,
+        MobilePhone: this.state.id,
+        EMail: "abc@gmail.com"
+
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
           this.props.enqueueSnackbar('Thành công!', {
             anchorOrigin: {
               vertical: "top",
@@ -102,11 +131,20 @@ class Khaosatthem extends React.Component {
           window.location.reload();
 
         } else {
-          //notifydefeat('this is a notify');
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+
         }
+
       });
-    //this.setState(initialState);
     //}
+
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -150,6 +188,7 @@ class Khaosatthem extends React.Component {
     const isValid = this.validate();
     if (isValid) {
       console.log(this.state);
+      //() => this.getdatainsert();
       //clear form
       this.setState(initialState);
     }
@@ -171,11 +210,15 @@ class Khaosatthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleText">Mã khảo sát</Label>
                         <Input
-                          disabled="true"
+
                           type="text"
                           name="id"
                           value={this.state.id}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              id: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>

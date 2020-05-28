@@ -27,6 +27,7 @@ const initialState = {
 
   token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
   user: [],
+  userway4: [],
   nameError: '',
   eachturnError: '',
   dataselect: [],
@@ -86,6 +87,33 @@ class Diemdanhthem extends React.Component {
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
+          this.setState({
+            userway4: data
+          }, () => this.creatAccountWay4())
+        }
+        else {
+          //notifydefeat('this is a notify');
+        }
+      });
+    //this.setState(initialState);
+    //}
+  }
+  creatAccountWay4() {
+    let config1 = {
+      method: "POST",
+      body: JSON.stringify({
+        ShortName: this.state.name,
+        IdentityCardNumber: this.state.id,
+        ClientNumber: this.state.id,
+        MobilePhone: this.state.id,
+        EMail: "abc@gmail.com"
+
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config1)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
           this.props.enqueueSnackbar('Thành công!', {
             anchorOrigin: {
               vertical: "top",
@@ -96,12 +124,20 @@ class Diemdanhthem extends React.Component {
           window.location.reload();
 
         } else {
-          //notifydefeat('this is a notify');
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+
         }
       });
-    //this.setState(initialState);
-    //}
+
   }
+
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -113,15 +149,7 @@ class Diemdanhthem extends React.Component {
   validate = () => {
     let moneyError = '';
 
-    if (!this.state.money) {
-      this.props.enqueueSnackbar('Không được bỏ trống !', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    }
+
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -150,7 +178,7 @@ class Diemdanhthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleText">Mã điểm danh</Label>
                         <Input
-                          disabled="true"
+
                           type="text"
                           name="id"
                           value={this.state.id}

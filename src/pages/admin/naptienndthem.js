@@ -15,19 +15,102 @@ import {
 } from 'reactstrap';
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
-
+import Cookies from 'js-cookie';
 
 const initialState = {
   id: '',
   account: '',
   money: '',
-
+  user: [],
+  dataway4: [],
   accountError: '',
   moneyError: '',
-
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
 };
 class Naptienthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+  }
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+  getdatainsert() {
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config1 = {
+      method: "POST",
+      body: JSON.stringify({
+        SDT: this.state.account,
+        idCTV: this.state.user.idNguoiDung,
+        SoTien: this.state.money,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/naptien/nhahaotam.php', config1)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.setState({
+            dataway4: data
+          }, () => this.naptienWay4())
+
+        } else {
+
+        }
+      });
+    //this.setState(initialState);
+    //}
+
+  }
+  naptienWay4() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        ClientNumber: this.state.account,
+        SoTien: this.state.money,
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/apiway4/naptien.php', config2)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Thành công!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          window.location.reload();
+
+        } else {
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+
+        }
+      });
+
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -58,13 +141,13 @@ class Naptienthem extends React.Component {
           variant: 'error',
         });
       } else {
-        this.props.enqueueSnackbar('Thành công', {
-          anchorOrigin: {
-            vertical: "top",
-            horizontal: "right"
-          },
-          variant: 'success',
-        });
+        // this.props.enqueueSnackbar('Thành công', {
+        //   anchorOrigin: {
+        //     vertical: "top",
+        //     horizontal: "right"
+        //   },
+        //   variant: 'success',
+        // });
       }
   };
   handleSubmit = event => {
@@ -159,7 +242,10 @@ class Naptienthem extends React.Component {
             </Row>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit" pill
+                  className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Nạp
                 </Button>
 

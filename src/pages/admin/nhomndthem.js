@@ -49,14 +49,14 @@ class Nhomndthem extends React.Component {
           window.location.reload();
 
         } else {
-          this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-          this.setState(initialState);
+          // this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
+          //   anchorOrigin: {
+          //     vertical: "top",
+          //     horizontal: "right"
+          //   },
+          //   variant: 'error',
+          // });
+          // this.setState(initialState);
 
         }
       });

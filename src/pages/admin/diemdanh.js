@@ -13,8 +13,6 @@ const dataError = [
     e2: "Chưa có dữ liệu",
     e3: "",
     e4: "",
-    e5: "",
-    e6: "",
   }
 ]
 class diemdanh extends React.Component {
@@ -110,12 +108,7 @@ class diemdanh extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Diemdanhthem
-                    show={this.state.showModalThem}
-                    onHide={this.handleCloseModalThem}
-                    size="lg"
-                    className={this.props.className}
-                  />
+
                   <Diemdanhsua
                     show={this.state.showModalSua}
                     onHide={this.handleCloseModalSua}
@@ -123,31 +116,14 @@ class diemdanh extends React.Component {
                     className={this.props.className}
                     chooseId={this.state.idDiemDanh}
                   />
-                  <Diemdanhxoa
-                    show={this.state.showModalXoa}
-                    onHide={this.handleCloseModalXoa}
-                    size="lg"
-                    className={this.props.className}
-                    chooseId={this.state.idDiemDanh}
-                  />
-                  <Badge
-                    color="danger"
-                    pill
-                    className=" mb-3 p-2 can-click"
-                    onClick={this.handleShowModalThem}
-                  >
-                    + Thêm mới
-                  </Badge>
+
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
                         <th>ID</th>
-                        <th>Tên quỹ điểm danh</th>
-
-                        <th>Số người tham gia</th>
                         <th>Sô tiền mỗi lượt</th>
-                        <th>CTV tạo quỹ</th>
-                        <th></th>
+                        <th>Số người tham gia</th>
+                        <th>Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -157,12 +133,9 @@ class diemdanh extends React.Component {
                             <tr>
                               <td>{Item.e1}</td>
                               <td>{Item.e2}</td>
-
                               <td>{Item.e3}</td>
-                              <td>{Item.e4}</td>
-                              <td>{Item.e5}</td>
                               <td>
-                                {Item.e6}
+                                {Item.e4}
                               </td>
                             </tr>
                           );
@@ -170,11 +143,8 @@ class diemdanh extends React.Component {
                           return (
                             <tr>
                               <td>{Item.idDiemDanh}</td>
-                              <td>{Item.TenDiemDanh}</td>
-
-                              <td>{Item.SoNguoiTG}</td>
                               <td>{Item.SoTienML}</td>
-                              <td>{Item.TenNguoiDung}</td>
+                              <td>{Item.SoNguoiTG}</td>
                               <td>
                                 <FaEdit
                                   className="can-click "
@@ -183,13 +153,7 @@ class diemdanh extends React.Component {
                                     this.handleShowModalSua(Item.idDiemDanh)
                                   }
                                 />
-                                <MdDelete
-                                  className="can-click"
-                                  size="1.5em"
-                                  onClick={() =>
-                                    this.handleShowModalSua(Item.idDiemDanh)
-                                  }
-                                />
+
                               </td>
                             </tr>
                           );

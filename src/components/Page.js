@@ -22,13 +22,13 @@ const Page = ({
   return (
     <Tag className={classes} {...restProps}>
       <div className={bem.e('header')}>
-        {title && typeof title === 'string' ? (
+        {/* {title && typeof title === 'string' ? (
           <Typography type="h3" className={bem.e('title')}>
             {title}
           </Typography>
         ) : (
             title
-          )}
+          )} */}
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
             <BreadcrumbItem>Home</BreadcrumbItem>

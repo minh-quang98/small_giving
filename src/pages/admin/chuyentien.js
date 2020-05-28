@@ -1,5 +1,6 @@
 import Page from 'components/Page';
 import Chuyentienthem from 'pages/admin/chuyentienthem';
+import KhaoSatXoa from 'pages/admin/khaosatxoa'
 import React from 'react';
 import {
   Card,
@@ -30,16 +31,45 @@ class chuyentien extends React.Component {
       dataError: [],
       dataerror: false,
       showModalThem: false,
+      showModalXoa: false,
+      idGiaoDich: "",
+      idGD: ""
     };
   }
-  handleShowModalThem = () => {
+  componentDidUpdate(preProps, preState, future) {
+    const { idGiaoDich } = this.state;
+    if (preState.idGiaoDich != idGiaoDich) {
+
+      this.handleShowModalXoa(idGiaoDich);
+      // this.handleShowModalXem(idHoatDong);
+    }
+    const { idGD } = this.state;
+    if (preState.idGD != idGD) {
+      //this.handleShowModalSua(idHoatDong);
+      this.handleShowModalThem(idGD);
+    }
+
+  }
+  handleShowModalThem = id => {
     this.setState({
       showModalThem: true,
+      idGD: id,
     });
   };
   handleCloseModalThem = () => {
     this.setState({
       showModalThem: false,
+    });
+  };
+  handleShowModalXoa = id => {
+    this.setState({
+      showModalXoa: true,
+      idGiaoDich: id,
+    });
+  };
+  handleCloseModalXoa = () => {
+    this.setState({
+      showModalXoa: false,
     });
   };
   componentDidMount() {
@@ -133,26 +163,30 @@ class chuyentien extends React.Component {
                                   onHide={this.handleCloseModalThem}
                                   size="lg"
                                   className={this.props.className}
+                                  chooseId={this.state.idGD}
                                 />
                                 <Badge
                                   color="danger"
                                   pill
                                   className=" mb-3 p-2 can-click oke"
-                                //onClick={this.handleShowModalThem}
+                                  onClick={() => this.handleShowModalThem(Item.idGiaoDich)}
                                 >
                                   Chấp nhận
                               </Badge>
-                                <Chuyentienthem
-                                  show={this.state.showModalThem}
-                                  onHide={this.handleCloseModalThem}
+                                <KhaoSatXoa
+                                  show={this.state.showModalXoa}
+                                  onHide={this.handleCloseModalXoa}
                                   size="lg"
                                   className={this.props.className}
+                                  chooseId={this.state.idGiaoDich}
                                 />
                                 <Badge
                                   color="danger"
                                   pill
                                   className=" mb-3 p-2 can-click"
-                                //onClick={this.handleShowModalThem}
+                                  onClick={() =>
+                                    this.handleShowModalXoa(Item.idGiaoDich)
+                                  }
                                 >
                                   Hủy bỏ
                               </Badge>
