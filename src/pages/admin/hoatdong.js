@@ -34,7 +34,9 @@ class hoatdong extends React.Component {
       showModalXem: false,
       idHoatDong: "",
       idHD: "",
-      sodu: ""
+      sodu: "xem",
+
+
     };
   }
   componentDidUpdate(preProps, preState, future) {
@@ -48,6 +50,7 @@ class hoatdong extends React.Component {
       //this.handleShowModalSua(idHoatDong);
       this.handleShowModalXem(idHD);
     }
+
   }
   handleShowModalThem = () => {
     this.setState({
@@ -116,11 +119,12 @@ class hoatdong extends React.Component {
         }
       });
   };
-  getsodu = (id) => {
+  getsodu = (ida) => {
+    console.log("check>>", ida)
     let config = {
       method: "POST",
       body: JSON.stringify({
-        ClientNumber: id
+        ClientNumber: ida
       })
     }
     fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
@@ -128,8 +132,9 @@ class hoatdong extends React.Component {
       .then((data) => {
         this.setState({
           sodu: data.Available,
-        })
-      })
+        }, () => console.log("check>>>", this.state.sodu))
+      });
+
   }
 
   render() {
@@ -190,7 +195,7 @@ class hoatdong extends React.Component {
                         <th> Tên hoạt động</th>
                         <th> Bắt đầu</th>
                         <th> Kết thúc</th>
-                        <th> vfffsfsfs</th>
+
                         <th> Số dư</th>
                         <th> CTV đăng tải</th>
                         <th> Xem đăng kí</th>
@@ -225,8 +230,17 @@ class hoatdong extends React.Component {
                               <td>{Item.TenHoatDong}</td>
                               <td>{Item.ThoiGianBD}</td>
                               <td>{Item.ThoiGianKT}</td>
-                              <td>{this.state.sodu}</td>
-                              <td>{() => this.getsodu(Item.idHoatDong)}</td>
+
+                              <td>
+                                <Button
+                                  color="link"
+                                  className="can-click"
+
+                                  onClick={() => this.getsodu(Item.idHoatDong)}
+                                >
+                                  {this.state.sodu}
+                                </Button>
+                              </td>
                               <td>{Item.TenNguoiDung}</td>
                               <td>
                                 <Button

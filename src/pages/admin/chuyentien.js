@@ -28,6 +28,7 @@ class chuyentien extends React.Component {
     super(props);
     this.state = {
       data: [],
+      disabled: false,
       dataError: [],
       dataerror: false,
       showModalThem: false,
@@ -51,10 +52,13 @@ class chuyentien extends React.Component {
 
   }
   handleShowModalThem = id => {
-    this.setState({
-      showModalThem: true,
-      idGD: id,
-    });
+    if (this.state.disabled) {
+      this.setState({
+        showModalThem: true,
+        idGD: id,
+      });
+    }
+    this.setState({ disabled: true });
   };
   handleCloseModalThem = () => {
     this.setState({
@@ -154,7 +158,7 @@ class chuyentien extends React.Component {
                             <tr>
                               <td>{Item.idGiaoDich}</td>
                               <td>{Item.TenKhaoSat}</td>
-                              <td>{Item.TenNguoiDung}</td>
+                              <td>{Item.Email}</td>
 
                               <td>{Item.SoTien}</td>
                               <td>
@@ -170,6 +174,7 @@ class chuyentien extends React.Component {
                                   pill
                                   className=" mb-3 p-2 can-click oke"
                                   onClick={() => this.handleShowModalThem(Item.idGiaoDich)}
+                                  disabled={this.state.disabled}
                                 >
                                   Chấp nhận
                               </Badge>
