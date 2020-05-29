@@ -121,7 +121,7 @@ class naptien extends React.Component {
                                                     return (
                                                         <tr>
                                                             <td>{Item.idGiaoDich}</td>
-                                                            <td>{Item.TenDiemDanh}</td>
+                                                            <td>{Item.idDiemDanh}</td>
                                                             <td>{Item.ThoiGian}</td>
                                                             <td>{Item.SoTien}</td>
                                                             <td>{Item.CTV}</td>

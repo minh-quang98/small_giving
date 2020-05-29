@@ -206,7 +206,7 @@ class bcnaptien extends React.Component {
                                                             ><option></option>
                                                                 {this.state.datashow.map((Item, index) => (
 
-                                                                    <option>{Item.TenDiemDanh}</option>
+                                                                    <option>{Item.idDiemDanh}</option>
                                                                 )
                                                                 )}
                                                             </Input>
@@ -268,7 +268,7 @@ class bcnaptien extends React.Component {
                                                         return (
                                                             <tr>
                                                                 <td>{Item.idGiaoDich}</td>
-                                                                <td>{Item.TenDiemDanh}</td>
+                                                                <td>{Item.idDiemDanh}</td>
                                                                 <td>{Item.SoTien}</td>
                                                             </tr>
                                                         );

@@ -28,12 +28,13 @@ const initialState = {
   total: '',
   token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
   user: [],
-
+  userway4: [],
   totalError: '',
   nameError: '',
   imageError: '',
   contentError: '',
   dataselect: [],
+  idhd: '',
 };
 
 class Hoatdongthem extends React.Component {
@@ -68,29 +69,62 @@ class Hoatdongthem extends React.Component {
         .then((data) => {
           this.setState({
             user: data
-          }, () => this.getdatainsert())
+          })
         })
     }
   }
 
   getdatainsert() {
-    //const isValid = this.validate();
-    //if (isValid) {
-    let config = {
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          TenNguoiDung: this.state.id,
+          idCTV: this.state.user.idNguoiDung,
+          TenHoatDong: this.state.name,
+          NoiDung: this.state.content,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          DiaChi: this.state.address,
+          Anh: this.state.image,
+          ChiDK: this.state.total,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.setState({
+              userway4: data
+            }, () => this.creatAccountWay4())
+          }
+          else {
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        });
+    }
+
+  }
+  creatAccountWay4() {
+    let config1 = {
       method: "POST",
       body: JSON.stringify({
-        TenNguoiDung: this.state.id,
-        idCTV: this.state.user.idNguoiDung,
-        TenHoatDong: this.state.name,
-        NoiDung: this.state.content,
-        ThoiGianBD: this.state.startdate,
-        ThoiGianKT: this.state.enddate,
-        DiaChi: this.state.address,
-        Anh: this.state.image,
-        ChiDK: this.state.total,
+        ShortName: this.state.name,
+        IdentityCardNumber: this.state.idhd,
+        ClientNumber: this.state.idhd,
+        MobilePhone: this.state.idhd,
+        EMail: "abc@gmail.com"
+
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config1)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
@@ -102,14 +136,19 @@ class Hoatdongthem extends React.Component {
             variant: 'success',
           });
           window.location.reload();
-        } else {
-          //notifydefeat('this is a notify');
 
+        } else {
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
 
         }
       });
-    //this.setState(initialState);
-    //}
 
   }
   handleChange = event => {
@@ -127,32 +166,22 @@ class Hoatdongthem extends React.Component {
     let contentError = '';
 
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được bỏ trống tên!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      nameError = 'Bạn cần nhập tên hoạt động';
     }
     if (!this.state.total) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      totalError = 'Bạn cần nhập một số tiền';
     }
     if (!this.state.content) {
-      this.props.enqueueSnackbar('Không được bỏ trống nội dung!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      contentError = 'Bạn cần nhập nội dung';
     }
+    if (!this.state.image) {
+      imageError = 'Bạn cần chọn một hình ảnh';
+    }
+    if (nameError || totalError || contentError || imageError) {
+      this.setState({ nameError, totalError, contentError, imageError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -176,6 +205,24 @@ class Hoatdongthem extends React.Component {
                 <Row>
                   <Col xl={6} lg={12} md={12}>
                     <Form>
+                      <FormGroup>
+                        <Label for="exampleText"> ID hoạt động</Label>
+                        <Input
+
+                          type="text"
+                          name="idhd"
+                          value={this.state.idhd}
+                          onChange={val => {
+                            this.setState({
+                              idhd: val.target.value,
+                            });
+
+                          }}
+
+                        >
+
+                        </Input>
+                      </FormGroup>
                       <FormGroup>
                         <Label for="exampleText"> Người thụ hưởng</Label>
                         <Input
@@ -210,19 +257,24 @@ class Hoatdongthem extends React.Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label for="exampleText"> Địa chỉ</Label>
+                        <Label for="exampleImage">
+                          {' '}
+                        Hình ảnh / Video <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">{this.state.imageError}</div>
                         <Input
-                          type="text"
-                          name="address"
-                          value={this.state.address}
+                          type="file"
+                          name="image"
+                          value={this.state.image}
                           onChange={val => {
                             this.setState({
-                              address: val.target.value,
+                              image: val.target.value,
                             });
 
                           }}
                         />
                       </FormGroup>
+
                     </Form>
                   </Col>
                   <Col xl={6} lg={12} md={12}>
@@ -245,7 +297,20 @@ class Hoatdongthem extends React.Component {
                           }}
                         />
                       </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText"> Địa chỉ</Label>
+                        <Input
+                          type="text"
+                          name="address"
+                          value={this.state.address}
+                          onChange={val => {
+                            this.setState({
+                              address: val.target.value,
+                            });
 
+                          }}
+                        />
+                      </FormGroup>
                       <FormGroup>
                         <Label for="exampleDate">Ngày kết thúc </Label>
                         <Input
@@ -286,24 +351,7 @@ class Hoatdongthem extends React.Component {
                     </Form>
                   </Col>
                   <Col xl={12}>
-                    <Form>
-                      <Label for="exampleImage">
-                        {' '}
-                        Hình ảnh / Video <span className="red-text">*</span>
-                      </Label>
-                      <div className="error-text">{this.state.imageError}</div>
-                      <Input
-                        type="file"
-                        name="image"
-                        value={this.state.image}
-                        onChange={val => {
-                          this.setState({
-                            image: val.target.value,
-                          });
 
-                        }}
-                      />
-                    </Form>
                     <Form>
                       <Label for="exampleText">
                         Nội dung <span className="red-text">*</span>

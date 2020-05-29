@@ -43,41 +43,44 @@ class Nhomndsua extends React.Component {
           {
             id: datashow.idNhom,
             name: datashow.TenNhom,
-
           },
           () => console.log('kiemtradulieu>>', datashow),
         );
       });
   }
   getdataupdate() {
-
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idNhom: this.state.id,
-        TenNhom: this.state.name,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Thành công!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          window.location.reload();
-
-        } else {
-
-
-
-        }
-      });
-
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idNhom: this.state.id,
+          TenNhom: this.state.name,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            window.location.reload();
+          } else {
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        });
+    }
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -91,31 +94,17 @@ class Nhomndsua extends React.Component {
     let nameError = '';
 
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Bạn chưa nhập tên nhóm', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    } else {
-      this.props.enqueueSnackbar('Thành công!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      nameError = 'Bạn cần nhập một tên';
     }
+    if (nameError) {
+      this.setState({ nameError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+
   };
   render() {
     let { info } = this.state

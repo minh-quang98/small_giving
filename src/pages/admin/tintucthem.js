@@ -66,50 +66,49 @@ class Tintucthem extends React.Component {
         .then((data) => {
           this.setState({
             user: data
-          }, () => this.getdatainsert())
+          })
         })
     }
   }
   getdatainsert() {
-    //const isValid = this.validate();
-    //if (isValid) {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        idCTV: this.state.user.idNguoiDung,
-        TenTin: this.state.name,
-        TenHoatDong: this.state.idhoatdong,
-        NoiDung: this.state.content,
-        Anh: this.state.image,
-        TieuDeThongBao: this.state.title,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Thành công!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          idCTV: this.state.user.idNguoiDung,
+          TenTin: this.state.name,
+          TenHoatDong: this.state.idhoatdong,
+          NoiDung: this.state.content,
+          Anh: this.state.image,
+          TieuDeThongBao: this.state.title,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            window.location.reload();
 
-        } else {
-          this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-          this.setState(initialState);
-        }
-      });
-    //this.setState(initialState);
-    //}
+          } else {
+            this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+            this.setState(initialState);
+          }
+        });
+    }
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -120,51 +119,27 @@ class Tintucthem extends React.Component {
     });
   };
   validate = () => {
-
+    let nameError = '';
+    let idhoatdongError = '';
+    let contentError = '';
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được để trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      nameError = 'Bạn cần nhập một tên';
     }
     if (!this.state.idhoatdong) {
-      this.props.enqueueSnackbar('Không được để trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      idhoatdongError = 'Bạn cần chọn một hoạt động';
     }
     if (!this.state.content) {
-      this.props.enqueueSnackbar('Không được để trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      contentError = 'Bạn cần nhập nội dung';
     }
 
-    this.props.enqueueSnackbar('Thành công!', {
-      anchorOrigin: {
-        vertical: "top",
-        horizontal: "right"
-      },
-      variant: 'success',
-    });
+    if (nameError || idhoatdongError || contentError) {
+      this.setState({ nameError, idhoatdongError, contentError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
   };
   render() {
     return (

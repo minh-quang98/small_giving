@@ -34,6 +34,7 @@ class hoatdong extends React.Component {
       showModalXem: false,
       idHoatDong: "",
       idHD: "",
+      sodu: "xem",
     };
   }
   componentDidUpdate(preProps, preState, future) {
@@ -47,6 +48,7 @@ class hoatdong extends React.Component {
       //this.handleShowModalSua(idHoatDong);
       this.handleShowModalXem(idHD);
     }
+
   }
   handleShowModalThem = () => {
     this.setState({
@@ -102,20 +104,37 @@ class hoatdong extends React.Component {
       .then(response => response.json())
       .then(data => {
         if (data.message === "No post found") {
-          this.setState({ dataerror: true, dataError: dataError });
+          this.setState({ dataerror: true, dataError: dataError }
+          );
         } else {
           this.setState(
             {
               dataerror: false,
               data: data,
             },
-            () => console.log('kiemtradulieu', this.state.data),
+            //() => this.getsodu(),
           );
-
         }
-
       });
   };
+  getsodu = (ida) => {
+    console.log("check>>", ida)
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ClientNumber: ida
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          sodu: data.Available,
+        }, () => console.log("check>>>", this.state.sodu))
+      });
+
+  }
+
   render() {
     return (
       <Page
@@ -123,7 +142,7 @@ class hoatdong extends React.Component {
         title="Danh sách hoạt động"
         breadcrumbs={[
           { name: 'quản trị hoạt động tình nguyện' },
-          { name: 'danh sách hoat động', active: true },
+          { name: 'danh sách hoạt động', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -174,7 +193,8 @@ class hoatdong extends React.Component {
                         <th> Tên hoạt động</th>
                         <th> Bắt đầu</th>
                         <th> Kết thúc</th>
-                        <th> Lượt quyên góp</th>
+
+                        <th> Số dư</th>
                         <th> CTV đăng tải</th>
                         <th> Xem đăng kí</th>
                         <th> </th>
@@ -209,7 +229,16 @@ class hoatdong extends React.Component {
                               <td>{Item.ThoiGianBD}</td>
                               <td>{Item.ThoiGianKT}</td>
 
-                              <td>{Item.SoNguoiTG}</td>
+                              <td>
+                                <Button
+                                  color="link"
+                                  className="can-click"
+
+                                  onClick={() => this.getsodu(Item.idHoatDong)}
+                                >
+                                  {this.state.sodu}
+                                </Button>
+                              </td>
                               <td>{Item.TenNguoiDung}</td>
                               <td>
                                 <Button

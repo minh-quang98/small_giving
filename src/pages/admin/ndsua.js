@@ -114,17 +114,18 @@ class Nguoidungsua extends React.Component {
             window.location.reload();
 
           } else {
-
-
-
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
           }
         });
-      this.setState(initialState);
+      //this.setState(initialState);
     }
-
   }
-
-
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -135,61 +136,25 @@ class Nguoidungsua extends React.Component {
   };
 
   validate = () => {
-    if (!this.state.phone) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    } else
-      if (!this.state.idnhom) {
-        this.props.enqueueSnackbar('Không được bỏ trống!', {
-          anchorOrigin: {
-            vertical: "top",
-            horizontal: "right"
-          },
-          variant: 'error',
-        });
-      } else
-        if (!this.state.email) {
-          this.props.enqueueSnackbar('Không được bỏ trống!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        } else
-          if (!this.state.password) {
-            this.props.enqueueSnackbar('Không được bỏ trống!', {
-              anchorOrigin: {
-                vertical: "top",
-                horizontal: "right"
-              },
-              variant: 'error',
-            });
-          } else {
-            this.props.enqueueSnackbar('Thành công!', {
-              anchorOrigin: {
-                vertical: "top",
-                horizontal: "right"
-              },
-              variant: 'success',
-            });
-          }
+    let idnhomError = '';
+    let passwordError = '';
+
+    if (!this.state.idnhom) {
+      idnhomError = 'Bạn cần chọn một nhóm người dùng';
+    }
+
+    if (!this.state.password) {
+      passwordError = 'Bạn cần nhập mật khẩu';
+    }
+    if (idnhomError || passwordError) {
+      this.setState({ idnhomError, passwordError });
+      return false;
+    }
+    return true;
 
   };
-
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    // this.setState(initialState);
-    //}
   };
 
   render() {

@@ -26,14 +26,12 @@ const initialState = {
   url: '',
   patron: '',
   eachturn: '',
-  total: '',
   token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
   user: [],
 
   nameError: '',
   urlError: '',
   eachturnError: '',
-  totalError: '',
   dataselect: [],
 };
 
@@ -69,26 +67,58 @@ class Khaosatthem extends React.Component {
         .then((data) => {
           this.setState({
             user: data
-          }, () => this.getdatainsert())
+          })
         })
     }
   }
   getdatainsert() {
-    //const isValid = this.validate();
-    //if (isValid) {
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          idCTV: this.state.user.idNguoiDung,
+          TenKhaoSat: this.state.name,
+          TenNguoiDung: this.state.patron,
+          Link: this.state.url,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          SoTienML: this.state.eachturn,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.setState({
+              userway4: data
+            }, () => this.creatAccountWay4())
+
+          } else {
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        });
+      //this.setState(initialState);
+    }
+  }
+  creatAccountWay4() {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        idCTV: this.state.user.idNguoiDung,
-        TenKhaoSat: this.state.name,
-        TenNguoiDung: this.state.patron,
-        Link: this.state.url,
-        ThoiGianBD: this.state.startdate,
-        ThoiGianKT: this.state.enddate,
-        SoTienML: this.state.eachturn,
+        ShortName: this.state.name,
+        IdentityCardNumber: this.state.id,
+        ClientNumber: this.state.id,
+        MobilePhone: this.state.id,
+        EMail: "abc@gmail.com"
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/insert.php', config)
+    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
@@ -100,13 +130,16 @@ class Khaosatthem extends React.Component {
             variant: 'success',
           });
           window.location.reload();
-
         } else {
-          //notifydefeat('this is a notify');
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
         }
       });
-    //this.setState(initialState);
-    //}
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -117,42 +150,27 @@ class Khaosatthem extends React.Component {
     });
   };
   validate = () => {
+    let urlError = '';
+    let nameError = '';
+    let eachturnError = '';
+
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được bỏ trống tên!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      nameError = 'Bạn cần nhập tên khảo sát';
     }
-    if (!this.state.total) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+    if (!this.state.url) {
+      urlError = 'Bạn cần nhập link khảo sát';
     }
     if (!this.state.eachturn) {
-      this.props.enqueueSnackbar('Không được bỏ trống nội dung!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      eachturnError = 'Bạn cần nhập một số tiền';
     }
+    if (nameError || urlError || eachturnError) {
+      this.setState({ nameError, urlError, eachturnError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
   };
 
   render() {
@@ -171,11 +189,15 @@ class Khaosatthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleText">Mã khảo sát</Label>
                         <Input
-                          disabled="true"
+
                           type="text"
                           name="id"
                           value={this.state.id}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              id: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
