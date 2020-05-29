@@ -32,21 +32,21 @@ class Diemdanhsua extends React.Component {
     //this.getdataupdate();
 
   }
-  componentDidMount() {
-    this.getnhataitro();
-  }
-  getnhataitro = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
-      .then(response => response.json())
-      .then(dataselect => {
-        this.setState(
-          {
-            dataselect: dataselect,
-          },
-          () => console.log('kiemtradulieu', this.state.dataselect),
-        );
-      });
-  };
+  // componentDidMount() {
+  //   this.getnhataitro();
+  // }
+  // getnhataitro = async () => {
+  //   fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+  //     .then(response => response.json())
+  //     .then(dataselect => {
+  //       this.setState(
+  //         {
+  //           dataselect: dataselect,
+  //         },
+  //         () => console.log('kiemtradulieu', this.state.dataselect),
+  //       );
+  //     });
+  // };
   getdatashow() {
     let config = {
       method: "POST",
@@ -60,10 +60,6 @@ class Diemdanhsua extends React.Component {
         this.setState(
           {
             id: datashow.idDiemDanh,
-            name: datashow.TenDiemDanh,
-            patron: datashow.TenNguoiDung,
-            startdate: datashow.ThoiGianBD,
-            enddate: datashow.ThoiGianKT,
             eachturn: datashow.SoTienML
 
           },
@@ -78,11 +74,6 @@ class Diemdanhsua extends React.Component {
         method: "POST",
         body: JSON.stringify({
           idDiemDanh: this.state.id,
-          TenDiemDanh: this.state.name,
-
-          TenNguoiDung: this.state.patron,
-          ThoiGianBD: this.state.startdate,
-          ThoiGianKT: this.state.enddate,
           SoTienML: this.state.eachturn,
 
         }),
@@ -101,12 +92,15 @@ class Diemdanhsua extends React.Component {
             window.location.reload();
 
           } else {
-
-
-
+            this.props.enqueueSnackbar('Thất bại!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
           }
         });
-      this.setState(initialState);
     }
   }
   handleChange = event => {
@@ -118,26 +112,18 @@ class Diemdanhsua extends React.Component {
     });
   };
   validate = () => {
-    let moneyError = '';
-
-    if (!this.state.money) {
-      this.props.enqueueSnackbar('Không được bỏ trống !', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+    let eachturnError = '';
+    if (!this.state.eachturn) {
+      eachturnError = 'Bạn cần nhập một số tiền';
     }
+    if (eachturnError) {
+      this.setState({ eachturnError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    // this.setState(initialState);
-    //}
   };
   render() {
     return (
@@ -160,7 +146,7 @@ class Diemdanhsua extends React.Component {
                       onChange={this.handleChange}
                     />
                   </FormGroup>
-                  <FormGroup>
+                  {/* <FormGroup>
                     <Label for="exampleDate">Thời gian bắt đầu</Label>
 
                     <Input
@@ -190,14 +176,14 @@ class Diemdanhsua extends React.Component {
                       return <option>{Item.TenNguoiDung}</option>;
                     })}
                     </Input>
-                  </FormGroup>
+                  </FormGroup> */}
 
                 </Form>
               </Col>
 
               <Col xl={6} lg={12} md={12}>
                 <Form>
-                  <FormGroup>
+                  {/* <FormGroup>
                     <Label for="exampleText">
                       Tên điểm danh <span className="red-text">*</span>
                     </Label>
@@ -226,7 +212,7 @@ class Diemdanhsua extends React.Component {
                         });
                       }}
                     />
-                  </FormGroup>
+                  </FormGroup> */}
                   <FormGroup>
                     <Label for="exampleNumber">
                       Số tiền cho mỗi lượt điểm danh{' '}

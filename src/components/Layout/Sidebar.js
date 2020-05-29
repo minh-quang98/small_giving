@@ -79,7 +79,7 @@ const baocao = [
 ];
 const taitro = [
   { to: '/admin/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
-  { to: '/admin/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
+  { to: '/admin/diemdanh', name: 'Quỹ điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
   { to: '/admin/naptiennd', name: 'Nạp tiền nhà hảo tâm', exact: false, Icon: GiReceiveMoney },
@@ -129,7 +129,7 @@ class Sidebar extends React.Component {
       }
       fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             idNhom: data.idNhom
           }, () => console.log("idNhom>>>>>>", data))
@@ -151,7 +151,7 @@ class Sidebar extends React.Component {
     return (
 
       <aside className={bem.b()} data-image={sidebarBgImage}>
-        <div className={bem.e('background')} style={sidebarBackground}/>
+        <div className={bem.e('background')} style={sidebarBackground} />
         {!this.state.admin
           ? <div className={bem.e('content')}>
             <Navbar className="p-1">
@@ -164,7 +164,7 @@ class Sidebar extends React.Component {
                   alt=""
                 />
                 <span className="text-white mt-4 ml-0">
-                Small Giving
+                  Small Giving
               </span>
               </div>
             </Navbar>
@@ -179,7 +179,7 @@ class Sidebar extends React.Component {
                     activeClassName="active"
                     exact={exact}
                   >
-                    <Icon className={bem.e('nav-item-icon')}/>
+                    <Icon className={bem.e('nav-item-icon')} />
                     <span style={{ fontSize: 13 }}>{name}</span>
                   </BSNavLink>
                 </NavItem>
@@ -198,25 +198,27 @@ class Sidebar extends React.Component {
                           activeClassName="active"
                           exact={exact}
                         >
-                          <Icon className={bem.e('nav-item-icon')}/>
+                          <Icon className={bem.e('nav-item-icon')} />
                           <span style={{ fontSize: 13 }}>{name}</span>
                         </BSNavLink>
                       </NavItem>
                     ))}
                   </Collapse>
                   {this.state.idNhom > 3
-                    ? <div/>
-                    :  <Button
+                    ? <div />
+                    : <Button
                       className="ml-3 mr-3"
-                      style={{backgroundColor: "#8e8e8e"}}
-                      onClick={() => {this.setState({
-                        admin: true
-                      })}}
+                      style={{ backgroundColor: "#8e8e8e" }}
+                      onClick={() => {
+                        this.setState({
+                          admin: true
+                        })
+                      }}
                     >
                       <Link to={{
                         pathname: '/admin/trangchu'
                       }}
-                            style={{color: "white"}}
+                        style={{ color: "white" }}
                       >
                         Admin Page
                       </Link></Button>
@@ -238,7 +240,7 @@ class Sidebar extends React.Component {
                   alt=""
                 />
                 <span className="text-white">
-                Small Giving
+                  Small Giving
               </span>
               </SourceLink>
             </Navbar>
@@ -460,17 +462,19 @@ class Sidebar extends React.Component {
               </Collapse>
               <Button
                 className="ml-3 mr-3"
-                style={{backgroundColor: "#8e8e8e"}}
-                onClick={() => {this.setState({
-                  admin: false
-                })}}
+                style={{ backgroundColor: "#8e8e8e" }}
+                onClick={() => {
+                  this.setState({
+                    admin: false
+                  })
+                }}
               >
                 <Link to={{
                   pathname: '/'
                 }}
-                      style={{color: "white"}}
+                  style={{ color: "white" }}
                 >
-                 Public Page
+                  Public Page
                 </Link></Button>
             </Nav>
           </div>

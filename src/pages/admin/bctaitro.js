@@ -223,7 +223,7 @@ class bctaitro extends React.Component {
                               ><option></option>
                                 {this.state.datashow2.map((Item, index) => (
 
-                                  <option>{Item.TenDiemDanh}</option>
+                                  <option>{Item.idDiemDanh}</option>
                                 )
                                 )}
 
@@ -316,7 +316,7 @@ class bctaitro extends React.Component {
                             return (
                               <tr>
                                 <td>{Item.idGiaoDich}</td>
-                                <td>{Item.TenDiemDanh}</td>
+                                <td>{Item.idDiemDanh}</td>
                                 <td>{Item.TenNguoiDung}</td>
                                 <td>{Item.SoTien}</td>
                               </tr>

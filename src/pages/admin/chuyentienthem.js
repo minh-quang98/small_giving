@@ -14,26 +14,81 @@ import {
   ModalHeader,
 } from 'reactstrap';
 //import styled from 'styled-components';
-import NotificationSuccess, {
-  notifysuccess,
-} from '../../components/admin/Notification/notificationSuccess';
-import NotificationDefeat, {
-  notifydefeat,
-} from '../../components/admin/Notification/notificationDefeat';
-
+import { withSnackbar } from 'notistack';
 const initialState = {
   id: '',
   fromaccount: '',
   toaccount: '',
   money: '',
-
   fromaccountError: '',
   toaccountError: '',
   moneyError: '',
-  dataselect: [],
+
 };
 class Chuyentienthem extends React.Component {
   state = initialState;
+  componentWillReceiveProps = () => {
+    console.log("check>>>", this.props.chooseId);
+    this.getdatashow();
+    //this.getdataupdate();
+
+  }
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idGiaoDich: this.props.chooseId,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/thuchienkhaosat/select.php', config)
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            id: datashow.idGiaoDich,
+            fromaccount: datashow.idKhaoSat,
+            toaccount: datashow.idNhaHaoTam,
+            money: datashow.SoTien,
+          },
+          () => console.log('kiemtradulieu>>', this.state.datashow),
+        );
+      });
+  }
+  chuyentienWay4() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        NumberNguoiGui: this.state.fromaccount,
+        NumberNguoiNhan: this.state.toaccount,
+        SoTien: this.state.money
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/apiway4/chuyentien.php', config2)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Thành công!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          window.location.reload();
+
+        } else {
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+
+        }
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -58,37 +113,22 @@ class Chuyentienthem extends React.Component {
     }
     if (fromaccountError || toaccountError || moneyError) {
       this.setState({ fromaccountError, toaccountError, moneyError });
-      notifydefeat('this is a notify');
+
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
-  componentDidMount() {
-    this.getdataselect();
-  }
 
-  getdataselect = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/showkhaosat.php')
-      .then(response => response.json())
-      .then(dataselect => {
-        this.setState(
-          {
-            dataselect: dataselect,
-          },
-          () => console.log('kiemtradulieu', this.state.dataselect),
-        );
-      });
-  };
   render() {
     return (
       <Modal isOpen={this.props.show}>
@@ -108,6 +148,8 @@ class Chuyentienthem extends React.Component {
                         </Col>
                         <Col md={8}>
                           <Input
+                            disabled="true"
+
                             type="email"
                             name="id"
                             value={this.state.id}
@@ -128,7 +170,8 @@ class Chuyentienthem extends React.Component {
                             {this.state.fromaccountError}
                           </div>
                           <Input
-                            type="select"
+                            disabled="true"
+                            type="email"
                             name="fromaccount"
                             value={this.state.fromaccount}
                             onChange={val => {
@@ -137,9 +180,7 @@ class Chuyentienthem extends React.Component {
                               });
                             }}
                           >
-                            {this.state.dataselect.map(Item => {
-                              return <option>{Item.TenKhaoSat}</option>;
-                            })}
+
                           </Input>
                         </Col>
                       </Row>
@@ -156,14 +197,17 @@ class Chuyentienthem extends React.Component {
                             {this.state.toaccountError}
                           </div>
                           <Input
-                            type="select"
+                            disabled="true"
+                            type="email"
                             name="toaccount"
                             value={this.state.toaccount}
-                            onChange={this.handleChange}
+                            onChange={val => {
+                              this.setState({
+                                toaccount: val.target.value,
+                              });
+                            }}
                           >
-                            {this.state.dataselect.map(Item => {
-                              return <option>{Item.TenNguoiDung}</option>;
-                            })}
+
                           </Input>
                         </Col>
                       </Row>
@@ -181,8 +225,10 @@ class Chuyentienthem extends React.Component {
                             {this.state.moneyError}
                           </div>
                           <Input
+                            disabled="true"
                             type="number"
                             name="money"
+                            disabled="true"
                             value={this.state.money}
                             onChange={val => {
                               this.setState({
@@ -199,11 +245,15 @@ class Chuyentienthem extends React.Component {
             </Row>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
-                  Chuyển
+                <Button color="danger" type="submit" pill
+                  className="px-4 my-3"
+                  onClick={() =>
+                    this.chuyentienWay4()
+                  }
+                >
+                  Chấp nhận
                 </Button>
-                <NotificationSuccess />
-                <NotificationDefeat />
+
               </Container>
             </div>
           </Form>
@@ -212,4 +262,4 @@ class Chuyentienthem extends React.Component {
     );
   }
 }
-export default Chuyentienthem;
+export default withSnackbar(Chuyentienthem);

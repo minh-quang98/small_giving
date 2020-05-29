@@ -25,12 +25,11 @@ const initialState = {
   url: '',
   patron: '',
   eachturn: '',
-  total: '',
+
 
   nameError: '',
   urlError: '',
   eachturnError: '',
-  totalError: '',
   dataselect: [],
 };
 
@@ -112,12 +111,16 @@ class Khaosatsua extends React.Component {
             window.location.reload();
 
           } else {
-
-
-
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
           }
         });
-      this.setState(initialState);
+      //this.setState(initialState);
     }
   }
   handleChange = event => {
@@ -129,42 +132,27 @@ class Khaosatsua extends React.Component {
     });
   };
   validate = () => {
+    let urlError = '';
+    let nameError = '';
+    let eachturnError = '';
+
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được bỏ trống tên!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      nameError = 'Bạn cần nhập tên khảo sát';
     }
-    if (!this.state.total) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+    if (!this.state.url) {
+      urlError = 'Bạn cần nhập link khảo sát';
     }
     if (!this.state.eachturn) {
-      this.props.enqueueSnackbar('Không được bỏ trống nội dung!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      eachturnError = 'Bạn cần nhập một số tiền';
     }
+    if (nameError || urlError || eachturnError) {
+      this.setState({ nameError, urlError, eachturnError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    //this.setState(initialState);
-    //}
   };
 
   render() {
