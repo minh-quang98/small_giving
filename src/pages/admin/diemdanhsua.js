@@ -68,45 +68,40 @@ class Diemdanhsua extends React.Component {
       });
   }
   getdataupdate() {
-    //const isValid = this.validate();
-    //if (isValid) {
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idDiemDanh: this.state.id,
-        SoTienML: this.state.eachturn,
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idDiemDanh: this.state.id,
+          SoTienML: this.state.eachturn,
 
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Thành công!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          window.location.reload();
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            window.location.reload();
 
-        } else {
-          this.props.enqueueSnackbar('Thất bại!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-          // window.location.reload();
-
-
-
-        }
-      });
-    //this.setState(initialState);
-    //}
+          } else {
+            this.props.enqueueSnackbar('Thất bại!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        });
+    }
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -117,26 +112,18 @@ class Diemdanhsua extends React.Component {
     });
   };
   validate = () => {
-    //let moneyError = '';
-
-    // if (!this.state.money) {
-    //   this.props.enqueueSnackbar('Không được bỏ trống !', {
-    //     anchorOrigin: {
-    //       vertical: "top",
-    //       horizontal: "right"
-    //     },
-    //     variant: 'error',
-    //   });
-    // }
+    let eachturnError = '';
+    if (!this.state.eachturn) {
+      eachturnError = 'Bạn cần nhập một số tiền';
+    }
+    if (eachturnError) {
+      this.setState({ eachturnError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    // this.setState(initialState);
-    //}
   };
   render() {
     return (

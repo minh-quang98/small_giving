@@ -46,36 +46,41 @@ class Naptienthem extends React.Component {
                 .then((data) => {
                     this.setState({
                         user: data
-                    }, () => this.getdatainsert())
+                    })
                 })
         }
     }
     getdatainsert() {
-        //const isValid = this.validate();
-        //if (isValid) {
-        let config1 = {
-            method: "POST",
-            body: JSON.stringify({
-                idKhaoSat: this.state.account,
-                idCTV: this.state.user.idNguoiDung,
-                SoTien: this.state.money,
-            }),
-        };
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/naptien/khaosat.php', config1)
-            .then(response => response.json())
-            .then((data) => {
-                if (data.message === "success") {
-                    this.setState({
-                        dataway4: data
-                    }, () => this.naptienWay4())
+        const isValid = this.validate();
+        if (isValid) {
+            let config1 = {
+                method: "POST",
+                body: JSON.stringify({
+                    idKhaoSat: this.state.account,
+                    idCTV: this.state.user.idNguoiDung,
+                    SoTien: this.state.money,
+                }),
+            };
+            fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/naptien/khaosat.php', config1)
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.message === "success") {
+                        this.setState({
+                            dataway4: data
+                        }, () => this.naptienWay4())
 
-                } else {
-
-                }
-            });
-        //this.setState(initialState);
-        //}
-
+                    } else {
+                        this.props.enqueueSnackbar('Thất bại', {
+                            anchorOrigin: {
+                                vertical: "top",
+                                horizontal: "right"
+                            },
+                            variant: 'error',
+                        });
+                    }
+                });
+            //this.setState(initialState);
+        }
     }
     naptienWay4() {
         let config2 = {
@@ -110,7 +115,6 @@ class Naptienthem extends React.Component {
 
                 }
             });
-
     }
     handleChange = event => {
         const isCheckbox = event.target.type === 'checkbox';
@@ -125,44 +129,20 @@ class Naptienthem extends React.Component {
         let moneyError = '';
 
         if (!this.state.account) {
-            this.props.enqueueSnackbar('Bạn cần chọn một tài khoản', {
-                anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "right"
-                },
-                variant: 'error',
-            });
+            accountError = 'Bạn cần chọn một tài khoản';
         }
         if (!this.state.money) {
-            this.props.enqueueSnackbar('Bạn cần nhập một số tiền', {
-                anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "right"
-                },
-                variant: 'error',
-            });
+            moneyError = 'Bạn cần nhập một số tiền';
         }
-        else {
-            this.props.enqueueSnackbar('Thành công', {
-                anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "right"
-                },
-                variant: 'success',
-            });
+        if (accountError || moneyError) {
+            this.setState({ accountError, moneyError });
+            return false;
         }
+        return true;
     };
     handleSubmit = event => {
         event.preventDefault();
-        const isValid = this.validate();
-        if (isValid) {
-            console.log(this.state);
-            //clear form
-            this.setState(initialState);
-        }
     };
-
-
     getdataselect = async () => {
         fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
             .then(response => response.json())

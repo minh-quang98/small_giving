@@ -49,14 +49,13 @@ class Nhomndthem extends React.Component {
           window.location.reload();
 
         } else {
-          // this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
-          //   anchorOrigin: {
-          //     vertical: "top",
-          //     horizontal: "right"
-          //   },
-          //   variant: 'error',
-          // });
-          // this.setState(initialState);
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
 
         }
       });
@@ -74,31 +73,17 @@ class Nhomndthem extends React.Component {
     let nameError = '';
 
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Bạn chưa nhập tên nhóm', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
-    } else {
-      this.props.enqueueSnackbar('Thành công!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      nameError = 'Bạn cần nhập một tên';
     }
+    if (nameError) {
+      this.setState({ nameError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+
   };
   render() {
     return (

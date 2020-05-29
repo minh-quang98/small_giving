@@ -117,12 +117,16 @@ class Hoatdongsua extends React.Component {
             window.location.reload();
 
           } else {
-
-
-
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
           }
         });
-      this.setState(initialState);
+      //this.setState(initialState);
     }
   }
   handleChange = event => {
@@ -140,32 +144,22 @@ class Hoatdongsua extends React.Component {
     let contentError = '';
 
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được bỏ trống tên!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      nameError = 'Bạn cần nhập tên hoạt động';
     }
     if (!this.state.total) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      totalError = 'Bạn cần nhập một số tiền';
     }
     if (!this.state.content) {
-      this.props.enqueueSnackbar('Không được bỏ trống nội dung!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      contentError = 'Bạn cần nhập nội dung';
     }
+    if (!this.state.image) {
+      imageError = 'Bạn cần chọn một hình ảnh';
+    }
+    if (nameError || totalError || contentError || imageError) {
+      this.setState({ nameError, totalError, contentError, imageError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();

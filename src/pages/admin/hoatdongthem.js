@@ -69,42 +69,47 @@ class Hoatdongthem extends React.Component {
         .then((data) => {
           this.setState({
             user: data
-          }, () => this.getdatainsert())
+          })
         })
     }
   }
 
   getdatainsert() {
-    //const isValid = this.validate();
-    //if (isValid) {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        TenNguoiDung: this.state.id,
-        idCTV: this.state.user.idNguoiDung,
-        TenHoatDong: this.state.name,
-        NoiDung: this.state.content,
-        ThoiGianBD: this.state.startdate,
-        ThoiGianKT: this.state.enddate,
-        DiaChi: this.state.address,
-        Anh: this.state.image,
-        ChiDK: this.state.total,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.setState({
-            userway4: data
-          }, () => this.creatAccountWay4())
-        }
-        else {
-          //notifydefeat('this is a notify');
-        }
-      });
-    //this.setState(initialState);
-    //}
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          TenNguoiDung: this.state.id,
+          idCTV: this.state.user.idNguoiDung,
+          TenHoatDong: this.state.name,
+          NoiDung: this.state.content,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          DiaChi: this.state.address,
+          Anh: this.state.image,
+          ChiDK: this.state.total,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.setState({
+              userway4: data
+            }, () => this.creatAccountWay4())
+          }
+          else {
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        });
+    }
 
   }
   creatAccountWay4() {
@@ -161,32 +166,22 @@ class Hoatdongthem extends React.Component {
     let contentError = '';
 
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được bỏ trống tên!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      nameError = 'Bạn cần nhập tên hoạt động';
     }
     if (!this.state.total) {
-      this.props.enqueueSnackbar('Không được bỏ trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      totalError = 'Bạn cần nhập một số tiền';
     }
     if (!this.state.content) {
-      this.props.enqueueSnackbar('Không được bỏ trống nội dung!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'error',
-      });
+      contentError = 'Bạn cần nhập nội dung';
     }
+    if (!this.state.image) {
+      imageError = 'Bạn cần chọn một hình ảnh';
+    }
+    if (nameError || totalError || contentError || imageError) {
+      this.setState({ nameError, totalError, contentError, imageError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();

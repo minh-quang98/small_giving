@@ -65,38 +65,44 @@ class Diemdanhthem extends React.Component {
         .then((data) => {
           this.setState({
             user: data
-          }, () => this.getdatainsert())
+          })
         })
     }
   }
   getdatainsert() {
-    //const isValid = this.validate();
-    //if (isValid) {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        idCTV: this.state.user.idNguoiDung,
-        TenDiemDanh: this.state.name,
-        TenNguoiDung: this.state.patron,
-        ThoiGianBD: this.state.startdate,
-        ThoiGianKT: this.state.enddate,
-        SoTienML: this.state.eachturn,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/insert.php', config)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.setState({
-            userway4: data
-          }, () => this.creatAccountWay4())
-        }
-        else {
-          //notifydefeat('this is a notify');
-        }
-      });
-    //this.setState(initialState);
-    //}
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          idCTV: this.state.user.idNguoiDung,
+          TenDiemDanh: this.state.name,
+          TenNguoiDung: this.state.patron,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          SoTienML: this.state.eachturn,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.setState({
+              userway4: data
+            }, () => this.creatAccountWay4())
+          }
+          else {
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+          }
+        });
+      //this.setState(initialState);
+    }
   }
   creatAccountWay4() {
     let config1 = {
@@ -153,12 +159,12 @@ class Diemdanhthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
   render() {
     return (

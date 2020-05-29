@@ -88,12 +88,17 @@ class Tintucsua extends React.Component {
             window.location.reload();
 
           } else {
-
-
-
+            this.props.enqueueSnackbar('Đã có lỗi xảy ra!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
+            this.setState(initialState);
           }
         });
-      this.setState(initialState);
+      //this.setState(initialState);
     }
   }
   handleChange = event => {
@@ -106,50 +111,27 @@ class Tintucsua extends React.Component {
   };
   validate = () => {
 
+    let nameError = '';
+    let idhoatdongError = '';
+    let contentError = '';
     if (!this.state.name) {
-      this.props.enqueueSnackbar('Không được để trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      nameError = 'Bạn cần nhập một tên';
     }
     if (!this.state.idhoatdong) {
-      this.props.enqueueSnackbar('Không được để trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      idhoatdongError = 'Bạn cần chọn một hoạt động';
     }
     if (!this.state.content) {
-      this.props.enqueueSnackbar('Không được để trống!', {
-        anchorOrigin: {
-          vertical: "top",
-          horizontal: "right"
-        },
-        variant: 'success',
-      });
+      contentError = 'Bạn cần nhập nội dung';
     }
 
-    this.props.enqueueSnackbar('Thành công!', {
-      anchorOrigin: {
-        vertical: "top",
-        horizontal: "right"
-      },
-      variant: 'success',
-    });
+    if (nameError || idhoatdongError || contentError) {
+      this.setState({ nameError, idhoatdongError, contentError });
+      return false;
+    }
+    return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
   };
   render() {
     return (

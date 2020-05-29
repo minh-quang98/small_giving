@@ -35,8 +35,6 @@ class hoatdong extends React.Component {
       idHoatDong: "",
       idHD: "",
       sodu: "xem",
-
-
     };
   }
   componentDidUpdate(preProps, preState, future) {

@@ -113,20 +113,20 @@ class Chuyentienthem extends React.Component {
     }
     if (fromaccountError || toaccountError || moneyError) {
       this.setState({ fromaccountError, toaccountError, moneyError });
-      //notifydefeat('this is a notify');
+
       return false;
     }
-    //notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
 
   render() {
