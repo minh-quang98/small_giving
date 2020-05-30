@@ -229,7 +229,7 @@ class Tintucthem extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
+                      {/* <FormGroup>
                         <Label for="exampleSelect">
                           Đối tượng nhận thông báo
                         </Label>
@@ -243,7 +243,7 @@ class Tintucthem extends React.Component {
                             });
                           }}
                         />
-                      </FormGroup>
+                      </FormGroup> */}
                     </Form>
                   </Col>
                   <Col xl={12}>

@@ -143,7 +143,7 @@ class tintuc extends React.Component {
                         <th> Tiêu đề tin tức</th>
                         <th> Tiêu đề thông báo</th>
                         <th> CTV đăng tải</th>
-                        <th> Tác vụ</th>
+                        <th> Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -174,14 +174,6 @@ class tintuc extends React.Component {
                                   onClick={() =>
                                     this.handleShowModalSua(Item.idTin)
                                   }
-
-                                />
-
-                                <MdDelete
-                                  className="can-click"
-                                  size="1.5em"
-
-                                  onClick={() => this.handleShowModalXoa(Item.idTin)}
                                 />
                               </td>
                             </tr>

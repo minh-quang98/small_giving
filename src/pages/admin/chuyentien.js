@@ -17,8 +17,8 @@ const tableTypes = ['hover'];
 const dataError = [
   {
     e1: "",
-    e2: "Chưa có dữ liệu",
-    e3: "",
+    e2: "",
+    e3: "Chưa có dữ liệu",
     e4: "",
     e5: "",
   }
@@ -28,7 +28,7 @@ class chuyentien extends React.Component {
     super(props);
     this.state = {
       data: [],
-      disabled: false,
+      disabled: "false",
       dataError: [],
       dataerror: false,
       showModalThem: false,
@@ -51,14 +51,15 @@ class chuyentien extends React.Component {
     }
 
   }
-  handleShowModalThem = id => {
-    if (this.state.disabled) {
-      this.setState({
-        showModalThem: true,
-        idGD: id,
-      });
-    }
-    this.setState({ disabled: true });
+  handleShowModalThem = (id) => {
+
+
+    this.setState({
+      showModalThem: true,
+      idGD: id,
+    });
+
+    //this.setState({ disabled: true });
   };
   handleCloseModalThem = () => {
     this.setState({
@@ -112,6 +113,12 @@ class chuyentien extends React.Component {
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
+  checkActive = (id) => {
+    if (id === 1) {
+      this.state.disabled = true;
+    }
+
+  }
 
   render() {
     return (
@@ -174,7 +181,7 @@ class chuyentien extends React.Component {
                                   pill
                                   className=" mb-3 p-2 can-click oke"
                                   onClick={() => this.handleShowModalThem(Item.idGiaoDich)}
-                                  disabled={this.state.disabled}
+
                                 >
                                   Chấp nhận
                               </Badge>

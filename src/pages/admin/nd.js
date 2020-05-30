@@ -109,7 +109,7 @@ class nd extends React.Component {
                         <th>Email</th>
                         <th>Mật khẩu</th>
                         <th>Huy hiệu</th>
-                        <th></th>
+                        <th>Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
