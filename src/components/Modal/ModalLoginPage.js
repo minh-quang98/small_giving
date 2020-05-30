@@ -161,7 +161,7 @@ class ModalLoginPage extends Component {
           });
           this.setState({
             modeLogin: true,
-          })
+          }, () => this.handleSignUpWay4())
         } else {
           this.props.enqueueSnackbar('Tài khoản đã tồn tại !', {
             anchorOrigin: {
@@ -171,7 +171,26 @@ class ModalLoginPage extends Component {
             variant: 'error',
           });
         }
+        // console.log("check>>>", data)
       });
+  }
+
+  handleSignUpWay4 = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ShortName: this.state.name,
+        EMail: this.state.email,
+        ClientNumber:this.state.phone,
+        IdentityCardNumber:this.state.phone,
+        MobilePhone:this.state.phone,
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php`, config)
+      .then((res)=> res.json())
+      .then((data) => {
+        console.log("check>>>",data)
+      })
   }
 
   render() {
