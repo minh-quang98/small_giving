@@ -25,7 +25,7 @@ const initialState = {
   content: '',
   title: '',
   receiver: '',
-
+  loading: false,
   idhoatdongError: '',
   nameError: '',
   contentError: '',
@@ -54,7 +54,7 @@ class Tintucsua extends React.Component {
             id: datashow.idTin,
             name: datashow.TenTin,
             content: datashow.NoiDung,
-            //image: datashow.Anh
+            image: datashow.Anh
 
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
@@ -100,6 +100,30 @@ class Tintucsua extends React.Component {
         });
       //this.setState(initialState);
     }
+  }
+  uploadImage = async e => {
+    //this.setState({ files: e.target.files[0] });
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'darwin')
+    this.setState({ loading: true }
+    )
+    this.setState({ image: '' }
+    )
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/hocviennganhang/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    )
+    const file = await res.json()
+    console.log('ckeck>>', file.url)
+    this.setState({ image: file.secure_url }
+    )
+    this.setState({ loading: false }
+    )
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -188,13 +212,16 @@ class Tintucsua extends React.Component {
                       <Input
                         type="file"
                         name="image"
-                        value={this.state.image}
-                        onChange={val => {
-                          this.setState({
-                            image: val.target.value,
-                          });
-                        }}
+                        //value={this.state.image}
+                        onChange={this.uploadImage}
                       />
+                      {this.state.loading ? (
+                        <h3>Loading...</h3>
+                      ) : (
+                          <img src={this.state.image} style={{ width: '300px' }}></img>
+                        )
+
+                      }
                     </FormGroup>
                     <Form>
                       <Label for="exampleText">

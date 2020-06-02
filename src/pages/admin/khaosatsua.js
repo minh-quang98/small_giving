@@ -203,9 +203,10 @@ class Khaosatsua extends React.Component {
                               patron: val.target.value,
                             });
                           }}
-                        >{this.state.dataselect.map(Item => {
-                          return <option>{Item.TenNguoiDung}</option>;
-                        })}
+                        ><option></option>
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenNguoiDung}</option>;
+                          })}
                         </Input>
                       </FormGroup>
 

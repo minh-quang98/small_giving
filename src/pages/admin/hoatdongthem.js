@@ -17,6 +17,8 @@ import {
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from '@ckeditor/ckeditor5-react'
 const initialState = {
   id: '',
   name: '',
@@ -35,6 +37,8 @@ const initialState = {
   contentError: '',
   dataselect: [],
   idhd: '',
+  loading: false,
+  a: ''
 };
 
 class Hoatdongthem extends React.Component {
@@ -50,6 +54,30 @@ class Hoatdongthem extends React.Component {
       idhd: `${"hd"}_${new Date().getTime()}`
     });
   };
+  uploadImage = async e => {
+    //this.setState({ files: e.target.files[0] });
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'darwin')
+    this.setState({ loading: true }
+    )
+    this.setState({ a: '' }
+    )
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/hocviennganhang/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    )
+    const file = await res.json()
+    console.log('ckeck>>', file.url)
+    this.setState({ a: file.secure_url }
+    )
+    this.setState({ loading: false }
+    )
+  }
   getnth = async () => {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
       .then(response => response.json())
@@ -94,7 +122,7 @@ class Hoatdongthem extends React.Component {
           ThoiGianBD: this.state.startdate,
           ThoiGianKT: this.state.enddate,
           DiaChi: this.state.address,
-          Anh: this.state.image,
+          Anh: this.state.a,
           ChiDK: this.state.total,
         }),
       };
@@ -181,11 +209,11 @@ class Hoatdongthem extends React.Component {
     if (!this.state.content) {
       contentError = 'Bạn cần nhập nội dung';
     }
-    if (!this.state.image) {
-      imageError = 'Bạn cần chọn một hình ảnh';
-    }
-    if (nameError || totalError || contentError || imageError) {
-      this.setState({ nameError, totalError, contentError, imageError });
+    // if (!this.state.image) {
+    //   imageError = 'Bạn cần chọn một hình ảnh';
+    // }
+    if (nameError || totalError || contentError) {
+      this.setState({ nameError, totalError, contentError });
       return false;
     }
     return true;
@@ -194,6 +222,12 @@ class Hoatdongthem extends React.Component {
     event.preventDefault();
 
   };
+  handleCkeditorState = (event, editor) => {
+    const data = editor.getData();
+    this.setState({
+      content: data
+    })
+  }
   render() {
     return (
       <Modal isOpen={this.props.show}>
@@ -262,15 +296,17 @@ class Hoatdongthem extends React.Component {
                         <div className="error-text">{this.state.imageError}</div>
                         <Input
                           type="file"
-                          name="image"
-                          value={this.state.image}
-                          onChange={val => {
-                            this.setState({
-                              image: val.target.value,
-                            });
-
-                          }}
+                          name="file"
+                          onChange={this.uploadImage}
                         />
+                        {this.state.loading ? (
+                          <h3>Loading...</h3>
+                        ) : (
+                            <img src={this.state.a} style={{ width: '300px' }}></img>
+                          )
+
+                        }
+
                       </FormGroup>
 
                     </Form>
@@ -357,16 +393,23 @@ class Hoatdongthem extends React.Component {
                       <div className="error-text">
                         {this.state.contentError}
                       </div>
-                      <Input
-                        type="textarea"
-                        name="content"
+                      <CKEditor
+                        //id="content"
+                        editor={ClassicEditor}
+                        onInit={editor => { }}
                         value={this.state.content}
-                        onChange={val => {
-                          this.setState({
-                            content: val.target.value,
-                          });
+                        config={
+                          {
+                            ckfinder: {
+                              uploadUrl: '/uploads'
+                            }
 
-                        }}
+                          }
+
+                        }
+                        onChange={this.handleCkeditorState}
+
+
                       />
                     </Form>
                   </Col>

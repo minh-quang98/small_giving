@@ -111,6 +111,21 @@ class nhomnd extends React.Component {
                     size="lg"
                     className={this.props.className}
                   />
+                  <Nhomndsua
+                    show={this.state.showModalSua}
+                    onHide={this.handleCloseModalSua}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idNhom}
+                  />
+
+                  <Nhomndxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idNhom}
+                  />
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
@@ -129,21 +144,7 @@ class nhomnd extends React.Component {
                             <td>
                               <FaEdit className="can-click " size="1.5em"
                                 onClick={() => this.handleShowModalSua(Item.idNhom)} />
-                              <Nhomndsua
-                                show={this.state.showModalSua}
-                                onHide={this.handleCloseModalSua}
-                                size="lg"
-                                className={this.props.className}
-                                chooseId={this.state.idNhom}
-                              />
 
-                              <Nhomndxoa
-                                show={this.state.showModalXoa}
-                                onHide={this.handleCloseModalXoa}
-                                size="lg"
-                                className={this.props.className}
-                                chooseId={this.state.idNhom}
-                              />
                             </td>
                           </tr>
                         );
