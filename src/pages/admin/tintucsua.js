@@ -141,15 +141,13 @@ class Tintucsua extends React.Component {
     if (!this.state.name) {
       nameError = 'Bạn cần nhập một tên';
     }
-    if (!this.state.idhoatdong) {
-      idhoatdongError = 'Bạn cần chọn một hoạt động';
-    }
+
     if (!this.state.content) {
       contentError = 'Bạn cần nhập nội dung';
     }
 
-    if (nameError || idhoatdongError || contentError) {
-      this.setState({ nameError, idhoatdongError, contentError });
+    if (nameError || contentError) {
+      this.setState({ nameError, contentError });
       return false;
     }
     return true;
