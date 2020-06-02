@@ -17,6 +17,8 @@ import {
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from '@ckeditor/ckeditor5-react';
 const initialState = {
   id: '',
   name: '',
@@ -32,10 +34,16 @@ const initialState = {
   nameError: '',
   contentError: '',
   dataselect: [],
+  selectedFile: null,
+  //files: [],
+  loading: false,
+  a: ''
 };
 
 class Tintucthem extends React.Component {
   state = initialState;
+
+
   componentDidMount() {
     this.getUser()
     //this.getdatainsert();
@@ -70,6 +78,31 @@ class Tintucthem extends React.Component {
         })
     }
   }
+  uploadImage = async e => {
+    //this.setState({ files: e.target.files[0] });
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'darwin')
+    this.setState({ loading: true }
+    )
+    this.setState({ a: '' }
+    )
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/hocviennganhang/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    )
+    const file = await res.json()
+    console.log('ckeck>>', file.url)
+    this.setState({ a: file.secure_url }
+    )
+    this.setState({ loading: false }
+    )
+  }
+
   getdatainsert() {
     const isValid = this.validate();
     if (isValid) {
@@ -80,7 +113,7 @@ class Tintucthem extends React.Component {
           TenTin: this.state.name,
           TenHoatDong: this.state.idhoatdong,
           NoiDung: this.state.content,
-          Anh: this.state.image,
+          Anh: this.state.a,
           TieuDeThongBao: this.state.title,
         }),
       };
@@ -141,6 +174,23 @@ class Tintucthem extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
   };
+  // onFileChange = event => {
+
+  //   // Update the state 
+  //   this.setState({ selectedFile: event.target.files[0] });
+  //   const target = event.target;
+  //   const { name, value } = target;
+  //   this.setState({
+  //     image: value
+  //   });
+  // };
+  handleCkeditorState = (event, editor) => {
+    const data = editor.getData();
+    this.setState({
+      content: data
+    })
+  }
+
   render() {
     return (
       <Modal isOpen={this.props.show}>
@@ -207,14 +257,17 @@ class Tintucthem extends React.Component {
                         <Label for="exampleImage"> Hình ảnh / Video</Label>
                         <Input
                           type="file"
-                          name="image"
-                          value={this.state.image}
-                          onChange={val => {
-                            this.setState({
-                              image: val.target.value,
-                            });
-                          }}
+                          name="file"
+                          onChange={this.uploadImage}
+
                         />
+                        {this.state.loading ? (
+                          <h3>Loading...</h3>
+                        ) : (
+                            <img src={this.state.a} style={{ width: '300px' }}></img>
+                          )
+
+                        }
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleText"> Tiêu đề thông báo</Label>
@@ -231,7 +284,7 @@ class Tintucthem extends React.Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleSelect">
-                          Đối tượng nhận thông báo
+                          Loại tin tức
                         </Label>
                         <Input
                           type="select"
@@ -254,15 +307,25 @@ class Tintucthem extends React.Component {
                       <div className="error-text">
                         {this.state.contentError}
                       </div>
-                      <Input
-                        type="textarea"
-                        name="content"
+                      <CKEditor
+                        //id="content"
+                        editor={ClassicEditor}
+                        onInit={editor => { }}
                         value={this.state.content}
-                        onChange={val => {
-                          this.setState({
-                            content: val.target.value,
-                          });
-                        }}
+                        config={
+                          {
+                            ckfinder: {
+                              uploadUrl: "http://res.cloudinary.com/hocviennganhang/image/upload/v1590999342/darwin/"
+                            }
+
+
+
+                          }
+
+                        }
+                        onChange={this.handleCkeditorState}
+
+
                       />
                     </Form>
                   </Col>
@@ -274,6 +337,8 @@ class Tintucthem extends React.Component {
                 <Button color="danger" type="submit"
                   pill className="px-4 my-3"
                   onClick={() => this.getdatainsert()}
+                //onClick={() => this.uploadFile()}
+
                 >
                   Đăng tải
                 </Button>

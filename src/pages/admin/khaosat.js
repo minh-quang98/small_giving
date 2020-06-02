@@ -3,7 +3,7 @@ import Khaosatthem from 'pages/admin/khaosatthem';
 import Khaosatsua from 'pages/admin/khaosatsua';
 import Khaosatxoa from 'pages/admin/khaosatxoa';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Button } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
@@ -29,13 +29,17 @@ class khaosat extends React.Component {
       showModalSua: false,
       showModalXoa: false,
       idKhaoSat: "",
+      idKS: "hd_1590744148124"
     };
   }
   componentDidUpdate(preProps, preState, future) {
     const { idKhaoSat } = this.state;
     if (preState.idKhaoSat != idKhaoSat) {
       this.handleShowModalSua(idKhaoSat);
-      // this.handleShowModalXem(idHoatDong);
+    }
+    const { idKS } = this.state;
+    if (preState.idKS != idKS) {
+      this.handleShowModalXoa(idKS);
     }
 
   }
@@ -63,7 +67,7 @@ class khaosat extends React.Component {
   handleShowModalXoa = id => {
     this.setState({
       showModalXoa: true,
-      idKhaoSat: id,
+      idKS: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -127,7 +131,7 @@ class khaosat extends React.Component {
                     onHide={this.handleCloseModalXoa}
                     size="lg"
                     className={this.props.className}
-                    chooseId={this.state.idKhaoSat}
+                    chooseId={this.state.idKS}
                   />
 
                   <Badge
@@ -143,12 +147,10 @@ class khaosat extends React.Component {
                       <tr className="table-danger">
                         <th>ID</th>
                         <th>Tên khảo sát</th>
-
-
-                        <th>Số người tham gia</th>
+                        <th>Số dư</th>
                         <th>Số tiền mỗi lượt</th>
                         <th>CTV đăng tải</th>
-                        <th></th>
+                        <th>Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -173,19 +175,21 @@ class khaosat extends React.Component {
                               <td>{Item.idKhaoSat}</td>
                               <td>{Item.TenKhaoSat}</td>
 
-                              <td>{Item.SoNguoiTG}</td>
+                              <td>
+                                <Button
+                                  color="link"
+                                  className="can-click"
+                                  onClick={() =>
+                                    this.handleShowModalXoa(Item.idKhaoSat)
+                                  }
+                                > Xem
+                                  </Button>
+                              </td>
                               <td>{Item.SoTienML}</td>
                               <td>{Item.TenNguoiDung}</td>
                               <td>
                                 <FaEdit
                                   className="can-click "
-                                  size="1.5em"
-                                  onClick={() =>
-                                    this.handleShowModalSua(Item.idKhaoSat)
-                                  }
-                                />
-                                <MdDelete
-                                  className="can-click"
                                   size="1.5em"
                                   onClick={() =>
                                     this.handleShowModalSua(Item.idKhaoSat)

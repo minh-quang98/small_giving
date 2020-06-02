@@ -23,7 +23,7 @@ const initialState = {
   fromaccountError: '',
   toaccountError: '',
   moneyError: '',
-
+  dataway4: [],
 };
 class Chuyentienthem extends React.Component {
   state = initialState;
@@ -31,6 +31,7 @@ class Chuyentienthem extends React.Component {
     console.log("check>>>", this.props.chooseId);
     this.getdatashow();
     //this.getdataupdate();
+    //this.updateAvailable();
 
   }
   getdatashow() {
@@ -47,7 +48,7 @@ class Chuyentienthem extends React.Component {
           {
             id: datashow.idGiaoDich,
             fromaccount: datashow.idKhaoSat,
-            toaccount: datashow.idNhaHaoTam,
+            toaccount: datashow.SDT,
             money: datashow.SoTien,
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
@@ -67,6 +68,35 @@ class Chuyentienthem extends React.Component {
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
+          this.setState({
+            dataway4: data
+          }, () => this.updateAvailable())
+
+        } else {
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+
+        }
+      });
+  }
+  updateAvailable() {
+    console.log("checkkkk>>>", this.state.id);
+    let config1 = {
+      method: "POST",
+      body: JSON.stringify({
+        idGiaoDich: this.state.id,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/apiway4/updatetrangthai.php', config1)
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "Success") {
           this.props.enqueueSnackbar('Thành công!', {
             anchorOrigin: {
               vertical: "top",
@@ -74,6 +104,7 @@ class Chuyentienthem extends React.Component {
             },
             variant: 'success',
           });
+
           window.location.reload();
 
         } else {
@@ -121,12 +152,7 @@ class Chuyentienthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    //this.setState(initialState);
-    //}
+
   };
 
   render() {

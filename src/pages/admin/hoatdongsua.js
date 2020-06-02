@@ -26,7 +26,7 @@ const initialState = {
   content: '',
   address: '',
   total: '',
-
+  loading: false,
   totalError: '',
   nameError: '',
   imageError: '',
@@ -76,7 +76,7 @@ class Hoatdongsua extends React.Component {
             name: datashow.TenHoatDong,
             startdate: datashow.ThoiGianBD,
             enddate: datashow.ThoiGianKT,
-            //image: datashow.Anh,
+            image: datashow.Anh,
             content: datashow.NoiDung,
             address: datashow.DiaChi,
             total: datashow.ChiDK,
@@ -85,6 +85,30 @@ class Hoatdongsua extends React.Component {
           () => console.log('kiemtradulieu>>', this.state.datashow),
         );
       });
+  }
+  uploadImage = async e => {
+    //this.setState({ files: e.target.files[0] });
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'darwin')
+    this.setState({ loading: true }
+    )
+    this.setState({ image: '' }
+    )
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/hocviennganhang/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    )
+    const file = await res.json()
+    console.log('ckeck>>', file.url)
+    this.setState({ image: file.secure_url }
+    )
+    this.setState({ loading: false }
+    )
   }
   getdataupdate() {
     const isValid = this.validate();
@@ -152,11 +176,11 @@ class Hoatdongsua extends React.Component {
     if (!this.state.content) {
       contentError = 'Bạn cần nhập nội dung';
     }
-    if (!this.state.image) {
-      imageError = 'Bạn cần chọn một hình ảnh';
-    }
-    if (nameError || totalError || contentError || imageError) {
-      this.setState({ nameError, totalError, contentError, imageError });
+    // if (!this.state.image) {
+    //   imageError = 'Bạn cần chọn một hình ảnh';
+    // }
+    if (nameError || totalError || contentError) {
+      this.setState({ nameError, totalError, contentError });
       return false;
     }
     return true;
@@ -196,7 +220,7 @@ class Hoatdongsua extends React.Component {
                             });
 
                           }}
-                        >
+                        ><option></option>
                           {this.state.dataselect.map(Item => {
                             return <option>{Item.TenNguoiDung}</option>;
                           })}
@@ -302,15 +326,17 @@ class Hoatdongsua extends React.Component {
                       <Input
                         type="file"
                         name="image"
-                        value={this.state.image}
-                        onChange={val => {
-                          this.setState({
-                            image: val.target.value,
-                            imageError: ""
-                          });
-
-                        }}
+                        //value={this.state.image}
+                        onChange={this.uploadImage}
                       />
+
+                      {this.state.loading ? (
+                        <h3>Loading...</h3>
+                      ) : (
+                          <img src={this.state.image} style={{ width: '300px' }}></img>
+                        )
+
+                      }
                     </Form>
                     <Form>
                       <Label for="exampleText">

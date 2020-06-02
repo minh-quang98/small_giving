@@ -19,15 +19,14 @@ const initialState = {
   id: '',
   name: '',
   nameError: '',
-
 };
 
 class Nhomndsua extends React.Component {
   state = initialState;
   componentWillReceiveProps = () => {
-    console.log("check>>>", this.props.chooseId);
+    //console.log("check>>>", this.props.chooseId);
     this.getdatashow();
-    this.getdataupdate();
+    //this.getdataupdate();
   }
   getdatashow() {
     let config = {

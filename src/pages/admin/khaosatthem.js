@@ -41,7 +41,13 @@ class Khaosatthem extends React.Component {
     this.getUser()
     //this.getdatainsert();
     this.getnhataitro();
+    this.creatKey();
   }
+  creatKey() {
+    this.setState({
+      id: `${"ks"}_${new Date().getTime()}`
+    });
+  };
   getnhataitro = async () => {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
       .then(response => response.json())
@@ -77,6 +83,7 @@ class Khaosatthem extends React.Component {
       let config = {
         method: "POST",
         body: JSON.stringify({
+          idKhaoSat: this.state.id,
           idCTV: this.state.user.idNguoiDung,
           TenKhaoSat: this.state.name,
           TenNguoiDung: this.state.patron,
@@ -189,15 +196,11 @@ class Khaosatthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleText">Mã khảo sát</Label>
                         <Input
-
+                          disabled="true"
                           type="text"
                           name="id"
                           value={this.state.id}
-                          onChange={val => {
-                            this.setState({
-                              id: val.target.value,
-                            });
-                          }}
+
                         />
                       </FormGroup>
                       <FormGroup>

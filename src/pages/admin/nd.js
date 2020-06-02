@@ -99,7 +99,21 @@ class nd extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
+                  <Nguoidungsua
+                    show={this.state.showModalSua}
+                    onHide={() => this.handleCloseModalSua()}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idNguoiDung}
+                  />
 
+                  <Nguoidungxoa
+                    show={this.state.showModalXoa}
+                    onHide={() => this.handleCloseModalXoa()}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idNguoiDung}
+                  />
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
@@ -108,8 +122,8 @@ class nd extends React.Component {
                         <th>SĐT</th>
                         <th>Email</th>
                         <th>Mật khẩu</th>
-                        <th>Huy hiệu</th>
-                        <th></th>
+
+                        <th>Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -120,26 +134,12 @@ class nd extends React.Component {
                           <td>{Item.SDT}</td>
                           <td>{Item.Email}</td>
                           <td>{Item.MatKhau}</td>
-                          <td>{Item.HuyHieu}</td>
+
                           <td>
                             <FaEdit className="can-click" size="1.5em"
                               onClick={() => this.handleShowModalSua(Item.idNguoiDung)}
                             />
-                            <Nguoidungsua
-                              show={this.state.showModalSua}
-                              onHide={() => this.handleCloseModalSua()}
-                              size="lg"
-                              className={this.props.className}
-                              chooseId={this.state.idNguoiDung}
-                            />
 
-                            <Nguoidungxoa
-                              show={this.state.showModalXoa}
-                              onHide={() => this.handleCloseModalXoa()}
-                              size="lg"
-                              className={this.props.className}
-                              chooseId={this.state.idNguoiDung}
-                            />
 
                           </td>
                         </tr>

@@ -33,21 +33,30 @@ const initialState = {
   tennhomError: "",
   passwordError: "",
   dataselect: [],
-
 };
 
 class Nguoidungsua extends React.Component {
   state = initialState;
-  componentDidMount() {
-    this.getdataselect();
-  }
+
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
-
-
     this.getdatashow();
     //this.getdataupdate();
   }
+  componentDidMount() {
+    this.getdataselect();
+  }
+  getdataselect = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
+      .then((response) => response.json())
+      .then((dataselect) => {
+        this.setState({
+          dataselect: dataselect,
+        }, () => console.log('kiemtradulieu', this.state.dataselect),
+
+        );
+      });
+  };
   getdatashow() {
     let config = {
       method: "POST",
@@ -73,17 +82,7 @@ class Nguoidungsua extends React.Component {
         );
       });
   }
-  getdataselect = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
-      .then((response) => response.json())
-      .then((dataselect) => {
-        this.setState({
-          dataselect: dataselect,
-        }, () => console.log('kiemtradulieu', this.state.dataselect),
 
-        );
-      });
-  };
   getdataupdate() {
     const isValid = this.validate();
     if (isValid) {
@@ -136,18 +135,18 @@ class Nguoidungsua extends React.Component {
   };
 
   validate = () => {
-    let idnhomError = '';
+    let tennhomError = '';
     let passwordError = '';
 
-    if (!this.state.idnhom) {
-      idnhomError = 'Bạn cần chọn một nhóm người dùng';
+    if (!this.state.tennhom) {
+      tennhomError = 'Bạn cần chọn một nhóm người dùng';
     }
 
     if (!this.state.password) {
       passwordError = 'Bạn cần nhập mật khẩu';
     }
-    if (idnhomError || passwordError) {
-      this.setState({ idnhomError, passwordError });
+    if (tennhomError || passwordError) {
+      this.setState({ tennhomError, passwordError });
       return false;
     }
     return true;
@@ -155,6 +154,8 @@ class Nguoidungsua extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
+    console.log(this.state);
+
   };
 
   render() {
@@ -165,8 +166,7 @@ class Nguoidungsua extends React.Component {
         </ModalHeader>
         <ModalBody>
 
-          <Form onSubmit={() => this.handleSubmit()}
-          >
+          <Form onSubmit={this.handleSubmit}>
             <Card>
               <CardBody>
 
@@ -193,17 +193,18 @@ class Nguoidungsua extends React.Component {
                           name="tennhom"
 
                           value={this.state.tennhom}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               tennhom: val.target.value
                             })
                           }}
-                        >{this.state.dataselect.map((Item, index) => {
-                          return (
+                        ><option></option>
+                          {this.state.dataselect.map((Item, index) => {
+                            return (
 
-                            <option>{Item.TenNhom}</option>
-                          );
-                        })}
+                              <option>{Item.TenNhom}</option>
+                            );
+                          })}
                         </Input>
                       </FormGroup>
                       <FormGroup>
@@ -217,7 +218,7 @@ class Nguoidungsua extends React.Component {
                           type="phone"
                           name="phone"
                           value={this.state.phone}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               phone: val.target.value
                             })
@@ -234,7 +235,7 @@ class Nguoidungsua extends React.Component {
                           type="email"
                           name="email"
                           value={this.state.email}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               email: val.target.value
                             })
@@ -251,7 +252,7 @@ class Nguoidungsua extends React.Component {
                           type="text"
                           name="name"
                           value={this.state.name}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               name: val.target.value,
 
@@ -265,7 +266,7 @@ class Nguoidungsua extends React.Component {
                           type="date"
                           name="dateofbirth"
                           value={this.state.dateofbirth}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               dateofbirth: val.target.value
                             })
@@ -278,7 +279,7 @@ class Nguoidungsua extends React.Component {
                           type="text"
                           name="stk"
                           value={this.state.stk}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               stk: val.target.value
                             })
@@ -294,7 +295,7 @@ class Nguoidungsua extends React.Component {
                           type="text"
                           name="password"
                           value={this.state.password}
-                          onChange={(val) => {
+                          onChange={val => {
                             this.setState({
                               password: val.target.value,
 
@@ -310,7 +311,8 @@ class Nguoidungsua extends React.Component {
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill
+                <Button color="danger" type="submit"
+                  pill
                   className="px-4 my-3"
                   onClick={() => this.getdataupdate()}
                 >
