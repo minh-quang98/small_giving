@@ -67,16 +67,33 @@ class ProfileUser extends Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
-        console.log("datapro>>",data)
+        // console.log("datapro>>",data)
         this.setState({
           profile: data,
-          fullName: data.TenNguoiDung,
           dateBirdth: data.NgaySinh,
-          STK: data.STK
-        })
+          phone: data.SDT
+        }, () => this.getProfileW4())
+      })
+  }
+
+  getProfileW4 = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ClientNumber: this.state.phone
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          SoDuTK: data.Available,
+          fullName: data.ContractName,
+          STK: data.ContractNumber,
+        }, () => console.log("check>>>", this.state.SoDuTK, this.state.STK))
       })
   }
 
@@ -262,7 +279,7 @@ class ProfileUser extends Component {
                             helperText={this.state.STKErr && 'Vui lòng nhập số tài khoản  '}
                           />
 
-                          : profile.STK ? profile.STK : ''
+                          : this.state.STK
                         }
                       </div>
                       <div
@@ -340,8 +357,8 @@ class ProfileUser extends Component {
                       <div
                         className=" pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
                         {this.state.onEdit === true
-                          ? <p className="mt-1">{profile.SoDuTK === "null" ? profile.SoDuTK : 0}</p>
-                          : <span><NumberFormat value={profile.SoDuTK !== "null" ? profile.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></span>}
+                          ? <p className="mt-1">{this.state.SoDuTK}</p>
+                          : <span><NumberFormat value={this.state.SoDuTK} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/></span>}
                       </div>
                     </div>
                     {this.state.onEdit ? <Grid container spacing={2} justify={"flex-center"}>

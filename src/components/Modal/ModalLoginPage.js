@@ -272,11 +272,11 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
-                  label="Số điện thoại"
+                  label="Email"
                   variant="outlined"
                   onChange={(val) => {
                     this.setState({
-                      phone: val.target.value
+                      email: val.target.value
                     })
                   }}
                 />
@@ -285,11 +285,11 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
-                  label="Email"
+                  label="Số điện thoại"
                   variant="outlined"
                   onChange={(val) => {
                     this.setState({
-                      email: val.target.value
+                      phone: val.target.value
                     })
                   }}
                 />
