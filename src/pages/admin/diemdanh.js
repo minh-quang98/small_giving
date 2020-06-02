@@ -3,7 +3,7 @@ import Diemdanhthem from 'pages/admin/diemdanhthem';
 import Diemdanhsua from 'pages/admin/diemdanhsua';
 import Diemdanhxoa from 'pages/admin/diemdanhxoa';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Button } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
@@ -26,6 +26,7 @@ class diemdanh extends React.Component {
       showModalSua: false,
       showModalXoa: false,
       idDiemDanh: "",
+      idDD: "hd_1590744148124"
     };
   }
   componentDidUpdate(preProps, preState, future) {
@@ -33,6 +34,10 @@ class diemdanh extends React.Component {
     if (preState.idDiemDanh != idDiemDanh) {
       this.handleShowModalSua(idDiemDanh);
       // this.handleShowModalXem(idHoatDong);
+    }
+    const { idDD } = this.state;
+    if (preState.idDD != idDD) {
+      this.handleShowModalXoa(idDD);
     }
 
   }
@@ -60,7 +65,7 @@ class diemdanh extends React.Component {
   handleShowModalXoa = id => {
     this.setState({
       showModalXoa: true,
-      idDiemDanh: id,
+      idDD: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -116,13 +121,20 @@ class diemdanh extends React.Component {
                     className={this.props.className}
                     chooseId={this.state.idDiemDanh}
                   />
+                  <Diemdanhxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idDD}
+                  />
 
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
                         <th>ID</th>
                         <th>Sô tiền mỗi lượt</th>
-                        <th>Số người tham gia</th>
+                        <th>Số dư</th>
                         <th>Sửa</th>
                       </tr>
                     </thead>
@@ -144,7 +156,15 @@ class diemdanh extends React.Component {
                             <tr>
                               <td>{Item.idDiemDanh}</td>
                               <td>{Item.SoTienML}</td>
-                              <td>{Item.SoNguoiTG}</td>
+                              <td><Button
+                                color="link"
+                                className="can-click"
+                                onClick={() =>
+                                  this.handleShowModalXoa(Item.idDiemDanh)
+                                }
+                              > Xem
+                                  </Button>
+                              </td>
                               <td>
                                 <FaEdit
                                   className="can-click "

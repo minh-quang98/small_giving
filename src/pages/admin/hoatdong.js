@@ -34,19 +34,21 @@ class hoatdong extends React.Component {
       showModalXem: false,
       idHoatDong: "",
       idHD: "",
-      sodu: "xem",
+      idSoDu: "hd_1590744148124",
     };
   }
   componentDidUpdate(preProps, preState, future) {
     const { idHoatDong } = this.state;
     if (preState.idHoatDong != idHoatDong) {
       this.handleShowModalSua(idHoatDong);
-      // this.handleShowModalXem(idHoatDong);
     }
     const { idHD } = this.state;
     if (preState.idHD != idHD) {
-      //this.handleShowModalSua(idHoatDong);
       this.handleShowModalXem(idHD);
+    }
+    const { idSoDu } = this.state;
+    if (preState.idSoDu != idSoDu) {
+      this.handleShowModalXoa(idSoDu);
     }
 
   }
@@ -74,7 +76,7 @@ class hoatdong extends React.Component {
   handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
-      idHoatDong: id,
+      idSoDu: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -117,23 +119,7 @@ class hoatdong extends React.Component {
         }
       });
   };
-  getsodu = (ida) => {
-    console.log("check>>", ida)
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        ClientNumber: ida
-      })
-    }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          sodu: data.Available,
-        }, () => console.log("check>>>", this.state.sodu))
-      });
 
-  }
 
   render() {
     return (
@@ -168,7 +154,7 @@ class hoatdong extends React.Component {
                     onHide={() => this.handleCloseModalXoa()}
                     size="lg"
                     className={this.props.className}
-                    chooseId={this.state.idHoatDong}
+                    chooseId={this.state.idSoDu}
                   />
                   <Xemdk
                     show={this.state.showModalXem}
@@ -197,7 +183,7 @@ class hoatdong extends React.Component {
                         <th> Số dư</th>
                         <th> CTV đăng tải</th>
                         <th> Xem đăng kí</th>
-                        <th> </th>
+                        <th> Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -234,9 +220,9 @@ class hoatdong extends React.Component {
                                   color="link"
                                   className="can-click"
 
-                                  onClick={() => this.getsodu(Item.idHoatDong)}
+                                  onClick={() => this.handleShowModalXoa(Item.idHoatDong)}
                                 >
-                                  {this.state.sodu}
+                                  Xem
                                 </Button>
                               </td>
                               <td>{Item.TenNguoiDung}</td>

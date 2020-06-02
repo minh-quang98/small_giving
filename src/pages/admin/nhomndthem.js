@@ -25,40 +25,41 @@ const initialState = {
 
 class Nhomndthem extends React.Component {
   state = initialState;
-  componentDidMount() {
-    this.getdatainsert();
-  }
+
   getdatainsert() {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        TenNhom: this.state.name,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/insert.php', config)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Thành công!', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          TenNhom: this.state.name,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            this.props.enqueueSnackbar('Thành công!', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'success',
+            });
+            window.location.reload();
 
-        } else {
-          this.props.enqueueSnackbar('Thất bại', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
+          } else {
+            this.props.enqueueSnackbar('Thất bại', {
+              anchorOrigin: {
+                vertical: "top",
+                horizontal: "right"
+              },
+              variant: 'error',
+            });
 
-        }
-      });
+          }
+        });
+    }
   }
 
   handleChange = event => {

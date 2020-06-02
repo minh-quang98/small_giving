@@ -43,7 +43,13 @@ class Hoatdongthem extends React.Component {
     this.getUser()
     //this.getdatainsert();
     this.getnth();
+    this.creatKey();
   }
+  creatKey() {
+    this.setState({
+      idhd: `${"hd"}_${new Date().getTime()}`
+    });
+  };
   getnth = async () => {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
       .then(response => response.json())
@@ -80,6 +86,7 @@ class Hoatdongthem extends React.Component {
       let config = {
         method: "POST",
         body: JSON.stringify({
+          idHoatDong: this.state.idhd,
           TenNguoiDung: this.state.id,
           idCTV: this.state.user.idNguoiDung,
           TenHoatDong: this.state.name,
@@ -100,7 +107,7 @@ class Hoatdongthem extends React.Component {
             }, () => this.creatAccountWay4())
           }
           else {
-            this.props.enqueueSnackbar('Thất bại', {
+            this.props.enqueueSnackbar('Thất bại 1', {
               anchorOrigin: {
                 vertical: "top",
                 horizontal: "right"
@@ -185,12 +192,7 @@ class Hoatdongthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+
   };
   render() {
     return (
@@ -212,12 +214,8 @@ class Hoatdongthem extends React.Component {
                           type="text"
                           name="idhd"
                           value={this.state.idhd}
-                          onChange={val => {
-                            this.setState({
-                              idhd: val.target.value,
-                            });
+                          disabled="true"
 
-                          }}
 
                         >
 

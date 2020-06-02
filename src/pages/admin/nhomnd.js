@@ -117,7 +117,7 @@ class nhomnd extends React.Component {
 
                         <th>Mã nhóm</th>
                         <th>Tên nhóm</th>
-                        <th></th>
+                        <th>Sửa</th>
                       </tr>
                     </thead>
                     <tbody>
