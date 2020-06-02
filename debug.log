@@ -128,3 +128,5 @@
 [0528/142200.520:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0529/080540.360:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0529/103854.855:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0601/081524.970:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[0602/085537.161:ERROR:crash_report_database_win.cc(469)] failed to stat report
