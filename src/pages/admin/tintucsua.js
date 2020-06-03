@@ -29,6 +29,10 @@ const initialState = {
   idhoatdongError: '',
   nameError: '',
   contentError: '',
+  tenhd: '',
+  loaitin: '',
+  dataselect: [],
+  dataselect1: [],
 };
 
 class Tintucsua extends React.Component {
@@ -39,6 +43,37 @@ class Tintucsua extends React.Component {
     //this.getdataupdate();
 
   }
+  componentDidMount() {
+
+    this.gethd();
+    this.getloaitin();
+
+  }
+  gethd = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
+  getloaitin = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showloaitin.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect1: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
+
   getdatashow() {
     let config = {
       method: "POST",
@@ -54,7 +89,10 @@ class Tintucsua extends React.Component {
             id: datashow.idTin,
             name: datashow.TenTin,
             content: datashow.NoiDung,
-            image: datashow.Anh
+            image: datashow.Anh,
+            tenhd: datashow.TenHoatDong,
+            loaitin: datashow.TenLoaiTin,
+
 
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
@@ -71,6 +109,8 @@ class Tintucsua extends React.Component {
           TenTin: this.state.name,
           NoiDung: this.state.content,
           Anh: this.state.image,
+          TenHoatDong: this.state.tenhd,
+          TenLoaiTin: this.state.loaitin,
 
         }),
       };
@@ -174,8 +214,27 @@ class Tintucsua extends React.Component {
                           disabled="true"
                           type="text"
                           name="id"
-                          value={this.props.chooseId}
+                          value={this.state.id}
                         />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText"> Tên hoạt động</Label>
+                        <Input
+
+                          type="select"
+                          name="tenhd"
+                          value={this.state.tenhd}
+                          onChange={val => {
+                            this.setState({
+                              tenhd: val.target.value,
+                            });
+
+                          }}
+                        ><option></option>
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenHoatDong}</option>;
+                          })}
+                        </Input>
                       </FormGroup>
 
 
@@ -195,11 +254,30 @@ class Tintucsua extends React.Component {
                           onChange={val => {
                             this.setState({
                               name: val.target.value,
+                              nameError: ""
                             });
                           }}
                         />
                       </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText"> Loại tin tức</Label>
+                        <Input
 
+                          type="select"
+                          name="loaitin"
+                          value={this.state.loaitin}
+                          onChange={val => {
+                            this.setState({
+                              loaitin: val.target.value,
+                            });
+
+                          }}
+                        ><option></option>
+                          {this.state.dataselect1.map(Item => {
+                            return <option>{Item.TenLoaiTin}</option>;
+                          })}
+                        </Input>
+                      </FormGroup>
 
 
                     </Form>
@@ -235,6 +313,7 @@ class Tintucsua extends React.Component {
                         onChange={val => {
                           this.setState({
                             content: val.target.value,
+                            contentError: ""
                           });
                         }}
                       />
