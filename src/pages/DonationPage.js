@@ -65,7 +65,8 @@ class DonationPage extends React.Component {
       idNguoiDung: "",
       SoDuTK: "",
       idHoatDong: "",
-      money: ""
+      money: "",
+      phone: ""
     };
   }
 
@@ -86,24 +87,25 @@ class DonationPage extends React.Component {
         .then((response) => response.json())
         .then((data) => {
           this.setState({
-            idNguoiDung: data.idNguoiDung
-          }, () => this.getProfile())
+            idNguoiDung: data.idNguoiDung,
+            phone: data.SDT
+          }, () => this.getProfileW4())
         })
     }
   }
 
-  getProfile = () => {
+  getProfileW4 = () => {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        idNguoiDung: this.state.idNguoiDung
+        ClientNumber: this.state.phone
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          SoDuTK: data.SoDuTK
+          SoDuTK: data.Available
         })
       })
   }
