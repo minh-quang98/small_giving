@@ -69,7 +69,8 @@ class MainPage extends React.Component {
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: "",
       SoDuTK: "",
-      checkIn: false
+      checkIn: false,
+      phone: ""
     }
   }
   componentDidMount() {
@@ -109,7 +110,8 @@ class MainPage extends React.Component {
         .then((response) => response.json())
         .then((data) => {
           this.setState({
-            idNguoiDung: data.idNguoiDung
+            idNguoiDung: data.idNguoiDung,
+            phone: data.SDT
           }, () => this.getProfile())
         })
     }
@@ -122,12 +124,28 @@ class MainPage extends React.Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
           SoDuTK: data.SoDuTK
-        }, () => console.log("stk>>", data))
+        }, () => this.getProfileW4())
+      })
+  }
+
+  getProfileW4 = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ClientNumber: this.state.phone
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          SoDuTK: data.Available
+        })
       })
   }
 
