@@ -34,6 +34,7 @@ const initialState = {
   nameError: '',
   contentError: '',
   dataselect: [],
+  dataselect1: [],
   selectedFile: null,
   //files: [],
   loading: false,
@@ -48,6 +49,7 @@ class Tintucthem extends React.Component {
     this.getUser()
     //this.getdatainsert();
     this.gethd();
+    this.getloaitin();
   }
   gethd = async () => {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
@@ -58,6 +60,18 @@ class Tintucthem extends React.Component {
             dataselect: dataselect,
           },
           () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
+  getloaitin = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showloaitin.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect1: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect1),
         );
       });
   };
@@ -111,6 +125,7 @@ class Tintucthem extends React.Component {
         body: JSON.stringify({
           idCTV: this.state.user.idNguoiDung,
           TenTin: this.state.name,
+          TenLoaiTin: this.state.receiver,
           TenHoatDong: this.state.idhoatdong,
           NoiDung: this.state.content,
           Anh: this.state.a,
@@ -158,15 +173,13 @@ class Tintucthem extends React.Component {
     if (!this.state.name) {
       nameError = 'Bạn cần nhập một tên';
     }
-    if (!this.state.idhoatdong) {
-      idhoatdongError = 'Bạn cần chọn một hoạt động';
-    }
+
     if (!this.state.content) {
       contentError = 'Bạn cần nhập nội dung';
     }
 
-    if (nameError || idhoatdongError || contentError) {
-      this.setState({ nameError, idhoatdongError, contentError });
+    if (nameError || contentError) {
+      this.setState({ nameError, contentError });
       return false;
     }
     return true;
@@ -187,7 +200,8 @@ class Tintucthem extends React.Component {
   handleCkeditorState = (event, editor) => {
     const data = editor.getData();
     this.setState({
-      content: data
+      content: data,
+      contentError: ""
     })
   }
 
@@ -225,6 +239,7 @@ class Tintucthem extends React.Component {
                           onChange={val => {
                             this.setState({
                               name: val.target.value,
+                              nameError: ""
                             });
                           }}
                         />
@@ -243,9 +258,28 @@ class Tintucthem extends React.Component {
                               idhoatdong: val.target.value,
                             });
                           }}
-                        ><option></option>
+                        ><option>Chọn một hoạt động</option>
                           {this.state.dataselect.map(Item => {
                             return <option>{Item.TenHoatDong}</option>;
+                          })}
+                        </Input>
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleSelect">
+                          Loại tin tức
+                        </Label>
+                        <Input
+                          type="select"
+                          name="receiver"
+                          value={this.state.receiver}
+                          onChange={val => {
+                            this.setState({
+                              receiver: val.target.value,
+                            });
+                          }}
+                        ><option>Chọn một loại tin</option>
+                          {this.state.dataselect1.map(Item => {
+                            return <option>{Item.TenLoaiTin}</option>;
                           })}
                         </Input>
                       </FormGroup>
@@ -282,21 +316,7 @@ class Tintucthem extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleSelect">
-                          Loại tin tức
-                        </Label>
-                        <Input
-                          type="select"
-                          name="receiver"
-                          value={this.state.receiver}
-                          onChange={val => {
-                            this.setState({
-                              receiver: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
                     </Form>
                   </Col>
                   <Col xl={12}>
