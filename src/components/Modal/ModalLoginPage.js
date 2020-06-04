@@ -125,7 +125,6 @@ class ModalLoginPage extends Component {
         variant: 'error',
       });
     } else if (this.state.rePassword !== this.state.password) {
-      console.log("check>>>>>", this.state.repassword, this.state.password);
       this.props.enqueueSnackbar('Nhập lại mật khẩu phải giống mật khẩu !', {
         anchorOrigin: {
           vertical: "top",
@@ -161,7 +160,7 @@ class ModalLoginPage extends Component {
           });
           this.setState({
             modeLogin: true,
-          }, () => this.handleSignUpWay4())
+          })
         } else {
           this.props.enqueueSnackbar('Tài khoản đã tồn tại !', {
             anchorOrigin: {
@@ -171,26 +170,7 @@ class ModalLoginPage extends Component {
             variant: 'error',
           });
         }
-        // console.log("check>>>", data)
       });
-  }
-
-  handleSignUpWay4 = () => {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        ShortName: this.state.name,
-        EMail: this.state.email,
-        ClientNumber:this.state.phone,
-        IdentityCardNumber:this.state.phone,
-        MobilePhone:this.state.phone,
-      })
-    }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php`, config)
-      .then((res)=> res.json())
-      .then((data) => {
-        console.log("check>>>",data)
-      })
   }
 
   render() {
@@ -272,11 +252,11 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
-                  label="Email"
+                  label="Số điện thoại"
                   variant="outlined"
                   onChange={(val) => {
                     this.setState({
-                      email: val.target.value
+                      phone: val.target.value
                     })
                   }}
                 />
@@ -285,11 +265,11 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
-                  label="Số điện thoại"
+                  label="Email"
                   variant="outlined"
                   onChange={(val) => {
                     this.setState({
-                      phone: val.target.value
+                      email: val.target.value
                     })
                   }}
                 />

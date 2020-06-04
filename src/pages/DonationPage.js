@@ -230,7 +230,7 @@ class DonationPage extends React.Component {
         {this.state.listData.map((item, index) => (
           <div>
             <Row className="mt-3">
-              <Col lg="4" md="12" sm="12" xs="12">
+              <Col lg="6" md="12" sm="12" xs="12">
                 <Card>
                   <CardHeader className="d-flex justify-content-between">
                     <b>{item.TenHoatDong}{' '}</b>
@@ -264,7 +264,7 @@ class DonationPage extends React.Component {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="4" md="12" sm="12" xs="12">
+              <Col lg="6" md="12" sm="12" xs="12">
                 <Card>
                   <IconWidget
                     icon={MdFace}
@@ -292,6 +292,48 @@ class DonationPage extends React.Component {
                     }}
                     number={item.ChiDK}
                   />
+                </Card>
+
+                <Card>
+                  {/* <CardHeader className="text-center">Quyên góp</CardHeader> */}
+                  <CardBody>
+                    {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
+                    <div style={{ fontSize: 24, textAlign: 'center', color: '#8e8e8e' }}>
+                      Số dư tài khoản
+                      <br />
+                      {this.state.token === ""
+                        ? <div style={{ fontSize: 20, color: "#ae1f17" }}>
+                          Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
+                        </div>
+                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                      }
+
+                    </div>
+                  </CardBody>
+                  {this.state.token === ""
+                    ? <div></div>
+                    : <ListGroup flush>
+                      <ListGroupItem>
+                        <MdInsertChart size={25} style={{ color: '#ae1f17' }} /> Làm phiếu khảo sát&nbsp;&nbsp;
+                        {/*<a href={""}>(Link)</a>*/}
+                        <Link to={'/consider'}>(Link)</Link>
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        <Label check>
+                          <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện
+                          <Input type="checkbox" className={'ml-3'} />
+                        </Label>
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        <Label check>
+                          <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động
+                          <Input type="checkbox" className={'ml-3'} />
+                        </Label>
+                      </ListGroupItem>
+                      <ListGroupItem>
+                      </ListGroupItem>
+                    </ListGroup>
+                  }
                 </Card>
               </Col>
               <Col lg="4" md="12" sm="12" xs="12">

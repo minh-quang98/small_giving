@@ -234,6 +234,40 @@ class MainPage extends React.Component {
             </Card>
           </Col>
         </Row>
+
+
+
+        <Row>
+          <Col md="12" sm="12" xs="12">
+            <Card>
+              <div className="site-card-wrapper">
+                <Row gutter={16}>
+                  <Col span={8}>
+                    <Card title="Card title" bordered={false}>
+                      Card content
+        </Card>
+                  </Col>
+                  <Col span={8}>
+                    <Card title="Card title" bordered={false}>
+                      Card content
+        </Card>
+                  </Col>
+                  <Col span={8}>
+                    <Card title="Card title" bordered={false}>
+                      Card content
+        </Card>
+                  </Col>
+                </Row>
+              </div>,
+
+            </Card>
+          </Col>
+        </Row>
+
+
+
+
+
         <Row>
           <Col md="6" sm="12" xs="12">
             <Card>
