@@ -27,12 +27,18 @@ class tintuc extends React.Component {
       showModalSua: false,
       showModalXoa: false,
       idTin: "",
+      idT: ""
     };
   }
   componentDidUpdate(preProps, preState, future) {
     const { idTin } = this.state;
     if (preState.idTin != idTin) {
       this.handleShowModalSua(idTin);
+      // this.handleShowModalXem(idHoatDong);
+    }
+    const { idT } = this.state;
+    if (preState.idT != idT) {
+      //this.handleShowModalSua(idT);
       // this.handleShowModalXem(idHoatDong);
     }
 
@@ -49,8 +55,9 @@ class tintuc extends React.Component {
   };
   handleShowModalSua = (id) => {
     this.setState({
-      showModalSua: true,
       idTin: id,
+      showModalSua: true,
+
     });
   };
   handleCloseModalSua = () => {
@@ -62,7 +69,7 @@ class tintuc extends React.Component {
   handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
-      idTin: id,
+      idT: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -126,7 +133,7 @@ class tintuc extends React.Component {
                     onHide={() => this.handleCloseModalXoa()}
                     size="lg"
                     className={this.props.className}
-                    chooseId={this.state.idTin}
+                    chooseId={this.state.idT}
                   />
                   <Badge
                     color="danger"
@@ -143,7 +150,7 @@ class tintuc extends React.Component {
                         <th> Tiêu đề tin tức</th>
                         <th> Tiêu đề thông báo</th>
                         <th> CTV đăng tải</th>
-                        <th> Sửa</th>
+                        <th> Tác vụ</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -175,6 +182,14 @@ class tintuc extends React.Component {
                                     this.handleShowModalSua(Item.idTin)
                                   }
                                 />
+                                <MdDelete
+                                  className="can-click "
+                                  size="1.5em"
+                                  onClick={() =>
+                                    this.handleShowModalXoa(Item.idTin)
+                                  }
+                                />
+
                               </td>
                             </tr>
                           );

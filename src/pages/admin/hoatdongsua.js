@@ -60,6 +60,7 @@ class Hoatdongsua extends React.Component {
       });
   };
   getdatashow() {
+    console.log('kiemtradulieu', this.props.chooseId)
     let config = {
       method: "POST",
       body: JSON.stringify({

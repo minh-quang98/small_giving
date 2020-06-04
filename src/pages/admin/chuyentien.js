@@ -1,6 +1,7 @@
 import Page from 'components/Page';
 import Chuyentienthem from 'pages/admin/chuyentienthem';
-import KhaoSatXoa from 'pages/admin/khaosatxoa'
+import KhaoSatXoa from 'pages/admin/khaosatxoa';
+import Nhomndxoa from 'pages/admin/nhomndxoa'
 import React from 'react';
 import {
   Card,
@@ -33,27 +34,25 @@ class chuyentien extends React.Component {
       dataerror: false,
       showModalThem: false,
       showModalXoa: false,
-      idGiaoDich: "",
+      idGiaoDich: "1",
       idGD: ""
     };
   }
   componentDidUpdate(preProps, preState, future) {
-    const { idGiaoDich } = this.state;
-    if (preState.idGiaoDich != idGiaoDich) {
 
-      this.handleShowModalXoa(idGiaoDich);
-      // this.handleShowModalXem(idHoatDong);
-    }
     const { idGD } = this.state;
     if (preState.idGD != idGD) {
       //this.handleShowModalSua(idHoatDong);
       this.handleShowModalThem(idGD);
     }
+    const { idGiaoDich } = this.state;
+    if (preState.idGiaoDich != idGiaoDich) {
 
+      //this.handleShowModalXoa(idGiaoDich);
+      // this.handleShowModalXem(idHoatDong);
+    }
   }
   handleShowModalThem = (id) => {
-
-
     this.setState({
       showModalThem: true,
       idGD: id,
@@ -66,7 +65,7 @@ class chuyentien extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalXoa = id => {
+  handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
       idGiaoDich: id,
@@ -113,12 +112,7 @@ class chuyentien extends React.Component {
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
-  checkActive = (id) => {
-    if (id === 1) {
-      this.state.disabled = true;
-    }
 
-  }
 
   render() {
     return (
@@ -135,7 +129,20 @@ class chuyentien extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-
+                  <Chuyentienthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idGD}
+                  />
+                  <Nhomndxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idGiaoDich}
+                  />
                   <Table {...{ [tableType || 'default']: true }}>
                     <thead>
                       <tr className="table-danger">
@@ -169,13 +176,7 @@ class chuyentien extends React.Component {
 
                               <td>{Item.SoTien}</td>
                               <td>
-                                <Chuyentienthem
-                                  show={this.state.showModalThem}
-                                  onHide={this.handleCloseModalThem}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idGD}
-                                />
+
                                 <Badge
                                   color="danger"
                                   pill
@@ -185,13 +186,7 @@ class chuyentien extends React.Component {
                                 >
                                   Chấp nhận
                               </Badge>
-                                <KhaoSatXoa
-                                  show={this.state.showModalXoa}
-                                  onHide={this.handleCloseModalXoa}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idGiaoDich}
-                                />
+
                                 <Badge
                                   color="danger"
                                   pill

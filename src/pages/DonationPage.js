@@ -157,10 +157,11 @@ class DonationPage extends React.Component {
               },
               variant: 'success',
             });
+            this.handleDoanationW4();
             this.handleCloseModal();
             this.handleCloseModalParent();
             window.location.reload();
-          } else if (data.message === "false") {
+          } else if (data.message === "fail") {
             this.props.enqueueSnackbar('Quyên góp thất bại !', {
               anchorOrigin: {
                 vertical: "top",
@@ -196,6 +197,22 @@ class DonationPage extends React.Component {
         })
     }
 
+  }
+
+  handleDoanationW4 = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        NumberNguoiNhan: this.state.idHoatDong,
+        NumberNguoiGui: this.state.idNguoiDung,
+        SoTien: this.state.money
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      })
   }
 
 
