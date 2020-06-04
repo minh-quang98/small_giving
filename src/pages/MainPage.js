@@ -196,7 +196,7 @@ class MainPage extends React.Component {
       // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
         <Row>
-          <Col lg="8" md="12" sm="12" xs="12">
+          <Col lg="12" md="12" sm="12" xs="12">
             <Card>
               <div>
                 <UncontrolledCarousel items={fakeData} />
@@ -204,7 +204,9 @@ class MainPage extends React.Component {
             </Card>
           </Col>
 
-          <Col lg="4" md="12" sm="12" xs="12">
+        </Row>
+        <Row>
+          <Col lg="6" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
                 <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>
@@ -233,9 +235,40 @@ class MainPage extends React.Component {
               }
             </Card>
           </Col>
+          <Col md="6" sm="12" xs="12">
+            <Card>
+              <CardHeader>Bảng xếp hạng</CardHeader>
+              <CardBody>
+                {this.state.messageErr === ""
+                  ? <Table responsive hover>
+                    <thead>
+                    <tr className="text-capitalize align-middle text-center">
+                      <th>Huy Hiệu</th>
+                      <th>Tên Người Dùng</th>
+                      <th>Số Tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.state.data.map((item, index) => (
+                      <tr key={index}>
+                        <td className="align-middle text-center">
+                          {index + 1}
+                        </td>
+                        <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                        <td className="align-middle text-center">{item.SoTien}</td>
+                      </tr>
+                    ))}
+                    </tbody>
+                  </Table>
+                  : <div className="text-center">Không có dữ liệu</div>
+                }
+
+              </CardBody>
+            </Card>
+          </Col>
         </Row>
         <Row>
-          <Col md="6" sm="12" xs="12">
+          <Col md="12" sm="12" xs="12">
             <Card>
               <CardHeader>Về chúng tôi</CardHeader>
               <CardBody>
@@ -246,7 +279,7 @@ class MainPage extends React.Component {
                       image={image}
                       title={title}
                       description={description}
-                    // right={right}
+                      // right={right}
                     />
                   ),
                 )}
@@ -254,37 +287,6 @@ class MainPage extends React.Component {
             </Card>
           </Col>
 
-          <Col md="6" sm="12" xs="12">
-            <Card>
-              <CardHeader>Bảng xếp hạng</CardHeader>
-              <CardBody>
-                {this.state.messageErr === ""
-                  ? <Table responsive hover>
-                    <thead>
-                      <tr className="text-capitalize align-middle text-center">
-                        <th>Huy Hiệu</th>
-                        <th>Tên Người Dùng</th>
-                        <th>Số Tiền</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.state.data.map((item, index) => (
-                        <tr key={index}>
-                          <td className="align-middle text-center">
-                            {index + 1}
-                          </td>
-                          <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                          <td className="align-middle text-center">{item.SoTien}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                  : <div className="text-center">Không có dữ liệu</div>
-                }
-
-              </CardBody>
-            </Card>
-          </Col>
         </Row>
       </Page>
     );

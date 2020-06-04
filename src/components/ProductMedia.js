@@ -20,7 +20,7 @@ const ProductMedia = ({ image, title, description, right, ...restProps }) => {
         <Media heading tag="h5" className="text-truncate">
           {title}
         </Media>
-        <p className="text-muted ">{description}</p>
+        <p className="text-muted">{description}</p>
       </Media>
       <Media right className="align-self-center">
         {right && typeof right === 'string' ? (
