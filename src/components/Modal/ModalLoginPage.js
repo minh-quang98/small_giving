@@ -3,6 +3,7 @@ import {
   Modal, ModalBody, ModalHeader, ModalFooter,
   FormGroup, Label, Input, Button,
 } from 'reactstrap';
+import "./Modal.css"
 import { TextField, Snackbar } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import { withSnackbar } from 'notistack';
