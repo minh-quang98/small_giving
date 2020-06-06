@@ -90,80 +90,85 @@ class NewsPage extends React.Component {
     return (
       <Page title="Tin tức">
         <Row>
-          {this.state.data.map((Item, index) => {
-            return (
-              <Col md="9" sm="12" xs="12">
-                <Card>
-                  <CardHeader
-                    avatar={
-                      <Avatar style={{ backgroundColor: "#ae1f17" }} aria-label="recipe">
-                        SG
+          <Col lg="2" md="12" sm="12" xs="12" ></Col>
+          <Col lg="8" md="12" sm="12" xs="12" >
+            {this.state.data.map((Item, index) => {
+              return (
+                <Col md="12" sm="12" xs="12">
+                  <Card>
+                    <CardHeader
+                      avatar={
+                        <Avatar style={{ backgroundColor: "#ae1f17" }} aria-label="recipe">
+                          SG
                       </Avatar>
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                      }
+                      action={
+                        <IconButton aria-label="settings">
+                          <MoreVertIcon />
+                        </IconButton>
+                      }
+                      title={Item.TenTin}
+                      subheader={
+                        // moment(Item.ThoiGian).format('DD-MM-YYYY')
+                        Item.ThoiGian
+                      }
+                    />
+                    <Media
+                      object
+                      src={Item.Anh}
+                      className="rounded mr-2 mb-2"
+                      style={{ width: '100%' }}
+                    />
+                    <CardActions disableSpacing>
+                      <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
                       </IconButton>
-                    }
-                    title={Item.TenTin}
-                    subheader={
-                      // moment(Item.ThoiGian).format('DD-MM-YYYY')
-                      Item.ThoiGian
-                    }
-                  />
-                  <Media
-                    object
-                    src={Item.Anh}
-                    className="rounded mr-2 mb-2"
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                      <ShareIcon />
-                    </IconButton>
-                    {
-                      this.state.expanded ?
-                        <IconButton
-                          onClick={() => {
-                            this.handleExpandClickClose()
-                          }
-                          }
-                          aria-expanded={this.state.expanded}
-                          aria-label="Thu gọn"
-                        >
-                          <ExpandMoreIcon />
-                        </IconButton>
-                        : <IconButton
-                          onClick={() => {
-                            this.setState({
-                              chooseId: Item.idTin
-                            }, () => {
-                              if (this.state.chooseId === Item.idTin) {
-                                this.handleExpandClick()
-                              }
-                            })
-                          }
-                          }
-                          aria-expanded={this.state.expanded}
-                          aria-label="Xem thêm"
-                        >
-                          <ExpandMoreIcon />
-                        </IconButton>
-                    }
+                      <IconButton aria-label="share">
+                        <ShareIcon />
+                      </IconButton>
+                      {
+                        this.state.expanded ?
+                          <IconButton
+                            onClick={() => {
+                              this.handleExpandClickClose()
+                            }
+                            }
+                            aria-expanded={this.state.expanded}
+                            aria-label="Thu gọn"
+                          >
+                            <ExpandMoreIcon />
+                          </IconButton>
+                          : <IconButton
+                            onClick={() => {
+                              this.setState({
+                                chooseId: Item.idTin
+                              }, () => {
+                                if (this.state.chooseId === Item.idTin) {
+                                  this.handleExpandClick()
+                                }
+                              })
+                            }
+                            }
+                            aria-expanded={this.state.expanded}
+                            aria-label="Xem thêm"
+                          >
+                            <ExpandMoreIcon />
+                          </IconButton>
+                      }
 
-                  </CardActions>
-                  <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                      {Item.NoiDung}
-                    </CardContent>
-                  </Collapse>
-                </Card>
-              </Col>
-            );
-          })}
+                    </CardActions>
+                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        {Item.NoiDung}
+                      </CardContent>
+                    </Collapse>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Col>
+          <Col lg="2" md="12" sm="12" xs="12" ></Col>
+
         </Row>
       </Page>
     );

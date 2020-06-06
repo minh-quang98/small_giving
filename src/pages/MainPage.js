@@ -196,97 +196,105 @@ class MainPage extends React.Component {
       // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
         <Row>
-          <Col lg="12" md="12" sm="12" xs="12">
-            <Card>
-              <div>
-                <UncontrolledCarousel items={fakeData} />
-              </div>
-            </Card>
+          <Col lg="1" md="12" sm="12" xs="12" >
           </Col>
+          <Col lg="10" md="12" sm="12" xs="12" >
+            <Row>
+              <Col lg="12" md="12" sm="12" xs="12">
+                <Card style={{ border: 0 }}>
+                  <div>
+                    <UncontrolledCarousel items={fakeData} />
+                  </div>
+                </Card>
+              </Col>
 
-        </Row>
-        <Row>
-          <Col lg="6" md="12" sm="12" xs="12">
-            <Card>
-              <CardBody>
-                <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>
-                  Số dư tài khoản
+            </Row>
+            <Row>
+              <Col lg="6" md="12" sm="12" xs="12">
+                <Card style={{ border: 0 }}>
+                  <CardBody >
+                    <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>
+                      Số dư tài khoản
                   <br />
-                  {this.state.token === ""
-                    ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
-                      Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
+                      {this.state.token === ""
+                        ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
+                          Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
                     </div>
-                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
-                  }
-                </div>
-              </CardBody>
-              {this.state.token === ""
-                ? <div></div>
-                : <ListGroup flush>
-                  <ListGroupItem>
-                    <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
+                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                      }
+                    </div>
+                  </CardBody>
+                  {this.state.token === ""
+                    ? <div></div>
+                    : <ListGroup flush>
+                      <ListGroupItem >
+                        <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
                     {/*<a href={""}>(Link)</a>*/}
-                    <Link to={"/consider"}>(Link)</Link>
-                  </ListGroupItem>
-                  <ListGroupItem className="text-center">
-                    <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
-                  </ListGroupItem>
-                </ListGroup>
-              }
-            </Card>
-          </Col>
-          <Col md="6" sm="12" xs="12">
-            <Card>
-              <CardHeader>Bảng xếp hạng</CardHeader>
-              <CardBody>
-                {this.state.messageErr === ""
-                  ? <Table responsive hover>
-                    <thead>
-                    <tr className="text-capitalize align-middle text-center">
-                      <th>Huy Hiệu</th>
-                      <th>Tên Người Dùng</th>
-                      <th>Số Tiền</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.state.data.map((item, index) => (
-                      <tr key={index}>
-                        <td className="align-middle text-center">
-                          {index + 1}
-                        </td>
-                        <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                        <td className="align-middle text-center">{item.SoTien}</td>
-                      </tr>
-                    ))}
-                    </tbody>
-                  </Table>
-                  : <div className="text-center">Không có dữ liệu</div>
-                }
+                        <Link to={"/consider"}>(Link)</Link>
+                      </ListGroupItem>
+                      <ListGroupItem className="text-center">
+                        <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
+                      </ListGroupItem>
+                    </ListGroup>
+                  }
+                </Card>
+              </Col>
+              <Col lg="6" md="12" sm="12" xs="12">
+                <Card style={{ border: 0 }}>
+                  <CardHeader className="text-center" style={{ border: 0 }}>Bảng xếp hạng</CardHeader>
+                  <CardBody>
+                    {this.state.messageErr === ""
+                      ? <Table responsive hover>
+                        <thead>
+                          <tr className="text-capitalize align-middle text-center">
+                            <th>Huy Hiệu</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Số Tiền</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {this.state.data.map((item, index) => (
+                            <tr key={index}>
+                              <td className="align-middle text-center">
+                                {index + 1}
+                              </td>
+                              <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                              <td className="align-middle text-center">{item.SoTien}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                      : <div className="text-center">Không có dữ liệu</div>
+                    }
 
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader>Về chúng tôi</CardHeader>
-              <CardBody>
-                {productsData.map(
-                  ({ id, image, title, description, }) => (
-                    <ProductMedia
-                      key={id}
-                      image={image}
-                      title={title}
-                      description={description}
-                      // right={right}
-                    />
-                  ),
-                )}
-              </CardBody>
-            </Card>
-          </Col>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
 
+            <Row>
+              <Col md="12" sm="12" xs="12">
+                <Card style={{ border: 0 }}>
+                  <CardHeader className="text-center" style={{ border: 0 }}>Về chúng tôi</CardHeader>
+                  <CardBody>
+                    {productsData.map(
+                      ({ id, image, title, description, }) => (
+                        <ProductMedia
+                          key={id}
+                          image={image}
+                          title={title}
+                          description={description}
+                        // right={right}
+                        />
+                      ),
+                    )}
+                  </CardBody>
+                </Card>
+              </Col>
+
+            </Row>
+          </Col>
+          <Col lg="1" md="12" sm="12" xs="12" ></Col>
         </Row>
       </Page>
     );
