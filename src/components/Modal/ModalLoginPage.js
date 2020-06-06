@@ -202,7 +202,7 @@ class ModalLoginPage extends Component {
           <Modal
             isOpen={this.props.show}
             // size="sm"
-            style={{ width: "25%" }}
+            style={{ width: "25%", minWidth: 320 }}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered
@@ -261,7 +261,7 @@ class ModalLoginPage extends Component {
           : <Modal
             isOpen={this.props.show}
             // size="sm"
-            style={{ width: "25%" }}
+            style={{ width: "25%",minWidth: 320 }}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered

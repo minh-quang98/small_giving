@@ -58,7 +58,7 @@ class DonationDetailPage extends Component {
         idHoatDong: this.state.idHoatDong
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thontin/webtinhoatdong.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thongtin/webtinhoatdong.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -92,7 +92,7 @@ class DonationDetailPage extends Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thontin/thongtin.php`, config)
+    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
