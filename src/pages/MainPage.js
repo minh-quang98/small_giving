@@ -21,11 +21,10 @@ import {
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
-import Media from 'reactstrap/es/Media';
-import Vang from '../assets/img/logo/HHV.png';
-import Bac from '../assets/img/logo/HHB.png';
-import Dong from '../assets/img/logo/HHD.png';
+import DTN from "assets/img/ĐTN.PNG"
 import { withSnackbar } from 'notistack';
+import GUBN from '../assets/img/guide-banner.png';
+import Media from 'reactstrap/es/Media';
 
 
 const today = new Date();
@@ -200,68 +199,125 @@ class MainPage extends React.Component {
           </Col>
           <Col lg="10" md="12" sm="12" xs="12" >
             <Row>
-              <Col lg="12" md="12" sm="12" xs="12">
+              <Col lg="8" md="12" sm="12" xs="12" className="ml-0 pl-0">
                 <Card style={{ border: 0 }}>
                   <div>
                     <UncontrolledCarousel items={fakeData} />
                   </div>
                 </Card>
               </Col>
-
-            </Row>
-            <Row>
-              <Col lg="6" md="12" sm="12" xs="12">
-                <Card style={{ border: 0 }}>
-                  <CardBody >
-                    <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>
-                      Số dư tài khoản
-                  <br />
-                      {this.state.token === ""
-                        ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
-                          Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
-                    </div>
-                        : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
-                      }
-                    </div>
-                  </CardBody>
-                  {this.state.token === ""
-                    ? <div></div>
-                    : <ListGroup flush>
-                      <ListGroupItem >
-                        <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
-                    {/*<a href={""}>(Link)</a>*/}
-                        <Link to={"/consider"}>(Link)</Link>
-                      </ListGroupItem>
-                      <ListGroupItem className="text-center">
-                        <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
-                      </ListGroupItem>
-                    </ListGroup>
-                  }
-                </Card>
+              <Col lg="4" md="12" sm="12" xs="12">
+                <Row style={{textAlign: "center",}}>
+                  <Card style={{ border: 0, width: "100%" }}>
+                    <CardBody>
+                      <div style={{ fontSize: 24,  color: '#8e8e8e' }}>
+                        Số dư tài khoản
+                        <br />
+                        {this.state.token === ""
+                          ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
+                            Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
+                          </div>
+                          : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                        }
+                      </div>
+                    </CardBody>
+                    {/*{this.state.token === ""*/}
+                    {/*  ? <div></div>*/}
+                    {/*  : <ListGroup flush>*/}
+                    {/*    <ListGroupItem >*/}
+                    {/*      <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;*/}
+                    {/*      /!*<a href={""}>(Link)</a>*!/*/}
+                    {/*      <Link to={"/consider"}>(Link)</Link>*/}
+                    {/*    </ListGroupItem>*/}
+                    {/*    <ListGroupItem className="text-center">*/}
+                    {/*      <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>*/}
+                    {/*    </ListGroupItem>*/}
+                    {/*  </ListGroup>*/}
+                    {/*}*/}
+                  </Card>
+                </Row>
+                <Row className="mt-1">
+                  <Card style={{ border: 0, width: "100%" }}>
+                    {/*<CardBody >*/}
+                    {/*  <div style={{ fontSize: 24, textAlign: "center", color: '#8e8e8e' }}>*/}
+                    {/*    Số dư tài khoản*/}
+                    {/*    <br />*/}
+                    {/*    {this.state.token === ""*/}
+                    {/*      ? <div style={{ fontSize: 20, color: "#ae1f17", }}>*/}
+                    {/*        Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương*/}
+                    {/*      </div>*/}
+                    {/*      : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />*/}
+                    {/*    }*/}
+                    {/*  </div>*/}
+                    {/*</CardBody>*/}
+                    {this.state.token === ""
+                      ? <div></div>
+                      : <ListGroup flush>
+                        <ListGroupItem className="text-center">
+                          <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
+                          {/*<a href={""}>(Link)</a>*/}
+                          <Link to={"/consider"}>(Link)</Link>
+                        </ListGroupItem>
+                        <ListGroupItem className="text-center">
+                          <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
+                          <div className="mt-1">Tự thêm gì gì đó vào đây</div>
+                        </ListGroupItem>
+                      </ListGroup>
+                    }
+                  </Card>
+                </Row>
               </Col>
-              <Col lg="6" md="12" sm="12" xs="12">
+            </Row>
+
+            <Row>
+              <Col lg="7" md="7" sm="12" xs="12" className="pl-0 ml-0">
+                <Row>
+                {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
+                {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
+                <Card style={{ border: 0 }}>
+                  <CardHeader className="text-center" style={{ border: 0 }}>Đoàn thanh niên</CardHeader>
+                  <CardBody>
+                    <Media
+                      object
+                      src={DTN}
+                      className="rounded mr-2"
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </CardBody>
+                  <CardBody className="pt-0">
+                    <p className="text-muted">PHIẾU KHẢO SÁT BỆNH COVID-19 ĐỐI VỚI SINH VIÊN HỌC VIỆN NGÂN HÀNG LẦN 2
+                      Nhằm phục vụ công tác phòng chống dịch COVID-19 và đảm bảo an toàn cho sinh viên Học viện Ngân hàng trở lại học tập trung tại Học viện.
+                      Ban chỉ đạo phòng chống dịch bệnh viêm đường hô hấp cấp Học viện Ngân hàng thông báo tới toàn thể sinh viên  điền phiếu khảo sát điều tra bệnh COVID-19 theo mẫu dưới đâ</p>
+
+                  </CardBody>
+                </Card>
+
+                </Row>
+
+              </Col>
+              <Col lg="5" md="5" sm="12" xs="12">
                 <Card style={{ border: 0 }}>
                   <CardHeader className="text-center" style={{ border: 0 }}>Bảng xếp hạng</CardHeader>
                   <CardBody>
                     {this.state.messageErr === ""
                       ? <Table responsive hover>
                         <thead>
-                          <tr className="text-capitalize align-middle text-center">
-                            <th>Huy Hiệu</th>
-                            <th>Tên Người Dùng</th>
-                            <th>Số Tiền</th>
-                          </tr>
+                        <tr className="text-capitalize align-middle text-center">
+                          <th>STT</th>
+                          <th>Tên Người Dùng</th>
+                          <th>Số Tiền</th>
+                        </tr>
                         </thead>
                         <tbody>
-                          {this.state.data.map((item, index) => (
-                            <tr key={index}>
-                              <td className="align-middle text-center">
-                                {index + 1}
-                              </td>
-                              <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                              <td className="align-middle text-center">{item.SoTien}</td>
-                            </tr>
-                          ))}
+                        {this.state.data.map((item, index) => (
+                          <tr key={index}>
+                            <td className="align-middle text-center">
+                              {index + 1}
+                            </td>
+                            <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                            <td className="align-middle text-center">{item.SoTien}</td>
+                          </tr>
+                        ))}
                         </tbody>
                       </Table>
                       : <div className="text-center">Không có dữ liệu</div>
@@ -271,9 +327,8 @@ class MainPage extends React.Component {
                 </Card>
               </Col>
             </Row>
-
             <Row>
-              <Col md="12" sm="12" xs="12">
+              <Col lg="12" md="12" sm="12" xs="12" >
                 <Card style={{ border: 0 }}>
                   <CardHeader className="text-center" style={{ border: 0 }}>Về chúng tôi</CardHeader>
                   <CardBody>
@@ -284,14 +339,13 @@ class MainPage extends React.Component {
                           image={image}
                           title={title}
                           description={description}
-                        // right={right}
+                          // right={right}
                         />
                       ),
                     )}
                   </CardBody>
                 </Card>
               </Col>
-
             </Row>
           </Col>
           <Col lg="1" md="12" sm="12" xs="12" ></Col>

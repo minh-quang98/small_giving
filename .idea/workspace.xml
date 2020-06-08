@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/DonationDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationDetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Ecorau/OneBook" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.selected.package.stylelint" value="E:\WebSM\small-giving\node_modules\stylelint" />
@@ -203,7 +204,9 @@
       <workItem from="1591173565746" duration="1625000" />
       <workItem from="1591276874062" duration="2661000" />
       <workItem from="1591342969551" duration="2201000" />
-      <workItem from="1591409780555" duration="1321000" />
+      <workItem from="1591409780555" duration="6479000" />
+      <workItem from="1591490691598" duration="604000" />
+      <workItem from="1591584881464" duration="3459000" />
     </task>
     <servers />
   </component>
@@ -228,10 +231,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589338785360" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1591112241249">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1591587518859">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1591112241249" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1591587518859" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
       <screen x="0" y="0" width="1280" height="680" />

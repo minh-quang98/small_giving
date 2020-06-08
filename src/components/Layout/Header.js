@@ -46,7 +46,7 @@ const MdNotificationsActiveWithBadge = withBadge({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  children: <small>5</small>,
+  // children: <small>5</small>,
 })(MdNotificationsActive);
 
 class Header extends React.Component {
@@ -57,12 +57,14 @@ class Header extends React.Component {
     login: false,
     showModal: false,
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
-    user: []
+    user: [],
+    notiData: []
   };
 
   componentDidMount() {
     this.getUser()
   }
+
 
   getUser = () => {
     if (this.state.token !== "") {
@@ -77,7 +79,7 @@ class Header extends React.Component {
         .then((data)=> {
           this.setState({
             user: data
-          }, ()=>console.log("data>>", data))
+          }, ()=>this.getNoti())
         })
     }
   }
@@ -140,6 +142,22 @@ class Header extends React.Component {
     document.querySelector('.cr-sidebar').classList.toggle('cr-sidebar--open');
   };
 
+  getNoti = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNhaHaoTam: this.state.user.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          notiData: data
+        }, () => console.log("noti>>>>>", this.state.notiData))
+      })
+  }
+
   render() {
     const { isNotificationConfirmed } = this.state;
 
@@ -178,7 +196,7 @@ class Header extends React.Component {
                     target="Popover1"
                   >
                     <PopoverBody>
-                      <Notifications notificationsData={notificationsData}/>
+                      <Notifications notificationsData={this.state.notiData}/>
                     </PopoverBody>
                   </Popover>
                 </NavItem>
