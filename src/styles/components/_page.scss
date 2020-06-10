@@ -435,12 +435,20 @@
   min-height: 200px;
   background-color: #ae1f17;
   position: relative;
+  color: #fff;
+  margin-left: 0 !important;
+  .item-footer{
+    padding: 50px 30px ;
+    color: #fff;
+    opacity: 1;
+    z-index: 9999;
+  }
   :before{
     content: "";
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: rgba(0,0,0,.4);
+    background: rgba(0,0,0,.15);
     position: absolute;
     left: 0;
     top: 0;
