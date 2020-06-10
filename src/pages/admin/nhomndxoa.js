@@ -15,25 +15,25 @@ class Nhomndxoa extends React.Component {
 
   }
   xoa() {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        idGiaoDich: this.props.chooseId,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/thuchienkhaosat/delete.php', config)
-      .then(response => response.json())
-      .then(data => {
-        if (data.message === "success") {
-
-
-          window.location.reload();
-
-        } else {
-
-
-        }
-      });
+    // let config = {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     idGiaoDich: this.props.chooseId,
+    //   }),
+    // };
+    // fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/thuchienkhaosat/delete.php', config)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     if (data.message === "success") {
+    //
+    //
+    //       window.location.reload();
+    //
+    //     } else {
+    //
+    //
+    //     }
+    //   });
 
   }
   render() {

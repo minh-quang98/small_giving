@@ -21,7 +21,7 @@ import {
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
-import DTN from "assets/img/ĐTN.PNG"
+import DTN from "assets/img/DTN.PNG"
 import { withSnackbar } from 'notistack';
 import GUBN from '../assets/img/guide-banner.png';
 import Media from 'reactstrap/es/Media';
@@ -260,7 +260,7 @@ class MainPage extends React.Component {
                         </ListGroupItem>
                         <ListGroupItem className="text-center">
                           <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
-                          <div className="mt-1">Tự thêm gì gì đó vào đây</div>
+                          {/*<div className="mt-1">Tự thêm gì gì đó vào đây</div>*/}
                         </ListGroupItem>
                       </ListGroup>
                     }
@@ -285,9 +285,18 @@ class MainPage extends React.Component {
                     />
                   </CardBody>
                   <CardBody className="pt-0">
-                    <p className="text-muted">PHIẾU KHẢO SÁT BỆNH COVID-19 ĐỐI VỚI SINH VIÊN HỌC VIỆN NGÂN HÀNG LẦN 2
-                      Nhằm phục vụ công tác phòng chống dịch COVID-19 và đảm bảo an toàn cho sinh viên Học viện Ngân hàng trở lại học tập trung tại Học viện.
-                      Ban chỉ đạo phòng chống dịch bệnh viêm đường hô hấp cấp Học viện Ngân hàng thông báo tới toàn thể sinh viên  điền phiếu khảo sát điều tra bệnh COVID-19 theo mẫu dưới đâ</p>
+                    <p className="text-muted"> Đội Sinh viên tình nguyện Học viện Ngân hàng được thành lập từ tháng
+                      3/2000. Đội từ khi ra đời và đi vào hoạt động đến nay đã thực sự trở thành một mái nhà thứ hai cho
+                      những sinh viên tuổi trẻ năng động mang trong mình lòng nhiệt huyết và tình yêu đối với những hoạt
+                      động tình nguyện, luôn giữ vai trò tiên phong trong các hoạt động Đoàn – Hội của Học viện, tổ chức
+                      và tham gia các hoạt động vì cộng đồng mà trước hết là cộng đồng sinh viên Học viện Ngân hàng. Trong
+                      tương lai, Đội SVTN HVNH hướng đến việc xây dựng đội thành 1 tổ chức mạnh không chỉ trong trường mà
+                      còn trên toàn địa bàn. Vừa kỉ luật tốt vừa có sự đoàn kết gắn bó giữa các thành viên, giữ vững và phát
+                      huy vai trò là mái nhà chung, là nơi tích luỹ kinh nghiệm sống, rèn luyện các kĩ năng mềm cho thành viên,
+                      để mỗi thành viên luôn tự hào mỗi khi được khoác trên mình màu áo xanh, giữ mối quan hệ tốt với các CLB khác
+                      trong Học viện cũng như các đội SVTN trường bạn, tuyên truyền phổ biến và cổ động mọi người để mọi người
+                      có cái nhìn đúng đắn về phong trào tình nguyện vì cộng đồng cũng như để phong trào tình nguyện ở HVNH nói
+                      riêng và các hoạt động vì cộng đồng nói chung ngày một phát triển mạnh.</p>
 
                   </CardBody>
                 </Card>

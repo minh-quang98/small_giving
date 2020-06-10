@@ -207,7 +207,7 @@ class Sidebar extends React.Component {
                   {this.state.idNhom > 3
                     ? <div />
                     : <Button
-                      className="ml-3 mr-3"
+                      className="ml-5 mr-3"
                       style={{ backgroundColor: "#8e8e8e" }}
                       onClick={() => {
                         this.setState({

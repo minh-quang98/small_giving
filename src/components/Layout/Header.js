@@ -143,19 +143,19 @@ class Header extends React.Component {
   };
 
   getNoti = () => {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        idNhaHaoTam: this.state.user.idNguoiDung
-      })
-    }
-    fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({
-          notiData: data
-        }, () => console.log("noti>>>>>", this.state.notiData))
-      })
+    // let config = {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     idNhaHaoTam: this.state.user.idNguoiDung
+    //   })
+    // }
+    // fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     this.setState({
+    //       notiData: data
+    //     }, () => console.log("noti>>>>>", this.state.notiData))
+    //   })
   }
 
   render() {

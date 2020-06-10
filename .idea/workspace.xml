@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/ĐTN.PNG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/nhomndxoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/nhomndxoa.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +209,12 @@
       <workItem from="1591342969551" duration="2201000" />
       <workItem from="1591409780555" duration="6479000" />
       <workItem from="1591490691598" duration="604000" />
-      <workItem from="1591584881464" duration="3459000" />
+      <workItem from="1591584881464" duration="4170000" />
+      <workItem from="1591630823528" duration="1363000" />
+      <workItem from="1591654460521" duration="2417000" />
+      <workItem from="1591668734081" duration="1021000" />
+      <workItem from="1591672995149" duration="2275000" />
+      <workItem from="1591711325799" duration="604000" />
     </task>
     <servers />
   </component>
@@ -231,10 +239,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589338785360" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1591587518859">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1591668739379">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1591587518859" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1591668739379" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
       <screen x="0" y="0" width="1280" height="680" />
