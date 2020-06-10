@@ -413,3 +413,111 @@
 .oke{
   margin-right: 20px;
 }
+.DashboardPage{
+  .carousel-item{
+    max-height: 340px;
+  }
+}
+.fix-khaosat{
+  display: none;
+}
+@media (min-width:769px){
+  .fix-button{
+    padding-left: 0 !important;
+  }
+  .fix-button-2{
+    padding-left:  0;
+    padding-right: 0;
+    text-align: center;
+  }
+}
+.footer{
+  min-height: 200px;
+  background-color: #ae1f17;
+  position: relative;
+  color: #fff;
+  margin-left: 0 !important;
+  .item-footer{
+    padding: 50px 30px ;
+    color: #fff;
+    opacity: 1;
+    z-index: 9999;
+  }
+  :before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0,0,0,.15);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    -webkit-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+  }
+}
+.mt-1{
+  border: none;
+  .text-secondary{
+    display: none;
+  }
+}
+.fix-donate{
+  //border: none !important;
+  .cr-widget{
+    border: none;
+  }
+  svg{
+    height: 20px;
+    width: auto;
+  }
+  .card-body{
+    padding: 10px !important;
+    display: inline-block;
+  }
+  .card-title{
+    display: inline-block;
+    margin: 0 !important;
+  }
+  .card-subtitle{
+    display: inline-block;
+  }
+  .col-md-6{
+    margin: 0 !important;
+    padding:  5px !important;
+  }
+}
+
+@media (min-width: 769px){
+  .fix-new-1{
+    .fix-new{
+      max-width: 33.3333% !important;
+      display: inline-block  !important;
+    }
+    .fix-inline{
+      max-width: 50% !important;
+      display: inline-block  !important;
+      margin-bottom: 30px;
+    }
+    .fix-img{
+      position: relative;
+      :before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(0,0,0,.4);
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.5;
+        -webkit-transition: all 300ms ease-out;
+        -o-transition: all 300ms ease-out;
+        transition: all 300ms ease-out;
+      }
+    }
+  }
+  
+}

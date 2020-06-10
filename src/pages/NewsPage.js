@@ -90,11 +90,11 @@ class NewsPage extends React.Component {
     return (
       <Page title="Tin tức">
         <Row>
-          <Col lg="2" md="12" sm="12" xs="12" ></Col>
-          <Col lg="8" md="12" sm="12" xs="12" >
+
+          <Col lg="12" md="12" sm="12" xs="12" className="fix-new-1" >
             {this.state.data.map((Item, index) => {
               return (
-                <Col md="12" sm="12" xs="12">
+                <Col md="12" sm="12" xs="12" className="fix-new">
                   <Card>
                     <CardHeader
                       avatar={
