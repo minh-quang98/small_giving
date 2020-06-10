@@ -6,9 +6,10 @@ import SourceLink from 'components/SourceLink';
 
 const Footer = () => {
   return (
-    <Navbar>
-      <Nav navbar>
-        <NavItem>
+    <Navbar className="footer">
+      <Nav navbar >
+        <NavItem >
+
 
         </NavItem>
       </Nav>
