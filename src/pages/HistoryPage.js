@@ -1,145 +1,266 @@
 import Page from 'components/Page';
 import React from 'react';
+import ReactToExcel from 'react-html-table-to-excel';
 import {
   Card,
   CardBody,
-  CardHeader,
-  CardTitle,
   Col,
   Row,
   Table,
+  Form,
+  Label,
+  Input,
+  Button,
 } from 'reactstrap';
+import Cookies from 'js-cookie';
+const tableTypes = ['hover'];
+const initialState = {
+  startdate: '',
+  enddate: '',
+  data: [],
+  dataError: [],
+  dataerror: false,
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
+};
+const dataError = [
+  {
+    id: "",
+    TenHoatDong: " Chưa có dữ liệu",
+    SoTien: "",
+  }
+]
+class bcquyengop extends React.Component {
+  state = initialState;
+  componentDidMount() {
+    this.getUser()
 
-import NumberFormat from 'react-number-format';
-import moment from 'moment';
-import Pagination from 'react-bootstrap/Pagination'
+  }
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          })
+        })
+    }
+  }
+  getdatabaocao() {
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          NgayBD: this.state.startdate,
+          NgayKT: this.state.enddate,
+          ClientNumber: this.state.user.SDT,
+
+        }),
+      };
+      fetch('https://misappmobile.000webhostapp.com/apiway4/lichsugiaodich.php', config)
+        .then(response => response.json())
+        .then(data => {
+          if (data.message === "No post found") {
+            this.setState({ dataerror: true, dataError: dataError });
+          } else {
+            this.setState(
+              {
+                dataerror: false,
+                data: data,
+              },
+            );
 
 
-function createData(stt, ngayThang, tenChuongtrinh, soTien) {
-  return { stt, ngayThang, tenChuongtrinh, soTien };
-}
+          }
+        });
 
-class HistoryPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listdata: [
-        createData('1', '02/02/2020', 'Người già neo đơn', '5000000'),
-        createData('2', '01/03/2020', 'Giúp đỡ trẻ em chất độc màu da cam', '20000000'),
-        createData('3', '01/09/2020', 'Những tấm lòng cao cả', '1000000'),
-      ],
-      page: 0,
-      pageSize: 10,
-      totalItem: 0,
     }
   }
 
-  handleChangePage = page => {
-    this.setState(
-      {
-        pageNumber: page - 1
-      },
-      () => {
-        // this.getListContractFromAPI();
-      }
-    );
+  handleChange = event => {
+    const isCheckbox = event.target.type === 'checkbox';
+    this.setState({
+      [event.target.name]: isCheckbox
+        ? event.target.checked
+        : event.target.value,
+    });
   };
+  validate = () => {
+    let startdateError = '';
+    let enddateError = '';
 
+    if (!this.state.startdate) {
+      startdateError = 'Bạn cần chọn một mốc thời gian';
+    }
+    if (!this.state.enddate) {
+      enddateError = 'Bạn cần chọn một mốc thời gian';
+    }
+    if (this.state.startdate >= this.state.enddate) {
+      enddateError = 'Mốc thời gian không hợp lệ';
+    }
+    if (startdateError || enddateError) {
+      this.setState({ startdateError, enddateError });
+      return false;
+    }
+    return true;
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
+  };
   render() {
-    let { listdata, page, totalItem, pageSize } = this.state
     return (
-      <Page title="Lịch sử giao dịch">
-        <Row>
-          <Col>
-          <Table>
-          <thead>
-                  <tr>
-                    <th className="text-center">Tổng chi quyên góp</th>
-                    <th className="text-center">Tổng thu từ khảo sát</th>
-                    <th className="text-center">Tổng dư còn lại</th>
-                  </tr>
-          </thead>
-          <thead>
-                  <tr>
-                    <th className="text-center">10.00.000 VNĐ</th>
-                    <th className="text-center">300.000 VNĐ</th>
-                    <th className="text-center">2.000.000 VNĐ</th>
-                  </tr>
-          </thead>
-          </Table>
-          </Col>
-        </Row>
-        <Row>
-          <Col xl={6} lg={12} md={12}>
-            <Card style={{marginTop: 10}}>
-            <CardTitle style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}><b>Giao dịch cho quyên góp</b></CardTitle>
-              <Table bordered responsive>
-                <thead>
-                  <tr>
-                    <th className="text-center">STT</th>
-                    <th className="text-center">Ngày tháng</th>
-                    <th className="text-center">Tên chương trình</th>
-                    <th className="text-center">Số tiền chi quyên góp</th>
-                  </tr>
-                </thead>
-                {listdata.map((item, index) => (
-                  <tbody>
-                    <tr>
-                      <th scope="row" className="text-center">{item.stt}</th>
-                      <td className="text-center">{moment(item.ngayThang).format("DD/MM/YYYY")}</td>
-                      <td>{item.tenChuongtrinh}</td>
-                      <td className="text-right"><NumberFormat value={item.soTien} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></td>
-                    </tr>
-                  </tbody>
-                ))}
-                <div className="pagination-right">
-                  <Pagination>
-                    <Pagination.Prev />
-                    <Pagination.Item>{totalItem}</Pagination.Item>
-                    <Pagination.Next />
-                  </Pagination>
-                </div>
-              </Table>
-            </Card>
-          </Col>
+      <Page
+        className="bcquyengop"
+        title="Tổng quyên góp"
+        breadcrumbs={[
+          { name: 'lịch sử giao dịch' },
 
-          <Col xl={6} lg={12} md={12}>
-            <Card style={{marginTop: 10}}>
-            <CardTitle style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}><b>Giao dịch làm khảo sát</b></CardTitle>
-              <Table bordered responsive>
-                <thead>
-                  <tr>
-                    <th className="text-center">STT</th>
-                    <th className="text-center">Ngày tháng</th>
-                    <th className="text-center">tên Khảo sát</th>
-                    <th className="text-center">Số tiền thu từ khảo sát</th>
-                  </tr>
-                </thead>
-                {listdata.map((item, index) => (
-                  <tbody>
-                    <tr>
-                      <th scope="row" className="text-center">{item.stt}</th>
-                      <td className="text-center">{moment(item.ngayThang).format("DD/MM/YYYY")}</td>
-                      <td>{item.tenChuongtrinh}</td>
-                      <td className="text-right"><NumberFormat value={item.soTien} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></td>
-                    </tr>
-                  </tbody>
-                ))}
-                <div className="pagination-right">
-                  <Pagination>
-                    <Pagination.Prev />
-                    <Pagination.Item>{totalItem}</Pagination.Item>
-                    <Pagination.Next />
-                  </Pagination>
-                </div>
-              </Table>
-            </Card>
-          </Col>
-        </Row>
+        ]}
+      >
+        {tableTypes.map((tableType, index) => (
+          <Form onSubmit={this.handleSubmit}>
+            <Row key={index}>
+              <Col>
+                <Card className="mb-3">
+                  <CardBody>
+                    <Row>
+                      <Col xl={6} lg={12} md={12}>
+                        <Form>
+                          <Row>
+                            <Col md={4}>
+                              <Label for="exampleDate">
+                                Từ ngày <span className="red-text">*</span>
+                              </Label>
+                            </Col>
+                            <Col md={8}>
+                              <div className="error-text">
+                                {this.state.startdateError}
+                              </div>
+                              <Input
+                                type="date"
+                                name="startdate"
+                                value={this.state.startdate}
+                                onChange={(val) => {
+                                  this.setState({
+                                    startdate: val.target.value,
+                                    startdateError: "",
+                                  })
+                                }}
+                              />
+                            </Col>
+                          </Row>
+                        </Form>
+
+                      </Col>
+                      <Col xl={6} lg={12} md={12}>
+                        <Form>
+                          <Row>
+                            <Col md={4}>
+                              <Label for="exampleDate">
+                                Đến ngày <span className="red-text">*</span>
+                              </Label>
+                            </Col>
+                            <Col md={8}>
+                              <div className="error-text">
+                                {this.state.enddateError}
+                              </div>
+                              <Input
+                                type="date"
+                                name="enddate"
+                                value={this.state.enddate}
+                                onChange={(val) => {
+                                  this.setState({
+                                    enddate: val.target.value,
+                                    enddateError: "",
+                                  })
+                                }}
+                              />
+                            </Col>
+                          </Row>
+                        </Form>
+
+                      </Col>
+                    </Row>
+                    <Table
+                      {...{ [tableType || 'hover']: true }}
+                      id="table-to-xls-2"
+                    >
+                      <thead>
+                        <tr className="table-danger">
+                          <th>Thời gian</th>
+                          <th>Giao dịch</th>
+
+                          <th>Số tiền giao dịch</th>
+                          <th>Ghi chú</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {this.state.dataerror ?
+                          this.state.dataError.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.id}</td>
+                                <td>{Item.TenHoatDong}</td>
+
+                                <td>{Item.SoTien}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          }) : this.state.data.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.Ngaychuyen}</td>
+                                <td>{Item.TenGiaoDich}</td>
+
+                                <td>{Item.TransAmount}</td>
+                                <td>{Item.TrangThai}</td>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
+
+                    </Table>
+                    <Table {...{ [tableType || 'hover']: true }}>
+
+                    </Table>
+                    <div className="button-bottom">
+                      <Row>
+                        <Col md={12} className="center">
+                          <Button
+                            className="submit-refix"
+                            type="submit"
+                            color="danger"
+                            size="lg"
+                            onClick={() => this.getdatabaocao()}
+                          >
+                            Tra cứu
+                          </Button>
+                        </Col>
+
+                      </Row>
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+          </Form>
+        ))}
       </Page>
     );
   }
-
-};
-
-export default HistoryPage;
+}
+export default bcquyengop;

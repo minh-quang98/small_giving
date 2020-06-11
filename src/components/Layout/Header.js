@@ -62,7 +62,8 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    this.getUser()
+    this.getUser();
+    this.getNoti();
   }
 
 
@@ -76,10 +77,10 @@ class Header extends React.Component {
       }
       fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             user: data
-          }, ()=>this.getNoti())
+          }, () => this.getNoti())
         })
     }
   }
@@ -91,7 +92,7 @@ class Header extends React.Component {
     })
   }
 
-  handleLogout () {
+  handleLogout() {
     this.toggleUserCardPopover()
     this.props.enqueueSnackbar('Đăng xuất thành công !', {
       anchorOrigin: {
@@ -143,19 +144,19 @@ class Header extends React.Component {
   };
 
   getNoti = () => {
-    // let config = {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     idNhaHaoTam: this.state.user.idNguoiDung
-    //   })
-    // }
-    // fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     this.setState({
-    //       notiData: data
-    //     }, () => console.log("noti>>>>>", this.state.notiData))
-    //   })
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNhaHaoTam: this.state.user.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          notiData: data
+        }, () => console.log("noti>>>>>", this.state.notiData))
+      })
   }
 
   render() {
@@ -166,7 +167,7 @@ class Header extends React.Component {
         <Navbar light expand className={bem.b('bg-white')}>
           <Nav navbar className="mr-2">
             <Button color="secondary" outline onClick={this.handleSidebarControlButton}>
-              <MdClearAll size={25} style={{ color: '#ae1f17' }}/>
+              <MdClearAll size={25} style={{ color: '#ae1f17' }} />
             </Button>
           </Nav>
 
@@ -182,12 +183,12 @@ class Header extends React.Component {
                         onClick={this.toggleNotificationPopover}
                       />
                     ) : (
-                      <MdNotificationsActiveWithBadge
-                        size={25}
-                        className="text-secondary can-click animated swing infinite"
-                        onClick={this.toggleNotificationPopover}
-                      />
-                    )}
+                        <MdNotificationsActiveWithBadge
+                          size={25}
+                          className="text-secondary can-click animated swing infinite"
+                          onClick={this.toggleNotificationPopover}
+                        />
+                      )}
                   </NavLink>
                   <Popover
                     placement="bottom"
@@ -196,7 +197,7 @@ class Header extends React.Component {
                     target="Popover1"
                   >
                     <PopoverBody>
-                      <Notifications notificationsData={this.state.notiData}/>
+                      <Notifications notificationsData={this.state.notiData} />
                     </PopoverBody>
                   </Popover>
                 </NavItem>
@@ -226,14 +227,14 @@ class Header extends React.Component {
                         <ListGroup flush>
                           <ListGroupItem tag="button" action className="border-light">
                             <div onClick={() => this.toggleUserCardPopover()}>
-                              <Link to={'/profile'}  style={{ color: 'black' }}>
-                                <MdPersonPin/> Thông tin người dùng
+                              <Link to={'/profile'} style={{ color: 'black' }}>
+                                <MdPersonPin /> Thông tin người dùng
                               </Link>
                             </div>
                           </ListGroupItem>
                           <ListGroupItem tag="button" action className="border-light" >
-                            <div onClick={()=> this.handleLogout()}>
-                              <MdExitToApp/> Đăng xuất
+                            <div onClick={() => this.handleLogout()}>
+                              <MdExitToApp /> Đăng xuất
                             </div>
                           </ListGroupItem>
                         </ListGroup>
@@ -258,12 +259,12 @@ class Header extends React.Component {
             }
           </Nav>
         </Navbar>
-          <ModalLoginPage
-            show={this.state.showModal}
-            onHide={this.handleCloseModal}
-            onLogin={this.handleLogin}
-            // onGetUser={this.getUser}
-          />
+        <ModalLoginPage
+          show={this.state.showModal}
+          onHide={this.handleCloseModal}
+          onLogin={this.handleLogin}
+        // onGetUser={this.getUser}
+        />
       </div>
     );
   }

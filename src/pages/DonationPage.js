@@ -243,7 +243,13 @@ class DonationPage extends React.Component {
 
   render() {
     return (
-      <Page title="Quyên góp">
+      <Page
+        className="bcquyengop"
+        title="Quyên góp"
+        breadcrumbs={[
+          { name: 'Quyên góp' },
+
+        ]}>
         <Row>
 
           <Col lg="12" md="12" sm="12" xs="12" className="fix-new-1" >
