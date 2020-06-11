@@ -326,7 +326,7 @@ class DonationPage extends React.Component {
                     <Col md={6}>
                       <Label check>
                         <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện
-                          <Input type="checkbox" className={'ml-3'} />
+                          <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>
                       </Label>
                     </Col>
                     <Col md={6}>
