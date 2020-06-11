@@ -6,7 +6,7 @@ import bn from 'utils/bemnames';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 import Typography from './Typography';
-
+import { FaHome } from 'react-icons/fa';
 const bem = bn.create('page');
 
 const Page = ({
@@ -31,7 +31,7 @@ const Page = ({
           )} */}
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
-            <BreadcrumbItem>Home</BreadcrumbItem>
+            <BreadcrumbItem><FaHome /></BreadcrumbItem>
             {breadcrumbs.length &&
               breadcrumbs.map(({ name, active }, index) => (
                 <BreadcrumbItem key={index} active={active}>

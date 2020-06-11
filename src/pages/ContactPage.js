@@ -22,12 +22,12 @@ import Cookies from 'js-cookie';
 class ContactPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state= {
+    this.state = {
       noiDung: ''
     }
   }
 
-  themGopY () {
+  themGopY() {
     let config = {
       method: "POST",
       body: JSON.stringify({
@@ -62,28 +62,34 @@ class ContactPage extends React.Component {
 
   render() {
     return (
-      <Page className="ContactPage"
-            title="Liên hệ và góp ý">
+      <Page
+        className="bcquyengop ContactPage"
+        title="Liên hệ và góp ý"
+        breadcrumbs={[
+          { name: 'Liên hệ và góp ý' },
+
+        ]}
+      >
         <Row>
           <Col xl={6} lg={12} md={12}>
             <Card>
-              <CardHeader style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
+              <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
               <CardBody>
                 <Form>
-                  <Table hover responsive style={{marginTop: 25}}>
+                  <Table hover responsive style={{ marginTop: 25 }}>
                     <tbody>
-                    <tr>
-                      <th className="text-center">Số điện thoại</th>
-                      <td className="text-center">0999999999</td>
-                    </tr>
-                    <tr>
-                      <th className="text-center">Họ tên</th>
-                      <td className="text-center">Trần Thị B</td>
-                    </tr>
-                    <tr>
-                      <th className="text-center">Chức vụ</th>
-                      <td className="text-center">Tình nguyện viên tư vấn</td>
-                    </tr>
+                      <tr>
+                        <th className="text-center">Số điện thoại</th>
+                        <td className="text-center">0999999999</td>
+                      </tr>
+                      <tr>
+                        <th className="text-center">Họ tên</th>
+                        <td className="text-center">Trần Thị B</td>
+                      </tr>
+                      <tr>
+                        <th className="text-center">Chức vụ</th>
+                        <td className="text-center">Tình nguyện viên tư vấn</td>
+                      </tr>
                     </tbody>
                   </Table>
                   {/*<FormGroup>*/}
@@ -101,18 +107,18 @@ class ContactPage extends React.Component {
           </Col>
           <Col xl={6} lg={12} md={12}>
             <Card>
-              <CardHeader style={{color: "#ae1f17", fontSize: "18px", textAlign: "center",marginTop: 10}}> Rất mong nhận được sự góp ý của bạn </CardHeader>
-              <CardBody style={{marginTop: 25}}>
+              <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Rất mong nhận được sự góp ý của bạn </CardHeader>
+              <CardBody style={{ marginTop: 25 }}>
                 <Form>
                   <FormGroup row>
                     <Label for="exampleSelectMulti" sm={2}> Nội dung </Label>
                     <Col sm={10}>
                       <TextField
-                        style={{width: "100%"}}
+                        style={{ width: "100%" }}
                         multiline
                         rowsMax={4}
                         variant="outlined"
-                        onChange={(val)=> {
+                        onChange={(val) => {
                           this.setState({
                             noiDung: val.target.value
                           })
@@ -121,8 +127,8 @@ class ContactPage extends React.Component {
                     </Col>
                   </FormGroup>
                   <FormGroup check row>
-                    <Col sm={{ size: 100, offset: 2 }} style={{textAlign:"right",marginRight:15}}>
-                      <Button onClick={()=>this.themGopY()}> Gửi </Button>
+                    <Col sm={{ size: 100, offset: 2 }} style={{ textAlign: "right", marginRight: 15 }}>
+                      <Button onClick={() => this.themGopY()}> Gửi </Button>
                     </Col>
                   </FormGroup>
                 </Form>

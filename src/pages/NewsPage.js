@@ -88,7 +88,14 @@ class NewsPage extends React.Component {
   render() {
     // let {fakeData, activeIndex} = this.state
     return (
-      <Page title="Tin tức">
+      <Page
+        className="bcquyengop"
+        title="Tin tức"
+        breadcrumbs={[
+          { name: 'Tin tức' },
+
+        ]}
+      >
         <Row>
 
           <Col lg="12" md="12" sm="12" xs="12" className="fix-new-1" >

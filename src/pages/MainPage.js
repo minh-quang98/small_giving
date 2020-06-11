@@ -21,11 +21,13 @@ import {
 import NumberFormat from 'react-number-format';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
-import DTN from "assets/img/DTN.PNG"
+import DTN from "assets/img/DTN.jpg"
 import { withSnackbar } from 'notistack';
-import GUBN from '../assets/img/guide-banner.png';
+import thongtin from '../assets/img/thongtin.png';
 import Media from 'reactstrap/es/Media';
-
+import Animate from 'animate.css-react'
+//import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import 'animate.css/animate.css'
 
 const today = new Date();
 const lastWeek = new Date(
@@ -208,35 +210,6 @@ class MainPage extends React.Component {
               </Col>
               <Col lg="12" md="12" sm="12" xs="12">
                 <Row>
-                  <Col lg="6" md="6" sm="12" xs="12" className="fix-button-2">
-                    <Card style={{ border: 0, width: "100%" }}>
-                      <CardBody>
-                        <div style={{ fontSize: 18, color: '#8e8e8e' }}>
-                          Số dư tài khoản: {" "}
-
-                          {this.state.token === ""
-                            ? <div style={{ fontSize: 20, color: "#ae1f17", }}>
-                              Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
-                          </div>
-                            : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
-                          }
-                        </div>
-                      </CardBody>
-                      {/*{this.state.token === ""*/}
-                      {/*  ? <div></div>*/}
-                      {/*  : <ListGroup flush>*/}
-                      {/*    <ListGroupItem >*/}
-                      {/*      <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;*/}
-                      {/*      /!*<a href={""}>(Link)</a>*!/*/}
-                      {/*      <Link to={"/consider"}>(Link)</Link>*/}
-                      {/*    </ListGroupItem>*/}
-                      {/*    <ListGroupItem className="text-center">*/}
-                      {/*      <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>*/}
-                      {/*    </ListGroupItem>*/}
-                      {/*  </ListGroup>*/}
-                      {/*}*/}
-                    </Card>
-                  </Col>
                   <Col lg="6" md="6" sm="12" xs="12" className="fix-button">
 
                     <Card style={{ border: 0, width: "100%" }}>
@@ -257,7 +230,7 @@ class MainPage extends React.Component {
                         : <ListGroup flush>
                           {<ListGroupItem className="text-center fix-khaosat">
                             <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
-                          {/*<a href={""}>(Link)</a>*/}
+      {/*<a href={""}>(Link)</a>*/}
                             <Link to={"/consider"}>(Link)</Link>
                           </ListGroupItem>}
                           <ListGroupItem className="text-center">
@@ -268,7 +241,38 @@ class MainPage extends React.Component {
                       }
                     </Card>
                   </Col>
+                  <Col lg="6" md="6" sm="12" xs="12" className="fix-button-2">
+                    <Card style={{ border: 0, width: "100%" }}>
+                      <CardBody>
+                        <div style={{ fontSize: 18, color: '#8e8e8e' }}>
+                          Số dư tài khoản: {" "}
+
+                          {this.state.token === ""
+                            ? <div style={{ fontSize: 13, color: "#ae1f17", }}>
+                              Vui lòng đăng nhập vào hệ thống
+                          </div>
+                            : <NumberFormat style={{ fontSize: 17, color: "#ae1f17", }} value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+                          }
+                        </div>
+                      </CardBody>
+                      {/*{this.state.token === ""*/}
+                      {/*  ? <div></div>*/}
+                      {/*  : <ListGroup flush>*/}
+                      {/*    <ListGroupItem >*/}
+                      {/*      <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;*/}
+                      {/*      /!*<a href={""}>(Link)</a>*!/*/}
+                      {/*      <Link to={"/consider"}>(Link)</Link>*/}
+                      {/*    </ListGroupItem>*/}
+                      {/*    <ListGroupItem className="text-center">*/}
+                      {/*      <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>*/}
+                      {/*    </ListGroupItem>*/}
+                      {/*  </ListGroup>*/}
+                      {/*}*/}
+                    </Card>
+                  </Col>
+
                 </Row>
+                <div className="double-border"></div>
                 <Row style={{ textAlign: "center", }}>
 
                 </Row>
@@ -277,32 +281,65 @@ class MainPage extends React.Component {
                 </Row>
               </Col>
             </Row>
+            <div className="fix-header">
+              <div className="card-header-1">Về chúng tôi</div>
+
+            </div>
+            <Row className="about-slide">
+              <Col lg="4" md="4" sm="12" xs="12" >
+
+
+                <div className="text-bold animate__animated animate__fadeInLeft">Triển khai các hoạt động thiện nguyện bằng hình thức trực tuyến</div>
+                <p className="animate__animated animate__fadeInLeft">
+                  Cung cấp đầy đủ thông tin mang tính xác thực cao về các hoàn cảnh cần giúp đỡ, nhà hảo tâm có thế tìm hiểu và nạp tiền trực tuyến hoạc kiếm tiền bằng việc làm khảo sát từ nhà tài trợ
+                </p>
+
+
+
+              </Col>
+              <Col lg="4" md="4" sm="12" xs="12" >
+                <div className="animate__animated animate__zoomIn">
+                  <img src={thongtin} className="fix-img-1"></img>
+                </div>
+
+              </Col>
+              <Col lg="4" md="4" sm="12" xs="12" >
+                <div className="text-bold animate__animated animate__fadeInRight">Kênh thông tin chính thống của Đoàn Thanh niên & Hội Sinh viên</div>
+                <p className="animate__animated animate__fadeInRight">Bằng cách phân chia nhỏ số tiền của mình, người dùng chỉ cần sử dụng thiết bị di động hoạc máy tính là có thế quyên góp cho nhiều hoàn cảnh khó khăn và điều đặc biệt nhất là bạn .</p>
+              </Col>
+            </Row>
 
             <Row>
               <Col lg="7" md="7" sm="12" xs="12" className="pl-0 ml-0">
+                <div className="fix-header">
+                  <div className="card-header-1">Đoàn Thanh niên & Hội Sinh viên</div>
+
+                </div>
                 <Row>
                   {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
                   {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
                   <Card style={{ border: 0 }}>
-                    <CardHeader className="text-center" style={{ border: 0 }}>Đoàn thanh niên</CardHeader>
+
                     <CardBody>
-                      <Row>
-                        <Col md={4}>
+                      <div className="dtn">
+                        <li md={4}>
                           <Media
                             object
                             src={DTN}
                             className="rounded mr-2"
-                            style={{ width: '100%', height: '100%' }}
+                            style={{ width: '100px', height: '100%' }}
                           />
-                        </Col>
-                        <Col md={8}>
-                          <p className="text-muted"> Đội Sinh viên tình nguyện Học viện Ngân hàng được thành lập từ tháng
-                          3/2000. Đội từ khi ra đời và đi vào hoạt động đến nay đã thực sự trở thành một mái nhà thứ hai cho
-                          những sinh viên tuổi trẻ năng động mang trong mình lòng nhiệt huyết và tình yêu đối với những hoạt
-                          động tình nguyện, luôn giữ vai trò tiên phong trong các hoạt động Đoàn – Hội của Học viện, tổ chức
-                      và tham gia các hoạt động vì cộng đồng mà trước hết là cộng đồng sinh viên Học viện Ngân hàng.</p>
-                        </Col>
-                      </Row>
+                        </li>
+                        <li md={8}>
+                          <p className="text-muted">- Đoàn kết, khuyến khích, giúp đỡ hội viên, sinh viên trong học tập và rèn luyện, hoàn thành nhiệm cụ của người sinh viên, góp phần xây dựng nhà trường vững mạnh.</p>
+                          <p className="text-muted">- Giáo dục lý tưởng, truyền thống đạo đức, lối sống và ý thức pháp luật cho hội viên, sinh viên.</p>
+                          <p className="text-muted">- Phản ánh nhu cầu, nguyện vọng của sinh viên; tham gia đề xuất các chủ trương chính sách liên quan đến sinh viên. Tổ chức các hoạt động thiết thực chăm lo đời sống vật chất,
+tinh thần và bảo vệ các quyền lợi hợp pháp, chính đáng của hội viên, sinh viên và tổ chức Hội. </p>
+
+                        </li>
+
+                      </div>
+
 
                     </CardBody>
                     <CardBody className="pt-0">
@@ -315,11 +352,18 @@ class MainPage extends React.Component {
 
               </Col>
               <Col lg="5" md="5" sm="12" xs="12">
-                <Card style={{ border: 0 }}>
-                  <CardHeader className="text-center" style={{ border: 0 }}>Bảng xếp hạng</CardHeader>
+                <div className="fix-header">
+                  <div className="card-header-1">Bảng xếp hạng</div>
+
+                </div>
+                <Card style={{ border: 0 }}
+
+                >
+
                   <CardBody>
                     {this.state.messageErr === ""
-                      ? <Table responsive hover>
+                      ? <Table responsive hover scrollY
+                        maxHeight="200px">
                         <thead>
                           <tr className="text-capitalize align-middle text-center">
                             <th>STT</th>
@@ -346,26 +390,7 @@ class MainPage extends React.Component {
                 </Card>
               </Col>
             </Row>
-            <Row>
-              <Col lg="12" md="12" sm="12" xs="12" >
-                <Card style={{ border: 0 }}>
-                  <CardHeader className="text-center" style={{ border: 0 }}>Về chúng tôi</CardHeader>
-                  <CardBody>
-                    {productsData.map(
-                      ({ id, image, title, description, }) => (
-                        <ProductMedia
-                          key={id}
-                          image={image}
-                          title={title}
-                          description={description}
-                        // right={right}
-                        />
-                      ),
-                    )}
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
+
           </Col>
           <Col lg="1" md="12" sm="12" xs="12" ></Col>
         </Row>
