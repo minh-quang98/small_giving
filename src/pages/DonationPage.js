@@ -241,6 +241,81 @@ class DonationPage extends React.Component {
     });
   }
 
+  onFollow = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.state.idHoatDong,
+        idNguoiDung: this.state.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/Theodoi/theodoi.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Quyên góp thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else {
+          console.log("err")
+        }
+      })
+  }
+
+  onUnFollow = () => {
+    let config = {
+      method: "DELETE",
+      body: JSON.stringify({
+        idHoatDong: this.state.idHoatDong,
+        idNguoiDung: this.state.idNguoiDung
+      })
+    }
+      fetch(`http://smallgiving.cf/mobileapp/Theodoi/delete.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Quyên góp thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else {
+          console.log("err")
+        }
+      })
+  }
+
+  handleJoinActivity = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.state.idHoatDong,
+        idNguoiDung: this.state.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/Gopsuc/dangkigopsuc.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Quyên góp thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else {
+          console.log("err")
+        }
+      })
+  }
+
   render() {
     return (
       <Page title="Quyên góp">
