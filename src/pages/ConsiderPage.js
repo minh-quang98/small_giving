@@ -57,7 +57,8 @@ class ConsiderPage extends React.Component {
     return (
       <Page className="ConsiderPage" title="LÀM KHẢO SÁT">
           <Row>
-              <Col xl={12} lg={12} md={12}>
+            <Col lg="1"></Col>
+              <Col xl={10} lg={12} md={12}>
                 {this.state.fakeData.map((item, index) => (
                   <Card className="mt-5">
                     <CardHeader className="text-center"> <b>{item.title}</b> </CardHeader>
@@ -104,6 +105,7 @@ class ConsiderPage extends React.Component {
                   </Card>
                 ))}
               </Col>
+            <Col lg="1"></Col>
           </Row>
       </Page>
     );

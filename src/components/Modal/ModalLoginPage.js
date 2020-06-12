@@ -152,16 +152,7 @@ class ModalLoginPage extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Dang ki thanh cong") {
-          this.props.enqueueSnackbar('Đăng ký thành công !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-          this.setState({
-            modeLogin: true,
-          })
+          this.handleWallet20k()
         } else {
           this.props.enqueueSnackbar('Tài khoản đã tồn tại !', {
             anchorOrigin: {
@@ -172,6 +163,44 @@ class ModalLoginPage extends Component {
           });
         }
       });
+  }
+
+  handleWallet20k = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ClientNumber: this.state.phone
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/nap20.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if(data.message === "true") {
+          this.props.enqueueSnackbar('Đăng ký thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          this.setState({
+            phone: '',
+            email: '',
+            name: "",
+            password: '',
+            rePassword: '',
+            modeLogin: true,
+          })
+        } else {
+          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
+      })
   }
 
   render() {

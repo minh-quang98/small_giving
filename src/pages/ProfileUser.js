@@ -173,20 +173,20 @@ class ProfileUser extends Component {
       {/*  </Col>*/}
       {/*</Row>*/}
         <Row>
-          <Col xl={3} lg={12} md={12}>
+          <Col lg="1"></Col>
+          <Col xl={2} lg={2} md={12}>
             <div className='text-center mb-4' style={{height: 120}}>
                   <span
                     className='img-thumbnail'
                     style={{
-                      width: 250,
-                      height: 240,
+                      width: "100%",
+                      height: "auto",
                       overflow: 'hidden',
                       display: 'inline-block',
                       padding: 2
                     }}
                   >
                     <img
-                      // src={`https://www.uhy.vn/sites/default/files/uhyco.ltd_.jpg`}
                       src={thongtin}
                       style={{width:'100%',height:'100%'}}
                     />
@@ -206,7 +206,7 @@ class ProfileUser extends Component {
 
             </div>
           </Col>
-          <Col xl={9} lg={12} md={12}>
+          <Col xl={8} lg={8} md={12}>
             <Card variant="outlined" className='p-2 mb-5'>
 
                   <CardContent>

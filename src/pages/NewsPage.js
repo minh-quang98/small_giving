@@ -22,6 +22,7 @@ import Page from 'components/Page';
 import moment from 'moment';
 import NEBN from 'assets/img/news-banner.png';
 import NGND from 'assets/img/NGND.jpg';
+import { Link } from 'react-router-dom';
 
 class NewsPage extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class NewsPage extends React.Component {
       detailNew1: false,
       detailNew2: false,
       data: [],
-      chooseId: ""
+      chooseId: '',
     };
   }
 
@@ -44,8 +45,8 @@ class NewsPage extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          data: data,
-        }
+            data: data,
+          },
         );
       });
   };
@@ -97,22 +98,17 @@ class NewsPage extends React.Component {
         ]}
       >
         <Row>
-
-          <Col lg="12" md="12" sm="12" xs="12" className="fix-new-1" >
+          <Col lg="1"></Col>
+          <Col lg="10" md="12" sm="12" xs="12" className="fix-new-1">
             {this.state.data.map((Item, index) => {
               return (
                 <Col md="12" sm="12" xs="12" className="fix-new">
                   <Card>
                     <CardHeader
                       avatar={
-                        <Avatar style={{ backgroundColor: "#ae1f17" }} aria-label="recipe">
+                        <Avatar style={{ backgroundColor: '#ae1f17' }} aria-label="recipe">
                           SG
-                      </Avatar>
-                      }
-                      action={
-                        <IconButton aria-label="settings">
-                          <MoreVertIcon />
-                        </IconButton>
+                        </Avatar>
                       }
                       title={Item.TenTin}
                       subheader={
@@ -127,54 +123,28 @@ class NewsPage extends React.Component {
                       style={{ width: '100%' }}
                     />
                     <CardActions disableSpacing>
-                      <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                      </IconButton>
-                      <IconButton aria-label="share">
-                        <ShareIcon />
-                      </IconButton>
-                      {
-                        this.state.expanded ?
-                          <IconButton
-                            onClick={() => {
-                              this.handleExpandClickClose()
-                            }
-                            }
-                            aria-expanded={this.state.expanded}
-                            aria-label="Thu gọn"
-                          >
-                            <ExpandMoreIcon />
-                          </IconButton>
-                          : <IconButton
-                            onClick={() => {
-                              this.setState({
-                                chooseId: Item.idTin
-                              }, () => {
-                                if (this.state.chooseId === Item.idTin) {
-                                  this.handleExpandClick()
-                                }
-                              })
-                            }
-                            }
-                            aria-expanded={this.state.expanded}
-                            aria-label="Xem thêm"
-                          >
-                            <ExpandMoreIcon />
-                          </IconButton>
-                      }
-
+                      {/*<IconButton aria-label="add to favorites">*/}
+                      {/*  <FavoriteIcon />*/}
+                      {/*</IconButton>*/}
+                      {/*<IconButton aria-label="share">*/}
+                      {/*  <ShareIcon />*/}
+                      {/*</IconButton>*/}
+                      <Link to={{
+                        pathname: '/news-detail',
+                        search: `?idTinTuc=${Item.idTin}`,
+                        state: {
+                          idTinTuc: Item.idTin
+                        }
+                      }}>
+                        Xem chi tiết
+                      </Link>
                     </CardActions>
-                    <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-                      <CardContent>
-                        {Item.NoiDung}
-                      </CardContent>
-                    </Collapse>
                   </Card>
                 </Col>
               );
             })}
           </Col>
-          <Col lg="2" md="12" sm="12" xs="12" ></Col>
+          {/*<Col lg="2" md="12" sm="12" xs="12"></Col>*/}
 
         </Row>
       </Page>

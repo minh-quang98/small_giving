@@ -131,134 +131,141 @@ class bcquyengop extends React.Component {
 
         ]}
       >
-        {tableTypes.map((tableType, index) => (
-          <Form onSubmit={this.handleSubmit}>
-            <Row key={index}>
-              <Col>
-                <Card className="mb-3">
-                  <CardBody>
-                    <Row>
-                      <Col xl={6} lg={12} md={12}>
-                        <Form>
+        <Row>
+          <Col lg="1"></Col>
+          <Col lg="10">
+            {tableTypes.map((tableType, index) => (
+              <Form onSubmit={this.handleSubmit}>
+                <Row key={index}>
+                  <Col>
+                    <Card className="mb-3">
+                      <CardBody>
+                        <Row>
+                          <Col xl={6} lg={12} md={12}>
+                            <Form>
+                              <Row>
+                                <Col md={4}>
+                                  <Label for="exampleDate">
+                                    Từ ngày <span className="red-text">*</span>
+                                  </Label>
+                                </Col>
+                                <Col md={8}>
+                                  <div className="error-text">
+                                    {this.state.startdateError}
+                                  </div>
+                                  <Input
+                                    type="date"
+                                    name="startdate"
+                                    value={this.state.startdate}
+                                    onChange={(val) => {
+                                      this.setState({
+                                        startdate: val.target.value,
+                                        startdateError: "",
+                                      })
+                                    }}
+                                  />
+                                </Col>
+                              </Row>
+                            </Form>
+
+                          </Col>
+                          <Col xl={6} lg={12} md={12}>
+                            <Form>
+                              <Row>
+                                <Col md={4}>
+                                  <Label for="exampleDate">
+                                    Đến ngày <span className="red-text">*</span>
+                                  </Label>
+                                </Col>
+                                <Col md={8}>
+                                  <div className="error-text">
+                                    {this.state.enddateError}
+                                  </div>
+                                  <Input
+                                    type="date"
+                                    name="enddate"
+                                    value={this.state.enddate}
+                                    onChange={(val) => {
+                                      this.setState({
+                                        enddate: val.target.value,
+                                        enddateError: "",
+                                      })
+                                    }}
+                                  />
+                                </Col>
+                              </Row>
+                            </Form>
+
+                          </Col>
+                        </Row>
+                        <Table
+                          {...{ [tableType || 'hover']: true }}
+                          id="table-to-xls-2"
+                        >
+                          <thead>
+                          <tr className="table-danger">
+                            <th>Thời gian</th>
+                            <th>Giao dịch</th>
+
+                            <th>Số tiền giao dịch</th>
+                            <th>Ghi chú</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {this.state.dataerror ?
+                            this.state.dataError.map(Item => {
+                              return (
+                                <tr>
+                                  <td>{Item.id}</td>
+                                  <td>{Item.TenHoatDong}</td>
+
+                                  <td>{Item.SoTien}</td>
+                                  <td>{Item.SoTien}</td>
+                                </tr>
+                              );
+                            }) : this.state.data.map(Item => {
+                              return (
+                                <tr>
+                                  <td>{Item.Ngaychuyen}</td>
+                                  <td>{Item.TenGiaoDich}</td>
+
+                                  <td>{Item.TransAmount}</td>
+                                  <td>{Item.TrangThai}</td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+
+                        </Table>
+                        <Table {...{ [tableType || 'hover']: true }}>
+
+                        </Table>
+                        <div className="button-bottom">
                           <Row>
-                            <Col md={4}>
-                              <Label for="exampleDate">
-                                Từ ngày <span className="red-text">*</span>
-                              </Label>
+                            <Col md={12} className="center">
+                              <Button
+                                className="submit-refix"
+                                type="submit"
+                                color="danger"
+                                size="lg"
+                                onClick={() => this.getdatabaocao()}
+                              >
+                                Tra cứu
+                              </Button>
                             </Col>
-                            <Col md={8}>
-                              <div className="error-text">
-                                {this.state.startdateError}
-                              </div>
-                              <Input
-                                type="date"
-                                name="startdate"
-                                value={this.state.startdate}
-                                onChange={(val) => {
-                                  this.setState({
-                                    startdate: val.target.value,
-                                    startdateError: "",
-                                  })
-                                }}
-                              />
-                            </Col>
+
                           </Row>
-                        </Form>
+                        </div>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                </Row>
+              </Form>
+            ))}
+          </Col>
+          <Col lg="1"></Col>
+        </Row>
 
-                      </Col>
-                      <Col xl={6} lg={12} md={12}>
-                        <Form>
-                          <Row>
-                            <Col md={4}>
-                              <Label for="exampleDate">
-                                Đến ngày <span className="red-text">*</span>
-                              </Label>
-                            </Col>
-                            <Col md={8}>
-                              <div className="error-text">
-                                {this.state.enddateError}
-                              </div>
-                              <Input
-                                type="date"
-                                name="enddate"
-                                value={this.state.enddate}
-                                onChange={(val) => {
-                                  this.setState({
-                                    enddate: val.target.value,
-                                    enddateError: "",
-                                  })
-                                }}
-                              />
-                            </Col>
-                          </Row>
-                        </Form>
-
-                      </Col>
-                    </Row>
-                    <Table
-                      {...{ [tableType || 'hover']: true }}
-                      id="table-to-xls-2"
-                    >
-                      <thead>
-                        <tr className="table-danger">
-                          <th>Thời gian</th>
-                          <th>Giao dịch</th>
-
-                          <th>Số tiền giao dịch</th>
-                          <th>Ghi chú</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.state.dataerror ?
-                          this.state.dataError.map(Item => {
-                            return (
-                              <tr>
-                                <td>{Item.id}</td>
-                                <td>{Item.TenHoatDong}</td>
-
-                                <td>{Item.SoTien}</td>
-                                <td>{Item.SoTien}</td>
-                              </tr>
-                            );
-                          }) : this.state.data.map(Item => {
-                            return (
-                              <tr>
-                                <td>{Item.Ngaychuyen}</td>
-                                <td>{Item.TenGiaoDich}</td>
-
-                                <td>{Item.TransAmount}</td>
-                                <td>{Item.TrangThai}</td>
-                              </tr>
-                            );
-                          })}
-                      </tbody>
-
-                    </Table>
-                    <Table {...{ [tableType || 'hover']: true }}>
-
-                    </Table>
-                    <div className="button-bottom">
-                      <Row>
-                        <Col md={12} className="center">
-                          <Button
-                            className="submit-refix"
-                            type="submit"
-                            color="danger"
-                            size="lg"
-                            onClick={() => this.getdatabaocao()}
-                          >
-                            Tra cứu
-                          </Button>
-                        </Col>
-
-                      </Row>
-                    </div>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </Form>
-        ))}
       </Page>
     );
   }
