@@ -125,7 +125,7 @@ class DonationPage extends React.Component {
       method: "POST",
       body: JSON.stringify({
         NumberNguoiNhan: this.state.idHoatDong,
-        NumberNguoiGui: this.state.idNguoiDung,
+        NumberNguoiGui: this.state.phone,
         SoTien: this.state.money
       })
     }

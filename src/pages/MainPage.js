@@ -70,7 +70,8 @@ class MainPage extends React.Component {
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: '',
       SoDuTK: '',
-      checkIn: false,
+      checkInDB: "",
+      checkInMoney: "",
       phone: '',
     };
   }
@@ -114,26 +115,26 @@ class MainPage extends React.Component {
           this.setState({
             idNguoiDung: data.idNguoiDung,
             phone: data.SDT,
-          }, () => this.getProfile());
+          }, () => this.getProfileW4());
         });
     }
   };
 
-  getProfile = () => {
-    let config = {
-      method: 'POST',
-      body: JSON.stringify({
-        idNguoiDung: this.state.idNguoiDung,
-      }),
-    };
-    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({
-          SoDuTK: data.SoDuTK,
-        }, () => this.getProfileW4());
-      });
-  };
+  // getProfile = () => {
+  //   let config = {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       idNguoiDung: this.state.idNguoiDung,
+  //     }),
+  //   };
+  //   fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       this.setState({
+  //         // SoDuTK: data.SoDuTK,
+  //       }, () => this.getProfileW4());
+  //     });
+  // };
 
   getProfileW4 = () => {
     let config = {
@@ -151,6 +152,17 @@ class MainPage extends React.Component {
       });
   };
 
+  getInfoCheckInDB = () => {
+    fetch(`http://smallgiving.cf/mobileapp/trangquantri/laythongtindd.php`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          checkInDB: data.idDiemDanh,
+          checkInMoney: data.SoTienML
+        }, () => this.handleCheckIn())
+      })
+  }
+
   handleCheckIn = () => {
     let config = {
       method: 'POST',
@@ -162,13 +174,7 @@ class MainPage extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         if (data.message === 'Success') {
-          this.props.enqueueSnackbar('Điểm danh thành công !', {
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'right',
-            },
-            variant: 'success',
-          });
+          this.handleMoneyCheckIn()
         } else if (data.message === 'Ban da diem danh roi') {
           this.props.enqueueSnackbar('Bạn đã điểm danh rồi', {
             anchorOrigin: {
@@ -177,6 +183,8 @@ class MainPage extends React.Component {
             },
             variant: 'error',
           });
+          // this.handleMoneyCheckIn()
+
         } else {
           this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
             anchorOrigin: {
@@ -188,6 +196,39 @@ class MainPage extends React.Component {
         }
       });
   };
+
+  handleMoneyCheckIn = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        NumberNguoiGui: this.state.checkInDB,
+        NumberNguoiNhan: this.state.phone,
+        SoTien: this.state.checkInMoney
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'success') {
+          this.props.enqueueSnackbar('Điểm danh thành công !', {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'right',
+            },
+            variant: 'success',
+          });
+          window.location.reload()
+        } else {
+          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'right',
+            },
+            variant: 'error',
+          });
+        }
+      })
+  }
 
   render() {
     let { fakeData } = this.state;
@@ -234,7 +275,7 @@ class MainPage extends React.Component {
                             <Link to={'/consider'}>(Link)</Link>
                           </ListGroupItem>}
                           <ListGroupItem className="text-center">
-                            <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
+                            <Button onClick={() => this.getInfoCheckInDB()}>Điểm danh</Button>
                             {/*<div className="mt-1">Tự thêm gì gì đó vào đây</div>*/}
                           </ListGroupItem>
                         </ListGroup>
