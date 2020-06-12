@@ -19,6 +19,7 @@ import HistoryPage from "./pages/HistoryPage"
 import ContactPage from "./pages/ContactPage"
 import ProfileUser from "./pages/ProfileUser"
 import Admin from "./pages/admin"
+import NewsDetailPage from './pages/NewsDetailPage';
 
 
 const getBasename = () => {
@@ -43,6 +44,7 @@ class App extends React.Component {
         <Route path="/donation" component={DonationPage} />
         <Route path="/news" component={NewsPage} />
         <Route path="/donation-detail" component={DonationDetail} />
+        <Route path="/news-detail" component={NewsDetailPage} />
         {this.state.token !== ""
           ? <Route exact path="/consider" component={ConsiderPage} />
           : <Redirect to="/" />

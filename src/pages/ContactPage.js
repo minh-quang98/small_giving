@@ -71,7 +71,8 @@ class ContactPage extends React.Component {
         ]}
       >
         <Row>
-          <Col xl={6} lg={12} md={12}>
+          <Col lg="1"></Col>
+          <Col xl={5} lg={12} md={12}>
             <Card>
               <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
               <CardBody>
@@ -105,7 +106,7 @@ class ContactPage extends React.Component {
               </CardBody>
             </Card>
           </Col>
-          <Col xl={6} lg={12} md={12}>
+          <Col xl={5} lg={12} md={12}>
             <Card>
               <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Rất mong nhận được sự góp ý của bạn </CardHeader>
               <CardBody style={{ marginTop: 25 }}>
@@ -135,6 +136,7 @@ class ContactPage extends React.Component {
               </CardBody>
             </Card>
           </Col>
+          <Col lg="1"></Col>
         </Row>
 
       </Page>

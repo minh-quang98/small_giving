@@ -124,8 +124,8 @@ class DonationPage extends React.Component {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        idHoatDong: this.state.idHoatDong,
-        idNguoiDung: this.state.idNguoiDung,
+        NumberNguoiNhan: this.state.idHoatDong,
+        NumberNguoiGui: this.state.idNguoiDung,
         SoTien: this.state.money
       })
     }
@@ -146,7 +146,7 @@ class DonationPage extends React.Component {
         variant: 'error',
       });
     } else {
-      fetch(`http://smallgiving.cf/mobileapp/Quyengop/themquyengop.php`, config)
+      fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
         .then((res) => res.json())
         .then((data) => {
           if (data.message === "success") {
@@ -157,7 +157,7 @@ class DonationPage extends React.Component {
               },
               variant: 'success',
             });
-            this.handleDoanationW4();
+            // this.handleDoanationW4();
             this.handleCloseModal();
             this.handleCloseModalParent();
             window.location.reload();
@@ -199,21 +199,21 @@ class DonationPage extends React.Component {
 
   }
 
-  handleDoanationW4 = () => {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        NumberNguoiNhan: this.state.idHoatDong,
-        NumberNguoiGui: this.state.idNguoiDung,
-        SoTien: this.state.money
-      })
-    }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      })
-  }
+  // handleDoanationW4 = () => {
+  //   let config = {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       NumberNguoiNhan: this.state.idHoatDong,
+  //       NumberNguoiGui: this.state.idNguoiDung,
+  //       SoTien: this.state.money
+  //     })
+  //   }
+  //   fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //     })
+  // }
 
 
   handleOpenModalParent(idHoatDong) {
@@ -246,14 +246,22 @@ class DonationPage extends React.Component {
       method: "POST",
       body: JSON.stringify({
         idHoatDong: this.state.idHoatDong,
-        idNguoiDung: this.state.idNguoiDung
+        idNhaHaoTam: this.state.idNguoiDung
       })
     }
     fetch(`http://smallgiving.cf/mobileapp/Theodoi/theodoi.php`, config)
       .then(res => res.json())
       .then(data => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Quyên góp thành công !', {
+        if (data.message === "follow") {
+          this.props.enqueueSnackbar('Theo dõi thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else if (data.message === "unfollow") {
+          this.props.enqueueSnackbar('Bỏ theo dõi thành công !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -261,49 +269,39 @@ class DonationPage extends React.Component {
             variant: 'success',
           });
         } else {
-          console.log("err")
+          this.props.enqueueSnackbar(data.message, {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
         }
       })
   }
 
-  onUnFollow = () => {
-    let config = {
-      method: "DELETE",
-      body: JSON.stringify({
-        idHoatDong: this.state.idHoatDong,
-        idNguoiDung: this.state.idNguoiDung
-      })
-    }
-      fetch(`http://smallgiving.cf/mobileapp/Theodoi/delete.php`, config)
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Quyên góp thành công !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'success',
-          });
-        } else {
-          console.log("err")
-        }
-      })
-  }
 
   handleJoinActivity = () => {
     let config = {
       method: "POST",
       body: JSON.stringify({
         idHoatDong: this.state.idHoatDong,
-        idNguoiDung: this.state.idNguoiDung
+        idNhaHaoTam: this.state.idNguoiDung
       })
     }
     fetch(`http://smallgiving.cf/mobileapp/Gopsuc/dangkigopsuc.php`, config)
       .then(res => res.json())
       .then(data => {
-        if (data.message === "success") {
-          this.props.enqueueSnackbar('Quyên góp thành công !', {
+        if (data.message === "join") {
+          this.props.enqueueSnackbar('Tham gia thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else if (data.message === "unjoin") {
+          this.props.enqueueSnackbar('Bỏ tham gia thành công !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -311,7 +309,13 @@ class DonationPage extends React.Component {
             variant: 'success',
           });
         } else {
-          console.log("err")
+          this.props.enqueueSnackbar(data.message, {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
         }
       })
   }
@@ -326,8 +330,8 @@ class DonationPage extends React.Component {
 
         ]}>
         <Row>
-
-          <Col lg="12" md="12" sm="12" xs="12" className="fix-new-1" >
+          <Col lg="1"></Col>
+          <Col lg="10" md="12" sm="12" xs="12" className="fix-new-1" >
             {this.state.listData.map((item, index) => (
 
               <Col lg="12" md="12" sm="12" xs="12" className="fix-inline">
@@ -405,17 +409,24 @@ class DonationPage extends React.Component {
                 <ListGroupItem>
                   <Row>
                     <Col md={6}>
-                      <Label check>
-                        <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện
-                          <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>
-                      </Label>
+                      {/*<Label check>*/}
+                      {/*  <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện*/}
+                      {/*    <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>*/}
+                      {/*</Label>*/}
+                      <Button onClick={() => this.setState({
+                        idHoatDong: item.idHoatDong
+                      }, () => this.onFollow())}><MdBubbleChart size={25} />Theo dõi</Button>
                     </Col>
                     <Col md={6}>
-                      <Label check>
-                        <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động
-                          <Input type="checkbox" className={'ml-3'} />
-                      </Label>
+                      {/*<Label check>*/}
+                      {/*  <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động*/}
+                      {/*    <Input type="checkbox" className={'ml-3'} />*/}
+                      {/*</Label>*/}
+                      <Button onClick={() => this.setState({
+                        idHoatDong: item.idHoatDong
+                      }, () => this.handleJoinActivity()) }><MdShowChart size={25} />Tham gia</Button>
                     </Col>
+                    <Col lg="1"></Col>
                   </Row>
 
                 </ListGroupItem>
