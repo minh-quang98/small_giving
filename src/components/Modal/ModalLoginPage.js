@@ -152,7 +152,7 @@ class ModalLoginPage extends Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Dang ki thanh cong") {
-          this.handleWallet20k()
+          this.handleSignUpW4()
         } else {
           this.props.enqueueSnackbar('Tài khoản đã tồn tại !', {
             anchorOrigin: {
@@ -165,6 +165,34 @@ class ModalLoginPage extends Component {
       });
   }
 
+  handleSignUpW4 = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        ShortName: this.state.name,
+        ClientNumber: this.state.phone,
+        IdentityCardNumber: this.state.phone,
+        MobilePhone: this.state.phone,
+        EMail: this.state.email
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php`, config)
+      .then(res=> res.json())
+      .then(data => {
+        if (data.message === "success") {
+          this.handleWallet20k()
+        } else {
+          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
+      })
+  }
+
   handleWallet20k = () => {
     let config = {
       method: "POST",
@@ -175,7 +203,7 @@ class ModalLoginPage extends Component {
     fetch(`https://misappmobile.000webhostapp.com/apiway4/nap20.php`, config)
       .then(res => res.json())
       .then(data => {
-        if(data.message === "true") {
+        if(data.message === "success") {
           this.props.enqueueSnackbar('Đăng ký thành công !', {
             anchorOrigin: {
               vertical: "top",

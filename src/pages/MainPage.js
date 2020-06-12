@@ -204,7 +204,7 @@ class MainPage extends React.Component {
               <Col lg="12" md="12" sm="12" xs="12" className="ml-0 pl-0">
                 <Card style={{ border: 0 }}>
                   <div>
-                    <UncontrolledCarousel className="fix-banner" items={fakeData}/>
+                    <UncontrolledCarousel className="fix-banner"  items={fakeData}/>
                   </div>
                 </Card>
               </Col>
