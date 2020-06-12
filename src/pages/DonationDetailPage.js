@@ -25,6 +25,7 @@ import { IconWidget, NumberWidget } from 'components/Widget';
 import NGND from 'assets/img/NGND.jpg';
 import Convert from '../utils/ConvertUrlPra';
 import Cookies from 'js-cookie';
+import { withSnackbar } from 'notistack';
 
 
 class DonationDetailPage extends Component {
@@ -125,6 +126,85 @@ class DonationDetailPage extends Component {
     });
   }
 
+  onFollow = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.state.idHoatDong,
+        idNhaHaoTam: this.state.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/Theodoi/theodoi.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === "follow") {
+          this.props.enqueueSnackbar('Theo dõi thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else if (data.message === "unfollow") {
+          this.props.enqueueSnackbar('Bỏ theo dõi thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else {
+          this.props.enqueueSnackbar(data.message, {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
+      })
+  }
+
+
+  handleJoinActivity = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.state.idHoatDong,
+        idNhaHaoTam: this.state.idNguoiDung
+      })
+    }
+    fetch(`http://smallgiving.cf/mobileapp/Gopsuc/dangkigopsuc.php`, config)
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === "join") {
+          this.props.enqueueSnackbar('Tham gia thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else if (data.message === "unjoin") {
+          this.props.enqueueSnackbar('Bỏ tham gia thành công !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+        } else {
+          this.props.enqueueSnackbar(data.message, {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
+      })
+  }
+
   render() {
     // const item = this.props.item;
     let { dataHoatDong } = this.state;
@@ -181,17 +261,23 @@ class DonationDetailPage extends Component {
                     {/*<a href={""}>(Link)</a>*/}
                     <Link to={'/consider'}>(Link)</Link>
                   </ListGroupItem>
-                  <ListGroupItem>
-                    <Label check>
-                      <MdBubbleChart size={25} style={{ color: '#ae1f17' }}/>Theo dõi sự kiện
-                      <Input type="checkbox" className={'ml-3'}/>
-                    </Label>
+                  <ListGroupItem className="text-center">
+                      {/*<Label check>*/}
+                      {/*  <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện*/}
+                      {/*    <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>*/}
+                      {/*</Label>*/}
+                      <Button onClick={() => this.setState({
+                        idHoatDong: dataHoatDong.idHoatDong
+                      }, () => this.onFollow())}><MdBubbleChart size={25} />Theo dõi</Button>
                   </ListGroupItem>
-                  <ListGroupItem>
-                    <Label check>
-                      <MdShowChart size={25} style={{ color: '#ae1f17' }}/>Tham gia hoạt động
-                      <Input type="checkbox" className={'ml-3'}/>
-                    </Label>
+                  <ListGroupItem className="text-center">
+                      {/*<Label check>*/}
+                      {/*  <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động*/}
+                      {/*    <Input type="checkbox" className={'ml-3'} />*/}
+                      {/*</Label>*/}
+                      <Button onClick={() => this.setState({
+                        idHoatDong: dataHoatDong.idHoatDong
+                      }, () => this.handleJoinActivity()) }><MdShowChart size={25} />Tham gia</Button>
                   </ListGroupItem>
                   <ListGroupItem>
                     <Row>
@@ -285,4 +371,4 @@ class DonationDetailPage extends Component {
   }
 }
 
-export default DonationDetailPage;
+export default withSnackbar(DonationDetailPage);

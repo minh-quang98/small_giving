@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Avatar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Avatar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonationDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationDetailPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +219,7 @@
       <workItem from="1591864459841" duration="3235000" />
       <workItem from="1591881012723" duration="7190000" />
       <workItem from="1591945544694" duration="9291000" />
-      <workItem from="1591967780715" duration="2865000" />
+      <workItem from="1591967780715" duration="5028000" />
     </task>
     <servers />
   </component>
@@ -266,10 +265,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1257" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1588263821745" />
-    <state x="297" y="152" width="672" height="640" key="run.anything.popup" timestamp="1591176658142">
+    <state x="297" y="152" width="672" height="640" key="run.anything.popup" timestamp="1591971938654">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="152" width="672" height="640" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1591176658142" />
+    <state x="297" y="152" width="672" height="640" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1591971938654" />
     <state x="297" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1584002556096" />
     <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1589338802024">
       <screen x="0" y="0" width="1280" height="680" />
