@@ -413,11 +413,6 @@
 .oke{
   margin-right: 20px;
 }
-.DashboardPage{
-  .carousel-item{
-    max-height: 340px;
-  }
-}
 .fix-khaosat{
   display: none;
 }
@@ -621,7 +616,6 @@ figure{
 @media(min-width:769px){
   .about-slide{
     height: 350px;
-    margin: 0 70px;
     text-align: center;
   }
 }
@@ -743,7 +737,7 @@ figure{
   }
 }
 .table-responsive{
-  max-height: 350px;
+  max-height: 412px;
   overflow-y: scroll;
 
 }
