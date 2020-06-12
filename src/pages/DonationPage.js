@@ -390,7 +390,7 @@ class DonationPage extends React.Component {
                         icon={MdFace}
                         bgColor="white"
                         inverse={false}
-                        title="Số người theo dõi: &nbsp;"
+                        title="Lượt quyên góp: &nbsp;"
                         subtitle={item.SoNguoi}
                       />
                     </Col>
@@ -400,7 +400,7 @@ class DonationPage extends React.Component {
                         icon={MdAlarm}
                         bgColor="white"
                         inverse={false}
-                        title="Số ngày còn lại: &nbsp;"
+                        title="Ngày còn lại: &nbsp;"
                         subtitle={item.ThoiGian}
                       />
                     </Col>
@@ -408,23 +408,23 @@ class DonationPage extends React.Component {
                 </ListGroupItem>
                 <ListGroupItem>
                   <Row>
-                    <Col md={6}>
+                    <Col md={6} className="fix-bo">
                       {/*<Label check>*/}
                       {/*  <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện*/}
                       {/*    <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>*/}
                       {/*</Label>*/}
                       <Button onClick={() => this.setState({
                         idHoatDong: item.idHoatDong
-                      }, () => this.onFollow())}><MdBubbleChart size={25} />Theo dõi</Button>
+                      }, () => this.onFollow())}>Theo dõi</Button>
                     </Col>
-                    <Col md={6}>
+                    <Col md={6} className="fix-bo">
                       {/*<Label check>*/}
                       {/*  <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động*/}
                       {/*    <Input type="checkbox" className={'ml-3'} />*/}
                       {/*</Label>*/}
                       <Button onClick={() => this.setState({
                         idHoatDong: item.idHoatDong
-                      }, () => this.handleJoinActivity()) }><MdShowChart size={25} />Tham gia</Button>
+                      }, () => this.handleJoinActivity())}>Góp sức</Button>
                     </Col>
                     <Col lg="1"></Col>
                   </Row>

@@ -47,14 +47,14 @@ const Footer = () => {
           </div>
           <div>
             <li md={6} className="display-bf">
-              <a href="">
+              <div >
                 <img src="https://static.mservice.io/img/tai-appstore.png" width="130" class="img-fluid" alt=""></img>
-              </a>
+              </div>
             </li>
             <li md={6} className="display-bf">
-              <a href="">
+              <div >
                 <img src="https://static.mservice.io/img/tai-google-play.png" width="130" class="img-fluid" alt=""></img>
-              </a>
+              </div>
             </li>
           </div>
           {/* <div>

@@ -130,15 +130,15 @@ class DonationDetailPage extends Component {
     let { dataHoatDong } = this.state;
     return (
       <Page className="bcquyengop"
-            title="Quyên góp/Chi tiết quyên góp"
-            breadcrumbs={[
-              { name: 'Quyên góp/ Chi tiết quyên góp' },
+        title="Quyên góp/Chi tiết quyên góp"
+        breadcrumbs={[
+          { name: 'Quyên góp/ Chi tiết quyên góp' },
 
-            ]}>
+        ]}>
         <h1 className="text-center">{dataHoatDong.TenHoatDong}</h1>
         <Row>
           <Col lg="1"></Col>
-          <Col lg="7" md="12" sm="12" xs="12">
+          <Col lg="10" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
                 {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
@@ -148,6 +148,16 @@ class DonationDetailPage extends Component {
                   className="rounded mr-2 mb-2"
                   style={{ width: '100%', height: '100%' }}
                 />
+                <div className="align-center">
+                  <Button
+                    className="mt-2"
+                    onClick={() => this.handleOpenModalParent()}
+                    color="secondary"
+                  >
+                    Quyên góp
+                        </Button>
+                </div>
+
 
                 <div className="mt-4">
                   {dataHoatDong.NoiDung}
@@ -156,71 +166,7 @@ class DonationDetailPage extends Component {
             </Card>
           </Col>
 
-          <Col lg="4" md="12" sm="12" xs="12" className="align-items-center">
-            <Card>
-              <CardHeader className="text-center">Quyên góp</CardHeader>
-              <CardBody>
-                {/* <Bar data={chartjs.bar.data} options={chartjs.bar.options} /> */}
-                <div style={{ fontSize: 20, textAlign: 'center' }}>
-                  Số dư tài khoản
-                  <br/>
-                  {this.state.token === ''
-                    ? <div style={{ fontSize: 20, color: '#ae1f17' }}>
-                      Vui lòng đăng nhập vào hệ thống để cùng nhau chia sẻ những yêu thương
-                    </div>
-                    : <NumberFormat value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0} displayType={'text'}
-                                    thousandSeparator={true} suffix={'VNĐ'}/>
-                  }
-                </div>
-              </CardBody>
-              {this.state.token === ''
-                ? <div></div>
-                : <ListGroup flush>
-                  <ListGroupItem>
-                    <MdInsertChart size={25} style={{ color: '#ae1f17' }}/> Làm phiếu khảo sát&nbsp;&nbsp;
-                    {/*<a href={""}>(Link)</a>*/}
-                    <Link to={'/consider'}>(Link)</Link>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <Label check>
-                      <MdBubbleChart size={25} style={{ color: '#ae1f17' }}/>Theo dõi sự kiện
-                      <Input type="checkbox" className={'ml-3'}/>
-                    </Label>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <Label check>
-                      <MdShowChart size={25} style={{ color: '#ae1f17' }}/>Tham gia hoạt động
-                      <Input type="checkbox" className={'ml-3'}/>
-                    </Label>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <Row>
-                      <Col lg={12} md={6} sm={6} xs={12}>
-                        <div style={{ fontSize: 20, textAlign: 'center' }}>
-                          Số tiền quyên góp dự kiến
-                          <br/>
-                          <NumberFormat value={dataHoatDong.ChiDK} displayType={'text'} thousandSeparator={true}
-                                        suffix={'VNĐ'}/>
-                        </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col lg={12} md={6} sm={6} xs={12} className="text-center">
-                        <Button
-                          className="mt-2"
-                          onClick={() => this.handleOpenModalParent()}
-                          color="secondary"
-                        >
-                          Quyên góp
-                        </Button>
-                      </Col>
-                    </Row>
-                  </ListGroupItem>
-                </ListGroup>
-              }
 
-            </Card>
-          </Col>
           <Col lg="1"></Col>
         </Row>
 
@@ -242,7 +188,7 @@ class DonationDetailPage extends Component {
               />
               <div>Số tiền hiện tại bạn có là:</div>
               <div style={{ color: '#ae1f17' }}>{this.state.SoDuTK !== null ? this.state.SoDuTK : 0}</div>
-              <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
+              <Input className="w-50" type="text" placeholder="Nhập số tiền" />
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>
