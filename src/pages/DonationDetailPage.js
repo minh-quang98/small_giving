@@ -210,15 +210,15 @@ class DonationDetailPage extends Component {
     let { dataHoatDong } = this.state;
     return (
       <Page className="bcquyengop"
-            title="Quyên góp/Chi tiết quyên góp"
-            breadcrumbs={[
-              { name: 'Quyên góp/ Chi tiết quyên góp' },
+        title="Quyên góp/Chi tiết quyên góp"
+        breadcrumbs={[
+          { name: 'Quyên góp/ Chi tiết quyên góp' },
 
-            ]}>
+        ]}>
         <h1 className="text-center">{dataHoatDong.TenHoatDong}</h1>
         <Row>
           <Col lg="1"></Col>
-          <Col lg="7" md="12" sm="12" xs="12">
+          <Col lg="10" md="12" sm="12" xs="12">
             <Card>
               <CardBody>
                 {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
@@ -228,6 +228,16 @@ class DonationDetailPage extends Component {
                   className="rounded mr-2 mb-2"
                   style={{ width: '100%', height: '100%' }}
                 />
+                <div className="align-center">
+                  <Button
+                    className="mt-2"
+                    onClick={() => this.handleOpenModalParent()}
+                    color="secondary"
+                  >
+                    Quyên góp
+                        </Button>
+                </div>
+
 
                 <div className="mt-4">
                   {dataHoatDong.NoiDung}
@@ -304,7 +314,6 @@ class DonationDetailPage extends Component {
                   </ListGroupItem>
                 </ListGroup>
               }
-
             </Card>
           </Col>
           <Col lg="1"></Col>
@@ -328,7 +337,7 @@ class DonationDetailPage extends Component {
               />
               <div>Số tiền hiện tại bạn có là:</div>
               <div style={{ color: '#ae1f17' }}>{this.state.SoDuTK !== null ? this.state.SoDuTK : 0}</div>
-              <Input className="w-50" type="text" placeholder="Nhập số tiền"/>
+              <Input className="w-50" type="text" placeholder="Nhập số tiền" />
               <Modal
                 isOpen={this.state.modal}
                 toggle={this.handleCloseModal}>

@@ -236,7 +236,7 @@ class MainPage extends React.Component {
       <Page
         className="DashboardPage"
         title="Trang chủ"
-        // breadcrumbs={[{ name: 'Dashboard', active: true }]}
+      // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
         <Row>
           <Col lg="1"></Col>
@@ -245,7 +245,7 @@ class MainPage extends React.Component {
               <Col lg="12" md="12" sm="12" xs="12" className="ml-0 pl-0">
                 <Card style={{ border: 0 }}>
                   <div>
-                    <UncontrolledCarousel className="fix-banner"  items={fakeData}/>
+                    <UncontrolledCarousel className="fix-banner" items={fakeData} />
                   </div>
                 </Card>
               </Col>
@@ -270,7 +270,7 @@ class MainPage extends React.Component {
                         ? <div></div>
                         : <ListGroup flush>
                           {<ListGroupItem className="text-center fix-khaosat">
-                            <MdInsertChart size={25}/> Làm phiếu khảo sát&nbsp;&nbsp;
+                            <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;
                             {/*<a href={""}>(Link)</a>*/}
                             <Link to={'/consider'}>(Link)</Link>
                           </ListGroupItem>}
@@ -293,8 +293,8 @@ class MainPage extends React.Component {
                               Vui lòng đăng nhập vào hệ thống
                             </div>
                             : <NumberFormat style={{ fontSize: 17, color: '#ae1f17' }}
-                                            value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0}
-                                            displayType={'text'} thousandSeparator={true} suffix={'VNĐ'}/>
+                              value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0}
+                              displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
                           }
                         </div>
                       </CardBody>
@@ -332,12 +332,15 @@ class MainPage extends React.Component {
               <Col lg="4" md="4" sm="12" xs="12">
 
 
-                <div className="text-bold animate__animated animate__fadeInLeft">Triển khai các hoạt động thiện nguyện
-                  bằng hình thức trực tuyến
+                <div className="text-bold animate__animated animate__fadeInLeft pd-bt">Triển khai các hoạt động thiện nguyện
+                bằng hình thức trực tuyến
                 </div>
                 <p className="animate__animated animate__fadeInLeft">
-                  Cung cấp đầy đủ thông tin mang tính xác thực cao về các hoàn cảnh cần giúp đỡ, nhà hảo tâm có thế tìm
-                  hiểu và nạp tiền trực tuyến hoạc kiếm tiền bằng việc làm khảo sát từ nhà tài trợ
+                  Mỗi hành động của bạn tuy nhỏ nhưng sẽ mang đến những giá trị tinh thần và vật chất lớn lao.<br />
+                  Hãy cùng chúng tôi, chung tay thêu dệt những hoài bão nhỏ nhoi, thắp sáng những mảnh đời còn đang bất hạnh, <br />
+                  Vì cho là nhận!
+
+
                 </p>
 
 
@@ -349,12 +352,12 @@ class MainPage extends React.Component {
 
               </Col>
               <Col lg="4" md="4" sm="12" xs="12">
-                <div className="text-bold animate__animated animate__fadeInRight">Kênh thông tin chính thống của Đoàn
-                  Thanh niên & Hội Sinh viên
+                <div className="text-bold animate__animated animate__fadeInRight pd-bt">Kênh thông tin chính thống của Đoàn
+                Thanh niên & Hội Sinh viên
                 </div>
-                <p className="animate__animated animate__fadeInRight">Bằng cách phân chia nhỏ số tiền của mình, người
-                  dùng chỉ cần sử dụng thiết bị di động hoạc máy tính là có thế quyên góp cho nhiều hoàn cảnh khó khăn
-                  và điều đặc biệt nhất là bạn .</p>
+                <p className="animate__animated animate__fadeInRight">Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.<br />
+                Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.
+                </p>
               </Col>
             </Row>
 
@@ -367,28 +370,23 @@ class MainPage extends React.Component {
                 <Row>
                   {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
                   {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
-                  <Card style={{ border: 0 }}>
+                  <Card style={{ border: 0 }} className="fixx-mar">
 
                     <CardBody>
                       <div className="dtn">
                         <li md={4}>
-                          <Media
-                            object
-                            src={DTN}
-                            className="rounded mr-2"
-                            style={{ width: '100px', height: '100%' }}
-                          />
+                          <p className="text-muted text-bold align-center"> Mục tiêu</p>
                         </li>
                         <li md={8}>
                           <p className="text-muted">- Đoàn kết, khuyến khích, giúp đỡ hội viên, sinh viên trong học tập
-                            và rèn luyện, hoàn thành nhiệm cụ của người sinh viên, góp phần xây dựng nhà trường vững
+                          và rèn luyện, hoàn thành nhiệm cụ của người sinh viên, góp phần xây dựng nhà trường vững
                             mạnh.</p>
                           <p className="text-muted">- Giáo dục lý tưởng, truyền thống đạo đức, lối sống và ý thức pháp
                             luật cho hội viên, sinh viên.</p>
                           <p className="text-muted">- Phản ánh nhu cầu, nguyện vọng của sinh viên; tham gia đề xuất các
-                            chủ trương chính sách liên quan đến sinh viên. Tổ chức các hoạt động thiết thực chăm lo đời
-                            sống vật chất,
-                            tinh thần và bảo vệ các quyền lợi hợp pháp, chính đáng của hội viên, sinh viên và tổ chức
+                          chủ trương chính sách liên quan đến sinh viên. Tổ chức các hoạt động thiết thực chăm lo đời
+                          sống vật chất,
+                          tinh thần và bảo vệ các quyền lợi hợp pháp, chính đáng của hội viên, sinh viên và tổ chức
                             Hội. </p>
 
                         </li>
@@ -418,24 +416,24 @@ class MainPage extends React.Component {
                   <CardBody>
                     {this.state.messageErr === ''
                       ? <Table responsive hover scrollY
-                               maxHeight="200px">
+                        maxHeight="200px">
                         <thead>
-                        <tr className="text-capitalize align-middle text-center">
-                          <th>STT</th>
-                          <th>Tên Người Dùng</th>
-                          <th>Số Tiền</th>
-                        </tr>
+                          <tr className="text-capitalize align-middle text-center">
+                            <th>STT</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Số Tiền</th>
+                          </tr>
                         </thead>
                         <tbody>
-                        {this.state.data.map((item, index) => (
-                          <tr key={index}>
-                            <td className="align-middle text-center">
-                              {index + 1}
-                            </td>
-                            <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                            <td className="align-middle text-center">{item.SoTien}</td>
-                          </tr>
-                        ))}
+                          {this.state.data.map((item, index) => (
+                            <tr key={index}>
+                              <td className="align-middle text-center">
+                                {index + 1}
+                              </td>
+                              <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                              <td className="align-middle text-center">{item.SoTien}</td>
+                            </tr>
+                          ))}
                         </tbody>
                       </Table>
                       : <div className="text-center">Không có dữ liệu</div>

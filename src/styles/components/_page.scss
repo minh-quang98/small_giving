@@ -451,6 +451,20 @@
   
   color: #fff;
   margin-left: 0 !important;
+  :before{
+      content: "";
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: rgba(0,0,0,.15);
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.5;
+      -webkit-transition: all 300ms ease-out;
+      -o-transition: all 300ms ease-out;
+      transition: all 300ms ease-out;
+    }
   .fix-margin{
     margin: 10px 0;
     font-size: 15px;
@@ -459,7 +473,8 @@
     color: #fff;
     font-size: 15px;
     opacity: 1;
-    z-index: 1;
+    z-index: 9999;
+    position: relative;
     :hover{
       
         color: #686868 !important;
@@ -718,9 +733,37 @@ figure{
   padding: 20px 0;
 }
 .dtn{
+  background-image: url(https://d3.violet.vn/uploads/previews/document/1/295/784/co_doan2.png);
+  height: 350px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: auto;
   position: relative;
+  text-align: center;
+  color: #fff;
+  >:before{
+      content: "";
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: #fff;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.5;
+      -webkit-transition: all 300ms ease-out;
+      -o-transition: all 300ms ease-out;
+      transition: all 300ms ease-out;
+    }
   li{
     display: inline-block;
+  }
+  .text-muted{
+    position: relative;
+    opacity: 1;
+    color: #545454;
+    z-index: 99999;
+
   }
 }
 .fixx-noti{
@@ -737,7 +780,7 @@ figure{
   }
 }
 .table-responsive{
-  max-height: 412px;
+  max-height: 370px;
   overflow-y: scroll;
 
 }
@@ -747,4 +790,24 @@ figure{
 }
 textarea{
   min-height: 400px;
+}
+.fixx-mar{
+  margin-left: 15px !important
+  ;
+}
+.pd-bt{
+  margin-bottom: 20px !important;
+}
+.fix-bo{
+  text-align: center;
+  margin-top: 10px;
+}
+.fix-inline{
+  li{
+    padding: 0 20px !important;
+  }
+}
+.mt-1{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }

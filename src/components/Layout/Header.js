@@ -48,7 +48,13 @@ const MdNotificationsActiveWithBadge = withBadge({
   },
   // children: <small>5</small>,
 })(MdNotificationsActive);
-
+const dataError = [
+  {
+    ThoiGian: "",
+    TieuDeThongBao: " Chưa có dữ liệu",
+    NoiDung: "",
+  }
+]
 class Header extends React.Component {
   state = {
     isOpenNotificationPopover: false,
@@ -58,7 +64,9 @@ class Header extends React.Component {
     showModal: false,
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
     user: [],
-    notiData: []
+    notiData: [],
+    dataError: [],
+    dataerror: false,
   };
 
   componentDidMount() {
@@ -153,9 +161,16 @@ class Header extends React.Component {
     fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({
-          notiData: data
-        }, () => console.log("noti>>>>>", this.state.notiData))
+
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState({
+            dataerror: false,
+            notiData: data
+          }, () => console.log("noti>>>>>", this.state.notiData))
+        }
+
       })
   }
 
@@ -197,7 +212,7 @@ class Header extends React.Component {
                     target="Popover1"
                   >
                     <PopoverBody>
-                      <Notifications notificationsData={this.state.notiData} />
+                      <Notifications notificationsData={this.state.dataerror ? this.state.dataError : this.state.notiData} />
                     </PopoverBody>
                   </Popover>
                 </NavItem>
