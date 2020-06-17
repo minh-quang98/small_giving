@@ -426,7 +426,6 @@ class DonationPage extends React.Component {
                         idHoatDong: item.idHoatDong
                       }, () => this.handleJoinActivity())}>Góp sức</Button>
                     </Col>
-                    <Col lg="1"></Col>
                   </Row>
 
                 </ListGroupItem>
@@ -546,6 +545,8 @@ class DonationPage extends React.Component {
               </Modal>
             </Col>
           </Col>
+          <Col lg="1"></Col>
+
         </Row>
       </Page>
     );
