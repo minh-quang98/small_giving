@@ -104,7 +104,7 @@ class ProfileUser extends Component {
         idNguoiDung: this.state.idNguoiDung,
         TenNguoiDung: this.state.fullName,
         NgaySinh: this.state.dateBirdth,
-        STK: this.state.STK
+        // STK: this.state.STK
       })
     }
     fetch(`http://smallgiving.cf/mobileapp/Doithongtin/update.php`, config)
@@ -261,24 +261,24 @@ class ProfileUser extends Component {
                       <div
                         className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
                         {this.state.onEdit ?
-                          <TextField
-                            fullWidth
-                            variant={"outlined"}
-                            InputProps={{style: {height: 28}}}
-                            value={this.state.STK}
-                            onChange={(val) => {
-                              this.setState({
-                                STK: val.target.value,
-                                inEditing: true
-                              }, () => {
-                                this.state.STK.length != 0 ? this.setState({STKErr: false, btnSaveStatus:true}) : this.setState({STKErr: true, btnSaveStatus:false})
-                              })
-                            }}
-                            maxLength={50}
-                            error={this.state.STKErr}
-                            helperText={this.state.STKErr && 'Vui lòng nhập số tài khoản  '}
-                          />
-
+                          // <TextField
+                          //   fullWidth
+                          //   variant={"outlined"}
+                          //   InputProps={{style: {height: 28}}}
+                          //   value={this.state.STK}
+                          //   onChange={(val) => {
+                          //     this.setState({
+                          //       STK: val.target.value,
+                          //       inEditing: true
+                          //     }, () => {
+                          //       this.state.STK.length != 0 ? this.setState({STKErr: false, btnSaveStatus:true}) : this.setState({STKErr: true, btnSaveStatus:false})
+                          //     })
+                          //   }}
+                          //   maxLength={50}
+                          //   error={this.state.STKErr}
+                          //   helperText={this.state.STKErr && 'Vui lòng nhập số tài khoản  '}
+                          // />
+                          this.state.STK
                           : this.state.STK
                         }
                       </div>

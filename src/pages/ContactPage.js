@@ -72,7 +72,7 @@ class ContactPage extends React.Component {
       >
         <Row>
           <Col lg="1"></Col>
-          <Col xl={5} lg={12} md={12}>
+          <Col xl={4} lg={12} md={12}>
             <Card>
               <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>
               <CardBody>
@@ -106,17 +106,17 @@ class ContactPage extends React.Component {
               </CardBody>
             </Card>
           </Col>
-          <Col xl={5} lg={12} md={12}>
+          <Col xl={6} lg={12} md={12}>
             <Card>
               <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Rất mong nhận được sự góp ý của bạn </CardHeader>
               <CardBody style={{ marginTop: 25 }}>
                 <Form>
                   <FormGroup row>
-                    <Label for="exampleSelectMulti" sm={2}> Nội dung </Label>
-                    <Col sm={10}>
+                    <Label for="exampleSelectMulti" sm={3}> Nội dung </Label>
+                    <Col>
                       <TextField
                         style={{ width: "100%" }}
-                        multiline
+                        // multiline
                         rowsMax={4}
                         variant="outlined"
                         onChange={(val) => {
