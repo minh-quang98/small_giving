@@ -234,10 +234,10 @@ class Hoatdongthem extends React.Component {
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Thêm mới hoạt động
         </ModalHeader>
-        <ModalBody>
+        <ModalBody >
           <Form onSubmit={this.handleSubmit}>
             <Card>
-              <CardBody>
+              <CardBody >
                 <Row>
                   <Col xl={6} lg={12} md={12}>
                     <Form>

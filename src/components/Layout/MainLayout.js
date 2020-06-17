@@ -68,12 +68,12 @@ class MainLayout extends React.Component {
       case 'xs':
       case 'sm':
       case 'md':
-        return this.openSidebar('close');
-
-      case 'lg':
-      case 'xl':
-      default:
         return this.openSidebar('open');
+
+      case 'lg': return this.openSidebar('open');
+      case 'xl': return this.openSidebar('open');
+      default:
+        return this.openSidebar('close');
     }
   }
 

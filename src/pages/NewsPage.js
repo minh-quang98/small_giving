@@ -45,8 +45,8 @@ class NewsPage extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-            data: data,
-          },
+          data: data,
+        },
         );
       });
   };
@@ -105,6 +105,7 @@ class NewsPage extends React.Component {
                 <Col md="12" sm="12" xs="12" className="fix-new">
                   <Card>
                     <CardHeader
+                      className="text-truncate"
                       avatar={
                         <Avatar style={{ backgroundColor: '#ae1f17' }} aria-label="recipe">
                           SG
@@ -114,14 +115,18 @@ class NewsPage extends React.Component {
                       subheader={
                         // moment(Item.ThoiGian).format('DD-MM-YYYY')
                         Item.ThoiGian
+
                       }
                     />
-                    <Media
-                      object
-                      src={Item.Anh}
-                      className="rounded mr-2 mb-2"
-                      style={{ width: '100%' }}
-                    />
+                    <div className="fix-img">
+                      <Media
+                        object
+                        src={Item.Anh}
+                        className="rounded mr-2 mb-2"
+                        style={{ width: '100%' }}
+                      />
+                    </div>
+
                     <CardActions disableSpacing>
                       {/*<IconButton aria-label="add to favorites">*/}
                       {/*  <FavoriteIcon />*/}

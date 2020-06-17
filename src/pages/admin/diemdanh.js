@@ -112,7 +112,7 @@ class diemdanh extends React.Component {
           <Row key={index}>
             <Col>
               <Card className="mb-3">
-                <CardBody>
+                <CardBody className="fix-scoll">
 
                   <Diemdanhsua
                     show={this.state.showModalSua}
