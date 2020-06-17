@@ -239,8 +239,8 @@ class MainPage extends React.Component {
       // breadcrumbs={[{ name: 'Dashboard', active: true }]}
       >
         <Row>
-          <Col lg="1"></Col>
-          <Col lg="10" md="12" sm="12" xs="12">
+
+          <Col lg="12" md="12" sm="12" xs="12">
             <Row>
               <Col lg="12" md="12" sm="12" xs="12" className="ml-0 pl-0">
                 <Card style={{ border: 0 }}>
@@ -324,19 +324,21 @@ class MainPage extends React.Component {
                 </Row>
               </Col>
             </Row>
-            <div className="fix-header">
-              <div className="card-header-1">Về chúng tôi</div>
+            <div className="about-layout">
 
-            </div>
-            <Row className="about-slide">
-              <Col lg="4" md="4" sm="12" xs="12">
+              <div className="fix-header">
+                <div className="card-header-1">Về chúng tôi</div>
+
+              </div>
+              <Row className="about-slide">
+                <Col lg="4" md="4" sm="12" xs="12">
 
 
-                <div className="text-bold animate__animated animate__fadeInLeft pd-bt">Triển khai các hoạt động thiện nguyện
-                bằng hình thức trực tuyến
+                  <div className="text-bold animate__animated animate__fadeInLeft pd-bt">Triển khai các hoạt động thiện nguyện
+                  bằng hình thức trực tuyến
                 </div>
-                <p className="animate__animated animate__fadeInLeft">
-                  Mỗi hành động của bạn tuy nhỏ nhưng sẽ mang đến những giá trị tinh thần và vật chất lớn lao.<br />
+                  <p className="animate__animated animate__fadeInLeft">
+                    Mỗi hành động của bạn tuy nhỏ nhưng sẽ mang đến những giá trị tinh thần và vật chất lớn lao.<br />
                   Hãy cùng chúng tôi, chung tay thêu dệt những hoài bão nhỏ nhoi, thắp sáng những mảnh đời còn đang bất hạnh, <br />
                   Vì cho là nhận!
 
@@ -344,22 +346,25 @@ class MainPage extends React.Component {
                 </p>
 
 
-              </Col>
-              <Col lg="4" md="4" sm="12" xs="12">
-                <div className="animate__animated animate__zoomIn">
-                  <img src={thongtin} className="fix-img-1"></img>
-                </div>
+                </Col>
+                <Col lg="4" md="4" sm="12" xs="12">
+                  <div className="animate__animated animate__zoomIn">
+                    <img src={thongtin} className="fix-img-1"></img>
+                  </div>
 
-              </Col>
-              <Col lg="4" md="4" sm="12" xs="12">
-                <div className="text-bold animate__animated animate__fadeInRight pd-bt">Kênh thông tin chính thống của Đoàn
-                Thanh niên & Hội Sinh viên
+                </Col>
+                <Col lg="4" md="4" sm="12" xs="12">
+                  <div className="text-bold animate__animated animate__fadeInRight pd-bt">Kênh thông tin chính thống của Đoàn
+                  Thanh niên & Hội Sinh viên
                 </div>
-                <p className="animate__animated animate__fadeInRight">Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.<br />
+                  <p className="animate__animated animate__fadeInRight">Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.<br />
                 Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.
                 </p>
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+
+            </div>
+
 
             <Row>
               <Col lg="7" md="7" sm="12" xs="12" className="pl-0 ml-0">

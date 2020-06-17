@@ -99,7 +99,7 @@ class ModalChangePassword extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
         .then((data)=> {
           this.setState({
@@ -119,7 +119,7 @@ class ModalChangePassword extends React.Component {
             }),
           }
         console.log("config", config);
-          fetch(`https://misappmobile.000webhostapp.com/Doimatkhau/doipass.php`, config)
+          fetch(`http://smallgiving.cf/mobileapp/Doimatkhau/doipass.php`, config)
             .then((response) => response.json())
             .then((data) => {
               if (data.message === "Success") {

@@ -3,8 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/step2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/step2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/step3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/step3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/step4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/step4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/MainLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/MainLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalChangePassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ContactPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ContactPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/HistoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HistoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewsPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ProfileUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfileUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/diemdanh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/diemdanh.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/hoatdong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/hoatdong.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/hoatdongthem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/hoatdongthem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/_page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/_page.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +236,7 @@
       <workItem from="1592059937606" duration="928000" />
       <workItem from="1592104974749" duration="1432000" />
       <workItem from="1592187582239" duration="223000" />
-      <workItem from="1592405092777" duration="481000" />
+      <workItem from="1592405092777" duration="3003000" />
     </task>
     <servers />
   </component>

@@ -54,35 +54,31 @@ class bcquyengop extends React.Component {
     }
   }
   getdatabaocao() {
-    const isValid = this.validate();
-    if (isValid) {
-      let config = {
-        method: "POST",
-        body: JSON.stringify({
-          NgayBD: this.state.startdate,
-          NgayKT: this.state.enddate,
-          ClientNumber: this.state.user.SDT,
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        NgayBD: this.state.startdate,
+        NgayKT: this.state.enddate,
+        ClientNumber: this.state.user.SDT,
 
-        }),
-      };
-      fetch('https://misappmobile.000webhostapp.com/apiway4/lichsugiaodich.php', config)
-        .then(response => response.json())
-        .then(data => {
-          if (data.message === "No post found") {
-            this.setState({ dataerror: true, dataError: dataError });
-          } else {
-            this.setState(
-              {
-                dataerror: false,
-                data: data,
-              },
-            );
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/apiway4/lichsugiaodich.php', config)
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+          );
 
 
-          }
-        });
-
-    }
+        }
+      });
   }
 
   handleChange = event => {
@@ -146,7 +142,7 @@ class bcquyengop extends React.Component {
                               <Row>
                                 <Col md={4}>
                                   <Label for="exampleDate">
-                                    Từ ngày <span className="red-text">*</span>
+                                    Từ ngày
                                   </Label>
                                 </Col>
                                 <Col md={8}>
@@ -174,7 +170,7 @@ class bcquyengop extends React.Component {
                               <Row>
                                 <Col md={4}>
                                   <Label for="exampleDate">
-                                    Đến ngày <span className="red-text">*</span>
+                                    Đến ngày
                                   </Label>
                                 </Col>
                                 <Col md={8}>
@@ -203,37 +199,37 @@ class bcquyengop extends React.Component {
                           id="table-to-xls-2"
                         >
                           <thead>
-                          <tr className="table-danger">
-                            <th>Thời gian</th>
-                            <th>Giao dịch</th>
+                            <tr className="table-danger">
+                              <th>Thời gian</th>
+                              <th>Giao dịch</th>
 
-                            <th>Số tiền giao dịch</th>
-                            <th>Ghi chú</th>
-                          </tr>
+                              <th>Số tiền giao dịch</th>
+                              <th>Ghi chú</th>
+                            </tr>
                           </thead>
                           <tbody>
-                          {this.state.dataerror ?
-                            this.state.dataError.map(Item => {
-                              return (
-                                <tr>
-                                  <td>{Item.id}</td>
-                                  <td>{Item.TenHoatDong}</td>
+                            {this.state.dataerror ?
+                              this.state.dataError.map(Item => {
+                                return (
+                                  <tr>
+                                    <td>{Item.id}</td>
+                                    <td>{Item.TenHoatDong}</td>
 
-                                  <td>{Item.SoTien}</td>
-                                  <td>{Item.SoTien}</td>
-                                </tr>
-                              );
-                            }) : this.state.data.map(Item => {
-                              return (
-                                <tr>
-                                  <td>{Item.Ngaychuyen}</td>
-                                  <td>{Item.TenGiaoDich}</td>
+                                    <td>{Item.SoTien}</td>
+                                    <td>{Item.SoTien}</td>
+                                  </tr>
+                                );
+                              }) : this.state.data.map(Item => {
+                                return (
+                                  <tr>
+                                    <td>{Item.Ngaychuyen}</td>
+                                    <td>{Item.TenGiaoDich}</td>
 
-                                  <td>{Item.TransAmount}</td>
-                                  <td>{Item.TrangThai}</td>
-                                </tr>
-                              );
-                            })}
+                                    <td>{Item.TransAmount}</td>
+                                    <td>{Item.TrangThai}</td>
+                                  </tr>
+                                );
+                              })}
                           </tbody>
 
                         </Table>

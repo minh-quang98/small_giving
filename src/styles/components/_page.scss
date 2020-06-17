@@ -177,7 +177,7 @@
  }
  .card{
    .card-header{
-     background-color:#fff ;
+     background-color:transparent ;
      color: #545454;
    }
  }
@@ -632,6 +632,7 @@ figure{
   .about-slide{
     height: 350px;
     text-align: center;
+    background-color: transparent;
   }
 }
 .fix-img-1{
@@ -702,9 +703,10 @@ figure{
       width: auto;
     }
   }
+  
 }
 .about-slide{
-  background-color: #fff;
+  background-color:transparent;
   padding:  40px 0;
   margin-bottom: 20px;
 }
@@ -810,4 +812,35 @@ textarea{
 .mt-1{
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+.mt-4{
+  text-align: justify;
+}
+.fix-img{
+  height: 180px;
+    overflow: hidden;
+}
+.text-truncate{
+  overflow: hidden;
+  max-width: 250px;
+  text-overflow: ellipsis;
+}
+.fix-scoll{
+  overflow-x: scroll;
+}
+.bg-light{
+  background-color: #fff !important;
+  background-image: url(https://res.cloudinary.com/hocviennganhang/image/upload/v1592385633/darwin/ezasfdmpmycfupeu9h9b.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.about-layout{
+  
+  @media (width:769px) {
+    margin: 0 80px;
+  }
+
+}
+.pl-0{
+  padding: 0 15px !important;
 }
