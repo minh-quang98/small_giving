@@ -80,7 +80,7 @@ class naptien extends React.Component {
                     <Row key={index}>
                         <Col>
                             <Card className="mb-3">
-                                <CardBody>
+                                <CardBody className="fix-scoll">
                                     <Naptienthem
                                         show={this.state.showModalThem}
                                         onHide={this.handleCloseModalThem}

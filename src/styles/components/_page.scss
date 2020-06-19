@@ -208,11 +208,23 @@
    padding: 5px 10px !important;
  }
  .sum-left{
-   padding-right: 0 !important;
+   @media (min-width:769px) {
+    padding-right: 0 !important;
+   }
+   
  }
  .sum-right{
-   padding-left: 0 !important;
+  @media (min-width:769px) {
+    padding-left: 0 !important;
+  }
+   
  }
+ @media (max-width:768px){
+   .center{
+     margin-bottom: 20px;
+   }
+ }
+
  .sum{
   background-color: #ae1f17;
   color: #fff;
@@ -843,4 +855,11 @@ textarea{
 }
 .pl-0{
   padding: 0 15px !important;
+}
+.fixx-heigh{
+  max-height: 500px;
+  overflow-y: scroll;
+}
+.fixx-marg{
+  margin-bottom: 20px;
 }

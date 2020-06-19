@@ -98,7 +98,7 @@ class nd extends React.Component {
           <Row key={index}>
             <Col>
               <Card className="mb-3">
-                <CardBody>
+                <CardBody className="fix-scoll">
                   <Nguoidungsua
                     show={this.state.showModalSua}
                     onHide={() => this.handleCloseModalSua()}
