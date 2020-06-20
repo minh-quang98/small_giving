@@ -105,18 +105,20 @@ class NewsPage extends React.Component {
                 <Col md="12" sm="12" xs="12" className="fix-new">
                   <Card>
                     <CardHeader
-                      className="text-truncate"
+                      className="text-muted text-truncate"
                       avatar={
                         <Avatar style={{ backgroundColor: '#ae1f17' }} aria-label="recipe">
                           SG
                         </Avatar>
                       }
+
                       title={Item.TenTin}
                       subheader={
                         // moment(Item.ThoiGian).format('DD-MM-YYYY')
                         Item.ThoiGian
 
                       }
+
                     />
                     <div className="fix-img">
                       <Media

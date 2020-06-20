@@ -337,7 +337,7 @@ class DonationPage extends React.Component {
               <Col lg="12" md="12" sm="12" xs="12" className="fix-inline">
                 <Card>
                   <CardHeader className="d-flex justify-content-between">
-                    <b>{item.TenHoatDong}{' '}</b>
+                    <b className="text-truncate">{item.TenHoatDong}{' '}</b>
                     <small className="text-muted text-capitalize mt-1">
                       <Link to={{
                         pathname: '/donation-detail',
@@ -346,7 +346,7 @@ class DonationPage extends React.Component {
                           idHoatDong: item.idHoatDong
                         }
                       }}>
-                        Xem chi tiết
+                        Chi tiết
                       </Link>
                     </small>
                   </CardHeader>

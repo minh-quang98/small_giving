@@ -99,5 +99,5 @@ const query = ({ width }) => {
   return { breakpoint: 'xs' };
 };
 
-// export default componentQueries(query)(App);
+//export default componentQueries(query)(App);
 export default withRouter(App);

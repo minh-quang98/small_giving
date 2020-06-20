@@ -26,6 +26,7 @@ import { withSnackbar } from 'notistack';
 import thongtin from '../assets/img/thongtin.png';
 import Media from 'reactstrap/es/Media';
 import Animate from 'animate.css-react';
+//import { Link } from 'react-router-dom';
 //import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import 'animate.css/animate.css';
 
@@ -42,17 +43,14 @@ class MainPage extends React.Component {
     this.state = {
       fakeData: [
         {
-          src: 'img/Slide/banner.png',
+          src: 'img/Slide/banner_01.png',
           key: '1',
         },
         {
-          src: 'img/Slide/banner2.png',
+          src: 'img/Slide/banner_02.png',
           key: '2',
         },
-        {
-          src: 'img/Slide/banner3.png',
-          key: '3',
-        },
+
       ],
       headers: [
         {
@@ -73,6 +71,10 @@ class MainPage extends React.Component {
       checkInDB: "",
       checkInMoney: "",
       phone: '',
+      listData: [],
+      idHoatDong: "",
+      idTinTuc: "",
+      listTin: []
     };
   }
 
@@ -81,6 +83,26 @@ class MainPage extends React.Component {
     window.scrollTo(0, 0);
     this.getRankInfo();
     this.getUser();
+    this.gethd();
+    this.gettin();
+  }
+  gethd = async () => {
+    fetch(`http://smallgiving.cf/mobileapp/trangquantri/showhdmoi.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          listData: data
+        }, () => console.log("data>>>", data))
+      })
+  }
+  gettin = async () => {
+    fetch(`http://smallgiving.cf/mobileapp/trangquantri/showtinmoi.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          listTin: data
+        }, () => console.log("data>>>", data))
+      })
   }
 
   getRankInfo = async () => {
@@ -328,97 +350,193 @@ class MainPage extends React.Component {
 
               <div className="fix-header">
                 <div className="card-header-1">Về chúng tôi</div>
+                <div>
+                  <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                </div>
 
               </div>
               <Row className="about-slide">
-                <Col lg="4" md="4" sm="12" xs="12">
-
-
-                  <div className="text-bold animate__animated animate__fadeInLeft pd-bt">Triển khai các hoạt động thiện nguyện
-                  bằng hình thức trực tuyến
-                </div>
-                  <p className="animate__animated animate__fadeInLeft">
-                    Mỗi hành động của bạn tuy nhỏ nhưng sẽ mang đến những giá trị tinh thần và vật chất lớn lao.<br />
-                  Hãy cùng chúng tôi, chung tay thêu dệt những hoài bão nhỏ nhoi, thắp sáng những mảnh đời còn đang bất hạnh, <br />
-                  Vì cho là nhận!
-
-
-                </p>
-
-
-                </Col>
-                <Col lg="4" md="4" sm="12" xs="12">
-                  <div className="animate__animated animate__zoomIn">
-                    <img src={thongtin} className="fix-img-1"></img>
+                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                  <div className="bg-gradient">
+                    <span>
+                      <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_1.png?1590391920314">
+                      </img>
+                    </span>
+                    <div className="pd-fix-about">
+                      <span className="text-about">
+                        sáng tạo
+                      </span>
+                      <div className="subtitle-about">
+                        Cung cấp tùy chọn đóng góp kinh phí quyên góp đa dạng và hấp dẫn.
+                      </div>
+                    </div>
                   </div>
 
                 </Col>
-                <Col lg="4" md="4" sm="12" xs="12">
-                  <div className="text-bold animate__animated animate__fadeInRight pd-bt">Kênh thông tin chính thống của Đoàn
-                  Thanh niên & Hội Sinh viên
+                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                  <div className="bg-gradient">
+                    <span>
+                      <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_2.png?1590391920314">
+                      </img>
+                    </span>
+                    <div className="pd-fix-about">
+                      <span className="text-about">
+                        thuận tiện
+                      </span>
+                      <div className="subtitle-about">
+                        Thực hiện quyên góp thuận tiện: mọi lúc, mọi nơi, mọi thiết bị.
+                      </div>
+                    </div>
+                  </div>
+
+                </Col>
+                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                  <div className="bg-gradient" >
+                    <span>
+                      <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_3.png?1590391920314">
+                      </img>
+                    </span>
+                    <div className="pd-fix-about">
+                      <span className="text-about">
+                        Nhanh chóng
+                      </span>
+                      <div className="subtitle-about">
+                        Thao tác quyên góp đơn giản, nhanh chóng, trong 1 nút chạm.
+                      </div>
+                    </div>
+                  </div>
+
+                </Col>
+                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                  <div className="bg-gradient">
+                    <span>
+                      <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_4.png?1590391920314">
+                      </img>
+                    </span>
+                    <div className="pd-fix-about">
+                      <span className="text-about">
+                        Minh bạch
+                      </span>
+                      <div className="subtitle-about">
+                        Đầy đủ, xác thực trong nội dung và minh bạch trong tài chính.
+                      </div>
+                    </div>
+                  </div>
+
+                </Col>
+
+              </Row>
+
+            </div>
+            <div className="quyengop-layout">
+
+              <div className="fix-header">
+                <div className="card-header-1">Hoạt động thiện nguyện gần đây</div>
+                <div>
+                  <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
                 </div>
-                  <p className="animate__animated animate__fadeInRight">Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.<br />
-                Cung cấp một cách nhanh chóng và chính xác nhất các thông báo, chỉ thị, tin tức của Đoàn Thanh niên & Hội Sinh viên.
-                </p>
+
+              </div>
+              <Row className="quyengop-slide">
+                <Col lg="12" md="12" sm="12" xs="12" className="qg-layout" >
+                  {this.state.listData.map((item, index) => (
+                    <Col lg="12" md="12" sm="12" xs="12" className="qg-1">
+                      <div className="qg-02">
+                        <div>
+                          <figure className="qg-img">
+                            <Media
+                              object
+                              src={item.Anh}
+                              className="rounded mr-2 mb-2"
+                              style={{ width: '100%', height: '100%' }}
+                            />
+                          </figure>
+
+                        </div>
+                        <div className="title-qg">
+                          <Link to={{
+                            pathname: '/donation-detail',
+                            search: `?idHoatDong=${item.idHoatDong}`,
+                            state: {
+                              idHoatDong: item.idHoatDong
+                            }
+                          }}>
+                            {item.TenHoatDong}
+                          </Link>
+
+                        </div>
+                      </div>
+
+
+                    </Col>
+                  ))}
+                </Col>
+              </Row>
+
+            </div>
+            <div className="tintuc-layout">
+
+              <div className="fix-header">
+                <div className="card-header-1">Tin tức mới</div>
+                <div>
+                  <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                </div>
+
+              </div>
+              <Row className="quyengop-slide">
+                <Col lg="12" md="12" sm="12" xs="12" className="qg-layout" >
+                  {this.state.listTin.map((item, index) => (
+                    <Col lg="12" md="12" sm="12" xs="12" className="qg-1">
+                      <div className="qg-03">
+                        <div>
+                          <figure className="qg-img">
+                            <Media
+                              object
+                              src={item.Anh}
+                              className="rounded mr-2 mb-2"
+                              style={{ width: '100%', height: '100%' }}
+                            />
+                          </figure>
+
+                        </div>
+                        <div className="title-tt">
+                          <Link to={{
+                            pathname: '/news-detail',
+                            search: `?idTinTuc=${item.idTin}`,
+                            state: {
+                              idTinTuc: item.idTin
+                            }
+                          }}>
+                            {item.TenTin}
+                          </Link>
+
+                        </div>
+                      </div>
+
+
+                    </Col>
+                  ))}
                 </Col>
               </Row>
 
             </div>
 
 
-            <Row>
-              <Col lg="7" md="7" sm="12" xs="12" className="pl-0 ml-0">
-                <div className="fix-header">
-                  <div className="card-header-1">Đoàn Thanh niên & Hội Sinh viên</div>
+            <Row className="bxh">
+              <Col lg="3" md="3" sm="12" xs="12"></Col>
 
-                </div>
-                <Row>
-                  {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
-                  {/*  <Col lg="7" md="7" sm="12" xs="12"></Col>*/}
-                  <Card style={{ border: 0 }} className="fixx-mar">
-
-                    <CardBody>
-                      <div className="dtn">
-                        <li md={4}>
-                          <p className="text-muted text-bold align-center"> Mục tiêu</p>
-                        </li>
-                        <li md={8}>
-                          <p className="text-muted">- Đoàn kết, khuyến khích, giúp đỡ hội viên, sinh viên trong học tập
-                          và rèn luyện, hoàn thành nhiệm cụ của người sinh viên, góp phần xây dựng nhà trường vững
-                            mạnh.</p>
-                          <p className="text-muted">- Giáo dục lý tưởng, truyền thống đạo đức, lối sống và ý thức pháp
-                            luật cho hội viên, sinh viên.</p>
-                          <p className="text-muted">- Phản ánh nhu cầu, nguyện vọng của sinh viên; tham gia đề xuất các
-                          chủ trương chính sách liên quan đến sinh viên. Tổ chức các hoạt động thiết thực chăm lo đời
-                          sống vật chất,
-                          tinh thần và bảo vệ các quyền lợi hợp pháp, chính đáng của hội viên, sinh viên và tổ chức
-                            Hội. </p>
-
-                        </li>
-
-                      </div>
-
-
-                    </CardBody>
-                    <CardBody className="pt-0">
-
-
-                    </CardBody>
-                  </Card>
-
-                </Row>
-
-              </Col>
-              <Col lg="5" md="5" sm="12" xs="12">
-                <div className="fix-header">
+              <Col lg="6" md="6" sm="12" xs="12">
+                <div className="fix-header-1">
                   <div className="card-header-1">Bảng xếp hạng</div>
-
+                  <div>
+                    <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                  </div>
                 </div>
-                <Card style={{ border: 0 }}
+                <Card className="bg-bxh"
 
                 >
 
-                  <CardBody>
+                  <CardBody >
                     {this.state.messageErr === ''
                       ? <Table responsive hover scrollY
                         maxHeight="200px">
@@ -447,6 +565,7 @@ class MainPage extends React.Component {
                   </CardBody>
                 </Card>
               </Col>
+              <Col lg="3" md="3" sm="12" xs="12"></Col>
             </Row>
 
           </Col>

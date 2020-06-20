@@ -68,12 +68,12 @@ class ProfileLayout extends React.Component {
       case 'xs':
       case 'sm':
       case 'md':
-        return this.openSidebar('close');
+        return this.openSidebar('open');
 
       case 'lg':
       case 'xl':
       default:
-        return this.openSidebar('open');
+        return this.openSidebar('close');
     }
   }
 
