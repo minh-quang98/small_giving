@@ -242,63 +242,63 @@ class bcnaptien extends React.Component {
                                                 </Form>
                                             </Col>
                                         </Row>
-                                        <Table
-                                            {...{ [tableType || 'hover']: true }}
-                                            id="table-to-xls-1"
-                                        >
-                                            <thead>
-                                                <tr className="table-danger">
-                                                    <th>ID</th>
-                                                    <th>Quỹ điểm danh</th>
-                                                    <th>Số tiền nạp</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                        <div className="fixx-heigh">
+                                            <Table
+                                                {...{ [tableType || 'hover']: true }}
+                                                id="table-to-xls-1"
+                                            >
+                                                <thead>
+                                                    <tr className="table-danger">
+                                                        <th>ID</th>
+                                                        <th>Quỹ điểm danh</th>
+                                                        <th>Số tiền nạp</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                {this.state.dataerror ?
-                                                    this.state.dataError.map(Item => {
-                                                        return (
-                                                            <tr>
-                                                                <td>{Item.id}</td>
-                                                                <td>{Item.TenDiemDanh}</td>
-                                                                <td>{Item.SoTien}</td>
-                                                            </tr>
-                                                        );
-                                                    }) : this.state.data.map(Item => {
-                                                        return (
-                                                            <tr>
-                                                                <td>{Item.idGiaoDich}</td>
-                                                                <td>{Item.idDiemDanh}</td>
-                                                                <td>{Item.SoTien}</td>
-                                                            </tr>
-                                                        );
-                                                    })
-                                                }
-
-                                            </tbody>
-                                            <Row>
-                                                <Col md={6} className="sum-left">
-                                                    <div className="sum"> Tổng tiền</div>
-                                                </Col>
-                                                <Col md={6} className="sum-right">
                                                     {this.state.dataerror ?
-                                                        this.state.tongError.map(Item => {
+                                                        this.state.dataError.map(Item => {
                                                             return (
-                                                                <div className="sum">{Item.tong}</div>
+                                                                <tr>
+                                                                    <td>{Item.id}</td>
+                                                                    <td>{Item.TenDiemDanh}</td>
+                                                                    <td>{Item.SoTien}</td>
+                                                                </tr>
                                                             );
-                                                        }) : this.state.tong.map(Item => {
+                                                        }) : this.state.data.map(Item => {
                                                             return (
-                                                                <div className="sum">{Item.tong}</div>
+                                                                <tr>
+                                                                    <td>{Item.idGiaoDich}</td>
+                                                                    <td>{Item.idDiemDanh}</td>
+                                                                    <td>{Item.SoTien}</td>
+                                                                </tr>
                                                             );
                                                         })
                                                     }
-                                                </Col>
-                                            </Row>
 
-                                        </Table>
-                                        <Table {...{ [tableType || 'hover']: true }}>
+                                                </tbody>
 
-                                        </Table>
+
+                                            </Table>
+                                        </div>
+                                        <Row className="fixx-marg">
+                                            <Col md={6} className="sum-left">
+                                                <div className="sum"> Tổng tiền</div>
+                                            </Col>
+                                            <Col md={6} className="sum-right">
+                                                {this.state.dataerror ?
+                                                    this.state.tongError.map(Item => {
+                                                        return (
+                                                            <div className="sum">{Item.tong}</div>
+                                                        );
+                                                    }) : this.state.tong.map(Item => {
+                                                        return (
+                                                            <div className="sum">{Item.tong}</div>
+                                                        );
+                                                    })
+                                                }
+                                            </Col>
+                                        </Row>
                                         <div className="button-bottom">
                                             <Row>
                                                 <Col md={6} className="center">

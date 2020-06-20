@@ -114,7 +114,7 @@ class tintuc extends React.Component {
           <Row key={index}>
             <Col>
               <Card className="mb-3">
-                <CardBody>
+                <CardBody className="fix-scoll">
                   <Tintucthem
                     show={this.state.showModalThem}
                     onHide={() => this.handleCloseModalThem()}

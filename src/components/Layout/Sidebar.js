@@ -70,22 +70,22 @@ const hoatdong = [
 ];
 const baocao = [
   { to: '/admin/bcnaptiennd', name: 'GD nạp nhà hảo tâm', exact: false, Icon: MdAttachMoney },
-  { to: '/admin/bcnaptienks', name: 'GD nạp tài khoản khảo sát', exact: false, Icon: MdAttachMoney },
+  // { to: '/admin/bcnaptienks', name: 'GD nạp tài khoản khảo sát', exact: false, Icon: MdAttachMoney },
   { to: '/admin/bcnaptiendd', name: 'GD nạp quỹ điểm danh', exact: false, Icon: MdAttachMoney },
   { to: '/admin/bctaitro', name: 'GD thực hiện điểm danh', exact: false, Icon: MdAttachMoney },
-  { to: '/admin/bctaitro2', name: 'GD thực hiện khảo sát', exact: false, Icon: MdAttachMoney },
+  // { to: '/admin/bctaitro2', name: 'GD thực hiện khảo sát', exact: false, Icon: MdAttachMoney },
 
-  { to: '/admin/bcquyengop', name: 'GD quyên góp', exact: false, Icon: MdAttachMoney },
+  { to: '/admin/bcquyengop', name: 'GD thực hiện quyên góp', exact: false, Icon: MdAttachMoney },
 ];
 const taitro = [
-  { to: '/admin/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
+  // { to: '/admin/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
   { to: '/admin/diemdanh', name: 'Quỹ điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
   { to: '/admin/naptiennd', name: 'Nạp tiền nhà hảo tâm', exact: false, Icon: GiReceiveMoney },
-  { to: '/admin/naptienks', name: 'Nạp tiền tài khoản khảo sát', exact: false, Icon: GiReceiveMoney },
+  // { to: '/admin/naptienks', name: 'Nạp tiền tài khoản khảo sát', exact: false, Icon: GiReceiveMoney },
   { to: '/admin/naptiendd', name: 'Nạp tiền quỹ điểm danh', exact: false, Icon: GiReceiveMoney },
-  { to: '/admin/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
+  // { to: '/admin/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
 ];
 
 const navItems1 = [

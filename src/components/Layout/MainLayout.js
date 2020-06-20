@@ -23,6 +23,7 @@ class MainLayout extends React.Component {
 
   componentDidMount() {
     this.checkBreakpoint(this.props.breakpoint);
+    //this.handleContentClick(this.props.breakpoint)
 
     // setTimeout(() => {
     //   if (!this.notificationSystem) {
@@ -63,17 +64,18 @@ class MainLayout extends React.Component {
     }
   };
 
+
   checkBreakpoint(breakpoint) {
     switch (breakpoint) {
-      case 'xs':
-      case 'sm':
-      case 'md':
+      case 'xs': this.openSidebar('close');
+      case 'sm': this.openSidebar('close');
+      case 'md': this.openSidebar('close');
         return this.openSidebar('open');
 
       case 'lg': return this.openSidebar('open');
       case 'xl': return this.openSidebar('open');
       default:
-        return this.openSidebar('close');
+        return this.openSidebar('open');
     }
   }
 
