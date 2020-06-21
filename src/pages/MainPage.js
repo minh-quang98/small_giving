@@ -43,12 +43,16 @@ class MainPage extends React.Component {
     this.state = {
       fakeData: [
         {
-          src: 'img/Slide/banner_01.png',
+          src: 'img/Slide/bn2.png',
           key: '1',
         },
         {
-          src: 'img/Slide/banner_02.png',
+          src: 'img/Slide/bn1.png',
           key: '2',
+        },
+        {
+          src: 'img/Slide/bn3.png',
+          key: '3',
         },
 
       ],
@@ -262,7 +266,7 @@ class MainPage extends React.Component {
       >
         <Row>
 
-          <Col lg="12" md="12" sm="12" xs="12">
+          <Col lg="12" md="12" sm="12" xs="12" >
             <Row>
               <Col lg="12" md="12" sm="12" xs="12" className="ml-0 pl-0">
                 <Card style={{ border: 0 }}>
@@ -271,7 +275,7 @@ class MainPage extends React.Component {
                   </div>
                 </Card>
               </Col>
-              <Col lg="12" md="12" sm="12" xs="12">
+              <Col lg="12" md="12" sm="12" xs="12" className="mar-0">
                 <Row>
                   <Col lg="6" md="6" sm="12" xs="12" className="fix-button">
 
@@ -296,7 +300,7 @@ class MainPage extends React.Component {
                             {/*<a href={""}>(Link)</a>*/}
                             <Link to={'/consider'}>(Link)</Link>
                           </ListGroupItem>}
-                          <ListGroupItem className="text-center">
+                          <ListGroupItem className="text-center diemdanh">
                             <Button onClick={() => this.getInfoCheckInDB()}>Điểm danh</Button>
                             {/*<div className="mt-1">Tự thêm gì gì đó vào đây</div>*/}
                           </ListGroupItem>
@@ -306,7 +310,7 @@ class MainPage extends React.Component {
                   </Col>
                   <Col lg="6" md="6" sm="12" xs="12" className="fix-button-2">
                     <Card style={{ border: 0, width: '100%' }}>
-                      <CardBody>
+                      <CardBody className="sodu">
                         <div style={{ fontSize: 18, color: '#8e8e8e' }}>
                           Số dư tài khoản: {' '}
 
