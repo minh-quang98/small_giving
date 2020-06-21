@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Modal/modalForgotPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/GuidePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/GuidePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalChangePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalLoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/DonationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/DonationPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/components/_page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/_page.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +235,8 @@
       <workItem from="1592531457111" duration="178000" />
       <workItem from="1592560348753" duration="2011000" />
       <workItem from="1592578801588" duration="1278000" />
+      <workItem from="1592639016828" duration="3869000" />
+      <workItem from="1592721740418" duration="10096000" />
     </task>
     <servers />
   </component>
@@ -252,10 +261,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589338785360" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1592531633910">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1592639295595">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592531633910" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592639295595" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
       <screen x="0" y="0" width="1280" height="680" />
@@ -277,11 +286,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="297" y="152" width="672" height="640" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1591971938654" />
-    <state x="297" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1584002556096" />
-    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1589338802024">
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1592725418568">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1589338802024" />
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1592725418568" />
     <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1584523967495" />
   </component>
 </project>

@@ -118,7 +118,6 @@ class ModalChangePassword extends React.Component {
               NewPass: this.state.newpassword,
             }),
           }
-        console.log("config", config);
           fetch(`http://smallgiving.cf/mobileapp/Doimatkhau/doipass.php`, config)
             .then((response) => response.json())
             .then((data) => {

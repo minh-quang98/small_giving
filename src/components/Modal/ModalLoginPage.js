@@ -7,6 +7,7 @@ import "./Modal.css"
 import { TextField, Snackbar } from '@material-ui/core';
 import Cookies from 'js-cookie';
 import { withSnackbar } from 'notistack';
+import ModalForgotPassword from './modalForgotPassword';
 
 class ModalLoginPage extends Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class ModalLoginPage extends Component {
       rePassword: '',
       showLogin: '',
       modeLogin: true,
-      loading: false
+      modalForgot: false,
+      loading: false,
+      regexp : /^[0-9\b]+$/
     };
   }
 
@@ -27,8 +30,11 @@ class ModalLoginPage extends Component {
   handleChangeSignUp() {
     this.setState({
       modeLogin: false,
+      phone: '',
       email: '',
+      name: "",
       password: '',
+      rePassword: '',
     });
   }
 
@@ -51,6 +57,7 @@ class ModalLoginPage extends Component {
       name: "",
       password: '',
       rePassword: '',
+      btnSave: false,
     });
     this.props.onHide();
   }
@@ -125,6 +132,22 @@ class ModalLoginPage extends Component {
         },
         variant: 'error',
       });
+    } else if (this.state.password.length < 6) {
+      this.props.enqueueSnackbar('Mật khẩu phải lớn hơn 6 ký tự !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.rePassword.length < 6) {
+      this.props.enqueueSnackbar('Nhập lại mật khẩu phải lớn hơn 6 ký tự !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
     } else if (this.state.rePassword !== this.state.password) {
       this.props.enqueueSnackbar('Nhập lại mật khẩu phải giống mật khẩu !', {
         anchorOrigin: {
@@ -193,6 +216,13 @@ class ModalLoginPage extends Component {
       })
   }
 
+  handleChangePhone(val) {
+    const re = /^[0-9\b]+$/;
+    if (val.target.value === '' || re.test(val.target.value)) {
+      this.setState({phone: val.target.value})
+    }
+  };
+
   handleWallet20k = () => {
     let config = {
       method: "POST",
@@ -231,6 +261,16 @@ class ModalLoginPage extends Component {
       })
   }
 
+  keyPress = (event, input) => {
+    if (event.keyCode === 13) {
+      if (input === 'enter') {
+        return this.handleLogin();
+      } else if (input === 'signUp') {
+        return this.checkSignUp()
+      }
+    }
+  };
+
   render() {
     return (
       <div>
@@ -253,6 +293,7 @@ class ModalLoginPage extends Component {
                 {/*<Label>Email:</Label>*/}
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "enter")}
                   label="Email"
                   variant="outlined"
                   onChange={(val) => {
@@ -266,6 +307,7 @@ class ModalLoginPage extends Component {
                 {/*<Label>Mật khẩu:</Label>*/}
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "enter")}
                   label="Mật khẩu"
                   variant="outlined"
                   type="password"
@@ -285,8 +327,11 @@ class ModalLoginPage extends Component {
             </ModalBody>
             <ModalFooter className="d-flex flex-column">
               <div>
-                <Button outline color="primary" className="mr-1">Quên mật khẩu?</Button>
-                <Button onClick={() => this.handleLogin()}>Đăng nhập</Button>
+                <Button outline color="primary" className="mr-1" onClick={this.props.onForgot}
+                >
+                  Quên mật khẩu?
+                </Button>
+                <Button disabled={this.state.btnSave} onClick={() => this.handleLogin()}>Đăng nhập</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">
@@ -304,18 +349,17 @@ class ModalLoginPage extends Component {
             backdropClassName="modal-backdrop-light"
             centered
           >
-            <ModalHeader style={{ backgroundColor: '#ae1f17', color: 'white' }} toggle={this.props.onHide}>Đăng
-              ký</ModalHeader>
+            <ModalHeader style={{ backgroundColor: '#ae1f17', color: 'white' }} toggle={this.props.onHide}>Đăng ký</ModalHeader>
             <ModalBody>
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "signUp")}
                   label="Số điện thoại"
                   variant="outlined"
+                  type="number"
                   onChange={(val) => {
-                    this.setState({
-                      phone: val.target.value
-                    })
+                    this.handleChangePhone(val)
                   }}
                 />
               </FormGroup>
@@ -323,6 +367,7 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "signUp")}
                   label="Email"
                   variant="outlined"
                   onChange={(val) => {
@@ -336,6 +381,7 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "signUp")}
                   label="Họ và tên"
                   variant="outlined"
                   onChange={(val) => {
@@ -349,6 +395,7 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "signUp")}
                   label="Mật khẩu"
                   variant="outlined"
                   type="password"
@@ -363,6 +410,7 @@ class ModalLoginPage extends Component {
               <FormGroup>
                 <TextField
                   style={{ width: "100%" }}
+                  onKeyDown={event => this.keyPress(event, "signUp")}
                   label="Nhập lại mật khẩu"
                   variant="outlined"
                   type="password"
@@ -377,7 +425,7 @@ class ModalLoginPage extends Component {
             <ModalFooter className="d-flex flex-column align-content-between">
               <div>
                 <Button outline color="primary" className="mr-4" onClick={() => this.handleCancel()}>Hủy bỏ</Button>
-                <Button onClick={() => this.checkSignUp()}>Đăng ký</Button>
+                <Button disabled={this.state.btnSave} onClick={() => this.checkSignUp()}>Đăng ký</Button>
               </div>
               <div className="mt-2">Hoặc</div>
               <div className="mt-2">
@@ -388,6 +436,7 @@ class ModalLoginPage extends Component {
             </ModalFooter>
           </Modal>
         }
+
       </div>
     );
   }

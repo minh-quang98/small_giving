@@ -353,14 +353,21 @@ class DonationPage extends React.Component {
                   <CardBody style={{ textAlign: 'center' }}>
                     {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
                     <figure className="fix-img">
-                      <Media
-                        object
-                        src={item.Anh}
-                        className="rounded mr-2 mb-2"
-                        style={{ width: '100%', height: '100%' }}
-                      />
+                      <Link to={{
+                        pathname: '/donation-detail',
+                        search: `?idHoatDong=${item.idHoatDong}`,
+                        state: {
+                          idHoatDong: item.idHoatDong
+                        }
+                      }}>
+                        <Media
+                          object
+                          src={item.Anh}
+                          className="rounded mr-2 mb-2"
+                          style={{ width: '100%', height: '100%' }}
+                        />
+                      </Link>
                     </figure>
-
                     <NumberWidget
                       className="mt-1"
                       //title="Số tiền quyên góp"
