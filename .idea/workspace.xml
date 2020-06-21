@@ -3,20 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f9b0e270-267b-4fae-9a4a-8229c0323116" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/step2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/step2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/step3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/step3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/step4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/step4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout/MainLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/MainLayout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalChangePassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ContactPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ContactPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HistoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HistoryPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfileUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfileUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/diemdanh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/diemdanh.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/hoatdong.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/hoatdong.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/hoatdongthem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/hoatdongthem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/components/_page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/components/_page.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +223,13 @@
       <workItem from="1592059937606" duration="928000" />
       <workItem from="1592104974749" duration="1432000" />
       <workItem from="1592187582239" duration="223000" />
-      <workItem from="1592405092777" duration="3003000" />
+      <workItem from="1592405092777" duration="3262000" />
+      <workItem from="1592490407787" duration="2410000" />
+      <workItem from="1592531457111" duration="178000" />
+      <workItem from="1592560348753" duration="2011000" />
+      <workItem from="1592578801588" duration="1278000" />
+      <workItem from="1592639016828" duration="3869000" />
+      <workItem from="1592721740418" duration="12143000" />
     </task>
     <servers />
   </component>
@@ -261,10 +254,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="263" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1589338785360" />
-    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1592187803017">
+    <state x="420" y="108" key="FileChooserDialogImpl" timestamp="1592639295595">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592187803017" />
+    <state x="420" y="108" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592639295595" />
     <state x="420" y="114" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1584601654517" />
     <state width="1257" height="163" key="GridCell.Tab.0.bottom" timestamp="1588263821745">
       <screen x="0" y="0" width="1280" height="680" />
@@ -286,11 +279,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="297" y="152" width="672" height="640" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1591971938654" />
-    <state x="297" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1584002556096" />
-    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1589338802024">
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup" timestamp="1592725418568">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1589338802024" />
+    <state x="303" y="39" width="672" height="641" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1592725418568" />
     <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1584523967495" />
   </component>
 </project>

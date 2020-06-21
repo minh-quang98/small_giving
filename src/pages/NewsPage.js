@@ -121,12 +121,21 @@ class NewsPage extends React.Component {
 
                     />
                     <div className="fix-img">
-                      <Media
-                        object
-                        src={Item.Anh}
-                        className="rounded mr-2 mb-2"
-                        style={{ width: '100%' }}
-                      />
+                      <Link to={{
+                        pathname: '/news-detail',
+                        search: `?idTinTuc=${Item.idTin}`,
+                        state: {
+                          idTinTuc: Item.idTin
+                        }
+                      }}>
+                        <Media
+                          object
+                          src={Item.Anh}
+                          className="rounded mr-2 mb-2"
+                          style={{ width: '100%' }}
+                        />
+                      </Link>
+
                     </div>
 
                     <CardActions disableSpacing>

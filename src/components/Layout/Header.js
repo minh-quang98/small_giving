@@ -33,6 +33,7 @@ import { Link } from 'react-router-dom';
 import ModalLoginPage from '../Modal/ModalLoginPage';
 import Cookies from 'js-cookie';
 import { withSnackbar } from 'notistack';
+import ModalForgotPassword from '../Modal/modalForgotPassword';
 
 const bem = bn.create('header');
 
@@ -67,6 +68,7 @@ class Header extends React.Component {
     notiData: [],
     dataError: [],
     dataerror: false,
+    modalForgot: false,
   };
 
   componentDidMount() {
@@ -122,12 +124,6 @@ class Header extends React.Component {
     });
   };
 
-  handleShowModal = () => {
-    this.setState({
-      showModal: true,
-    });
-  };
-
   toggleNotificationPopover = () => {
     this.setState({
       isOpenNotificationPopover: !this.state.isOpenNotificationPopover,
@@ -172,6 +168,20 @@ class Header extends React.Component {
         }
 
       })
+  }
+
+  handleOpenModalForgot = () => {
+    this.setState({
+      modalForgot: true,
+      showModal: false
+    })
+  }
+
+  handleCloseModalForgot = () => {
+    this.setState({
+      modalForgot: false,
+      showModal: true
+    })
   }
 
   render() {
@@ -265,7 +275,11 @@ class Header extends React.Component {
                   <Button
                     color="secondary"
                     style={{ minWidth: 113 }}
-                    onClick={this.handleShowModal}
+                    onClick={() => {
+                      this.setState({
+                        showModal:true
+                      })
+                    }}
                   >
                     Đăng nhập
                   </Button>
@@ -278,11 +292,17 @@ class Header extends React.Component {
           show={this.state.showModal}
           onHide={this.handleCloseModal}
           onLogin={this.handleLogin}
-        // onGetUser={this.getUser}
+          onForgot={this.handleOpenModalForgot}
+        />
+        <ModalForgotPassword
+          show={this.state.modalForgot}
+          onHide={this.handleCloseModalForgot}
         />
       </div>
     );
   }
+
+
 }
 
 export default withSnackbar(Header);

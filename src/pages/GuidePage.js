@@ -20,7 +20,6 @@ import step4 from 'assets/img/step4.png'
 const GuidePage = () => {
   return (
     <Page
-
       className="bcquyengop"
       title="Hướng dẫn nạp tiền"
       breadcrumbs={[
@@ -29,8 +28,8 @@ const GuidePage = () => {
       ]}
     >
       <Row className="guide-fix">
-        <Col md={6}>
-          <div className="fix-x-1">
+        <Col md={6} sm={6}>
+          <div className="fix-x-1 d-inline">
             <img src={step1}>
             </img>
           </div>
@@ -59,7 +58,7 @@ const GuidePage = () => {
 
           </div>
         </Col>
-        <Col md={6}>
+        <Col md={6} sm={6}>
 
           <div className="fix-x">
             <div className="fix-1">
@@ -68,8 +67,6 @@ const GuidePage = () => {
               </span> Chọn ngân hàng thụ hưởng: Techcombank (Ngân hàng TMCP Kỹ thương Việt Nam)
 
             </div>
-
-
           </div>
           <div className="fix-x">
             <img src={step2}></img>

@@ -90,26 +90,26 @@ class MainPage extends React.Component {
     this.gethd();
     this.gettin();
   }
-  gethd = async () => {
+  gethd = () => {
     fetch(`http://smallgiving.cf/mobileapp/trangquantri/showhdmoi.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
           listData: data
-        }, () => console.log("data>>>", data))
+        })
       })
   }
-  gettin = async () => {
+  gettin = () => {
     fetch(`http://smallgiving.cf/mobileapp/trangquantri/showtinmoi.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
           listTin: data
-        }, () => console.log("data>>>", data))
+        })
       })
   }
 
-  getRankInfo = async () => {
+  getRankInfo = () => {
     fetch('http://smallgiving.cf/mobileapp/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
@@ -324,19 +324,6 @@ class MainPage extends React.Component {
                           }
                         </div>
                       </CardBody>
-                      {/*{this.state.token === ""*/}
-                      {/*  ? <div></div>*/}
-                      {/*  : <ListGroup flush>*/}
-                      {/*    <ListGroupItem >*/}
-                      {/*      <MdInsertChart size={25} /> Làm phiếu khảo sát&nbsp;&nbsp;*/}
-                      {/*      /!*<a href={""}>(Link)</a>*!/*/}
-                      {/*      <Link to={"/consider"}>(Link)</Link>*/}
-                      {/*    </ListGroupItem>*/}
-                      {/*    <ListGroupItem className="text-center">*/}
-                      {/*      <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>*/}
-                      {/*    </ListGroupItem>*/}
-                      {/*  </ListGroup>*/}
-                      {/*}*/}
                     </Card>
                   </Col>
 
