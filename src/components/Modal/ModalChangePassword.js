@@ -72,6 +72,22 @@ class ModalChangePassword extends React.Component {
       this.props.enqueueSnackbar('Mật khẩu không được bỏ trống!', {
         variant: 'error',
       });
+    } else if (this.state.newpassword.length < 6) {
+      this.props.enqueueSnackbar('Mật khẩu phải lớn hơn 6 ký tự !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+    } else if (this.state.rePassword.length < 6) {
+      this.props.enqueueSnackbar('Nhập lại mật khẩu phải lớn hơn 6 ký tự !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
     } else if (this.state.newpassword != this.state.repassword) {
       this.setState({
         errRePass: true,
