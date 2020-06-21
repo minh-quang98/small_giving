@@ -1132,3 +1132,36 @@ textarea{
     position: relative;
   }
 }
+.layout-contact{
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+.header-contact{
+  border-bottom: none;
+  
+}
+}
+.gopy-heigh{
+  min-height: 150px !important;
+}
+.bg-contact{
+  background-image: url(https://res.cloudinary.com/hocviennganhang/image/upload/v1592385633/darwin/ezasfdmpmycfupeu9h9b.png);
+  background-position: right;
+  background-repeat: repeat-x;
+  background-color: transparent;
+  .title-contact{
+    margin-top: 20px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    
+  }
+}
+.fix-margin-ct{
+  font-size: 17px;
+  /* line-height: 15px; */
+  margin-bottom: 15px;
+  svg{
+    fill: #ae1f17;
+    font-size: 20px;
+  }
+}

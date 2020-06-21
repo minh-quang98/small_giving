@@ -17,7 +17,10 @@ import {
 import { TextField } from '@material-ui/core';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
-
+import { FaGlobeAmericas } from 'react-icons/fa';
+import { FaHome } from 'react-icons/fa';
+import { FaMailBulk } from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -70,112 +73,128 @@ class ContactPage extends React.Component {
 
         ]}
       >
-        <Row>
-          <Col lg="1"></Col>
-          {/*<Col xl={4} lg={12} md={12}>*/}
-          {/*  <Card>*/}
-          {/*    <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>*/}
-          {/*    <CardBody>*/}
-          {/*      <Form>*/}
-          {/*        <Table hover responsive style={{ marginTop: 25 }}>*/}
-          {/*          <tbody>*/}
-          {/*            <tr>*/}
-          {/*              <th className="text-center">Số điện thoại</th>*/}
-          {/*              <td className="text-center">0999999999</td>*/}
-          {/*            </tr>*/}
-          {/*            <tr>*/}
-          {/*              <th className="text-center">Họ tên</th>*/}
-          {/*              <td className="text-center">Trần Thị B</td>*/}
-          {/*            </tr>*/}
-          {/*            <tr>*/}
-          {/*              <th className="text-center">Chức vụ</th>*/}
-          {/*              <td className="text-center">Tình nguyện viên tư vấn</td>*/}
-          {/*            </tr>*/}
-          {/*          </tbody>*/}
-          {/*        </Table>*/}
-          {/*        /!*<FormGroup>*!/*/}
-          {/*        /!*  <Label for="exampleEmail"> Số điện thoại: 0999999999 </Label>*!/*/}
-          {/*        /!*</FormGroup>*!/*/}
-          {/*        /!*<FormGroup>*!/*/}
-          {/*        /!*  <Label for="exampleEmail"> Họ tên: Trần Thị B </Label>*!/*/}
-          {/*        /!*</FormGroup>*!/*/}
-          {/*        /!*<FormGroup>*!/*/}
-          {/*        /!*  <Label for="exampleEmail"> Chức vụ: Tình nguyện viên tư vấn </Label>*!/*/}
-          {/*        /!*</FormGroup>*!/*/}
-          {/*      </Form>*/}
-          {/*    </CardBody>*/}
-          {/*  </Card>*/}
-          {/*</Col>*/}
-          {/*<Col xl={6} lg={12} md={12}>*/}
+        <div className="bg-contact">
+          <Row>
 
-          <Col xl={8} lg={12} md={12}>
-            <Card>
-              <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Rất mong nhận được sự góp ý của bạn </CardHeader>
-              <CardBody style={{ marginTop: 25 }}>
-                <Form>
-                  <Row>
-                    <Col md={6}>
-                      <FormGroup >
-                        <Label for="exampleSelectMulti" sm={12}> Họ tên </Label>
-                        <Col sm={12}>
-                          <Input
-                            style={{ width: "100%" }}
-                            type="text"
-                            onChange={(val) => {
-                              this.setState({
-                                noiDung: val.target.value
-                              })
-                            }}
-                          />
-                        </Col>
-                      </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                      <FormGroup >
-                        <Label for="exampleSelectMulti" sm={12}> Email</Label>
-                        <Col sm={12}>
-                          <Input
-                            style={{ width: "100%" }}
-                            type="text"
-                            onChange={(val) => {
-                              this.setState({
-                                noiDung: val.target.value
-                              })
-                            }}
-                          />
-                        </Col>
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <FormGroup row>
-                    <Label for="exampleSelectMulti" sm={2}> Nội dung </Label>
-                    <Col sm={10}>
-                      <Input
-                        style={{ width: "100%" }}
-                        type="textarea"
-                        multiline
-                        rowsMax={4}
-                        variant="outlined"
-                        onChange={(val) => {
-                          this.setState({
-                            noiDung: val.target.value
-                          })
-                        }}
-                      />
-                    </Col>
-                  </FormGroup>
-                  <FormGroup check row>
-                    <Col className="align-center" sm={{ size: 100, offset: 2 }} style={{ textAlign: "right", marginRight: 15 }}>
-                      <Button onClick={() => this.themGopY()}> Gửi </Button>
-                    </Col>
-                  </FormGroup>
-                </Form>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col lg="1"></Col>
-        </Row>
+            {/*<Col xl={4} lg={12} md={12}>*/}
+            {/*  <Card>*/}
+            {/*    <CardHeader style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Mọi ý kiến thắc mắc vui lòng liên hệ </CardHeader>*/}
+            {/*    <CardBody>*/}
+            {/*      <Form>*/}
+            {/*        <Table hover responsive style={{ marginTop: 25 }}>*/}
+            {/*          <tbody>*/}
+            {/*            <tr>*/}
+            {/*              <th className="text-center">Số điện thoại</th>*/}
+            {/*              <td className="text-center">0999999999</td>*/}
+            {/*            </tr>*/}
+            {/*            <tr>*/}
+            {/*              <th className="text-center">Họ tên</th>*/}
+            {/*              <td className="text-center">Trần Thị B</td>*/}
+            {/*            </tr>*/}
+            {/*            <tr>*/}
+            {/*              <th className="text-center">Chức vụ</th>*/}
+            {/*              <td className="text-center">Tình nguyện viên tư vấn</td>*/}
+            {/*            </tr>*/}
+            {/*          </tbody>*/}
+            {/*        </Table>*/}
+            {/*        /!*<FormGroup>*!/*/}
+            {/*        /!*  <Label for="exampleEmail"> Số điện thoại: 0999999999 </Label>*!/*/}
+            {/*        /!*</FormGroup>*!/*/}
+            {/*        /!*<FormGroup>*!/*/}
+            {/*        /!*  <Label for="exampleEmail"> Họ tên: Trần Thị B </Label>*!/*/}
+            {/*        /!*</FormGroup>*!/*/}
+            {/*        /!*<FormGroup>*!/*/}
+            {/*        /!*  <Label for="exampleEmail"> Chức vụ: Tình nguyện viên tư vấn </Label>*!/*/}
+            {/*        /!*</FormGroup>*!/*/}
+            {/*      </Form>*/}
+            {/*    </CardBody>*/}
+            {/*  </Card>*/}
+            {/*</Col>*/}
+            {/*<Col xl={6} lg={12} md={12}>*/}
 
+            <Col xl={6} lg={6} md={6}>
+              <Card className="layout-contact">
+                <CardHeader className="header-contact" style={{ color: "#ae1f17", fontSize: "18px", textAlign: "center", marginTop: 10 }}> Rất mong nhận được sự góp ý của bạn </CardHeader>
+                <CardBody className="body-contact" style={{ marginTop: 25 }}>
+                  <Form>
+
+                    <FormGroup >
+
+                      <Col sm={12}>
+                        <Input
+                          style={{ width: "100%" }}
+                          type="text"
+                          placeholder="Họ tên"
+                          onChange={(val) => {
+                            this.setState({
+                              noiDung: val.target.value
+                            })
+                          }}
+                        />
+                      </Col>
+                    </FormGroup>
+
+                    <FormGroup >
+
+                      <Col sm={12}>
+                        <Input
+                          style={{ width: "100%" }}
+                          placeholder="Email"
+                          type="text"
+                          onChange={(val) => {
+                            this.setState({
+                              noiDung: val.target.value
+                            })
+                          }}
+                        />
+                      </Col>
+                    </FormGroup>
+
+                    <FormGroup >
+
+                      <Col sm={12}>
+                        <Input
+                          style={{ width: "100%" }}
+                          className="gopy-heigh"
+                          type="textarea"
+                          placeholder="Nội dung góp ý"
+                          multiline
+                          rowsMax={4}
+                          variant="outlined"
+                          onChange={(val) => {
+                            this.setState({
+                              noiDung: val.target.value
+                            })
+                          }}
+                        />
+                      </Col>
+                    </FormGroup>
+                    <FormGroup check row>
+                      <Col className="align-center" sm={{ size: 100, offset: 0 }} style={{ textAlign: "center" }}>
+                        <Button onClick={() => this.themGopY()}> Gửi góp ý</Button>
+                      </Col>
+                    </FormGroup>
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col className="info-contact" xl={6} lg={6} md={6}>
+              <div>
+                <div className="text-bold align-center title-contact"> Thông tin liên hệ</div>
+
+                <div className="fix-margin-ct"><FaHome />{' '}{''}Địa chỉ: 12 Chùa Bộc, Đống Đa, Hà Nội</div>
+                <div className="fix-margin-ct"><FaPhone />{' '}{''}Hotline: 093 463 83 33</div>
+                <div className="fix-margin-ct"><FaMailBulk />{' '}{''}Gmail: vpdoanhvnh@gmail.com</div>
+
+              </div>
+              <div>
+
+              </div>
+
+
+            </Col>
+          </Row>
+        </div>
       </Page>
     );
   }
