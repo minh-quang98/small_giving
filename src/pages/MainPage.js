@@ -78,7 +78,8 @@ class MainPage extends React.Component {
       listData: [],
       idHoatDong: "",
       idTinTuc: "",
-      listTin: []
+      listTin: [],
+
     };
   }
 
@@ -89,7 +90,10 @@ class MainPage extends React.Component {
     this.getUser();
     this.gethd();
     this.gettin();
+
+
   }
+
   gethd = () => {
     fetch(`http://smallgiving.cf/mobileapp/trangquantri/showhdmoi.php`)
       .then((res) => res.json())
@@ -315,9 +319,7 @@ class MainPage extends React.Component {
                           Số dư tài khoản: {' '}
 
                           {this.state.token === ''
-                            ? <div style={{ fontSize: 13, color: '#ae1f17' }}>
-                              Vui lòng đăng nhập vào hệ thống
-                            </div>
+                            ? <span>...</span>
                             : <NumberFormat style={{ fontSize: 17, color: '#ae1f17' }}
                               value={this.state.SoDuTK !== null ? this.state.SoDuTK : 0}
                               displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
@@ -342,12 +344,12 @@ class MainPage extends React.Component {
               <div className="fix-header">
                 <div className="card-header-1">Về chúng tôi</div>
                 <div>
-                  <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                  <img style={{ maxHeight: "40px" }} src='img/logo/after.png'></img>
                 </div>
 
               </div>
               <Row className="about-slide">
-                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                <Col lg="3" md="3" sm="6" xs="6" className="hix-hix">
                   <div className="bg-gradient">
                     <span>
                       <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_1.png?1590391920314">
@@ -364,7 +366,7 @@ class MainPage extends React.Component {
                   </div>
 
                 </Col>
-                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                <Col lg="3" md="3" sm="6" xs="6" className="hix-hix">
                   <div className="bg-gradient">
                     <span>
                       <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_2.png?1590391920314">
@@ -381,7 +383,7 @@ class MainPage extends React.Component {
                   </div>
 
                 </Col>
-                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                <Col lg="3" md="3" sm="6" xs="6" className="hix-hix">
                   <div className="bg-gradient" >
                     <span>
                       <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_3.png?1590391920314">
@@ -398,7 +400,7 @@ class MainPage extends React.Component {
                   </div>
 
                 </Col>
-                <Col lg="3" md="3" sm="12" xs="12" className="hix-hix">
+                <Col lg="3" md="3" sm="6" xs="6" className="hix-hix">
                   <div className="bg-gradient">
                     <span>
                       <img src="https://bizweb.dktcdn.net/100/387/180/themes/765139/assets/icon_why_4.png?1590391920314">
@@ -424,7 +426,7 @@ class MainPage extends React.Component {
               <div className="fix-header">
                 <div className="card-header-1">Hoạt động thiện nguyện gần đây</div>
                 <div>
-                  <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                  <img style={{ maxHeight: "40px" }} src='img/logo/after.png'></img>
                 </div>
 
               </div>
@@ -435,12 +437,20 @@ class MainPage extends React.Component {
                       <div className="qg-02">
                         <div>
                           <figure className="qg-img">
-                            <Media
-                              object
-                              src={item.Anh}
-                              className="rounded mr-2 mb-2"
-                              style={{ width: '100%', height: '100%' }}
-                            />
+                            <Link to={{
+                              pathname: '/donation-detail',
+                              search: `?idHoatDong=${item.idHoatDong}`,
+                              state: {
+                                idHoatDong: item.idHoatDong
+                              }
+                            }}>
+                              <Media
+                                object
+                                src={item.Anh}
+                                className="rounded mr-2 mb-2"
+                                style={{ width: '100%', height: '100%' }}
+                              />
+                            </Link>
                           </figure>
 
                         </div>
@@ -470,7 +480,7 @@ class MainPage extends React.Component {
               <div className="fix-header">
                 <div className="card-header-1">Tin tức mới</div>
                 <div>
-                  <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                  <img style={{ maxHeight: "40px" }} src='img/logo/after.png'></img>
                 </div>
 
               </div>
@@ -481,12 +491,20 @@ class MainPage extends React.Component {
                       <div className="qg-03">
                         <div>
                           <figure className="qg-img">
-                            <Media
-                              object
-                              src={item.Anh}
-                              className="rounded mr-2 mb-2"
-                              style={{ width: '100%', height: '100%' }}
-                            />
+                            <Link to={{
+                              pathname: '/news-detail',
+                              search: `?idTinTuc=${item.idTin}`,
+                              state: {
+                                idTinTuc: item.idTin
+                              }
+                            }}>
+                              <Media
+                                object
+                                src={item.Anh}
+                                className="rounded mr-2 mb-2"
+                                style={{ width: '100%', height: '100%' }}
+                              />
+                            </Link>
                           </figure>
 
                         </div>
@@ -520,7 +538,7 @@ class MainPage extends React.Component {
                 <div className="fix-header-1">
                   <div className="card-header-1">Bảng xếp hạng</div>
                   <div>
-                    <img style={{ maxHeight: "40px" }} src="https://res.cloudinary.com/hocviennganhang/image/upload/v1592591216/darwin/clumjg9euvndfzro0ep9.jpg"></img>
+                    <img style={{ maxHeight: "40px" }} src='img/logo/after.png'></img>
                   </div>
                 </div>
                 <Card className="bg-bxh"

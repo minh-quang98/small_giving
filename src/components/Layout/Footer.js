@@ -8,74 +8,127 @@ import { FaHome } from 'react-icons/fa';
 import { FaMailBulk } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
 import FT from "assets/img/news-banner.png"
-const Footer = () => {
-  return (
-    <div className="ft-fix">
-      <Row className="footer">
-        <Col md={4} className="item-footer">
+class Footer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSumqg: [],
+      dataCountnht: [],
+      dataSumthieu: "",
+    };
+  }
 
-          <div className="text-bold align-center">Liên kết</div>
+  componentDidMount() {
+    this.getSum();
+    this.getCount();
+    this.getThieu();
+  }
+  getSum = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/tongquyengop.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataSumqg: data
+        })
+      })
+  };
+  getCount = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/tongnguoiquyengop.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataCountnht: data
+        })
+      })
+  };
+  getThieu = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/soduhoatdong.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataSumthieu: data.ConThieu
+        })
+      })
+  };
 
-          <div className="fix-margin">
-            <a href="http://www.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Học viện Ngân Hàng</a>
-          </div>
-          <div className="fix-margin">
-            <a href="http://mis.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Khoa hệ thống thông tin quản lý</a>
-          </div>
-          <div className="fix-margin">
-            <a href="https://www.openwaygroup.com/"><FaGlobeAmericas />{' '}{''} OpenWay Group</a>
-          </div>
-          <div className="fix-margin">
-            <a href="https://www.facebook.com/hsvhvnh"><FaGlobeAmericas />{' '}{''} Đoàn thanh niên & Hội sinh viên</a>
-          </div>
+  render() {
+    return (
+      <div className="ft-fix">
+        <Row className="footer">
+          <Col md={4} className="item-footer">
 
+            <div className="text-bold align-center">Liên kết</div>
 
-
-        </Col>
-        <Col md={4} className="item-footer">
-
-          <div className="text-bold align-center"> Thông tin liên hệ</div>
-
-          <div className="fix-margin"><FaHome />{' '}{''}Địa chỉ: 12 Chùa Bộc, Đống Đa, Hà Nội</div>
-          <div className="fix-margin"><FaPhone />{' '}{''}Hotline: 093 463 83 33</div>
-          <div className="fix-margin"><FaMailBulk />{' '}{''}Gmail: vpdoanhvnh@gmail.com</div>
-        </Col>
-        <Col md={4} className="item-footer">
-
-          <div className="text-bold align-center">
-            Tải ứng dụng Small Giving trên
-          </div>
-          <div>
-            <li md={6} className="display-bf">
-              <div >
-                <img src="https://static.mservice.io/img/tai-appstore.png" width="130" class="img-fluid" alt=""></img>
-              </div>
-            </li>
-            <li md={6} className="display-bf">
-              <div >
-                <img src="https://static.mservice.io/img/tai-google-play.png" width="130" class="img-fluid" alt=""></img>
-              </div>
-            </li>
-          </div>
-          {/* <div>
             <div className="fix-margin">
-              Số lượt truy cập hiện tại
-                </div>
+              <a href="http://www.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Học viện Ngân Hàng</a>
+            </div>
             <div className="fix-margin">
-              Số người đã truy cập
+              <a href="http://mis.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Khoa hệ thống thông tin quản lý</a>
+            </div>
+            <div className="fix-margin">
+              <a href="https://www.openwaygroup.com/"><FaGlobeAmericas />{' '}{''} OpenWay Group</a>
+            </div>
+            <div className="fix-margin">
+              <a href="https://www.facebook.com/hsvhvnh"><FaGlobeAmericas />{' '}{''} Đoàn thanh niên & Hội sinh viên</a>
+            </div>
+
+
+
+          </Col>
+          <Col md={4} className="item-footer">
+
+            <div className="text-bold align-center"> Thông tin liên hệ</div>
+
+            <div className="fix-margin"><FaHome />{' '}{''}Địa chỉ: 12 Chùa Bộc, Đống Đa, Hà Nội</div>
+            <div className="fix-margin"><FaPhone />{' '}{''}Hotline: 093 463 83 33</div>
+            <div className="fix-margin"><FaMailBulk />{' '}{''}Gmail: vpdoanhvnh@gmail.com</div>
+          </Col>
+          <Col md={4} className="item-footer">
+
+            <div className="text-bold align-center">
+              Tải ứng dụng Small Giving trên
+          </div>
+            <div>
+              <li md={6} className="display-bf">
+                <div >
+                  <img src="https://static.mservice.io/img/tai-appstore.png" width="130" class="img-fluid" alt=""></img>
                 </div>
-          </div> */}
+              </li>
+              <li md={6} className="display-bf">
+                <div >
+                  <img src="https://static.mservice.io/img/tai-google-play.png" width="130" class="img-fluid" alt=""></img>
+                </div>
+              </li>
+            </div>
+            <div>
+              {this.state.dataSumqg.map((Item, index) => {
+                return (
+                  <div className="fix-margin">
+                    Số tiền đã nhận quyên góp: {Item.TongSoTienQuyenGop}
+                  </div>
+                );
+              })}
 
-
-        </Col>
-      </Row>
-      <div className="end-foot">
-        @Copyright MisLab 2020
+              {this.state.dataCountnht.map((Item, index) => {
+                return (
+                  <div className="fix-margin">
+                    Tổng số lượt ủng hộ: {Item.SoLuongNguoiQuyenGop}
+                  </div>
+                );
+              })}
+              <div className="fix-margin">
+                Số tiền còn thiếu: {this.state.dataSumthieu}
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <div className="end-foot">
+          @Copyright MisLab 2020
       </div>
-    </div>
+      </div>
 
 
-  );
-};
-
+    );
+  };
+}
 export default Footer;

@@ -23,13 +23,12 @@ class MainLayout extends React.Component {
 
   componentDidMount() {
     this.checkBreakpoint(this.props.breakpoint);
-    //this.handleContentClick(this.props.breakpoint)
 
     // setTimeout(() => {
     //   if (!this.notificationSystem) {
     //     return;
     //   }
-    //
+
     //   this.notificationSystem.addNotification({
     //     title: <MdImportantDevices />,
     //     message: 'Welome to Reduction Admin!',
@@ -41,7 +40,7 @@ class MainLayout extends React.Component {
     //   if (!this.notificationSystem) {
     //     return;
     //   }
-    //
+
     //   this.notificationSystem.addNotification({
     //     title: <MdLoyalty />,
     //     message:
@@ -64,16 +63,15 @@ class MainLayout extends React.Component {
     }
   };
 
-
   checkBreakpoint(breakpoint) {
     switch (breakpoint) {
-      case 'xs': this.openSidebar('close');
-      case 'sm': this.openSidebar('close');
-      case 'md': this.openSidebar('close');
-      //return this.openSidebar('open');
+      case 'xs':
+      case 'sm':
+      case 'md':
+        return this.openSidebar('close');
 
-      case 'lg': return this.openSidebar('open');
-      case 'xl': return this.openSidebar('open');
+      case 'lg':
+      case 'xl':
       default:
         return this.openSidebar('open');
     }

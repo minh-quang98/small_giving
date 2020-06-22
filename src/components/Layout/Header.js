@@ -200,7 +200,7 @@ class Header extends React.Component {
             {this.state.token !== ""
               ? <div className="d-flex justify-content-between">
                 <NavItem className="mr-2 mt-2">
-                  <NavLink id="Popover1" className="position-relative">
+                  <NavLink id="Popover1" className="position-relative noti-none">
                     {isNotificationConfirmed ? (
                       <MdNotificationsNone
                         size={25}
@@ -210,7 +210,7 @@ class Header extends React.Component {
                     ) : (
                         <MdNotificationsActiveWithBadge
                           size={25}
-                          className="text-secondary can-click animated swing infinite"
+                          className="text-secondary can-click animated swing infinite "
                           onClick={this.toggleNotificationPopover}
                         />
                       )}
@@ -221,7 +221,7 @@ class Header extends React.Component {
                     toggle={this.toggleNotificationPopover}
                     target="Popover1"
                   >
-                    <PopoverBody>
+                    <PopoverBody className="limit-notiss">
                       <Notifications notificationsData={this.state.dataerror ? this.state.dataError : this.state.notiData} />
                     </PopoverBody>
                   </Popover>
@@ -277,7 +277,7 @@ class Header extends React.Component {
                     style={{ minWidth: 113 }}
                     onClick={() => {
                       this.setState({
-                        showModal:true
+                        showModal: true
                       })
                     }}
                   >

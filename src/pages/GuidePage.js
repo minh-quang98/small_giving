@@ -27,65 +27,73 @@ const GuidePage = () => {
 
       ]}
     >
-      <Row className="guide-fix">
-        <Col md={6} sm={6}>
-          <div className="fix-x-1 d-inline">
-            <img src={step1}>
-            </img>
-          </div>
-
-          <div className="fix-x-1 ">
-            <div className="fix-2">
-              Nhập vào số tài khoản: 1039588920000333 <span>
-                Bước 2
-              </span>
-
+      <div className="bg-guide">
+        <Row className="fix-heigh-bg">
+          <Col md={6} sm={12} xs={12} className="guide-layout">
+            <div className="fix-img-guide">
+              <img src={step1}>
+              </img>
             </div>
-            <div className="guide-step">
-            </div>
-          </div>
-          <div className="fix-x-1">
-            <img src={step3}>
-            </img>
-          </div>
-          <div className="fix-x-1 ">
-            <div className="fix-2">
-              Tại mục nội dung chuyển khoản:<br /> Nhập vào số điện thoại mà bạn đã đăng ký tài khoản ví <span>
-                Bước 4
-              </span>
-
-            </div>
-
-          </div>
-        </Col>
-        <Col md={6} sm={6}>
-
-          <div className="fix-x">
-            <div className="fix-1">
+            <div className="title-guide">
               <span>
                 Bước 1
-              </span> Chọn ngân hàng thụ hưởng: Techcombank (Ngân hàng TMCP Kỹ thương Việt Nam)
-
+                </span> Chọn ngân hàng thụ hưởng: Vietcombank <br /> (Ngân hàng TMCP Ngoại Thương Việt Nam)
             </div>
-          </div>
-          <div className="fix-x">
-            <img src={step2}></img>
-          </div>
-          <div className="fix-x">
-            <div className="fix-1">
-              <span >
-                Bước 3
-    </span> Nhập số tiền bạn muốn nạp vào ví
-            </div>
+          </Col>
+          <Col md={6} sm={12} xs={12}>
 
-          </div>
-          <div className="fix-x">
-            <img src={step4}></img>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+        <Row >
+          <Col md={6} sm={12} xs={12}>
+          </Col>
+          <Col md={6} sm={12} xs={12} className="guide-layout-2">
+            <div className="fix-img-guide">
+              <img src={step2}></img>
+            </div>
+            <div className="title-guide-2">
+              <span>
+                Bước 2
+              </span> Nhập vào số tài khoản: 0451000504125
+            </div>
+          </Col>
+        </Row>
+        <Row >
+          <Col md={6} sm={12} xs={12} className="guide-layout">
+            <div className="fix-img-guide">
+              <img src={step3}>
+              </img>
+            </div>
+            <div className="title-guide">
+              <div className="fix-guide">
+                <span >
+                  Bước 3
+                </span> Nhập số tiền bạn muốn nạp vào ví
+              </div>
+            </div>
+          </Col>
+          <Col md={6} sm={12} xs={12}>
+
+          </Col>
+        </Row>
+        <Row >
+          <Col md={6} sm={12} xs={12}>
+
+          </Col>
+          <Col md={6} sm={12} xs={12} className="guide-layout-2">
+            <div className="fix-img-guide">
+              <img src={step4}></img>
+            </div>
+            <div className="title-guide-2">
+              <span>
+                Bước 4
+              </span> Tại mục nội dung chuyển khoản:<br /> Nhập vào "TN"+"số điện thoại mà bạn đã đăng ký tài khoản" <br /> (Ví dụ: TN0985123123)
+            </div>
+          </Col>
+        </Row>
+      </div>
       <div className="align-center notify-guide">
-        Lưu ý*: Các giao dịch nạp tiền sẽ được cập nhật vào 18:00 mỗi ngày.
+        Lưu ý*: Các giao dịch nạp tiền sẽ được cập nhật sau 1-2 phút.
       </div>
     </Page>
   );

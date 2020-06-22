@@ -10,19 +10,21 @@ const Notifications = ({ notificationsData }) => {
     notificationsData &&
     notificationsData.length &&
     notificationsData.map(({ id, TieuDeThongBao, NoiDung, ThoiGian }) => (
-      <Media key={id} className="pb-2 fixx-noti">
-        {/*<Media left className="align-self-center pr-3">*/}
-        {/*  <Avatar tag={Media} object src={avatar} alt="Avatar" />*/}
-        {/*</Media>*/}
-        <Media body middle className="align-self-center">
-          <h6>{TieuDeThongBao}</h6>
-          <div className="text-muted">{ThoiGian}</div>
-          <p>{NoiDung}...</p>
-        </Media>
-        <Media right className="align-self-center">
+      <div className="limit-noti">
+        <Media key={id} className="pb-2 fixx-noti">
+          {/*<Media left className="align-self-center pr-3">*/}
+          {/*  <Avatar tag={Media} object src={avatar} alt="Avatar" />*/}
+          {/*</Media>*/}
+          <Media body middle className="align-self-center">
+            <h6>{TieuDeThongBao}</h6>
+            <div className="text-muted">{ThoiGian}</div>
+            <p>{NoiDung}...</p>
+          </Media>
+          <Media right className="align-self-center">
 
+          </Media>
         </Media>
-      </Media>
+      </div>
     ))
   );
 };

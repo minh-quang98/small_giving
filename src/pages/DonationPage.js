@@ -335,8 +335,8 @@ class DonationPage extends React.Component {
             {this.state.listData.map((item, index) => (
 
               <Col lg="12" md="12" sm="12" xs="12" className="fix-inline">
-                <Card>
-                  <CardHeader className="d-flex justify-content-between">
+                <Card className="donate-layout">
+                  <CardHeader className="d-flex justify-content-between donate-header">
                     <b className="text-truncate">{item.TenHoatDong}{' '}</b>
                     <small className="text-muted text-capitalize mt-1">
                       <Link to={{
@@ -350,7 +350,7 @@ class DonationPage extends React.Component {
                       </Link>
                     </small>
                   </CardHeader>
-                  <CardBody style={{ textAlign: 'center' }}>
+                  <CardBody className="donate-body" style={{ textAlign: 'center' }}>
                     {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
                     <figure className="fix-img">
                       <Link to={{
@@ -388,54 +388,58 @@ class DonationPage extends React.Component {
                     >
                       Quyên góp
                     </Button>
+                    <ListGroupItem className="fix-donate">
+                      <Row>
+                        <Col md={6} sm="6" xs="6">
+                          {item.SoNguoi} Lượt quyên góp
+
+                          {/* <IconWidget
+                            icon={MdFace}
+                            bgColor="white"
+                            inverse={false}
+                            title="Lượt quyên góp: &nbsp;"
+                            subtitle={item.SoNguoi}
+                          /> */}
+                        </Col>
+                        <Col md={6} sm="6" xs="6">
+                          {item.ThoiGian} Ngày còn lại
+                          {/* <IconWidget
+                            className="mt-1"
+                            icon={MdAlarm}
+                            bgColor="white"
+                            inverse={false}
+                            title="Ngày còn lại: &nbsp;"
+                            subtitle={item.ThoiGian}
+                          /> */}
+                        </Col>
+                      </Row>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <Row>
+                        <Col md={6} sm="6" xs="6" className="fix-bo">
+                          {/*<Label check>*/}
+                          {/*  <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện*/}
+                          {/*    <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>*/}
+                          {/*</Label>*/}
+                          <Button onClick={() => this.setState({
+                            idHoatDong: item.idHoatDong
+                          }, () => this.onFollow())}>Theo dõi</Button>
+                        </Col>
+                        <Col md={6} sm="6" xs="6" className="fix-bo">
+                          {/*<Label check>*/}
+                          {/*  <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động*/}
+                          {/*    <Input type="checkbox" className={'ml-3'} />*/}
+                          {/*</Label>*/}
+                          <Button onClick={() => this.setState({
+                            idHoatDong: item.idHoatDong
+                          }, () => this.handleJoinActivity())}>Góp sức</Button>
+                        </Col>
+                      </Row>
+
+                    </ListGroupItem>
                   </CardBody>
                 </Card>
-                <ListGroupItem className="fix-donate">
-                  <Row>
-                    <Col md={6}>
-                      <IconWidget
-                        icon={MdFace}
-                        bgColor="white"
-                        inverse={false}
-                        title="Lượt quyên góp: &nbsp;"
-                        subtitle={item.SoNguoi}
-                      />
-                    </Col>
-                    <Col md={6}>
-                      <IconWidget
-                        className="mt-1"
-                        icon={MdAlarm}
-                        bgColor="white"
-                        inverse={false}
-                        title="Ngày còn lại: &nbsp;"
-                        subtitle={item.ThoiGian}
-                      />
-                    </Col>
-                  </Row>
-                </ListGroupItem>
-                <ListGroupItem>
-                  <Row>
-                    <Col md={6} className="fix-bo">
-                      {/*<Label check>*/}
-                      {/*  <MdBubbleChart size={25} style={{ color: '#ae1f17' }} />Theo dõi sự kiện*/}
-                      {/*    <Input type="checkbox" className={'ml-3'} onChange={(data)=>console.log("test", data)} checked={true}/>*/}
-                      {/*</Label>*/}
-                      <Button onClick={() => this.setState({
-                        idHoatDong: item.idHoatDong
-                      }, () => this.onFollow())}>Theo dõi</Button>
-                    </Col>
-                    <Col md={6} className="fix-bo">
-                      {/*<Label check>*/}
-                      {/*  <MdShowChart size={25} style={{ color: '#ae1f17' }} />Tham gia hoạt động*/}
-                      {/*    <Input type="checkbox" className={'ml-3'} />*/}
-                      {/*</Label>*/}
-                      <Button onClick={() => this.setState({
-                        idHoatDong: item.idHoatDong
-                      }, () => this.handleJoinActivity())}>Góp sức</Button>
-                    </Col>
-                  </Row>
 
-                </ListGroupItem>
               </Col>
             ))}
             {/*<Col lg="4" md="12" sm="12" xs="12">*/}

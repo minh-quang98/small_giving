@@ -127,15 +127,15 @@ class NewsDetailPage extends Component {
 
   render() {
     // const item = this.props.item;
-    let {dataTinTuc} = this.state
+    let { dataTinTuc } = this.state
     return (
-      <Page  className="bcquyengop"
-             title="Tin Tức/ Chi tiết tin tức"
-             breadcrumbs={[
-               { name: 'Tin Tức/ Chi tiết tin tức' },
+      <Page className="bcquyengop"
+        title="Tin Tức/ Chi tiết tin tức"
+        breadcrumbs={[
+          { name: 'Tin Tức/ Chi tiết tin tức' },
 
-             ]}>
-        <h1 className="text-center">{dataTinTuc.TenTin}</h1>
+        ]}>
+        <h1 className="text-center title-detail">{dataTinTuc.TenTin}</h1>
         <Row>
           <Col lg="1"></Col>
           <Col lg="10" md="12" sm="12" xs="12">
