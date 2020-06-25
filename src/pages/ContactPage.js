@@ -37,11 +37,11 @@ class ContactPage extends React.Component {
         NoiDung: this.state.noiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Gopy/gopyinsert.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Gopy/gopyinsert.php`, config)
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Success") {
-          this.props.enqueueSnackbar('Gửi góp ý thành công !', {
+          this.props.enqueueSnackbar('Góp ý của bạn đã được gửi về hệ thống !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -52,7 +52,7 @@ class ContactPage extends React.Component {
             window.location.reload();
           }, 1000)
         } else {
-          this.props.enqueueSnackbar('Không được để trống nội dung !', {
+          this.props.enqueueSnackbar('Bạn cần nhập một nội dung góp ý nào đó !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"

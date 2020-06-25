@@ -45,7 +45,7 @@ class Khaosatsua extends React.Component {
     this.getnhataitro();
   }
   getnhataitro = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownhataitro.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -63,7 +63,7 @@ class Khaosatsua extends React.Component {
         idKhaoSat: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/select.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/taokhaosat/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -97,7 +97,7 @@ class Khaosatsua extends React.Component {
 
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/update.php', config2)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/taokhaosat/update.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {

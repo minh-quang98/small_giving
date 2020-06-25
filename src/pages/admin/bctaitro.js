@@ -47,7 +47,7 @@ class bctaitro extends React.Component {
     this.getdata2();
   }
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownd.php')
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -59,7 +59,7 @@ class bctaitro extends React.Component {
       });
   };
   getdata2 = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showdiemdanh.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showdiemdanh.php')
       .then(response => response.json())
       .then(datashow2 => {
         this.setState(
@@ -82,7 +82,7 @@ class bctaitro extends React.Component {
           TenNguoiDung: this.state.name2
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/thuchiendd.php', config)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/baocao/thuchiendd.php', config)
         .then(response => response.json())
         .then(data => {
           if (data.message === "No post found") {
@@ -111,7 +111,7 @@ class bctaitro extends React.Component {
         TenNguoiDung: this.state.name2
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/tongthuchiendd.php', config2)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/baocao/tongthuchiendd.php', config2)
       .then(response => response.json())
       .then(tong => {
         this.setState(

@@ -36,7 +36,7 @@ class Diemdanhsua extends React.Component {
   //   this.getnhataitro();
   // }
   // getnhataitro = async () => {
-  //   fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+  //   fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownhataitro.php')
   //     .then(response => response.json())
   //     .then(dataselect => {
   //       this.setState(
@@ -54,7 +54,7 @@ class Diemdanhsua extends React.Component {
         idDiemDanh: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/select.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/diemdanh/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -78,7 +78,7 @@ class Diemdanhsua extends React.Component {
 
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/update.php', config2)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/diemdanh/update.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {

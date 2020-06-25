@@ -35,7 +35,7 @@ class Nhomndthem extends React.Component {
           TenNhom: this.state.name,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/insert.php', config)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/nhomnguoidung/insert.php', config)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {

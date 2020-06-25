@@ -59,7 +59,7 @@ class DonationDetailPage extends Component {
         idHoatDong: this.state.idHoatDong,
       }),
     };
-    fetch(`http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/select.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/trangquantri/admin/hoatdong/select.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -76,7 +76,7 @@ class DonationDetailPage extends Component {
           token: this.state.token,
         }),
       };
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -93,7 +93,7 @@ class DonationDetailPage extends Component {
         idNguoiDung: this.state.idNguoiDung,
       }),
     };
-    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Thongtin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -134,11 +134,11 @@ class DonationDetailPage extends Component {
         idNhaHaoTam: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Theodoi/theodoi.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Theodoi/theodoi.php`, config)
       .then(res => res.json())
       .then(data => {
         if (data.message === "follow") {
-          this.props.enqueueSnackbar('Theo dõi thành công !', {
+          this.props.enqueueSnackbar('Các thông tin liên quan đến hoạt động này sẽ được gửi đến bạn !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -146,12 +146,12 @@ class DonationDetailPage extends Component {
             variant: 'success',
           });
         } else if (data.message === "unfollow") {
-          this.props.enqueueSnackbar('Bỏ theo dõi thành công !', {
+          this.props.enqueueSnackbar('Bạn đã hủy theo dõi !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
             },
-            variant: 'success',
+            variant: 'error',
           });
         } else {
           this.props.enqueueSnackbar(data.message, {
@@ -174,11 +174,11 @@ class DonationDetailPage extends Component {
         idNhaHaoTam: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Gopsuc/dangkigopsuc.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Gopsuc/dangkigopsuc.php`, config)
       .then(res => res.json())
       .then(data => {
         if (data.message === "join") {
-          this.props.enqueueSnackbar('Tham gia thành công !', {
+          this.props.enqueueSnackbar('Đăng ký thành công, chúng tôi sẽ liên hệ với bạn sớm nhất có thể !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -186,12 +186,12 @@ class DonationDetailPage extends Component {
             variant: 'success',
           });
         } else if (data.message === "unjoin") {
-          this.props.enqueueSnackbar('Bỏ tham gia thành công !', {
+          this.props.enqueueSnackbar('Hẹn gặp bạn trong các chương trình sắp tới !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
             },
-            variant: 'success',
+            variant: 'error',
           });
         } else {
           this.props.enqueueSnackbar(data.message, {

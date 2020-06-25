@@ -115,48 +115,48 @@ class ModalChangePassword extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             idNguoiDung: data.idNguoiDung
-          }, ()=>this.changePassword())
+          }, () => this.changePassword())
         })
     }
   }
 
-      changePassword = () => {
-          let config = {
-            method: "POST",
-            body: JSON.stringify({
-              idNguoiDung: this.state.idNguoiDung,
-              MatKhau: this.state.oldpassword,
-              NewPass: this.state.newpassword,
-            }),
-          }
-          fetch(`http://smallgiving.cf/mobileapp/Doimatkhau/doipass.php`, config)
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.message === "Success") {
-                this.props.enqueueSnackbar('Đổi mật khẩu thành công !', {
-                  anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "right"
-                  },
-                  variant: 'success',
-                });
-                this.props.onHideModal()
-              } else {
-                this.props.enqueueSnackbar('Không tồn tại !', {
-                  anchorOrigin: {
-                    vertical: "top",
-                    horizontal: "right"
-                  },
-                  variant: 'error',
-                });
-              }
-            })
-      }
+  changePassword = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiDung: this.state.idNguoiDung,
+        MatKhau: this.state.oldpassword,
+        NewPass: this.state.newpassword,
+      }),
+    }
+    fetch(`http://apis.bav.edu.vn/smallgiving/Doimatkhau/doipass.php`, config)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message === "Success") {
+          this.props.enqueueSnackbar('Mật khẩu mới đã được cập nhật !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          this.props.onHideModal()
+        } else {
+          this.props.enqueueSnackbar('Không tồn tại !', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+        }
+      })
+  }
 
 
   render() {
@@ -180,7 +180,7 @@ class ModalChangePassword extends React.Component {
           <Modal.Body>
 
             <div className='mb-3 mt-1'>
-              <h1 className="text-center " style={{fontSize: 20,}}><b>ĐỔI MẬT KHẨU</b></h1>
+              <h1 className="text-center " style={{ fontSize: 20, }}><b>ĐỔI MẬT KHẨU</b></h1>
             </div>
 
             <div className='mt-5 mb-5 ml-3 mr-3'>
@@ -193,11 +193,11 @@ class ModalChangePassword extends React.Component {
                   maxLength={20}
                   value={this.state.oldpassword}
                   onChange={(e) => this.setState({
-                      oldpassword: e.target.value.trim(),
-                      errOldPass: false
-                    },
+                    oldpassword: e.target.value.trim(),
+                    errOldPass: false
+                  },
                     () => {
-                      this.state.oldpassword.length == 0 ? this.setState({errOldPass: true}) : this.setState({errOldPass: false})
+                      this.state.oldpassword.length == 0 ? this.setState({ errOldPass: true }) : this.setState({ errOldPass: false })
                     }
                   )}
                 />
@@ -218,11 +218,11 @@ class ModalChangePassword extends React.Component {
                   maxLength={20}
                   value={this.state.newpassword}
                   onChange={(e) => this.setState({
-                      newpassword: e.target.value.trim(),
-                      errNewPass: false
-                    },
+                    newpassword: e.target.value.trim(),
+                    errNewPass: false
+                  },
                     () => {
-                      this.state.newpassword.length == 0 ? this.setState({errNewPass: true}) : this.setState({errNewPass: false})
+                      this.state.newpassword.length == 0 ? this.setState({ errNewPass: true }) : this.setState({ errNewPass: false })
                     }
                   )}
                 />
@@ -238,11 +238,11 @@ class ModalChangePassword extends React.Component {
                   maxLength={20}
                   value={this.state.repassword}
                   onChange={(e) => this.setState({
-                      repassword: e.target.value.trim(),
-                      errRePass: false
-                    },
+                    repassword: e.target.value.trim(),
+                    errRePass: false
+                  },
                     () => {
-                      this.state.repassword.length == 0 ? this.setState({errRePass: true}) : this.setState({errRePass: false})
+                      this.state.repassword.length == 0 ? this.setState({ errRePass: true }) : this.setState({ errRePass: false })
                     }
                   )}
                 />
@@ -255,10 +255,10 @@ class ModalChangePassword extends React.Component {
                   // type="button"
                   onClick={this.onSubmit}
                 >
-                                          <span>
-                                            Xác nhận
-                                            <i className="flaticon-right"/>
-                                          </span>
+                  <span>
+                    Xác nhận
+                                            <i className="flaticon-right" />
+                  </span>
                 </button>
               </div>
             </div>

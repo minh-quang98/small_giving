@@ -47,7 +47,7 @@ class Nguoidungsua extends React.Component {
     this.getdataselect();
   }
   getdataselect = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownhomnd.php')
       .then((response) => response.json())
       .then((dataselect) => {
         this.setState({
@@ -64,7 +64,7 @@ class Nguoidungsua extends React.Component {
         idNguoiDung: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nguoidung/testselect.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/nguoidung/testselect.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -99,7 +99,7 @@ class Nguoidungsua extends React.Component {
           TenNhom: this.state.tennhom,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nguoidung/testupdate.php', config2)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/nguoidung/testupdate.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {

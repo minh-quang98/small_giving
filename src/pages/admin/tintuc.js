@@ -82,7 +82,7 @@ class tintuc extends React.Component {
   }
 
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showtintuc.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showtintuc.php')
       .then(response => response.json())
       .then(data => {
         if (data.message === "No post found") {

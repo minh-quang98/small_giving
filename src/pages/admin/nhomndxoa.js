@@ -21,7 +21,7 @@ class Nhomndxoa extends React.Component {
     //     idGiaoDich: this.props.chooseId,
     //   }),
     // };
-    // fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/thuchienkhaosat/delete.php', config)
+    // fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/thuchienkhaosat/delete.php', config)
     //   .then(response => response.json())
     //   .then(data => {
     //     if (data.message === "success") {

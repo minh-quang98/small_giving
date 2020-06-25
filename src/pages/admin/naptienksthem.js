@@ -41,7 +41,7 @@ class Naptienthem extends React.Component {
                     token: this.state.token
                 })
             }
-            fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+            fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
                 .then((response) => response.json())
                 .then((data) => {
                     this.setState({
@@ -61,7 +61,7 @@ class Naptienthem extends React.Component {
                     SoTien: this.state.money,
                 }),
             };
-            fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/naptien/khaosat.php', config1)
+            fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/naptien/khaosat.php', config1)
                 .then(response => response.json())
                 .then((data) => {
                     if (data.message === "success") {
@@ -90,7 +90,7 @@ class Naptienthem extends React.Component {
                 SoTien: this.state.money,
             }),
         };
-        fetch('https://misappmobile.000webhostapp.com/apiway4/naptien.php', config2)
+        fetch('http://apis.bav.edu.vn/smallgiving/apiway4/naptien.php', config2)
             .then(response => response.json())
             .then((data) => {
                 if (data.message === "success") {
@@ -144,7 +144,7 @@ class Naptienthem extends React.Component {
         event.preventDefault();
     };
     getdataselect = async () => {
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
+        fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showkhaosat.php')
             .then(response => response.json())
             .then(dataselect => {
                 this.setState(

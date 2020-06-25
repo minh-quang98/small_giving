@@ -49,7 +49,7 @@ class Khaosatthem extends React.Component {
     });
   };
   getnhataitro = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownhataitro.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -68,7 +68,7 @@ class Khaosatthem extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -93,7 +93,7 @@ class Khaosatthem extends React.Component {
           SoTienML: this.state.eachturn,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/insert.php', config)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/taokhaosat/insert.php', config)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -125,7 +125,7 @@ class Khaosatthem extends React.Component {
         EMail: "abc@gmail.com"
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/taotaikhoan.php', config)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {

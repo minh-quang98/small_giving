@@ -54,7 +54,7 @@ const GuidePage = () => {
             <div className="title-guide-2">
               <span>
                 Bước 2
-              </span> Nhập vào số tài khoản: 0451000504125
+              </span> Nhập vào số tài khoản: 1014885642
             </div>
           </Col>
         </Row>
@@ -87,7 +87,7 @@ const GuidePage = () => {
             <div className="title-guide-2">
               <span>
                 Bước 4
-              </span> Tại mục nội dung chuyển khoản:<br /> Nhập vào "TN"+"số điện thoại mà bạn đã đăng ký tài khoản" <br /> (Ví dụ: TN0985123123)
+              </span> Tại mục nội dung chuyển khoản:<br /> Nhập vào "TN"+"số điện thoại mà bạn đã đăng ký tài khoản" <br /> (Ví dụ: TN 0985123123)
             </div>
           </Col>
         </Row>

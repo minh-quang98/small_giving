@@ -29,7 +29,7 @@ import Animate from 'animate.css-react';
 //import { Link } from 'react-router-dom';
 //import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import 'animate.css/animate.css';
-
+import CountUp from 'react-countup';
 const today = new Date();
 const lastWeek = new Date(
   today.getFullYear(),
@@ -53,6 +53,10 @@ class MainPage extends React.Component {
         {
           src: 'img/Slide/bn3.png',
           key: '3',
+        },
+        {
+          src: 'img/Slide/bn4.png',
+          key: '4',
         },
 
       ],
@@ -79,7 +83,11 @@ class MainPage extends React.Component {
       idHoatDong: "",
       idTinTuc: "",
       listTin: [],
-
+      dataSumqg: [],
+      dataCountnht: [],
+      dataSumthieu: "",
+      datasumact: [],
+      counter: []
     };
   }
 
@@ -90,12 +98,56 @@ class MainPage extends React.Component {
     this.getUser();
     this.gethd();
     this.gettin();
-
+    this.getSum();
+    this.getCount();
+    this.getThieu();
+    this.getsumact();
 
   }
+  getsumact = async () => {
+    fetch(
+      'http://apis.bav.edu.vn/smallgiving/trangquantri/soluonghoatdong.php',
+    )
+      .then(response => response.json())
+      .then(datasumact => {
+        this.setState(
+          {
+            datasumact: datasumact,
+          },
+          () => console.log('kiemtradulieu', this.state.datasumact),
+        );
+      });
+  };
+  getSum = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/tongquyengop.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataSumqg: data
+        })
+      })
+  };
+  getCount = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/tongnguoiquyengop.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataCountnht: data
+        })
+      })
+  };
+  getThieu = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/soduhoatdong.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataSumthieu: data.ConThieu
+        })
+      })
+  };
 
   gethd = () => {
-    fetch(`http://smallgiving.cf/mobileapp/trangquantri/showhdmoi.php`)
+    fetch(`http://apis.bav.edu.vn/smallgiving/trangquantri/showhdmoi.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -104,7 +156,7 @@ class MainPage extends React.Component {
       })
   }
   gettin = () => {
-    fetch(`http://smallgiving.cf/mobileapp/trangquantri/showtinmoi.php`)
+    fetch(`http://apis.bav.edu.vn/smallgiving/trangquantri/showtinmoi.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -114,7 +166,7 @@ class MainPage extends React.Component {
   }
 
   getRankInfo = () => {
-    fetch('http://smallgiving.cf/mobileapp/Bangxephang/bangxephang.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/Bangxephang/bangxephang.php')
       .then((response) => response.json())
       .then((data) => {
         if (data.message !== 'No post found') {
@@ -139,7 +191,7 @@ class MainPage extends React.Component {
           token: this.state.token,
         }),
       };
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -157,7 +209,7 @@ class MainPage extends React.Component {
   //       idNguoiDung: this.state.idNguoiDung,
   //     }),
   //   };
-  //   fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
+  //   fetch(`http://apis.bav.edu.vn/smallgiving/Thongtin/thongtin.php`, config)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       this.setState({
@@ -173,7 +225,7 @@ class MainPage extends React.Component {
         ClientNumber: this.state.phone,
       }),
     };
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/laythongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -182,29 +234,36 @@ class MainPage extends React.Component {
       });
   };
 
-  getInfoCheckInDB = () => {
-    fetch(`http://smallgiving.cf/mobileapp/trangquantri/laythongtindd.php`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          checkInDB: data.idDiemDanh,
-          checkInMoney: data.SoTienML
-        }, () => this.handleCheckIn())
-      })
-  }
+  // getInfoCheckInDB = () => {
+  //   fetch(`http://apis.bav.edu.vn/smallgiving/trangquantri/laythongtindd.php`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       this.setState({
+  //         checkInDB: data.idDiemDanh,
+  //         checkInMoney: data.SoTienML
+  //       }, () => this.handleCheckIn())
+  //     })
+  // }
 
   handleCheckIn = () => {
     let config = {
       method: 'POST',
       body: JSON.stringify({
-        idNhaHaoTam: this.state.idNguoiDung,
+        ClientNumber: this.state.phone,
       }),
     };
-    fetch(`http://smallgiving.cf/mobileapp/Diemdanh/diemdanh.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/diemdanh.php`, config)
       .then((res) => res.json())
       .then((data) => {
-        if (data.message === 'Success') {
-          this.handleMoneyCheckIn()
+        if (data.message === 'success') {
+          this.props.enqueueSnackbar('Phần thưởng đã được chuyển tới quỹ của bạn !', {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'right',
+            },
+            variant: 'success',
+          });
+          //window.location.reload()
         } else if (data.message === 'Ban da diem danh roi') {
           this.props.enqueueSnackbar('Bạn đã điểm danh rồi', {
             anchorOrigin: {
@@ -227,38 +286,38 @@ class MainPage extends React.Component {
       });
   };
 
-  handleMoneyCheckIn = () => {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        NumberNguoiGui: this.state.checkInDB,
-        NumberNguoiNhan: this.state.phone,
-        SoTien: this.state.checkInMoney
-      })
-    }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'success') {
-          this.props.enqueueSnackbar('Điểm danh thành công !', {
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'right',
-            },
-            variant: 'success',
-          });
-          window.location.reload()
-        } else {
-          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'right',
-            },
-            variant: 'error',
-          });
-        }
-      })
-  }
+  // handleMoneyCheckIn = () => {
+  //   let config = {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       NumberNguoiGui: this.state.checkInDB,
+  //       NumberNguoiNhan: this.state.phone,
+  //       SoTien: this.state.checkInMoney
+  //     })
+  //   }
+  //   fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/chuyentien.php`, config)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.message === 'success') {
+  //         this.props.enqueueSnackbar('Phần thưởng đã được chuyển tới quỹ của bạn !', {
+  //           anchorOrigin: {
+  //             vertical: 'top',
+  //             horizontal: 'right',
+  //           },
+  //           variant: 'success',
+  //         });
+  //         window.location.reload()
+  //       } else {
+  //         this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+  //           anchorOrigin: {
+  //             vertical: 'top',
+  //             horizontal: 'right',
+  //           },
+  //           variant: 'error',
+  //         });
+  //       }
+  //     })
+  // }
 
   render() {
     let { fakeData } = this.state;
@@ -305,7 +364,7 @@ class MainPage extends React.Component {
                             <Link to={'/consider'}>(Link)</Link>
                           </ListGroupItem>}
                           <ListGroupItem className="text-center diemdanh">
-                            <Button onClick={() => this.getInfoCheckInDB()}>Điểm danh</Button>
+                            <Button onClick={() => this.handleCheckIn()}>Điểm danh</Button>
                             {/*<div className="mt-1">Tự thêm gì gì đó vào đây</div>*/}
                           </ListGroupItem>
                         </ListGroup>
@@ -475,6 +534,167 @@ class MainPage extends React.Component {
               </Row>
 
             </div>
+            <Row className="bxh">
+
+              <Col lg="1" md="1" sm="12" xs="12"></Col>
+              <Col lg="10" md="10" sm="12" xs="12">
+                <div className="fix-header-1">
+                  <div className="card-header-1">Thống kê</div>
+                  <div>
+                    <img style={{ maxHeight: "40px" }} src='img/logo/after.png'></img>
+                  </div>
+                </div>
+                <Row>
+                  <Col lg="3" md="6" sm="6" xs="6" className="">
+                    <Link className="no-hover" to={{
+                      pathname: '/donation',
+
+                    }}>
+                      <div className="bg-thongke">
+                        {this.state.datasumact.map((Item, index) => {
+                          return (
+
+                            <CountUp
+                              style={{ fontSize: 34, fontWeight: 'bold', color: '#ae1f17' }}
+                              start={0}
+                              end={Item.soluong}
+                              duration={5}
+                              separator=","
+                              thousandSeparator={true}
+                            //decimals={4}
+                            //decimal=","
+                            //prefix="EUR "
+                            //suffix=" left"
+                            //onEnd={() => console.log('Ended! 👏')}
+                            //onStart={() => console.log('Started! 💨')}
+                            />
+
+
+
+                          );
+                        })}
+                        <br />(chương trình)
+                      <div className="title-thongke">
+                          Hoạt động thiện nguyện
+            </div>
+
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col lg="3" md="6" sm="6" xs="6" className="">
+                    <Link className="no-hover" to={{
+                      pathname: '/donation',
+
+                    }}>
+                      <div className="bg-thongke">
+                        {this.state.dataSumqg.map((Item, index) => {
+                          return (
+                            <CountUp
+                              style={{ fontSize: 34, fontWeight: 'bold', color: '#ae1f17' }}
+                              start={100000}
+                              end={Item.TongSoTienQuyenGop}
+                              duration={5}
+                              separator=","
+
+                              thousandSeparator={true}
+                            />
+
+                          );
+                        })}
+                        <br />(vnd)
+                      <div className="title-thongke">
+                          Đã nhận quyên góp
+              </div>
+
+
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col lg="3" md="6" sm="6" xs="6" className="">
+                    <Link className="no-hover" to={{
+                      pathname: '/donation',
+
+                    }}>
+                      <div className="bg-thongke">
+                        {this.state.dataCountnht.map((Item, index) => {
+                          return (
+                            <CountUp
+                              style={{ fontSize: 34, fontWeight: 'bold', color: '#ae1f17' }}
+                              start={0}
+                              end={Item.SoLuongNguoiQuyenGop}
+                              duration={5}
+                              separator=","
+
+                              thousandSeparator={true}
+                            />
+
+
+                          );
+                        })}
+                        <br />(lượt)
+                      <div className="title-thongke">
+                          Quyên góp
+              </div>
+
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col lg="3" md="6" sm="6" xs="6" className="">
+                    <Link className="no-hover" to={{
+                      pathname: '/donation',
+
+                    }}>
+                      <div className="bg-thongke">
+                        <CountUp
+                          style={{ fontSize: 34, fontWeight: 'bold', color: '#ae1f17' }}
+                          start={1000000}
+                          end={this.state.dataSumthieu}
+                          duration={5}
+                          separator=","
+                          thousandSeparator={true}
+                        />
+
+                        <br />(vnd)
+                      <div className="title-thongke">Quyên góp còn thiếu</div>
+
+                      </div>
+                    </Link>
+                  </Col>
+
+
+                </Row>
+                {/* <Card className="bg-bxh">
+                  <CardBody >
+                    {this.state.messageErr === ''
+                      ? <Table responsive hover scrollY
+                        maxHeight="200px">
+                        <thead>
+                          <tr className="text-capitalize align-middle text-center">
+                            <th>STT</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Số Tiền</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {this.state.data.map((item, index) => (
+                            <tr key={index}>
+                              <td className="align-middle text-center">
+                                {index + 1}
+                              </td>
+                              <td className="align-middle text-center">{item.TenNguoiDung}</td>
+                              <td className="align-middle text-center">{item.SoTien}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                      : <div className="text-center">Không có dữ liệu</div>
+                    }
+
+                  </CardBody>
+                </Card> */}
+              </Col>
+              <Col lg="1" md="1" sm="12" xs="12"></Col>
+            </Row>
             <div className="tintuc-layout">
 
               <div className="fix-header">
@@ -531,51 +751,7 @@ class MainPage extends React.Component {
             </div>
 
 
-            <Row className="bxh">
-              <Col lg="3" md="3" sm="12" xs="12"></Col>
 
-              <Col lg="6" md="6" sm="12" xs="12">
-                <div className="fix-header-1">
-                  <div className="card-header-1">Bảng xếp hạng</div>
-                  <div>
-                    <img style={{ maxHeight: "40px" }} src='img/logo/after.png'></img>
-                  </div>
-                </div>
-                <Card className="bg-bxh"
-
-                >
-
-                  <CardBody >
-                    {this.state.messageErr === ''
-                      ? <Table responsive hover scrollY
-                        maxHeight="200px">
-                        <thead>
-                          <tr className="text-capitalize align-middle text-center">
-                            <th>STT</th>
-                            <th>Tên Người Dùng</th>
-                            <th>Số Tiền</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {this.state.data.map((item, index) => (
-                            <tr key={index}>
-                              <td className="align-middle text-center">
-                                {index + 1}
-                              </td>
-                              <td className="align-middle text-center">{item.TenNguoiDung}</td>
-                              <td className="align-middle text-center">{item.SoTien}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </Table>
-                      : <div className="text-center">Không có dữ liệu</div>
-                    }
-
-                  </CardBody>
-                </Card>
-              </Col>
-              <Col lg="3" md="3" sm="12" xs="12"></Col>
-            </Row>
 
           </Col>
           <Col lg="1" md="12" sm="12" xs="12"></Col>

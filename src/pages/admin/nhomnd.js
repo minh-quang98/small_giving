@@ -64,7 +64,7 @@ class nhomnd extends React.Component {
   }
 
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownhomnd.php')
       .then(response => response.json())
       .then(data => {
         this.setState(

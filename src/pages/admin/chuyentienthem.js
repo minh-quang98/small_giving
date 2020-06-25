@@ -41,7 +41,7 @@ class Chuyentienthem extends React.Component {
         idGiaoDich: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/thuchienkhaosat/select.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/thuchienkhaosat/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -64,7 +64,7 @@ class Chuyentienthem extends React.Component {
         SoTien: this.state.money
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/apiway4/chuyentien.php', config2)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/chuyentien.php', config2)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
@@ -93,7 +93,7 @@ class Chuyentienthem extends React.Component {
         idGiaoDich: this.state.id,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/apiway4/updatetrangthai.php', config1)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/updatetrangthai.php', config1)
       .then(response => response.json())
       .then(data => {
         if (data.message === "Success") {

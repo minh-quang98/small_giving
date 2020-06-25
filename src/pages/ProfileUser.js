@@ -50,7 +50,7 @@ class ProfileUser extends Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -67,7 +67,7 @@ class ProfileUser extends Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Thongtin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         // console.log("datapro>>",data)
@@ -86,7 +86,7 @@ class ProfileUser extends Component {
         ClientNumber: this.state.phone
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/laythongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -107,7 +107,7 @@ class ProfileUser extends Component {
         // STK: this.state.STK
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Doithongtin/update.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Doithongtin/update.php`, config)
       .then((response) => response.json())
       .then((data) => {
         if (data.message !== "Success") {
@@ -132,7 +132,7 @@ class ProfileUser extends Component {
         ClientName: this.state.fullName
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/capnhatthongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/capnhatthongtin.php`, config)
       .then(res => res.json())
       .then(data => {
         if (data.message !== "success") {
@@ -199,7 +199,7 @@ class ProfileUser extends Component {
         {/*</Row>*/}
         <Row>
           <Col lg="1"></Col>
-          <Col xl={2} lg={2} md={12}>
+          {/* <Col xl={2} lg={2} md={12}>
             <div className='text-center mb-4' style={{ height: 120 }}>
               <span
                 className='img-thumbnail'
@@ -230,14 +230,14 @@ class ProfileUser extends Component {
               }
 
             </div>
-          </Col>
-          <Col xl={8} lg={8} md={12}>
+          </Col> */}
+          <Col xl={10} lg={10} md={12}>
             <Card variant="outlined" className='p-2 mb-5'>
 
               <CardContent>
                 <div className='row kt-margin-b-20 mb-4 mt-4 font-14'>
                   <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                    className="pl-0 pb-2 pr-0 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
                     {this.state.onEdit === true
                       ? <label className="text-black-50 m-1">Tên tài khoản
                             <span className={'color-red d-inline'}>*</span></label>
@@ -245,7 +245,7 @@ class ProfileUser extends Component {
                     }
                   </div>
                   <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                    className="pl-0 pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
                     {this.state.onEdit ?
                       <TextField
                         fullWidth
@@ -266,55 +266,55 @@ class ProfileUser extends Component {
                       : profile.TenNguoiDung ? profile.TenNguoiDung : ''
                     }
                   </div>
-                  <div className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                  <div className="pl-0 pb-2 pr-0 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
                     <label className="text-black-50">Mật khẩu</label>
                   </div>
-                  <div className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                  <div className="pl-0 pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
                     {this.state.password ? this.state.password : ''}
 
                   </div>
                   <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
+                    className="pl-0 pb-2 pr-0 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
                     {this.state.onEdit === true
                       ? <label className="text-black-50 m-1">Số tài khoản
                             <span className={'color-red d-inline'}>*</span></label>
-                          : <label className="text-black-50">Số tài khoản</label>
-                        }
-                      </div>
-                      <div
-                        className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
-                        {this.state.onEdit ?
-                          // <TextField
-                          //   fullWidth
-                          //   variant={"outlined"}
-                          //   InputProps={{style: {height: 28}}}
-                          //   value={this.state.STK}
-                          //   onChange={(val) => {
-                          //     this.setState({
-                          //       STK: val.target.value,
-                          //       inEditing: true
-                          //     }, () => {
-                          //       this.state.STK.length != 0 ? this.setState({STKErr: false, btnSaveStatus:true}) : this.setState({STKErr: true, btnSaveStatus:false})
-                          //     })
-                          //   }}
-                          //   maxLength={50}
-                          //   error={this.state.STKErr}
-                          //   helperText={this.state.STKErr && 'Vui lòng nhập số tài khoản  '}
-                          // />
-                          this.state.STK
-                          : this.state.STK
-                        }
-                      </div>
-                      <div
-                        className="pl-0 pb-2 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile">
-                        {this.state.onEdit === true
-                          ? <label className="text-black-50 m-1">Ngày sinh
+                      : <label className="text-black-50">Số tài khoản</label>
+                    }
+                  </div>
+                  <div
+                    className="pl-0 pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
+                    {this.state.onEdit ?
+                      // <TextField
+                      //   fullWidth
+                      //   variant={"outlined"}
+                      //   InputProps={{style: {height: 28}}}
+                      //   value={this.state.STK}
+                      //   onChange={(val) => {
+                      //     this.setState({
+                      //       STK: val.target.value,
+                      //       inEditing: true
+                      //     }, () => {
+                      //       this.state.STK.length != 0 ? this.setState({STKErr: false, btnSaveStatus:true}) : this.setState({STKErr: true, btnSaveStatus:false})
+                      //     })
+                      //   }}
+                      //   maxLength={50}
+                      //   error={this.state.STKErr}
+                      //   helperText={this.state.STKErr && 'Vui lòng nhập số tài khoản  '}
+                      // />
+                      this.state.STK
+                      : this.state.STK
+                    }
+                  </div>
+                  <div
+                    className="pl-0 pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
+                    {this.state.onEdit === true
+                      ? <label className="text-black-50 m-1">Ngày sinh
                             <span className={'color-red d-inline'}>*</span></label>
                       : <label className="text-black-50">Ngày sinh</label>
                     }
                   </div>
                   <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile">
+                    className="pl-0 pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile">
                     {this.state.onEdit ?
                       <TextField
                         type="date"
@@ -344,41 +344,41 @@ class ProfileUser extends Component {
                   </div>
 
                   <div
-                    className="pl-0 pb-1 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
+                    className="pl-0 pb-1 pr-0 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile h-36">
                     {this.state.onEdit === true
                       ? <label className="text-black-50 m-1">Số điện thoại</label>
                       : <label className="text-black-50">Số điện thoại</label>
                     }
                   </div>
                   <div
-                    className="pl-0 pb-1 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
+                    className="pl-0 pb-1 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile h-36">
                     {this.state.onEdit === true
                       ? <p className="mt-1">{profile.SDT ? profile.SDT : ''}</p>
                       : <span>{profile.SDT ? profile.SDT : ''}</span>}
                   </div>
                   <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
+                    className="pl-0 pb-2 pr-0 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile h-36">
                     {this.state.onEdit === true
                       ? <label className="text-black-50 m-1">Email</label>
                       : <label className="text-black-50">Email</label>
                     }
                   </div>
                   <div
-                    className="pl-0 pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
+                    className="pl-0 pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile h-36">
                     {this.state.onEdit === true
                       ? <p className="mt-1">{profile.Email ? profile.Email : ''}</p>
                       : <span>{profile.Email ? profile.Email : ''}</span>}
                   </div>
 
                   <div
-                    className="pl-0 pb-2 pr-0 col-md-2 col-lg-2 col-sm-4 kt-margin-b-10-tablet-and-mobile h-36">
+                    className="pl-0 pb-2 pr-0 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile h-36">
                     {this.state.onEdit === true
                       ? <label className="text-black-50 m-1">Số dư tài khoản</label>
                       : <label className="text-black-50">Số dư tài khoản</label>
                     }
                   </div>
                   <div
-                    className=" pb-2 col-md-4 col-lg-4 col-sm-8 kt-margin-b-10-tablet-and-mobile h-36">
+                    className=" pb-2 col-md-3 col-lg-3 col-sm-3 kt-margin-b-10-tablet-and-mobile h-36">
                     {this.state.onEdit === true
                       ? <p className="mt-1">{this.state.SoDuTK}</p>
                       : <span><NumberFormat value={this.state.SoDuTK} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></span>}

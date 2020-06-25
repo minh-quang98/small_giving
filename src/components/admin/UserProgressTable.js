@@ -28,7 +28,7 @@ class UserProgressTable extends React.Component {
   }
 
   getUser = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/nguoidungmoi.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/nguoidungmoi.php')
       .then((response) => response.json())
       .then((data) => {
         this.setState({

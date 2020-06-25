@@ -17,7 +17,8 @@ import {
 import { withSnackbar } from 'notistack';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CKEditor from '@ckeditor/ckeditor5-react';
-
+import parse from 'html-react-parser'
+//import CKEditor from 'ckeditor4-react';
 const initialState = {
   id: '',
   name: '',
@@ -34,10 +35,19 @@ const initialState = {
   loaitin: '',
   dataselect: [],
   dataselect1: [],
+  //noidung1: parse(this.state.content),
 };
 
 class Tintucsua extends React.Component {
-  state = initialState;
+  constructor(props) {
+    super(props);
+
+    this.state = initialState;
+
+    //this.handleChange = this.handleChange.bind( this );
+    this.onEditorChange = this.onEditorChange.bind(this);
+  }
+
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
     this.getdatashow();
@@ -51,7 +61,7 @@ class Tintucsua extends React.Component {
 
   }
   gethd = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showhoatdong.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -63,7 +73,7 @@ class Tintucsua extends React.Component {
       });
   };
   getloaitin = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showloaitin.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showloaitin.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -82,7 +92,7 @@ class Tintucsua extends React.Component {
         idTin: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/select.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/tintuc/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -115,7 +125,7 @@ class Tintucsua extends React.Component {
 
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/update.php', config2)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/tintuc/update.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -196,6 +206,21 @@ class Tintucsua extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
   };
+  onEditorChange(evt, editor) {
+    this.setState({
+      content: editor.getData(),
+      //$('#trackingDiv').html(content);
+      //noidung1: { parse(content) }
+
+
+    });
+    console.log("sssss", this.state.content)
+    //console.log("sssss>>>", parse(this.state.content))
+
+
+
+
+  }
   render() {
     return (
       <Modal isOpen={this.props.show}>
@@ -307,7 +332,35 @@ class Tintucsua extends React.Component {
                       <div className="error-text">
                         {this.state.contentError}
                       </div>
-                      <Input
+                      <CKEditor
+                        //id="content"
+                        editor={ClassicEditor}
+                        //onInit={editor => { }}
+                        data={this.state.content}
+                        //value={parse(this.state.content)}
+                        onChange={this.onEditorChange}
+
+
+                      // config={{
+
+                      //   language: 'fr',
+                      //   htmlEncodeOutput: true,
+                      //   entities: false,
+                      //   entities_latin: false,
+                      //   ForceSimpleAmpersand: true,
+                      //   toolbar: 'Bold',
+                      //   fullPage: true,
+                      // }}
+
+                      />
+                      <div>
+                        <p>
+
+                          {parse(this.state.content)}
+                        </p>
+                      </div>
+
+                      {/* <Input
                         type="textarea"
                         name="content"
                         value={this.state.content}
@@ -317,7 +370,7 @@ class Tintucsua extends React.Component {
                             contentError: ""
                           });
                         }}
-                      />
+                      /> */}
                     </Form>
                   </Col>
                 </Row>

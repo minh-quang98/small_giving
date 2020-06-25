@@ -48,7 +48,7 @@ class Hoatdongsua extends React.Component {
     this.getnth();
   }
   getnth = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownth.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -67,7 +67,7 @@ class Hoatdongsua extends React.Component {
         idHoatDong: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/select.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/hoatdong/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -128,7 +128,7 @@ class Hoatdongsua extends React.Component {
           ChiDK: this.state.total,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/update.php', config2)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/hoatdong/update.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {

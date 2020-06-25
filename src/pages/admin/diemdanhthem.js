@@ -41,7 +41,7 @@ class Diemdanhthem extends React.Component {
     this.getnhataitro();
   }
   getnhataitro = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownhataitro.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -60,7 +60,7 @@ class Diemdanhthem extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -83,7 +83,7 @@ class Diemdanhthem extends React.Component {
           SoTienML: this.state.eachturn,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/insert.php', config)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/diemdanh/insert.php', config)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -116,7 +116,7 @@ class Diemdanhthem extends React.Component {
 
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config1)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/taotaikhoan.php', config1)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {

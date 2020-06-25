@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Modal, ModalBody, ModalHeader, ModalFooter,
-  FormGroup, Label, Input, Button,
+  FormGroup, Label, Input, Button, Row, Col,
 } from 'reactstrap';
 import "./Modal.css"
 import { TextField, Snackbar } from '@material-ui/core';
@@ -60,19 +60,11 @@ class ModalForgotPassword extends Component {
         SDT: this.state.phone
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Doimatkhau/kiemtrapass.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Doimatkhau/kiemtrapass.php`, config)
       .then(res => res.json())
       .then(data => {
-        if (data.message === "tai khoan khong ton tai") {
-          this.props.enqueueSnackbar('Tài khoảng không tồn tại !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        } else if (data.message === "ERROR") {
-          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+        if (data.message === "No post found") {
+          this.props.enqueueSnackbar('Email hoặc Số điện thoại không đúng !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -101,7 +93,7 @@ class ModalForgotPassword extends Component {
 
 
   render() {
-    let {modalForgot} = this.state
+    let { modalForgot } = this.state
     return (
       <div>
         {modalForgot
@@ -134,7 +126,7 @@ class ModalForgotPassword extends Component {
                 <TextField
                   style={{ width: "100%" }}
                   onKeyDown={event => this.keyPress(event, "enter")}
-                  label="Số điệnt thoại"
+                  label="Số điện thoại"
                   variant="outlined"
                   type="number"
                   onChange={(val) => {
@@ -146,9 +138,17 @@ class ModalForgotPassword extends Component {
               </FormGroup>
             </ModalBody>
             <ModalFooter className="d-flex flex-column">
-              <div>
-                <Button disabled={this.state.btnSave} onClick={() => this.checkInput()}>Xác nhận</Button>
-              </div>
+              <Row style={{ width: '100%', textAlign: 'center' }}>
+
+                <Col lg="6" md="6" xs="6" sm="6">
+                  <Button disabled={this.state.btnSave} onClick={this.props.onHide}>Quay lại</Button>
+                </Col>
+                <Col lg="6" md="6" xs="6" sm="6">
+                  <Button disabled={this.state.btnSave} onClick={() => this.checkInput()}>Xác nhận</Button>
+
+                </Col>
+              </Row>
+
             </ModalFooter>
           </Modal>
           : <Modal

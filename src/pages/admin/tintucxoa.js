@@ -21,7 +21,7 @@ class Tintucxoa extends React.Component {
         idTin: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/delete.php', config1)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/tintuc/delete.php', config1)
       .then(response => response.json())
       .then(data => {
         if (data.message === "success") {

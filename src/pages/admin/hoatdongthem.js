@@ -79,7 +79,7 @@ class Hoatdongthem extends React.Component {
     )
   }
   getnth = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownth.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -98,7 +98,7 @@ class Hoatdongthem extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -126,7 +126,7 @@ class Hoatdongthem extends React.Component {
           ChiDK: this.state.total,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/hoatdong/insert.php', config)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -135,7 +135,7 @@ class Hoatdongthem extends React.Component {
             }, () => this.creatAccountWay4())
           }
           else {
-            this.props.enqueueSnackbar('Thất bại 1', {
+            this.props.enqueueSnackbar('Thất bại', {
               anchorOrigin: {
                 vertical: "top",
                 horizontal: "right"
@@ -159,7 +159,7 @@ class Hoatdongthem extends React.Component {
 
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php', config1)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/taotaikhoan.php', config1)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {

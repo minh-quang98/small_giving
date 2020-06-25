@@ -22,7 +22,7 @@ class ModalLoginPage extends Component {
       modeLogin: true,
       modalForgot: false,
       loading: false,
-      regexp : /^[0-9\b]+$/
+      regexp: /^[0-9\b]+$/
     };
   }
 
@@ -70,7 +70,7 @@ class ModalLoginPage extends Component {
         MatKhau: this.state.password,
       }),
     };
-    fetch(`http://smallgiving.cf/mobileapp/Dangnhap/dangnhap.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Dangnhap/dangnhap.php`, config)
       .then((response) => response.json())
       .then((data) => {
         if (data.token === "error") {
@@ -171,7 +171,7 @@ class ModalLoginPage extends Component {
         MatKhau: this.state.password,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/Dangky/nhapsodienthoai.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/Dangky/nhapsodienthoai.php', config)
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Dang ki thanh cong") {
@@ -199,8 +199,8 @@ class ModalLoginPage extends Component {
         EMail: this.state.email
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/taotaikhoan.php`, config)
-      .then(res=> res.json())
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/taotaikhoan.php`, config)
+      .then(res => res.json())
       .then(data => {
         if (data.message === "success") {
           this.handleWallet20k()
@@ -219,7 +219,7 @@ class ModalLoginPage extends Component {
   handleChangePhone(val) {
     const re = /^[0-9\b]+$/;
     if (val.target.value === '' || re.test(val.target.value)) {
-      this.setState({phone: val.target.value})
+      this.setState({ phone: val.target.value })
     }
   };
 
@@ -230,10 +230,10 @@ class ModalLoginPage extends Component {
         ClientNumber: this.state.phone
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/nap20.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/nap20.php`, config)
       .then(res => res.json())
       .then(data => {
-        if(data.message === "success") {
+        if (data.message === "success") {
           this.props.enqueueSnackbar('Đăng ký thành công !', {
             anchorOrigin: {
               vertical: "top",
@@ -344,7 +344,7 @@ class ModalLoginPage extends Component {
           : <Modal
             isOpen={this.props.show}
             // size="sm"
-            style={{ width: "25%",minWidth: 320 }}
+            style={{ width: "25%", minWidth: 320 }}
             backdrop="static"
             backdropClassName="modal-backdrop-light"
             centered

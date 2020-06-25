@@ -13,6 +13,7 @@ import {
   Button,
 } from 'reactstrap';
 import Cookies from 'js-cookie';
+import NumberFormat from 'react-number-format';
 const tableTypes = ['hover'];
 const initialState = {
   startdate: '',
@@ -33,7 +34,8 @@ const dataError = [
 class bcquyengop extends React.Component {
   state = initialState;
   componentDidMount() {
-    this.getUser()
+    this.getUser();
+    //this.getdatabaocao()
 
   }
   getUser = () => {
@@ -44,12 +46,12 @@ class bcquyengop extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
             user: data
-          })
+          }, () => this.getdatabaocao())
         })
     }
   }
@@ -63,7 +65,7 @@ class bcquyengop extends React.Component {
 
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/apiway4/lichsugiaodich.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/lichsugiaodich.php', config)
       .then(response => response.json())
       .then(data => {
         if (data.message === "No post found") {
@@ -138,7 +140,7 @@ class bcquyengop extends React.Component {
                   <Row key={index}>
                     <Col>
                       <Card className="mb-3">
-                        <CardBody>
+                        <CardBody >
                           <Row>
                             <Col xl={6} lg={12} md={12}>
                               <Form>
@@ -197,48 +199,50 @@ class bcquyengop extends React.Component {
 
                             </Col>
                           </Row>
-                          <Table
-                            {...{ [tableType || 'hover']: true }}
-                            id="table-to-xls-2"
-                          >
-                            <thead>
-                              <tr className="table-danger">
-                                <th>Thời gian</th>
-                                <th>Giao dịch</th>
+                          <div className="fixx-heigh">
+                            <Table
+                              {...{ [tableType || 'hover']: true }}
+                              id="table-to-xls-2"
+                            >
+                              <thead>
+                                <tr className="table-danger">
+                                  <th>Thời gian</th>
+                                  <th>Giao dịch</th>
 
-                                <th>Số tiền giao dịch</th>
-                                <th>Ghi chú</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {this.state.dataerror ?
-                                this.state.dataError.map(Item => {
-                                  return (
-                                    <tr>
-                                      <td>{Item.id}</td>
-                                      <td>{Item.TenHoatDong}</td>
+                                  <th>Số tiền giao dịch</th>
+                                  <th>Ghi chú</th>
+                                </tr>
+                              </thead>
+                              <tbody >
+                                {this.state.dataerror ?
+                                  this.state.dataError.map(Item => {
+                                    return (
+                                      <tr>
+                                        <td>{Item.id}</td>
+                                        <td>{Item.TenHoatDong}</td>
 
-                                      <td>{Item.SoTien}</td>
-                                      <td>{Item.SoTien}</td>
-                                    </tr>
-                                  );
-                                }) : this.state.data.map(Item => {
-                                  return (
-                                    <tr>
-                                      <td>{Item.Ngaychuyen}</td>
-                                      <td>{Item.TenGiaoDich}</td>
+                                        <td>{Item.SoTien}</td>
+                                        <td>{Item.SoTien}</td>
+                                      </tr>
+                                    );
+                                  }) : this.state.data.map(Item => {
+                                    return (
+                                      <tr>
+                                        <td>{Item.Ngaychuyen}</td>
+                                        <td>{Item.TenGiaoDich}</td>
 
-                                      <td>{Item.TransAmount}</td>
-                                      <td>{Item.TrangThai}</td>
-                                    </tr>
-                                  );
-                                })}
-                            </tbody>
+                                        <td><NumberFormat
+                                          value={Item.TransAmount}
+                                          displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} /></td>
+                                        <td>{Item.TrangThai}</td>
+                                      </tr>
+                                    );
+                                  })}
+                              </tbody>
 
-                          </Table>
-                          <Table {...{ [tableType || 'hover']: true }}>
+                            </Table>
+                          </div>
 
-                          </Table>
                           <div className="button-bottom">
                             <Row>
                               <Col md={12} className="center">

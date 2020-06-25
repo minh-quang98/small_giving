@@ -62,7 +62,7 @@ class nd extends React.Component {
     this.getdata();
   }
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownd.php')
       .then(response => response.json())
       .then(data => {
         this.setState(

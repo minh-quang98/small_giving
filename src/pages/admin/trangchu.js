@@ -64,6 +64,7 @@ class DashboardPage extends React.Component {
       datanaptien: [],
       datakhaosat: [],
       datanamnay: [],
+      dataSumqg: [],
     };
   }
 
@@ -77,7 +78,17 @@ class DashboardPage extends React.Component {
     this.getnaptien();
     this.getkhaosat();
     this.getnamnay();
+    this.getSum();
   }
+  getSum = async () => {
+    fetch(`http://apis.bav.edu.vn/smallgiving/Baocao/tongquyengop.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          dataSumqg: data
+        })
+      })
+  };
   getnamnay = async () => {
     fetch(
       'https://misappmobile.000webhostapp.com/trangquantri/quyengopnamnay.php',
@@ -94,7 +105,7 @@ class DashboardPage extends React.Component {
   };
   getsumuser = async () => {
     fetch(
-      'http://smallgiving.cf/mobileapp/trangquantri/soluongnguoidung.php',
+      'http://apis.bav.edu.vn/smallgiving/trangquantri/soluongnguoidung.php',
     )
       .then(response => response.json())
       .then(datasumuser => {
@@ -108,7 +119,7 @@ class DashboardPage extends React.Component {
   };
   getsumact = async () => {
     fetch(
-      'http://smallgiving.cf/mobileapp/trangquantri/soluonghoatdong.php',
+      'http://apis.bav.edu.vn/smallgiving/trangquantri/soluonghoatdong.php',
     )
       .then(response => response.json())
       .then(datasumact => {
@@ -122,7 +133,7 @@ class DashboardPage extends React.Component {
   };
   getsumsurvey = async () => {
     fetch(
-      'http://smallgiving.cf/mobileapp/trangquantri/soluottraloiks.php',
+      'http://apis.bav.edu.vn/smallgiving/trangquantri/soluottraloiks.php',
     )
       .then(response => response.json())
       .then(datasumsurvey => {
@@ -136,7 +147,7 @@ class DashboardPage extends React.Component {
   };
   getsumgiving = async () => {
     fetch(
-      'http://smallgiving.cf/mobileapp/trangquantri/soluotquyengop.php',
+      'http://apis.bav.edu.vn/smallgiving/trangquantri/soluotquyengop.php',
     )
       .then(response => response.json())
       .then(datasumgiving => {
@@ -149,7 +160,7 @@ class DashboardPage extends React.Component {
       });
   };
   getnaptien = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/tongnaptien.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/tongnaptien.php')
       .then(response => response.json())
       .then(datanaptien => {
         this.setState(
@@ -161,7 +172,7 @@ class DashboardPage extends React.Component {
       });
   };
   getkhaosat = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/tongkhaosat.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/tongkhaosat.php')
       .then(response => response.json())
       .then(datakhaosat => {
         this.setState(
@@ -202,9 +213,9 @@ class DashboardPage extends React.Component {
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
-            {this.state.datasumsurvey.map((Item, index) => {
+            {this.state.dataSumqg.map((Item, index) => {
               return (
-                <NumberWidget title="Trả lời khảo sát" number={Item.soluong} />
+                <NumberWidget title="Tổng quyên góp" number={Item.TongSoTienQuyenGop} />
               );
             })}
           </Col>
@@ -242,8 +253,7 @@ class DashboardPage extends React.Component {
                   })}
                 </ListGroupItem>
                 <ListGroupItem>
-                  <MdBubbleChart size={25} color={primaryColor} /> Trả lời khảo
-                  sát{' '}
+                  <MdBubbleChart size={25} color={primaryColor} /> Điểm danh{' '}
                   {this.state.datakhaosat.map((Item, index) => {
                     return <Badge color="danger">{Item.tongkhaosat}</Badge>;
                   })}

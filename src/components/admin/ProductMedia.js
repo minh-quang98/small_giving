@@ -18,7 +18,7 @@ class ProductMedia extends React.Component {
   }
 
   getActivities = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/hoatdongmoi.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/hoatdongmoi.php')
       .then(response => response.json())
       .then(data => {
         this.setState(

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Navbar, Nav, NavItem, Row, Col } from 'reactstrap';
-
+import NumberFormat from 'react-number-format';
 import SourceLink from 'components/SourceLink';
 import { FaGlobeAmericas } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
@@ -63,7 +63,7 @@ class Footer extends React.Component {
               <a href="http://www.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Học viện Ngân Hàng</a>
             </div>
             <div className="fix-margin">
-              <a href="http://mis.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Khoa hệ thống thông tin quản lý</a>
+              <a href="http://mis.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Khoa Hệ thống thông tin quản lý</a>
             </div>
             <div className="fix-margin">
               <a href="https://www.openwaygroup.com/"><FaGlobeAmericas />{' '}{''} OpenWay Group</a>
@@ -100,26 +100,7 @@ class Footer extends React.Component {
                 </div>
               </li>
             </div>
-            <div>
-              {this.state.dataSumqg.map((Item, index) => {
-                return (
-                  <div className="fix-margin">
-                    Số tiền đã nhận quyên góp: {Item.TongSoTienQuyenGop}
-                  </div>
-                );
-              })}
 
-              {this.state.dataCountnht.map((Item, index) => {
-                return (
-                  <div className="fix-margin">
-                    Tổng số lượt ủng hộ: {Item.SoLuongNguoiQuyenGop}
-                  </div>
-                );
-              })}
-              <div className="fix-margin">
-                Số tiền còn thiếu: {this.state.dataSumthieu}
-              </div>
-            </div>
           </Col>
         </Row>
         <div className="end-foot">

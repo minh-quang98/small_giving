@@ -27,7 +27,7 @@ class Khaosatxoa extends React.Component {
         ClientNumber: this.props.chooseId,
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, configg)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/laythongtin.php`, configg)
       .then((response) => response.json())
       .then((data) => {
         this.setState({

@@ -85,7 +85,7 @@ class Header extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -104,7 +104,7 @@ class Header extends React.Component {
 
   handleLogout() {
     this.toggleUserCardPopover()
-    this.props.enqueueSnackbar('Đăng xuất thành công !', {
+    this.props.enqueueSnackbar('Đã đăng xuất!', {
       anchorOrigin: {
         vertical: "top",
         horizontal: "right"
@@ -154,7 +154,7 @@ class Header extends React.Component {
         idNhaHaoTam: this.state.user.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/thongbao/thongbao.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/thongbao/thongbao.php`, config)
       .then((res) => res.json())
       .then((data) => {
 

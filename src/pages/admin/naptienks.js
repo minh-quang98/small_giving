@@ -37,7 +37,7 @@ class naptien extends React.Component {
     }
 
     getdata = async () => {
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/shownaptienks.php')
+        fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/shownaptienks.php')
             .then(response => response.json())
             .then(data => {
                 if (data.message === "No post found") {

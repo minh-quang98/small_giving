@@ -35,7 +35,7 @@ class Nhomndsua extends React.Component {
         idNhom: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/select.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/nhomnguoidung/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -57,7 +57,7 @@ class Nhomndsua extends React.Component {
           TenNhom: this.state.name,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nhomnguoidung/update.php', config2)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/nhomnguoidung/update.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {

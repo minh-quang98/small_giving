@@ -27,7 +27,7 @@ class gopy extends React.Component {
   }
 
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showgopy.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showgopy.php')
       .then(response => response.json())
       .then(data => {
         if (data.message === "No post found") {

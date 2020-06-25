@@ -41,7 +41,7 @@ class Xemdk extends React.Component {
         idHoatDong: this.props.chooseId,
       }),
     };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/xemdangky.php', config)
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/hoatdong/xemdangky.php', config)
       .then(response => response.json())
       .then(data => {
         if (data.message === "No post found") {

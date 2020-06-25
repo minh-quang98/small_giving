@@ -66,7 +66,8 @@ class DonationPage extends React.Component {
       SoDuTK: "",
       idHoatDong: "",
       money: "",
-      phone: ""
+      phone: "",
+      dataway4: [],
     };
   }
 
@@ -83,7 +84,7 @@ class DonationPage extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -101,7 +102,7 @@ class DonationPage extends React.Component {
         ClientNumber: this.state.phone
       })
     }
-    fetch(`https://misappmobile.000webhostapp.com/apiway4/laythongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/laythongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -111,7 +112,7 @@ class DonationPage extends React.Component {
   }
 
   getDonation() {
-    fetch(`http://smallgiving.cf/mobileapp/Hoatdong/hoatdong.php`)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Hoatdong/hoatdong.php`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -124,8 +125,8 @@ class DonationPage extends React.Component {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        NumberNguoiNhan: this.state.idHoatDong,
-        NumberNguoiGui: this.state.phone,
+        idHoatDong: this.state.idHoatDong,
+        idNguoiDung: this.state.idNguoiDung,
         SoTien: this.state.money
       })
     }
@@ -146,23 +147,26 @@ class DonationPage extends React.Component {
         variant: 'error',
       });
     } else {
-      fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/Quyengop/thuchienquyengop.php`, config)
         .then((res) => res.json())
         .then((data) => {
           if (data.message === "success") {
-            this.props.enqueueSnackbar('Quyên góp thành công !', {
-              anchorOrigin: {
-                vertical: "top",
-                horizontal: "right"
-              },
-              variant: 'success',
-            });
+            this.setState({
+              dataway4: data
+            }, () => this.naptienWay4())
+            // this.props.enqueueSnackbar('Số tiền đã được thêm vào quỹ từ thiện cho hoạt động này !', {
+            //   anchorOrigin: {
+            //     vertical: "top",
+            //     horizontal: "right"
+            //   },
+            //   variant: 'success',
+            // });
             // this.handleDoanationW4();
-            this.handleCloseModal();
-            this.handleCloseModalParent();
-            window.location.reload();
+            //this.handleCloseModal();
+            //this.handleCloseModalParent();
+            //window.location.reload();
           } else if (data.message === "fail") {
-            this.props.enqueueSnackbar('Quyên góp thất bại !', {
+            this.props.enqueueSnackbar('Đã có lỗi xảy ra, giao dịch không được thực hiện !', {
               anchorOrigin: {
                 vertical: "top",
                 horizontal: "right"
@@ -198,6 +202,42 @@ class DonationPage extends React.Component {
     }
 
   }
+  naptienWay4() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        NumberNguoiGui: this.state.phone,
+        NumberNguoiNhan: this.state.idHoatDong,
+        SoTien: this.state.money
+      }),
+    };
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/chuyentien.php', config2)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          this.props.enqueueSnackbar('Thành công!', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'success',
+          });
+          window.location.reload();
+
+        } else {
+
+          this.props.enqueueSnackbar('Thất bại', {
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right"
+            },
+            variant: 'error',
+          });
+
+        }
+      });
+
+  }
 
   // handleDoanationW4 = () => {
   //   let config = {
@@ -208,7 +248,7 @@ class DonationPage extends React.Component {
   //       SoTien: this.state.money
   //     })
   //   }
-  //   fetch(`https://misappmobile.000webhostapp.com/apiway4/chuyentien.php`, config)
+  //   fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/chuyentien.php`, config)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data)
@@ -249,25 +289,27 @@ class DonationPage extends React.Component {
         idNhaHaoTam: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Theodoi/theodoi.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Theodoi/theodoi.php`, config)
       .then(res => res.json())
       .then(data => {
         if (data.message === "follow") {
-          this.props.enqueueSnackbar('Theo dõi thành công !', {
+          this.props.enqueueSnackbar('Các thông tin liên quan đến hoạt động này sẽ được gửi tới bạn !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
             },
             variant: 'success',
           });
+
         } else if (data.message === "unfollow") {
-          this.props.enqueueSnackbar('Bỏ theo dõi thành công !', {
+          this.props.enqueueSnackbar('Bạn đã bỏ theo dõi hoạt động !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
             },
-            variant: 'success',
+            variant: 'error',
           });
+
         } else {
           this.props.enqueueSnackbar(data.message, {
             anchorOrigin: {
@@ -289,11 +331,11 @@ class DonationPage extends React.Component {
         idNhaHaoTam: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Gopsuc/dangkigopsuc.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Gopsuc/dangkigopsuc.php`, config)
       .then(res => res.json())
       .then(data => {
         if (data.message === "join") {
-          this.props.enqueueSnackbar('Tham gia thành công !', {
+          this.props.enqueueSnackbar('Đăng ký thành công, chúng tôi sẽ liên lạc với bạn sớm nhất có thể !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
@@ -301,12 +343,12 @@ class DonationPage extends React.Component {
             variant: 'success',
           });
         } else if (data.message === "unjoin") {
-          this.props.enqueueSnackbar('Bỏ tham gia thành công !', {
+          this.props.enqueueSnackbar('Hẹn gặp bạn trong các chương trình sắp tới !', {
             anchorOrigin: {
               vertical: "top",
               horizontal: "right"
             },
-            variant: 'success',
+            variant: 'error',
           });
         } else {
           this.props.enqueueSnackbar(data.message, {
@@ -373,8 +415,9 @@ class DonationPage extends React.Component {
                       //title="Số tiền quyên góp"
                       //subtitle="10.000.000"
                       color="secondary"
+                      thousandSeparator={true}
+                      separator=","
                       progress={{
-
                         label: item.ChiDK,
                         value: item.SoDuTK / item.ChiDK * 100,
                       }}
@@ -423,7 +466,9 @@ class DonationPage extends React.Component {
                           {/*</Label>*/}
                           <Button onClick={() => this.setState({
                             idHoatDong: item.idHoatDong
-                          }, () => this.onFollow())}>Theo dõi</Button>
+                          }, () => this.onFollow())}>
+                            Theo dõi
+                              </Button>
                         </Col>
                         <Col md={6} sm="6" xs="6" className="fix-bo">
                           {/*<Label check>*/}

@@ -25,7 +25,7 @@ import { IconWidget, NumberWidget } from 'components/Widget';
 import NGND from 'assets/img/NGND.jpg';
 import Convert from "../utils/ConvertUrlPra"
 import Cookies from 'js-cookie';
-
+import parse from 'html-react-parser'
 
 class NewsDetailPage extends Component {
   constructor(props) {
@@ -37,7 +37,10 @@ class NewsDetailPage extends Component {
       dataTinTuc: [],
       SoDiTK: "",
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
-      idNguoiDung: ""
+      idNguoiDung: "",
+      NoiDung: "",
+      Anh: "",
+      TenTin: "",
     }
   }
 
@@ -58,11 +61,18 @@ class NewsDetailPage extends Component {
         idTin: this.state.idTinTuc
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/select.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/trangquantri/admin/tintuc/select.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          dataTinTuc: data
+          //dataTinTuc: data,
+
+          TenTin: data.TenTin,
+          Anh: data.Anh,
+          NoiDung: data.NoiDung,
+
+
+
         })
       })
   }
@@ -75,7 +85,7 @@ class NewsDetailPage extends Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -92,7 +102,7 @@ class NewsDetailPage extends Component {
         idNguoiDung: this.state.idNguoiDung
       })
     }
-    fetch(`http://smallgiving.cf/mobileapp/Thongtin/thongtin.php`, config)
+    fetch(`http://apis.bav.edu.vn/smallgiving/Thongtin/thongtin.php`, config)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -127,7 +137,7 @@ class NewsDetailPage extends Component {
 
   render() {
     // const item = this.props.item;
-    let { dataTinTuc } = this.state
+    //let { dataTinTuc } = this.state
     return (
       <Page className="bcquyengop"
         title="Tin Tức/ Chi tiết tin tức"
@@ -135,7 +145,7 @@ class NewsDetailPage extends Component {
           { name: 'Tin Tức/ Chi tiết tin tức' },
 
         ]}>
-        <h1 className="text-center title-detail">{dataTinTuc.TenTin}</h1>
+        <h1 className="text-center title-detail">{this.state.TenTin}</h1>
         <Row>
           <Col lg="1"></Col>
           <Col lg="10" md="12" sm="12" xs="12">
@@ -144,13 +154,14 @@ class NewsDetailPage extends Component {
                 {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
                 <Media
                   object
-                  src={dataTinTuc.Anh}
+                  src={this.state.Anh}
                   className="rounded mr-2 mb-2"
                   style={{ width: '100%', height: '100%' }}
                 />
 
                 <div className="mt-4">
-                  {dataTinTuc.NoiDung}
+
+                  {this.state.NoiDung}
                 </div>
               </CardBody>
             </Card>

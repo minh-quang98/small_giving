@@ -43,7 +43,7 @@ class bcnaptien extends React.Component {
         this.getdata();
     }
     getdata = async () => {
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
+        fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showkhaosat.php')
             .then(response => response.json())
             .then(datashow => {
                 this.setState(
@@ -65,7 +65,7 @@ class bcnaptien extends React.Component {
                     TenKhaoSat: this.state.name
                 }),
             };
-            fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/naptienks.php', config)
+            fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/baocao/naptienks.php', config)
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === "No post found") {
@@ -93,7 +93,7 @@ class bcnaptien extends React.Component {
                 TenKhaoSat: this.state.name,
             }),
         };
-        fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/tongnaptienks.php', config2)
+        fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/baocao/tongnaptienks.php', config2)
             .then(response => response.json())
             .then(tong => {
                 this.setState(

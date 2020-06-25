@@ -80,7 +80,7 @@ class khaosat extends React.Component {
   }
 
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showkhaosat.php')
       .then(response => response.json())
       .then(data => {
         if (data.message === "No post found") {

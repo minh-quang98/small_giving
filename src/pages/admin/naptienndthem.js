@@ -16,7 +16,7 @@ import {
 //import styled from 'styled-components';
 import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
-
+import NumberFormat from 'react-number-format';
 const initialState = {
   id: '',
   account: '',
@@ -40,7 +40,7 @@ class Naptienthem extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -60,7 +60,7 @@ class Naptienthem extends React.Component {
           SoTien: this.state.money,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/naptien/nhahaotam.php', config1)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/naptien/nhahaotam.php', config1)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -88,7 +88,7 @@ class Naptienthem extends React.Component {
         SoTien: this.state.money,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/apiway4/naptien.php', config2)
+    fetch('http://apis.bav.edu.vn/smallgiving/apiway4/naptien.php', config2)
       .then(response => response.json())
       .then((data) => {
         if (data.message === "success") {
@@ -204,16 +204,23 @@ class Naptienthem extends React.Component {
                           <div className="error-text">
                             {this.state.moneyError}
                           </div>
-                          <Input
-                            type="number"
+                          <NumberFormat
+                            className="fix-number"
+                            //inputMode="numeric"
+                            type="text"
                             name="money"
+
                             value={this.state.money}
+                            //thousandSeparator={true}
+                            //separator=" "
                             onChange={val => {
                               this.setState({
                                 money: val.target.value,
                               });
                             }}
                           />
+
+
                         </Col>
                       </Row>
                     </Form>

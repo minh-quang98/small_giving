@@ -19,6 +19,9 @@ import { withSnackbar } from 'notistack';
 import Cookies from 'js-cookie';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CKEditor from '@ckeditor/ckeditor5-react';
+//import CKEditor from 'ckeditor4-react';
+import parse from 'html-react-parser'
+
 const initialState = {
   id: '',
   name: '',
@@ -38,11 +41,22 @@ const initialState = {
   selectedFile: null,
   //files: [],
   loading: false,
-  a: ''
+  a: '',
+
+
+
 };
 
 class Tintucthem extends React.Component {
-  state = initialState;
+  constructor(props) {
+    super(props);
+
+    this.state = initialState;
+
+    //this.handleChange = this.handleChange.bind( this );
+    this.onEditorChange = this.onEditorChange.bind(this);
+  }
+
 
 
   componentDidMount() {
@@ -52,7 +66,7 @@ class Tintucthem extends React.Component {
     this.getloaitin();
   }
   gethd = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showhoatdong.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -64,7 +78,7 @@ class Tintucthem extends React.Component {
       });
   };
   getloaitin = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/showloaitin.php')
+    fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/showloaitin.php')
       .then(response => response.json())
       .then(dataselect => {
         this.setState(
@@ -83,7 +97,7 @@ class Tintucthem extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+      fetch(`http://apis.bav.edu.vn/smallgiving/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({
@@ -127,12 +141,12 @@ class Tintucthem extends React.Component {
           TenTin: this.state.name,
           TenLoaiTin: this.state.receiver,
           TenHoatDong: this.state.idhoatdong,
-          NoiDung: this.state.content,
+          NoiDung: parse(this.state.content),
           Anh: this.state.a,
           TieuDeThongBao: this.state.title,
         }),
       };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
+      fetch('http://apis.bav.edu.vn/smallgiving/trangquantri/admin/tintuc/insert.php', config)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -197,12 +211,17 @@ class Tintucthem extends React.Component {
   //     image: value
   //   });
   // };
-  handleCkeditorState = (event, editor) => {
-    const data = editor.getData();
+  // handleCkeditorState = (event, editor) => {
+  //   const data = editor.getData();
+  //   this.setState({
+  //     content: data,
+  //     contentError: ""
+  //   })
+  // }
+  onEditorChange(evt, editor) {
     this.setState({
-      content: data,
-      contentError: ""
-    })
+      content: editor.getData()
+    });
   }
 
   render() {
@@ -330,23 +349,28 @@ class Tintucthem extends React.Component {
                       <CKEditor
                         //id="content"
                         editor={ClassicEditor}
-                        onInit={editor => { }}
-                        value={this.state.content}
-                        config={
-                          {
-                            ckfinder: {
-                              uploadUrl: "http://res.cloudinary.com/hocviennganhang/image/upload/v1590999342/darwin/"
-                            }
+                        //onInit={editor => { }}
+                        //value={parse(this.state.content)}
+                        data={this.state.content}
+                        onChange={this.onEditorChange}
+                      // config={{
+                      //   language: 'fr',
+                      //   htmlEncodeOutput: true,
+                      //   entities: false,
+                      //   entities_latin: false,
+                      //   ForceSimpleAmpersand: true,
+                      //   toolbar: 'Bold',
+                      //   fullPage: true,
 
 
+                      // }
 
-                          }
+                      //}
 
-                        }
-                        onChange={this.handleCkeditorState}
 
 
                       />
+
                     </Form>
                   </Col>
                 </Row>
