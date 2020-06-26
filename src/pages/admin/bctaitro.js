@@ -165,8 +165,8 @@ class bctaitro extends React.Component {
         className="bctaitro"
         title="Nguồn tài trợ"
         breadcrumbs={[
-          { name: 'báo cáo' },
-          { name: 'giao dịch thực hiện điểm danh', active: true },
+          { name: 'báo cáo', link: '/admin/bctaitro' },
+          { name: 'giao dịch thực hiện điểm danh', link: '/admin/bctaitro', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

@@ -92,8 +92,8 @@ class nhomnd extends React.Component {
         className="ButtonPage"
         title="Nhóm người dùng"
         breadcrumbs={[
-          { name: 'quản trị tài khoản' },
-          { name: 'nhóm người dùng', active: true },
+          { name: 'quản trị tài khoản', link: '/admin/nhomnd' },
+          { name: 'nhóm người dùng', link: '/admin/nhomnd', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

@@ -23,7 +23,7 @@ const GuidePage = () => {
       className="bcquyengop"
       title="Hướng dẫn nạp tiền"
       breadcrumbs={[
-        { name: 'Hướng dẫn nạp tiền' },
+        { name: 'Hướng dẫn nạp tiền', link: '/guides' },
 
       ]}
     >

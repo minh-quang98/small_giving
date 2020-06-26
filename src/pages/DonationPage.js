@@ -363,12 +363,14 @@ class DonationPage extends React.Component {
   }
 
   render() {
+
     return (
       <Page
         className="bcquyengop"
         title="Quyên góp"
         breadcrumbs={[
-          { name: 'Quyên góp' },
+          { name: 'Quyên góp', link: '/donation' },
+
 
         ]}>
         <Row>
@@ -414,18 +416,34 @@ class DonationPage extends React.Component {
                       className="mt-1"
                       //title="Số tiền quyên góp"
                       //subtitle="10.000.000"
+                      className="donate-progress-1"
                       color="secondary"
                       thousandSeparator={true}
+                      displayType={'text'}
                       separator=","
                       progress={{
-                        label: item.ChiDK,
-                        value: item.SoDuTK / item.ChiDK * 100,
+                        //label: item.ChiDK,
+                        value: Math.round(item.SoDuTK / item.ChiDK * 10000) / 100,
+
                       }}
 
                     />
+                    <Row>
+                      <Col lg="6" md="6" sm="6" xs="6" className="lable-pg">
+                        <NumberFormat value={item.ChiDK} displayType={'text'} thousandSeparator={true} suffix={'VNĐ'} />
+
+                      </Col>
+
+                      <Col lg="6" md="6" sm="6" xs="6">
+                        <div className="percent-pg"> {Math.round(item.SoDuTK / item.ChiDK * 10000) / 100}%
+
+</div>
+                      </Col>
+                    </Row>
+
                     <Button
                       disabled={this.state.token === "" ? true : false}
-                      className="mt-2"
+
 
                       onClick={() => this.handleOpenModalParent(item.idHoatDong)}
                     >

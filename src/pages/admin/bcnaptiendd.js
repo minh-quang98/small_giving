@@ -148,8 +148,8 @@ class bcnaptien extends React.Component {
                 className="bcnaptien"
                 title="Tổng tiền nạp"
                 breadcrumbs={[
-                    { name: 'báo cáo' },
-                    { name: 'giao dịch nạp tiền quỹ điểm danh', active: true },
+                    { name: 'báo cáo', link: '/admin/bcnaptiendd' },
+                    { name: 'giao dịch nạp tiền quỹ điểm danh', link: '/admin/bcnaptiendd', active: true },
                 ]}
             >
                 {tableTypes.map((tableType, index) => (

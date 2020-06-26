@@ -57,11 +57,11 @@ class Footer extends React.Component {
         <Row className="footer">
           <Col md={4} className="item-footer">
 
-            <div className="text-bold align-center">Liên kết</div>
+            <div className="text-bold">Liên kết</div>
 
-            <div className="fix-margin">
+            {/* <div className="fix-margin">
               <a href="http://www.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Học viện Ngân Hàng</a>
-            </div>
+            </div> */}
             <div className="fix-margin">
               <a href="http://mis.hvnh.edu.vn"><FaGlobeAmericas />{' '}{''} Khoa Hệ thống thông tin quản lý</a>
             </div>
@@ -77,7 +77,7 @@ class Footer extends React.Component {
           </Col>
           <Col md={4} className="item-footer">
 
-            <div className="text-bold align-center"> Thông tin liên hệ</div>
+            <div className="text-bold"> Thông tin liên hệ</div>
 
             <div className="fix-margin"><FaHome />{' '}{''}Địa chỉ: 12 Chùa Bộc, Đống Đa, Hà Nội</div>
             <div className="fix-margin"><FaPhone />{' '}{''}Hotline: 093 463 83 33</div>
@@ -85,7 +85,7 @@ class Footer extends React.Component {
           </Col>
           <Col md={4} className="item-footer">
 
-            <div className="text-bold align-center">
+            <div className="text-bold">
               Tải ứng dụng Small Giving trên
           </div>
             <div>

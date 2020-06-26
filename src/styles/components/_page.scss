@@ -1452,3 +1452,22 @@ textarea{
 
     }
 }
+.donate-progress-1{
+  border: none;
+  padding: 3px 1.25rem 0 1.25rem;
+  .card-text{
+    display: none !important;
+  }
+}
+.percent-pg{
+  text-align: right;
+  color: #545454;
+  font-size: 13px;
+
+}
+.lable-pg{
+  text-align: left;
+  color: #545454;
+  font-size: 13px;
+
+}

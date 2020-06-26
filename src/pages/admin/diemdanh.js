@@ -104,8 +104,8 @@ class diemdanh extends React.Component {
         className="diemdanh"
         title="Tạo điểm danh"
         breadcrumbs={[
-          { name: 'quản trị hoạt động tài trợ' },
-          { name: 'Tạo điểm danh', active: true },
+          { name: 'quản trị hoạt động tài trợ', link: '/admin/diemdanh' },
+          { name: 'Tạo điểm danh', link: '/admin/diemdanh', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

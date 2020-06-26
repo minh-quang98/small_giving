@@ -90,8 +90,8 @@ class nd extends React.Component {
         className="nd"
         title="Người dùng"
         breadcrumbs={[
-          { name: 'quản trị tài khoản' },
-          { name: 'người dùng', active: true },
+          { name: 'quản trị tài khoản', link: '/admin/nd' },
+          { name: 'người dùng', link: '/admin/nd', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

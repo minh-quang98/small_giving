@@ -1,5 +1,5 @@
 import AuthForm, { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
-// import GAListener from 'components/GAListener';
+import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout, } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
 import AuthPage from 'pages/AuthPage';
@@ -33,44 +33,54 @@ class App extends React.Component {
 
   render() {
     return (
-      <MainLayout breakpoint={this.props.breakpoint}>
-        {/*<div>*/}
-        {/*<BrowserRouter basename={getBasename()}>*/}
-        {/*<GAListener>*/}
-        {/*  <Switch>*/}
-        {/*    <MainLayout breakpoint={this.props.breakpoint}>*/}
-        {/*      <React.Suspense fallback={<PageSpinner/>}>*/}
-        <Route exact path="/" component={Home} />
-        <Route path="/donation" component={DonationPage} />
-        <Route path="/news" component={NewsPage} />
-        <Route path="/donation-detail" component={DonationDetail} />
-        <Route path="/news-detail" component={NewsDetailPage} />
-        {this.state.token !== ""
-          ? <Route exact path="/consider" component={ConsiderPage} />
-          : <Redirect to="/" />
-        }
-        <Route path="/guides" component={GuidePage} />
+      <BrowserRouter basename={getBasename()}>
+        <GAListener>
+          <Switch>
+            <MainLayout breakpoint={this.props.breakpoint}>
+              <React.Suspense fallback={<PageSpinner />}>
 
-        {this.state.token !== ""
-          ? <Route path="/history" component={HistoryPage} />
-          : <Redirect to="/" />
-        }
-        <Route path="/contact" component={ContactPage} />
+                {/*<div>*/}
+                {/*<BrowserRouter basename={getBasename()}>*/}
+                {/*<GAListener>*/}
+                {/*  <Switch>*/}
+                {/*    <MainLayout breakpoint={this.props.breakpoint}>*/}
+                {/*      <React.Suspense fallback={<PageSpinner/>}>*/}
+                <Route exact path="/" component={Home} />
+                <Route path="/donation" component={DonationPage} />
+                <Route path="/news" component={NewsPage} />
+                <Route path="/donation-detail" component={DonationDetail} />
+                <Route path="/news-detail" component={NewsDetailPage} />
+                {this.state.token !== ""
+                  ? <Route exact path="/consider" component={ConsiderPage} />
+                  : <Redirect to="/" />
+                }
+                <Route path="/guides" component={GuidePage} />
 
-        {this.state.token !== ""
-          ? <Route path="/profile" component={ProfileUser} />
-          : <Redirect to="/" />
-        }
-        <Route path="/admin" component={Admin} />
+                {this.state.token !== ""
+                  ? <Route path="/history" component={HistoryPage} />
+                  : <Redirect to="/" />
+                }
+                <Route path="/contact" component={ContactPage} />
 
-        {/*</React.Suspense>*/}
-        {/*</MainLayout>*/}
-        {/*</Switch>*/}
-        {/*</GAListener>*/}
-        {/*</BrowserRouter>*/}
+                {this.state.token !== ""
+                  ? <Route path="/profile" component={ProfileUser} />
+                  : <Redirect to="/" />
+                }
+                <Route path="/admin" component={Admin} />
 
-        {/*</div>*/}
-      </MainLayout>
+                {/*</React.Suspense>*/}
+                {/*</MainLayout>*/}
+                {/*</Switch>*/}
+                {/*</GAListener>*/}
+                {/*</BrowserRouter>*/}
+
+                {/*</div>*/}
+              </React.Suspense>
+            </MainLayout>
+            <Redirect to="/" />
+          </Switch>
+        </GAListener>
+      </BrowserRouter>
     );
   }
 }
@@ -99,5 +109,5 @@ const query = ({ width }) => {
   return { breakpoint: 'xs' };
 };
 
-//export default componentQueries(query)(App);
-export default withRouter(App);
+export default componentQueries(query)(App);
+//export default withRouter(App);

@@ -106,8 +106,8 @@ class tintuc extends React.Component {
         className="tintuc"
         title="Tin tức"
         breadcrumbs={[
-          { name: 'quản trị hoạt động tình nguyện' },
-          { name: 'Tin tức', active: true },
+          { name: 'quản trị hoạt động tình nguyện', link: '/admin/tintuc' },
+          { name: 'Tin tức', link: '/admin/tintuc', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

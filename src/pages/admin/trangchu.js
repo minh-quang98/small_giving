@@ -192,7 +192,7 @@ class DashboardPage extends React.Component {
       <Page
         className="DashboardPage"
         title="Dashboard"
-        breadcrumbs={[{ name: 'Trang chủ', active: true }]}
+      //breadcrumbs={[{ name: 'Trang chủ', active: true }]}
       >
         <Row>
           <Col lg={3} md={6} sm={6} xs={12}>

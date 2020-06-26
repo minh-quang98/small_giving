@@ -93,7 +93,7 @@ class NewsPage extends React.Component {
         className="bcquyengop"
         title="Tin tức"
         breadcrumbs={[
-          { name: 'Tin tức' },
+          { name: 'Tin tức', link: '/news' },
 
         ]}
       >

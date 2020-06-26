@@ -4,7 +4,7 @@ import PropTypes from 'utils/propTypes';
 import bn from 'utils/bemnames';
 
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-
+import { Link } from 'react-router-dom';
 import Typography from './Typography';
 import { FaHome } from 'react-icons/fa';
 const bem = bn.create('page');
@@ -31,11 +31,18 @@ const Page = ({
           )} */}
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
-            <BreadcrumbItem><FaHome /></BreadcrumbItem>
+            <BreadcrumbItem><Link to={{
+              pathname: '/',
+
+            }}><FaHome /></Link></BreadcrumbItem>
             {breadcrumbs.length &&
-              breadcrumbs.map(({ name, active }, index) => (
+              breadcrumbs.map(({ name, active, link }, index) => (
                 <BreadcrumbItem key={index} active={active}>
-                  {name}
+                  <Link to={{
+                    pathname: link,
+
+                  }}>{name}</Link>
+
                 </BreadcrumbItem>
               ))}
           </Breadcrumb>

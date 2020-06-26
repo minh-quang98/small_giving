@@ -186,7 +186,14 @@ class ProfileUser extends Component {
   render() {
     let { profile } = this.state
     return (
-      <Page title="Thông tin cá nhân">
+      <Page
+        className="bcquyengop ContactPage"
+        title="Thông tin cá nhân"
+        breadcrumbs={[
+          { name: 'Thông tin cá nhân', link: '/profile' },
+
+        ]}
+      >
         {/*   <Row>*/}
         {/*  <Col xl={12} lg={12} md={12}>*/}
         {/*    <Media*/}

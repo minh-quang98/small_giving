@@ -73,8 +73,8 @@ class naptien extends React.Component {
         className="naptien"
         title="Nạp tiền nhà hảo tâm"
         breadcrumbs={[
-          { name: 'quản trị giao dịch' },
-          { name: 'nạp tiền nhà hảo tâm', active: true },
+          { name: 'quản trị giao dịch', link: '/admin/naptiennd' },
+          { name: 'nạp tiền nhà hảo tâm', link: '/admin/naptiennd', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

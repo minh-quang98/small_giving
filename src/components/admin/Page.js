@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'utils/propTypes';
 
 import bn from 'utils/bemnames';
-
+import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import {FaHandHoldingHeart} from 'react-icons/fa';
+import { FaHandHoldingHeart } from 'react-icons/fa';
 
 // import Typography from './Typography';
 
@@ -25,12 +25,23 @@ const Page = ({
       <div className={bem.e('header')}>
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
-            <FaHandHoldingHeart size="1.5em" />
-            <BreadcrumbItem>Small Giving</BreadcrumbItem>
+            <Link to={{
+              pathname: '/admin/trangchu',
+
+            }}><FaHandHoldingHeart size="1.5em" /></Link>
+
+            <BreadcrumbItem><Link to={{
+              pathname: '/admin/trangchu',
+
+            }}>Small Giving</Link></BreadcrumbItem>
             {breadcrumbs.length &&
-              breadcrumbs.map(({ name, active }, index) => (
+              breadcrumbs.map(({ name, active, link }, index) => (
                 <BreadcrumbItem key={index} active={active}>
-                  {name}
+
+                  <Link to={{
+                    pathname: link,
+
+                  }}>{name}</Link>
                 </BreadcrumbItem>
               ))}
           </Breadcrumb>

@@ -164,8 +164,8 @@ class bcquyengop extends React.Component {
         className="bcquyengop"
         title="Tổng quyên góp"
         breadcrumbs={[
-          { name: 'báo cáo' },
-          { name: 'giao dịch quyên góp', active: true },
+          { name: 'báo cáo', link: '/admin/bcquyengop' },
+          { name: 'giao dịch quyên góp', link: '/admin/bcquyengop', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

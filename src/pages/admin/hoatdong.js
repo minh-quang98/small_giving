@@ -127,8 +127,8 @@ class hoatdong extends React.Component {
         className="hoatdong"
         title="Danh sách hoạt động"
         breadcrumbs={[
-          { name: 'quản trị hoạt động tình nguyện' },
-          { name: 'danh sách hoạt động', active: true },
+          { name: 'quản trị hoạt động tình nguyện', link: '/admin/hoatdong' },
+          { name: 'danh sách hoạt động', link: '/admin/hoatdong', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (

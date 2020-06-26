@@ -125,7 +125,7 @@ class bcquyengop extends React.Component {
         className="bcquyengop"
         title="Tổng quyên góp"
         breadcrumbs={[
-          { name: 'lịch sử giao dịch' },
+          { name: 'lịch sử giao dịch', link: '/history' },
 
         ]}
       >

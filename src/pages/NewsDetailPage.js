@@ -142,7 +142,8 @@ class NewsDetailPage extends Component {
       <Page className="bcquyengop"
         title="Tin Tức/ Chi tiết tin tức"
         breadcrumbs={[
-          { name: 'Tin Tức/ Chi tiết tin tức' },
+          { name: 'Tin Tức', link: '/news' },
+          { name: 'Chi tiết tin tức', link: '/news-detail' },
 
         ]}>
         <h1 className="text-center title-detail">{this.state.TenTin}</h1>

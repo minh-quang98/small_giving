@@ -66,7 +66,8 @@ class ModalLoginPage extends Component {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        Email: this.state.email,
+        //Email: this.state.email,
+        SDT: this.state.phone,
         MatKhau: this.state.password,
       }),
     };
@@ -203,37 +204,7 @@ class ModalLoginPage extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.message === "success") {
-          this.handleWallet20k()
-        } else {
-          this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right"
-            },
-            variant: 'error',
-          });
-        }
-      })
-  }
-
-  handleChangePhone(val) {
-    const re = /^[0-9\b]+$/;
-    if (val.target.value === '' || re.test(val.target.value)) {
-      this.setState({ phone: val.target.value })
-    }
-  };
-
-  handleWallet20k = () => {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        ClientNumber: this.state.phone
-      })
-    }
-    fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/nap20.php`, config)
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === "success") {
+          //this.handleWallet20k()
           this.props.enqueueSnackbar('Đăng ký thành công !', {
             anchorOrigin: {
               vertical: "top",
@@ -260,6 +231,51 @@ class ModalLoginPage extends Component {
         }
       })
   }
+
+  handleChangePhone(val) {
+    const re = /^[0-9\b]+$/;
+    if (val.target.value === '' || re.test(val.target.value)) {
+      this.setState({ phone: val.target.value })
+    }
+  };
+
+  // handleWallet20k = () => {
+  //   let config = {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       ClientNumber: this.state.phone
+  //     })
+  //   }
+  //   fetch(`http://apis.bav.edu.vn/smallgiving/apiway4/nap20.php`, config)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.message === "success") {
+  //         this.props.enqueueSnackbar('Đăng ký thành công !', {
+  //           anchorOrigin: {
+  //             vertical: "top",
+  //             horizontal: "right"
+  //           },
+  //           variant: 'success',
+  //         });
+  //         this.setState({
+  //           phone: '',
+  //           email: '',
+  //           name: "",
+  //           password: '',
+  //           rePassword: '',
+  //           modeLogin: true,
+  //         })
+  //       } else {
+  //         this.props.enqueueSnackbar('Đã có lỗi xảy ra !', {
+  //           anchorOrigin: {
+  //             vertical: "top",
+  //             horizontal: "right"
+  //           },
+  //           variant: 'error',
+  //         });
+  //       }
+  //     })
+  // }
 
   keyPress = (event, input) => {
     if (event.keyCode === 13) {
@@ -294,11 +310,11 @@ class ModalLoginPage extends Component {
                 <TextField
                   style={{ width: "100%" }}
                   onKeyDown={event => this.keyPress(event, "enter")}
-                  label="Email"
+                  label="Số điện thoại"
                   variant="outlined"
                   onChange={(val) => {
                     this.setState({
-                      email: val.target.value
+                      phone: val.target.value
                     })
                   }}
                 />

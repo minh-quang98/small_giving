@@ -210,9 +210,10 @@ class DonationDetailPage extends Component {
     let { dataHoatDong } = this.state;
     return (
       <Page className="bcquyengop"
-        title="Quyên góp/Chi tiết quyên góp"
+        title="Chi tiết quyên góp"
         breadcrumbs={[
-          { name: 'Quyên góp/ Chi tiết quyên góp' },
+          { name: 'Quyên góp', link: '/donation' },
+          { name: 'Chi tiết quyên góp', link: '/donation-detail' },
 
         ]}>
         <h1 className="text-center title-detail">{dataHoatDong.TenHoatDong}</h1>

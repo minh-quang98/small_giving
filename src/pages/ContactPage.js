@@ -69,7 +69,7 @@ class ContactPage extends React.Component {
         className="bcquyengop ContactPage"
         title="Liên hệ và góp ý"
         breadcrumbs={[
-          { name: 'Liên hệ và góp ý' },
+          { name: 'Liên hệ và góp ý', link: '/contact' },
 
         ]}
       >
