@@ -15,7 +15,8 @@ import {
   ModalHeader,
 } from 'reactstrap';
 import { withSnackbar } from 'notistack';
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from '@ckeditor/ckeditor5-react';
 const initialState = {
   id: '',
   idnth: '',
@@ -35,7 +36,14 @@ const initialState = {
 };
 
 class Hoatdongsua extends React.Component {
-  state = initialState;
+  constructor(props) {
+    super(props);
+
+    this.state = initialState;
+
+    //this.handleChange = this.handleChange.bind( this );
+    this.onEditorChange = this.onEditorChange.bind(this);
+  }
 
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
@@ -195,6 +203,14 @@ class Hoatdongsua extends React.Component {
     //this.setState(initialState);
     //}
   };
+  onEditorChange(evt, editor) {
+    this.setState({
+      content: editor.getData(),
+      contentError: ""
+    });
+    //console.log("sssss", this.state.content)
+    //console.log("sssss>>>", parse(this.state.content))
+  }
   render() {
     return (
       <Modal isOpen={this.props.show}>
@@ -346,17 +362,13 @@ class Hoatdongsua extends React.Component {
                       <div className="error-text">
                         {this.state.contentError}
                       </div>
-                      <Input
-                        type="textarea"
-                        name="content"
-                        value={this.state.content}
-                        onChange={val => {
-                          this.setState({
-                            content: val.target.value,
-                            contentError: ""
-                          });
-
-                        }}
+                      <CKEditor
+                        //id="content"
+                        editor={ClassicEditor}
+                        //onInit={editor => { }}
+                        data={this.state.content}
+                        //value={parse(this.state.content)}
+                        onChange={this.onEditorChange}
                       />
                     </Form>
                   </Col>

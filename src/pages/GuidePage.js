@@ -10,7 +10,7 @@ import moment from 'moment';
 import NumberFormat from "react-number-format";
 import GUBN from 'assets/img/guide-banner.png';
 import IMGU from 'assets/img/image-guide.png';
-import step1 from 'assets/img/step1.PNG'
+import step1 from 'assets/img/step1.png'
 import step2 from 'assets/img/step2.png'
 import step3 from 'assets/img/step3.png'
 import step4 from 'assets/img/step4.png'
@@ -54,7 +54,7 @@ const GuidePage = () => {
             <div className="title-guide-2">
               <span>
                 Bước 2
-              </span> Nhập vào số tài khoản: 1014885642
+              </span> Nhập vào số tài khoản: 1014885642 <br />  (Chủ tài khoản: Hội sinh viên Học viện Ngân Hàng, <br /> Chi nhánh: Sở Giao dịch)
             </div>
           </Col>
         </Row>

@@ -211,12 +211,13 @@ class Naptienthem extends React.Component {
                             name="money"
 
                             value={this.state.money}
-                            //thousandSeparator={true}
-                            //separator=" "
+                            thousandSeparator={true}
+                            separator=" "
                             onChange={val => {
                               this.setState({
                                 money: val.target.value,
                               });
+                              console.log("ktra", (this.state.money).length)
                             }}
                           />
 

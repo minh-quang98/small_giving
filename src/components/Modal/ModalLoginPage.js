@@ -175,7 +175,7 @@ class ModalLoginPage extends Component {
     fetch('http://apis.bav.edu.vn/smallgiving/Dangky/nhapsodienthoai.php', config)
       .then((response) => response.json())
       .then((data) => {
-        if (data.message === "Dang ki thanh cong") {
+        if (data.message === "success") {
           this.handleSignUpW4()
         } else {
           this.props.enqueueSnackbar('Tài khoản đã tồn tại !', {

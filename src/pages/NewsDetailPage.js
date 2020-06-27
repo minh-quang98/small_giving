@@ -162,7 +162,7 @@ class NewsDetailPage extends Component {
 
                 <div className="mt-4">
 
-                  {this.state.NoiDung}
+                  {parse(this.state.NoiDung)}
                 </div>
               </CardBody>
             </Card>

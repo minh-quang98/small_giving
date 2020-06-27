@@ -256,11 +256,24 @@ class DonationPage extends React.Component {
   // }
 
 
-  handleOpenModalParent(idHoatDong) {
-    this.setState({
-      idHoatDong: idHoatDong,
-      modalParent: true,
-    });
+  handleOpenModalParent(idHoatDong, SoDuTK, ChiDK) {
+    if (SoDuTK * 1 - ChiDK >= 0) {
+      this.props.enqueueSnackbar('Số tiền quyên góp đã đủ, vui lòng chuyển sang hoạt động khác !', {
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        },
+        variant: 'error',
+      });
+      //window.location(reload)
+
+    }
+    else {
+      this.setState({
+        idHoatDong: idHoatDong,
+        modalParent: true,
+      });
+    }
   }
 
   handleCloseModalParent() {
@@ -443,9 +456,7 @@ class DonationPage extends React.Component {
 
                     <Button
                       disabled={this.state.token === "" ? true : false}
-
-
-                      onClick={() => this.handleOpenModalParent(item.idHoatDong)}
+                      onClick={() => this.handleOpenModalParent(item.idHoatDong, item.SoDuTK, item.ChiDK)}
                     >
                       Quyên góp
                     </Button>

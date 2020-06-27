@@ -209,17 +209,12 @@ class Tintucsua extends React.Component {
   onEditorChange(evt, editor) {
     this.setState({
       content: editor.getData(),
+      contentError: ""
       //$('#trackingDiv').html(content);
       //noidung1: { parse(content) }
-
-
     });
     console.log("sssss", this.state.content)
     //console.log("sssss>>>", parse(this.state.content))
-
-
-
-
   }
   render() {
     return (
@@ -282,6 +277,7 @@ class Tintucsua extends React.Component {
                               name: val.target.value,
                               nameError: ""
                             });
+                            console.log("sss>>>", this.state.name)
                           }}
                         />
                       </FormGroup>
@@ -340,37 +336,17 @@ class Tintucsua extends React.Component {
                         //value={parse(this.state.content)}
                         onChange={this.onEditorChange}
 
-
                       // config={{
 
                       //   language: 'fr',
-                      //   htmlEncodeOutput: true,
-                      //   entities: false,
-                      //   entities_latin: false,
-                      //   ForceSimpleAmpersand: true,
+                      // htmlEncodeOutput: false,
+                      // entities: false,
+                      // entities_latin: false,
+                      // ForceSimpleAmpersand: false,
                       //   toolbar: 'Bold',
                       //   fullPage: true,
-                      // }}
-
+                      //}}
                       />
-                      <div>
-                        <p>
-
-                          {parse(this.state.content)}
-                        </p>
-                      </div>
-
-                      {/* <Input
-                        type="textarea"
-                        name="content"
-                        value={this.state.content}
-                        onChange={val => {
-                          this.setState({
-                            content: val.target.value,
-                            contentError: ""
-                          });
-                        }}
-                      /> */}
                     </Form>
                   </Col>
                 </Row>

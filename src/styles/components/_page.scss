@@ -668,6 +668,7 @@
         color: #fff;
         font-family: 'Mali', cursive;
         font-size: 14px;
+        text-transform: uppercase;
       }
 
     }
@@ -979,6 +980,9 @@ figure{
     text-align: right;
     font-size: 11px;
   }
+  .content-noti{
+    overflow: hidden;
+  }
 }
 .table-responsive{
   max-height: 370px;
@@ -1136,6 +1140,7 @@ textarea{
 .title-thongke{
   margin: 10px auto;
     font-weight: bold;
+    text-transform:capitalize;
 }
 .tintuc-layout{
   background-color: #fbfbfb;
@@ -1266,7 +1271,8 @@ textarea{
 .fixx-noti{
   .media-middle{
     overflow: hidden;
-    p{
+    .content-noti{
+      height: 30px;
       white-space: nowrap;
       text-overflow: ellipsis;
     }

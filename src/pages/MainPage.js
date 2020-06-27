@@ -263,7 +263,7 @@ class MainPage extends React.Component {
             },
             variant: 'success',
           });
-          //window.location.reload()
+          window.location.reload()
         } else if (data.message === 'Ban da diem danh roi') {
           this.props.enqueueSnackbar('Bạn đã điểm danh rồi', {
             anchorOrigin: {

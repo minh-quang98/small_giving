@@ -33,54 +33,54 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter basename={getBasename()}>
-        <GAListener>
-          <Switch>
-            <MainLayout breakpoint={this.props.breakpoint}>
-              <React.Suspense fallback={<PageSpinner />}>
+      // <BrowserRouter basename={getBasename()}>
+      <GAListener>
+        <Switch>
+          <MainLayout breakpoint={this.props.breakpoint}>
+            {/* <React.Suspense fallback={<PageSpinner />}> */}
 
-                {/*<div>*/}
-                {/*<BrowserRouter basename={getBasename()}>*/}
-                {/*<GAListener>*/}
-                {/*  <Switch>*/}
-                {/*    <MainLayout breakpoint={this.props.breakpoint}>*/}
-                {/*      <React.Suspense fallback={<PageSpinner/>}>*/}
-                <Route exact path="/" component={Home} />
-                <Route path="/donation" component={DonationPage} />
-                <Route path="/news" component={NewsPage} />
-                <Route path="/donation-detail" component={DonationDetail} />
-                <Route path="/news-detail" component={NewsDetailPage} />
-                {this.state.token !== ""
-                  ? <Route exact path="/consider" component={ConsiderPage} />
-                  : <Redirect to="/" />
-                }
-                <Route path="/guides" component={GuidePage} />
+            {/*<div>*/}
+            {/*<BrowserRouter basename={getBasename()}>*/}
+            {/*<GAListener>*/}
+            {/*  <Switch>*/}
+            {/*    <MainLayout breakpoint={this.props.breakpoint}>*/}
+            {/*      <React.Suspense fallback={<PageSpinner/>}>*/}
+            <Route exact path="/" component={Home} />
+            <Route path="/donation" component={DonationPage} />
+            <Route path="/news" component={NewsPage} />
+            <Route path="/donation-detail" component={DonationDetail} />
+            <Route path="/news-detail" component={NewsDetailPage} />
+            {this.state.token !== ""
+              ? <Route exact path="/consider" component={ConsiderPage} />
+              : <Redirect to="/" />
+            }
+            <Route path="/guides" component={GuidePage} />
 
-                {this.state.token !== ""
-                  ? <Route path="/history" component={HistoryPage} />
-                  : <Redirect to="/" />
-                }
-                <Route path="/contact" component={ContactPage} />
+            {this.state.token !== ""
+              ? <Route path="/history" component={HistoryPage} />
+              : <Redirect to="/" />
+            }
+            <Route path="/contact" component={ContactPage} />
 
-                {this.state.token !== ""
-                  ? <Route path="/profile" component={ProfileUser} />
-                  : <Redirect to="/" />
-                }
-                <Route path="/admin" component={Admin} />
+            {this.state.token !== ""
+              ? <Route path="/profile" component={ProfileUser} />
+              : <Redirect to="/" />
+            }
+            <Route path="/admin" component={Admin} />
 
-                {/*</React.Suspense>*/}
-                {/*</MainLayout>*/}
-                {/*</Switch>*/}
-                {/*</GAListener>*/}
-                {/*</BrowserRouter>*/}
+            {/*</React.Suspense>*/}
+            {/*</MainLayout>*/}
+            {/*</Switch>*/}
+            {/*</GAListener>*/}
+            {/*</BrowserRouter>*/}
 
-                {/*</div>*/}
-              </React.Suspense>
-            </MainLayout>
-            <Redirect to="/" />
-          </Switch>
-        </GAListener>
-      </BrowserRouter>
+            {/*</div>*/}
+            {/* </React.Suspense> */}
+          </MainLayout>
+          {/* <Redirect to="/" /> */}
+        </Switch>
+      </GAListener>
+      // </BrowserRouter>
     );
   }
 }
@@ -109,5 +109,5 @@ const query = ({ width }) => {
   return { breakpoint: 'xs' };
 };
 
-export default componentQueries(query)(App);
+export default withRouter(componentQueries(query)(App));
 //export default withRouter(App);

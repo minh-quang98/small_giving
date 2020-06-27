@@ -26,7 +26,7 @@ import NGND from 'assets/img/NGND.jpg';
 import Convert from '../utils/ConvertUrlPra';
 import Cookies from 'js-cookie';
 import { withSnackbar } from 'notistack';
-
+import parse from 'html-react-parser'
 
 class DonationDetailPage extends Component {
   constructor(props) {
@@ -39,6 +39,9 @@ class DonationDetailPage extends Component {
       SoDiTK: '',
       token: Cookies.get('small-giving') ? Cookies.get('small-giving') : '',
       idNguoiDung: '',
+      TenHoatDong: '',
+      Anh: '',
+      NoiDung: '',
     };
   }
 
@@ -63,7 +66,10 @@ class DonationDetailPage extends Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({
-          dataHoatDong: data,
+
+          TenHoatDong: data.TenHoatDong,
+          Anh: data.Anh,
+          NoiDung: data.NoiDung,
         });
       });
   }
@@ -207,7 +213,7 @@ class DonationDetailPage extends Component {
 
   render() {
     // const item = this.props.item;
-    let { dataHoatDong } = this.state;
+    //let { dataHoatDong } = this.state;
     return (
       <Page className="bcquyengop"
         title="Chi tiết quyên góp"
@@ -216,7 +222,7 @@ class DonationDetailPage extends Component {
           { name: 'Chi tiết quyên góp', link: '/donation-detail' },
 
         ]}>
-        <h1 className="text-center title-detail">{dataHoatDong.TenHoatDong}</h1>
+        <h1 className="text-center title-detail">{this.state.TenHoatDong}</h1>
         <Row>
           <Col lg="1"></Col>
           <Col lg="10" md="12" sm="12" xs="12">
@@ -225,7 +231,7 @@ class DonationDetailPage extends Component {
                 {/* <Line data={chartjs.line.data} options={chartjs.line.options} /> */}
                 <Media
                   object
-                  src={dataHoatDong.Anh}
+                  src={this.state.Anh}
                   className="rounded mr-2 mb-2"
                   style={{ width: '100%', height: '100%' }}
                 />
@@ -241,7 +247,7 @@ class DonationDetailPage extends Component {
 
 
                 <div className="mt-4">
-                  {dataHoatDong.NoiDung}
+                  {parse(this.state.NoiDung)}
                 </div>
               </CardBody>
             </Card>
@@ -257,7 +263,7 @@ class DonationDetailPage extends Component {
             toggle={() => this.handleCloseModalParent()}
             className={this.props.className}>
             <ModalHeader toggle={() => this.handleCloseModalParent()}>
-              Quyên góp cho: "{dataHoatDong.TenHoatDong}"
+              Quyên góp cho: "{this.state.TenHoatDong}"
             </ModalHeader>
             <ModalBody className="d-flex flex-column align-items-center">
               <Media
