@@ -9,7 +9,7 @@
     "@material-ui/icons": "^4.9.1",
     "animate.css": "^4.1.0",
     "animate.css-react": "^1.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "chart.js": "2.7.2",
     "ckeditor4-react": "^1.1.1",
